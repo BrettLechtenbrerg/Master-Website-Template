@@ -1,0 +1,57 @@
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navigation from "@/components/Navigation";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  title: "Murray Area Chamber of Commerce | Hub of Innovation & Growth",
+  description: "Strengthening Murray's business economy by providing unparalleled resources, networking opportunities, and support for businesses of all sizes. Join 500+ member businesses today.",
+  keywords: ["Murray Chamber", "Chamber of Commerce", "Utah Business", "Murray Utah", "Business Networking", "Small Business Resources"],
+  authors: [{ name: "Murray Area Chamber of Commerce" }],
+  openGraph: {
+    title: "Murray Area Chamber of Commerce",
+    description: "Your hub for innovation and business growth in Murray, Utah",
+    url: "https://www.themurraychamber.com",
+    siteName: "Murray Area Chamber of Commerce",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Murray Area Chamber of Commerce",
+    description: "Your hub for innovation and business growth in Murray, Utah",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} antialiased min-w-full`}>
+        {/* Aurora Background */}
+        <div className="aurora-bg" aria-hidden="true" />
+
+        {/* Navigation */}
+        <Navigation />
+
+        {/* Main Content */}
+        <main className="min-w-full flex flex-col items-center relative z-10">
+          {children}
+        </main>
+      </body>
+    </html>
+  );
+}

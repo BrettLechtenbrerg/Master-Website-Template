@@ -1,0 +1,313 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare, Calendar, Users } from 'lucide-react';
+import PageHeader from '@/components/PageHeader';
+import Footer from '@/components/Footer';
+
+const contactInfo = [
+  {
+    icon: MapPin,
+    title: 'Visit Us',
+    lines: ['141 E. 5600 S., Suite 300', 'Murray, UT 84107'],
+  },
+  {
+    icon: Phone,
+    title: 'Call Us',
+    lines: ['(801) 263-2632'],
+  },
+  {
+    icon: Mail,
+    title: 'Email Us',
+    lines: ['info@murraychamber.com'],
+  },
+  {
+    icon: Clock,
+    title: 'Office Hours',
+    lines: ['Monday - Friday', '9:00 AM - 5:00 PM'],
+  },
+];
+
+const inquiryTypes = [
+  { value: 'general', label: 'General Inquiry' },
+  { value: 'membership', label: 'Membership Information' },
+  { value: 'events', label: 'Events & Sponsorship' },
+  { value: 'advertising', label: 'Advertising Opportunities' },
+  { value: 'ribbon-cutting', label: 'Ribbon Cutting Request' },
+  { value: 'partnership', label: 'Partnership Inquiry' },
+  { value: 'media', label: 'Media Inquiry' },
+  { value: 'other', label: 'Other' },
+];
+
+const quickActions = [
+  { icon: Users, title: 'Join the Chamber', description: 'Learn about membership benefits', href: '/join' },
+  { icon: Calendar, title: 'Upcoming Events', description: 'Browse chamber events', href: '/events/chamber' },
+  { icon: MessageSquare, title: 'Member Support', description: 'Get help with your account', href: '/login' },
+];
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    inquiryType: 'general',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // GHL Webhook Integration - Replace with actual webhook URL
+    // await fetch('YOUR_GHL_WEBHOOK_URL', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(formData),
+    // });
+
+    // Simulate submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsSubmitting(false);
+    setSubmitted(true);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  return (
+    <>
+      <PageHeader
+        badge="Contact"
+        title="Get in Touch"
+        description="Have questions? We're here to help. Reach out to the Murray Area Chamber of Commerce and let's start a conversation."
+        breadcrumbs={[
+          { label: 'Contact' },
+        ]}
+      />
+
+      {/* Contact Info Cards */}
+      <section className="relative py-8 overflow-hidden">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {contactInfo.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-card p-6 text-center"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-700 mx-auto mb-4 flex items-center justify-center">
+                  <item.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-semibold text-white mb-2">{item.title}</h3>
+                {item.lines.map((line, i) => (
+                  <p key={i} className="text-white/60 text-sm">{line}</p>
+                ))}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form & Map */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="glass-card p-8"
+            >
+              {submitted ? (
+                <div className="text-center py-12">
+                  <div className="w-20 h-20 rounded-full bg-green-500/20 mx-auto mb-6 flex items-center justify-center">
+                    <Send className="w-10 h-10 text-green-400" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Message Sent!</h3>
+                  <p className="text-white/60">
+                    Thank you for contacting us. We&apos;ll get back to you within 1-2 business days.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        phone: '',
+                        company: '',
+                        inquiryType: 'general',
+                        message: '',
+                      });
+                    }}
+                    className="btn-secondary mt-6"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <h2 className="text-2xl font-bold text-white mb-6">Send Us a Message</h2>
+                  <form onSubmit={handleSubmit} className="space-y-6 ghl-form">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-white/70 mb-2">First Name *</label>
+                        <input
+                          type="text"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          required
+                          className="input-glass w-full"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-white/70 mb-2">Last Name *</label>
+                        <input
+                          type="text"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          required
+                          className="input-glass w-full"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-white/70 mb-2">Email *</label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="input-glass w-full"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-white/70 mb-2">Phone</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className="input-glass w-full"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-white/70 mb-2">Company/Organization</label>
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="input-glass w-full"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-white/70 mb-2">Inquiry Type *</label>
+                      <select
+                        name="inquiryType"
+                        value={formData.inquiryType}
+                        onChange={handleChange}
+                        required
+                        className="input-glass select-glass w-full"
+                      >
+                        {inquiryTypes.map(type => (
+                          <option key={type.value} value={type.value}>{type.label}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-white/70 mb-2">Message *</label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={5}
+                        className="input-glass w-full resize-none"
+                        placeholder="How can we help you?"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn-glow w-full disabled:opacity-50"
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                      <Send className="w-5 h-5" />
+                    </button>
+                  </form>
+                </>
+              )}
+            </motion.div>
+
+            {/* Map & Quick Actions */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="space-y-6"
+            >
+              {/* Map Embed */}
+              <div className="glass-card p-4 h-80">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1234567890123!2d-111.8825!3d40.6625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDM5JzQ1LjAiTiAxMTHCsDUyJzU3LjAiVw!5e0!3m2!1sen!2sus!4v1234567890123"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, borderRadius: '0.75rem' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Murray Area Chamber of Commerce Location"
+                />
+              </div>
+
+              {/* Quick Actions */}
+              <div className="space-y-6">
+                <h3 className="text-lg font-semibold text-white">Quick Actions</h3>
+                {quickActions.map((action, index) => (
+                  <motion.a
+                    key={action.title}
+                    href={action.href}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                    className="glass-card p-4 flex items-center gap-4 group hover:bg-white/10 transition-colors"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shrink-0">
+                      <action.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-white group-hover:text-purple-300 transition-colors">
+                        {action.title}
+                      </h4>
+                      <p className="text-white/60 text-sm">{action.description}</p>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </>
+  );
+}
