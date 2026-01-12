@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FileText, Globe, Truck, CheckCircle, ArrowRight, Info } from 'lucide-react';
+import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 
@@ -74,10 +75,12 @@ export default function CertificateOfOriginPage() {
       <section className="relative py-8 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden">
-            <img
+            <Image
               src="/images/certificates/certificate-hero.jpg"
               alt="International Trade and Shipping"
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              className="object-cover"
+              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-slate-900/60 to-transparent" />
             <div className="absolute inset-0 flex items-center">
@@ -124,10 +127,12 @@ export default function CertificateOfOriginPage() {
             <div className="relative">
               {/* Shipping Image */}
               <div className="relative h-64 rounded-2xl overflow-hidden mb-6">
-                <img
+                <Image
                   src="/images/certificates/shipping.jpg"
                   alt="Global Shipping"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
               </div>
