@@ -89,37 +89,38 @@ git add -A && git commit -m "Your message" && git push
 ## Current Status (as of January 12, 2026)
 
 ### What's Working:
-- Full website deployed and live
+- Full website deployed and live at https://macc-website-2.vercel.app/
 - All pages rendering correctly
-- GitHub connected to Vercel (auto-deploy enabled)
+- GitHub connected to Vercel (deploy via CLI: `vercel --prod --yes`)
 - GHL form integration set up
-- All images committed to git and deployed
+- Video player on ribbon-cutting page (ready for video content)
+- Directory page images working perfectly
 
-### Known Issue:
-- **Images not displaying on `/ribbon-cutting` and `/certificate-of-origin` pages**
-- Images ARE deployed (return HTTP 200 when accessed directly)
-- Example: https://macc-website-2.vercel.app/images/ribbon-cuttings/hero.jpg works
-- Issue appears to be in how Next.js Image component renders them
-- Uses `fill` prop with `unoptimized` flag
+### Recent Fixes:
+- `/ribbon-cutting` - Hero section replaced with video player (works great!)
+- Gallery cards use StaggerChildren + motion.div pattern from directory page
+- `/certificate-of-origin` - Uses Image component with shipping.jpg
 
-### Pages with Image Issues:
-1. `/ribbon-cutting` - Hero image and gallery images
-2. `/certificate-of-origin` - Hero and shipping images
+### Pages Status:
+1. `/ribbon-cutting` - Video player works, gallery may need video placeholders
+2. `/certificate-of-origin` - Shipping image section present
+3. `/directory` - All images display correctly (reference for working pattern)
 
 ---
 
-## Key Files for Image Issues
-- `app/ribbon-cutting/page.tsx` - Uses Next.js Image with fill prop
-- `app/certificate-of-origin/page.tsx` - Same pattern
-- `public/images/ribbon-cuttings/` - Contains hero.jpg, ribbon-1.jpg, ribbon-2.jpg, ribbon-3.jpg
-- `public/images/certificates/` - Contains certificate-hero.jpg, shipping.jpg
+## Key Files
+- `app/ribbon-cutting/page.tsx` - Video player + gallery with StaggerChildren
+- `app/certificate-of-origin/page.tsx` - Image component for shipping visual
+- `app/directory/page.tsx` - REFERENCE: Working image pattern
+- `app/good-things-utah/page.tsx` - REFERENCE: Video player pattern
+- `public/images/` - All images stored here
 
 ---
 
 ## Git Info
 - **Branch:** main
 - **Remote:** origin -> https://github.com/BrettLechtenbrerg/MACC-Website.git
-- **Latest commit:** ab11f1e "Add missing images and fix image display issues"
+- **Latest commit:** 9fef598 "Fix: restore Image import for gallery"
 
 ---
 
