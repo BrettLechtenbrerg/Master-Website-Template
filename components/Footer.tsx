@@ -10,8 +10,8 @@ import {
   MapPin,
   Phone,
   Mail,
-  ArrowRight
 } from 'lucide-react';
+import NewsletterSignup from './NewsletterSignup';
 
 const footerLinks = {
   'Business Resources': [
@@ -53,39 +53,10 @@ export default function Footer() {
       {/* Top Wave */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
 
-      {/* Newsletter Section */}
+      {/* Newsletter Section - GHL Integrated */}
       <div className="border-b border-white/10">
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16">
-          <div className="glass-card p-8 md:p-12 lg:p-14">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-              <div className="text-center lg:text-left flex-1">
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
-                  Stay Connected
-                </h3>
-                <p className="mt-3 text-white/60 max-w-lg">
-                  Get the latest news, event updates, and business resources delivered to your inbox.
-                </p>
-              </div>
-              <form className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto shrink-0 ghl-form">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="input-glass w-full sm:w-72"
-                  name="email"
-                  required
-                />
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit"
-                  className="btn-glow whitespace-nowrap"
-                >
-                  Subscribe
-                  <ArrowRight className="w-4 h-4" />
-                </motion.button>
-              </form>
-            </div>
-          </div>
+          <NewsletterSignup variant="card" />
         </div>
       </div>
 
@@ -136,7 +107,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="social-icon"
+                  className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 hover:border-purple-500/50 transition-all"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
@@ -151,7 +122,10 @@ export default function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="footer-link text-sm">
+                    <Link
+                      href={link.href}
+                      className="text-sm text-white/60 hover:text-white transition-colors"
+                    >
                       {link.label}
                     </Link>
                   </li>

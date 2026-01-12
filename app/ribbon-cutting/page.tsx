@@ -2,9 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Scissors, Calendar, Camera, Users, CheckCircle, Send } from 'lucide-react';
+import { Scissors, Calendar, Camera, Users, CheckCircle, Send, AlertCircle } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
+import { submitRibbonCuttingForm } from '@/lib/ghl';
 
 const benefits = [
   {
@@ -26,10 +27,39 @@ const benefits = [
 
 export default function RibbonCuttingPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsLoading(true);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const result = await submitRibbonCuttingForm({
+        businessName: formData.get('business_name') as string,
+        contactPerson: formData.get('contact_person') as string,
+        email: formData.get('email') as string,
+        phone: formData.get('phone') as string,
+        businessAddress: formData.get('business_address') as string,
+        preferredDate: formData.get('preferred_date') as string,
+        preferredTime: formData.get('preferred_time') as string,
+        celebrationType: formData.get('celebration_type') as string,
+        additionalDetails: formData.get('additional_details') as string || undefined,
+      });
+
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        setError(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError('Unable to submit form. Please try again later.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -76,7 +106,7 @@ export default function RibbonCuttingPage() {
         </div>
       </section>
 
-      {/* Request Form */}
+      {/* Request Form - GHL Integrated */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -112,19 +142,38 @@ export default function RibbonCuttingPage() {
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6 ghl-form">
+                {error && (
+                  <div className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 mb-6">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <span className="text-sm">{error}</span>
+                  </div>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <label className="block text-sm font-medium text-white/80 mb-2">
                         Business Name *
                       </label>
-                      <input type="text" required className="input-glass" placeholder="Your Business Name" />
+                      <input
+                        type="text"
+                        name="business_name"
+                        required
+                        className="input-glass"
+                        placeholder="Your Business Name"
+                      />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-white/80 mb-2">
                         Contact Person *
                       </label>
-                      <input type="text" required className="input-glass" placeholder="Full Name" />
+                      <input
+                        type="text"
+                        name="contact_person"
+                        required
+                        className="input-glass"
+                        placeholder="Full Name"
+                      />
                     </div>
                   </div>
 
@@ -133,13 +182,25 @@ export default function RibbonCuttingPage() {
                       <label className="block text-sm font-medium text-white/80 mb-2">
                         Email *
                       </label>
-                      <input type="email" required className="input-glass" placeholder="email@company.com" />
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        className="input-glass"
+                        placeholder="email@company.com"
+                      />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-white/80 mb-2">
                         Phone *
                       </label>
-                      <input type="tel" required className="input-glass" placeholder="(801) 555-0123" />
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        className="input-glass"
+                        placeholder="(801) 555-0123"
+                      />
                     </div>
                   </div>
 
@@ -147,7 +208,13 @@ export default function RibbonCuttingPage() {
                     <label className="block text-sm font-medium text-white/80 mb-2">
                       Business Address *
                     </label>
-                    <input type="text" required className="input-glass" placeholder="Street Address, City, State, ZIP" />
+                    <input
+                      type="text"
+                      name="business_address"
+                      required
+                      className="input-glass"
+                      placeholder="Street Address, City, State, ZIP"
+                    />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-8">
@@ -155,13 +222,23 @@ export default function RibbonCuttingPage() {
                       <label className="block text-sm font-medium text-white/80 mb-2">
                         Preferred Date *
                       </label>
-                      <input type="date" required className="input-glass" />
+                      <input
+                        type="date"
+                        name="preferred_date"
+                        required
+                        className="input-glass"
+                      />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-white/80 mb-2">
                         Preferred Time *
                       </label>
-                      <input type="time" required className="input-glass" />
+                      <input
+                        type="time"
+                        name="preferred_time"
+                        required
+                        className="input-glass"
+                      />
                     </div>
                   </div>
 
@@ -169,7 +246,11 @@ export default function RibbonCuttingPage() {
                     <label className="block text-sm font-medium text-white/80 mb-2">
                       Type of Celebration *
                     </label>
-                    <select required className="input-glass select-glass">
+                    <select
+                      name="celebration_type"
+                      required
+                      className="input-glass select-glass"
+                    >
                       <option value="">Select an option</option>
                       <option value="grand-opening">Grand Opening</option>
                       <option value="relocation">New Location / Relocation</option>
@@ -185,8 +266,9 @@ export default function RibbonCuttingPage() {
                       Additional Details
                     </label>
                     <textarea
+                      name="additional_details"
                       rows={4}
-                      className="input-glass textarea-glass"
+                      className="input-glass"
                       placeholder="Tell us about your business and any special requests..."
                     />
                   </div>
@@ -198,10 +280,25 @@ export default function RibbonCuttingPage() {
                     </label>
                   </div>
 
-                  <button type="submit" className="btn-glow w-full justify-center">
-                    <Send className="w-5 h-5" />
-                    Submit Request
-                  </button>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    disabled={isLoading}
+                    className="btn-glow w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isLoading ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <span>Submitting...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        <span>Submit Request</span>
+                      </>
+                    )}
+                  </motion.button>
                 </form>
               </>
             )}

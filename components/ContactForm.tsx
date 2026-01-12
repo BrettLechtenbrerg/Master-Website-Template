@@ -9,30 +9,46 @@ import {
   Mail,
   Clock,
   CheckCircle,
-  Building2
+  Building2,
+  AlertCircle
 } from 'lucide-react';
-
-// Go High Level Form Component
-// This form is designed to seamlessly integrate with GHL
-// Just replace the form action with your GHL form endpoint
+import { submitContactForm } from '@/lib/ghl';
 
 export default function ContactForm() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
 
-    // Simulating form submission
-    // In production, this would POST to your GHL form endpoint
-    // Example: https://services.leadconnectorhq.com/hooks/YOUR_FORM_ID
+    const formData = new FormData(e.currentTarget);
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsLoading(false);
-    setIsSubmitted(true);
+    try {
+      const result = await submitContactForm({
+        firstName: formData.get('first_name') as string,
+        lastName: formData.get('last_name') as string,
+        email: formData.get('email') as string,
+        phone: formData.get('phone') as string || undefined,
+        companyName: formData.get('company_name') as string || undefined,
+        interest: formData.get('interest') as string,
+        message: formData.get('message') as string,
+      });
+
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        setError(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError('Unable to submit form. Please try again later.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -117,7 +133,7 @@ export default function ContactForm() {
             </div>
           </motion.div>
 
-          {/* Contact Form - GHL Ready */}
+          {/* Contact Form - GHL Integrated */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -146,10 +162,13 @@ export default function ContactForm() {
                   </button>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 ghl-form">
-                  {/* Hidden fields for GHL */}
-                  <input type="hidden" name="formId" value="YOUR_GHL_FORM_ID" />
-                  <input type="hidden" name="location_id" value="YOUR_GHL_LOCATION_ID" />
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400">
+                      <AlertCircle className="w-5 h-5 shrink-0" />
+                      <span className="text-sm">{error}</span>
+                    </div>
+                  )}
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
@@ -253,7 +272,7 @@ export default function ContactForm() {
                       name="message"
                       required
                       rows={4}
-                      className="input-glass textarea-glass"
+                      className="input-glass"
                       placeholder="How can we help you?"
                     />
                   </div>
