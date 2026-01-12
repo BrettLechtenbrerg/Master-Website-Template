@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FileText, Globe, Truck, CheckCircle, ArrowRight, Info } from 'lucide-react';
-import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 
@@ -71,22 +70,18 @@ export default function CertificateOfOriginPage() {
         ]}
       />
 
-      {/* Hero Image Section */}
-      <section className="relative py-8 overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative py-12 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden">
-            <Image
-              src="/images/certificates/certificate-hero.jpg"
-              alt="International Trade and Shipping"
-              fill
-              className="object-cover"
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-slate-900/60 to-transparent" />
-            <div className="absolute inset-0 flex items-center">
-              <div className="p-8 md:p-12 max-w-xl">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-purple-700 via-purple-600 to-orange-600 p-12 md:p-16">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,255,255,0.1),transparent)]" />
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+              <div className="w-24 h-24 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center">
+                <Globe className="w-12 h-12 text-white" />
+              </div>
+              <div className="text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl font-bold text-white">Facilitating Global Trade</h2>
-                <p className="mt-4 text-white/80">Official documentation for businesses exporting goods to international markets.</p>
+                <p className="mt-4 text-white/80 max-w-xl">Official documentation for businesses exporting goods to international markets.</p>
               </div>
             </div>
           </div>
@@ -125,16 +120,9 @@ export default function CertificateOfOriginPage() {
             </div>
 
             <div className="relative">
-              {/* Shipping Image */}
-              <div className="relative h-64 rounded-2xl overflow-hidden mb-6">
-                <Image
-                  src="/images/certificates/shipping.jpg"
-                  alt="Global Shipping"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+              {/* Shipping Visual */}
+              <div className="h-64 rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-purple-600 to-orange-600 flex items-center justify-center">
+                <Truck className="w-24 h-24 text-white/60" />
               </div>
 
               <div className="space-y-4">

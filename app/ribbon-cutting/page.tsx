@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Scissors, Calendar, Camera, Users, CheckCircle, Send, AlertCircle } from 'lucide-react';
-import Image from 'next/image';
+import { Scissors, Calendar, Camera, Users, CheckCircle, Send, AlertCircle, Building2, Sparkles } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import { submitRibbonCuttingForm } from '@/lib/ghl';
@@ -13,19 +12,19 @@ const recentRibbonCuttings = [
     id: 1,
     business: 'Murray Tech Solutions',
     date: 'December 2025',
-    image: '/images/ribbon-cuttings/ribbon-1.jpg',
+    icon: Building2,
   },
   {
     id: 2,
     business: 'Bloom Floral Design',
     date: 'November 2025',
-    image: '/images/ribbon-cuttings/ribbon-2.jpg',
+    icon: Sparkles,
   },
   {
     id: 3,
     business: 'The Hive Murray',
     date: 'October 2025',
-    image: '/images/ribbon-cuttings/ribbon-3.jpg',
+    icon: Users,
   },
 ];
 
@@ -96,22 +95,18 @@ export default function RibbonCuttingPage() {
         ]}
       />
 
-      {/* Hero Image Section */}
-      <section className="relative py-8 overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative py-12 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="relative h-72 md:h-96 rounded-3xl overflow-hidden">
-            <Image
-              src="/images/ribbon-cuttings/hero.jpg"
-              alt="Ribbon Cutting Ceremony"
-              fill
-              className="object-cover"
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-slate-900/60 to-orange-900/40" />
-            <div className="absolute inset-0 flex items-center justify-center text-center">
-              <div className="p-8 max-w-2xl">
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-orange-600 via-purple-600 to-purple-800 p-12 md:p-16">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent)]" />
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+              <div className="w-24 h-24 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center">
+                <Scissors className="w-12 h-12 text-white" />
+              </div>
+              <div className="text-center md:text-left">
                 <h2 className="text-3xl md:text-4xl font-bold text-white">Celebrate Your Milestone</h2>
-                <p className="mt-4 text-lg text-white/80">Join the tradition of over 100+ successful ribbon cuttings we&apos;ve hosted.</p>
+                <p className="mt-4 text-lg text-white/80 max-w-xl">Join the tradition of over 100+ successful ribbon cuttings we&apos;ve hosted for Murray businesses.</p>
               </div>
             </div>
           </div>
@@ -154,15 +149,8 @@ export default function RibbonCuttingPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {recentRibbonCuttings.map((ribbon) => (
               <div key={ribbon.id} className="glass-card overflow-hidden group cursor-pointer">
-                <div className="relative h-56 overflow-hidden">
-                  <Image
-                    src={ribbon.image}
-                    alt={`Ribbon cutting for ${ribbon.business}`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    unoptimized
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                <div className="h-40 bg-gradient-to-br from-purple-600 to-orange-600 flex items-center justify-center">
+                  <ribbon.icon className="w-16 h-16 text-white/80 group-hover:scale-110 transition-transform" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">
