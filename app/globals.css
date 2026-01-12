@@ -277,15 +277,64 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Responsive
+   Responsive & Mobile Optimization
    ─────────────────────────────────────────────────────────────────────────────*/
 @media (max-width: 768px) {
   .glass-card {
-    @apply rounded-xl;
+    @apply rounded-xl p-4;
   }
 
   .stat-number {
     @apply text-3xl;
+  }
+
+  .btn-glow {
+    @apply px-6 py-3 text-sm;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    @apply px-4 py-2.5 text-sm;
+  }
+
+  /* Better touch targets */
+  .dropdown-item {
+    padding: 1rem;
+    min-height: 44px;
+  }
+
+  /* Prevent horizontal scroll */
+  section {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Better form spacing on mobile */
+  .input-glass {
+    @apply py-4;
+  }
+}
+
+@media (max-width: 640px) {
+  .glass-card {
+    @apply p-4;
+  }
+
+  .event-card {
+    @apply p-4;
+  }
+
+  .event-date {
+    @apply w-16 h-16;
+  }
+
+  .event-date .day {
+    @apply text-xl;
+  }
+
+  /* Stack grids on small screens */
+  .grid {
+    gap: 1rem;
   }
 }
 

@@ -176,13 +176,15 @@ export default function Navigation() {
                 <LogIn className="w-4 h-4" />
                 Member Login
               </Link>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-glow"
-              >
-                Join Now
-              </motion.button>
+              <Link href="/join">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn-glow"
+                >
+                  Join Now
+                </motion.button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -280,9 +282,11 @@ export default function Navigation() {
                   <LogIn className="w-4 h-4" />
                   Member Login
                 </Link>
-                <button className="btn-glow w-full">
-                  Join Now
-                </button>
+                <Link href="/join" className="block" onClick={() => setMobileMenuOpen(false)}>
+                  <button className="btn-glow w-full">
+                    Join Now
+                  </button>
+                </Link>
               </div>
             </motion.div>
           </motion.div>

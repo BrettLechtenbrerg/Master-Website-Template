@@ -150,9 +150,6 @@ export default function Footer() {
               <Link href="/privacy" className="text-white/40 hover:text-white transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="https://murraycity.org" target="_blank" className="text-white/40 hover:text-white transition-colors">
-                Murray City
-              </Link>
             </div>
           </div>
         </div>
