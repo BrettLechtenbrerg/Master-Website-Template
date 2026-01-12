@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Scissors, Calendar, Camera, Users, CheckCircle, Send, AlertCircle, Play } from 'lucide-react';
+import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import StaggerChildren, { StaggerItem } from '@/components/animations/StaggerChildren';
