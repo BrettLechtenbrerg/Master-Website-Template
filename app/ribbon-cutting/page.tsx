@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Scissors, Calendar, Camera, Users, CheckCircle, Send, AlertCircle } from 'lucide-react';
-import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import { submitRibbonCuttingForm } from '@/lib/ghl';
@@ -96,16 +95,14 @@ export default function RibbonCuttingPage() {
         ]}
       />
 
-      {/* Hero Image Section - Using exact Features.tsx pattern */}
+      {/* Hero Image Section */}
       <section className="relative py-8 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="relative h-72 md:h-96 rounded-3xl overflow-hidden">
-            <Image
+            <img
               src="/images/ribbon-cuttings/hero.jpg"
               alt="Ribbon Cutting Ceremony"
-              fill
-              className="object-cover"
-              unoptimized
+              className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-slate-900/60 to-orange-900/40" />
             <div className="absolute inset-0 flex items-center justify-center text-center">
@@ -155,12 +152,10 @@ export default function RibbonCuttingPage() {
             {recentRibbonCuttings.map((ribbon) => (
               <div key={ribbon.id} className="glass-card overflow-hidden group cursor-pointer">
                 <div className="relative h-56 overflow-hidden">
-                  <Image
+                  <img
                     src={ribbon.image}
                     alt={`Ribbon cutting for ${ribbon.business}`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    unoptimized
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
                 </div>

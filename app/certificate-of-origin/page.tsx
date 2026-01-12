@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FileText, Globe, Truck, CheckCircle, ArrowRight, Info } from 'lucide-react';
-import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 
@@ -71,16 +70,14 @@ export default function CertificateOfOriginPage() {
         ]}
       />
 
-      {/* Hero Image Section - Using exact Features.tsx pattern */}
+      {/* Hero Image Section */}
       <section className="relative py-8 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden">
-            <Image
+            <img
               src="/images/certificates/certificate-hero.jpg"
               alt="International Trade and Shipping"
-              fill
-              className="object-cover"
-              unoptimized
+              className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-slate-900/60 to-transparent" />
             <div className="absolute inset-0 flex items-center">
@@ -125,14 +122,12 @@ export default function CertificateOfOriginPage() {
             </div>
 
             <div className="relative">
-              {/* Shipping Image - Using exact Features.tsx pattern */}
+              {/* Shipping Image */}
               <div className="relative h-64 rounded-2xl overflow-hidden mb-6">
-                <Image
+                <img
                   src="/images/certificates/shipping.jpg"
                   alt="Global Shipping"
-                  fill
-                  className="object-cover"
-                  unoptimized
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
               </div>
