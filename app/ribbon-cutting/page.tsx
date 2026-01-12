@@ -6,6 +6,7 @@ import { Scissors, Calendar, Camera, Users, CheckCircle, Send, AlertCircle } fro
 import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
+import StaggerChildren, { StaggerItem } from '@/components/animations/StaggerChildren';
 import { submitRibbonCuttingForm } from '@/lib/ghl';
 
 const recentRibbonCuttings = [
@@ -151,28 +152,34 @@ export default function RibbonCuttingPage() {
             <p className="mt-4 text-white/60">See how we celebrate business milestones in Murray</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <StaggerChildren staggerDelay={0.1} className="grid md:grid-cols-3 gap-8">
             {recentRibbonCuttings.map((ribbon) => (
-              <div key={ribbon.id} className="glass-card overflow-hidden group cursor-pointer">
-                <div className="relative h-56 overflow-hidden">
-                  <Image
-                    src={ribbon.image}
-                    alt={`Ribbon cutting for ${ribbon.business}`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    unoptimized
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">
-                    {ribbon.business}
-                  </h3>
-                  <p className="text-white/50 text-sm mt-1">{ribbon.date}</p>
-                </div>
-              </div>
+              <StaggerItem key={ribbon.id}>
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  className="glass-card overflow-hidden group cursor-pointer"
+                >
+                  {/* Business Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src={ribbon.image}
+                      alt={ribbon.business}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">
+                      {ribbon.business}
+                    </h3>
+                    <p className="text-white/50 text-sm mt-1">{ribbon.date}</p>
+                  </div>
+                </motion.div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
       </section>
 
