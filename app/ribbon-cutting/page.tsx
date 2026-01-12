@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Scissors, Calendar, Camera, Users, CheckCircle, Send, AlertCircle } from 'lucide-react';
-import Image from 'next/image';
+import { Scissors, Calendar, Camera, Users, CheckCircle, Send, AlertCircle, Play } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import StaggerChildren, { StaggerItem } from '@/components/animations/StaggerChildren';
@@ -97,25 +96,26 @@ export default function RibbonCuttingPage() {
         ]}
       />
 
-      {/* Hero Image Section */}
-      <section className="relative py-8 overflow-hidden">
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="relative h-72 md:h-96 rounded-3xl overflow-hidden">
-            <Image
-              src="/images/ribbon-cuttings/hero.jpg"
-              alt="Ribbon Cutting Ceremony"
-              fill
-              className="object-cover"
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-slate-900/60 to-orange-900/40" />
-            <div className="absolute inset-0 flex items-center justify-center text-center">
-              <div className="p-8 max-w-2xl">
-                <h2 className="text-3xl md:text-4xl font-bold text-white">Celebrate Your Milestone</h2>
-                <p className="mt-4 text-lg text-white/80">Join the tradition of over 100+ successful ribbon cuttings we&apos;ve hosted.</p>
+      {/* Video Section */}
+      <section className="relative py-12 overflow-hidden">
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="glass-card p-8"
+          >
+            <div className="aspect-video bg-gradient-to-br from-purple-600/30 to-orange-500/30 rounded-xl flex items-center justify-center mb-6 cursor-pointer group">
+              <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors">
+                <Play className="w-10 h-10 text-white ml-2" />
               </div>
             </div>
-          </div>
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-white mb-2">Celebrate Your Milestone</h3>
+              <p className="text-white/60">
+                Join the tradition of over 100+ successful ribbon cuttings we&apos;ve hosted for Murray businesses.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
