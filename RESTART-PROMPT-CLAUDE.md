@@ -23,7 +23,7 @@ Copy and paste everything below this line to get Claude back up to speed:
 - **Framework:** Next.js 16.0.10 with App Router
 - **Styling:** Tailwind CSS
 - **Language:** TypeScript
-- **Deployment:** Vercel (connected to GitHub for auto-deploy)
+- **Deployment:** Vercel CLI (`vercel --prod --yes`)
 - **Forms:** Go High Level (GHL) integration
 - **UI Components:** Framer Motion, Lucide React icons
 
@@ -32,19 +32,22 @@ Copy and paste everything below this line to get Claude back up to speed:
 ## Project Structure
 ```
 macc-website-2/
-├── app/                    # Next.js App Router pages
+├── app/                    # Next.js App Router pages (26 pages total)
 │   ├── page.tsx           # Homepage
 │   ├── about/             # About page
-│   ├── ribbon-cutting/    # Ribbon cutting request page
+│   ├── ribbon-cutting/    # Ribbon cutting request page (VIDEO PLAYER)
 │   ├── certificate-of-origin/  # Certificate service page
+│   ├── directory/         # Business directory (IMAGES WORK HERE)
+│   ├── good-things-utah/  # Good Things Utah (VIDEO PLAYER REFERENCE)
 │   ├── events/            # Events pages
 │   ├── news/              # News pages
-│   ├── directory/         # Business directory
 │   ├── join/              # Membership signup
 │   └── ...
 ├── components/            # Reusable React components
+│   ├── Navigation.tsx     # Main nav with Join Now button linked to /join
 │   ├── PageHeader.tsx
-│   ├── Footer.tsx
+│   ├── Footer.tsx         # Murray City link REMOVED
+│   ├── animations/        # StaggerChildren, FadeIn, etc.
 │   └── ...
 ├── lib/                   # Utility functions
 │   └── ghl.ts            # Go High Level form submissions
@@ -52,9 +55,10 @@ macc-website-2/
 │   └── images/           # All website images
 │       ├── ribbon-cuttings/
 │       ├── certificates/
+│       ├── businesses/   # Directory images (WORKING)
 │       ├── events/
-│       ├── news/
-│       └── businesses/
+│       └── news/
+├── app/globals.css       # Mobile-optimized CSS
 └── next.config.js        # Next.js configuration
 ```
 
@@ -74,13 +78,13 @@ npm run dev
 # Build for production
 npm run build
 
-# Deploy to Vercel
+# Deploy to Vercel (USE THIS - GitHub auto-deploy may not work)
 vercel --prod --yes
 
 # Check git status
 git status
 
-# Push changes to GitHub (auto-deploys to Vercel)
+# Push changes to GitHub
 git add -A && git commit -m "Your message" && git push
 ```
 
@@ -90,37 +94,44 @@ git add -A && git commit -m "Your message" && git push
 
 ### What's Working:
 - Full website deployed and live at https://macc-website-2.vercel.app/
-- All pages rendering correctly
-- GitHub connected to Vercel (deploy via CLI: `vercel --prod --yes`)
-- GHL form integration set up
+- All 26 pages rendering correctly
+- "Join Now" button links to /join page (desktop + mobile)
 - Video player on ribbon-cutting page (ready for video content)
 - Directory page images working perfectly
+- Mobile optimizations in place
+- GHL form integration set up
 
-### Recent Fixes:
-- `/ribbon-cutting` - Hero section replaced with video player (works great!)
-- Gallery cards use StaggerChildren + motion.div pattern from directory page
-- `/certificate-of-origin` - Uses Image component with shipping.jpg
+### Recent Session Fixes:
+1. **Join Now button** - Now properly links to `/join` (was just a button before)
+2. **Murray City link** - Removed from footer
+3. **Mobile optimization** - Added responsive CSS for touch targets, buttons, forms
+4. **Ribbon-cutting page** - Hero replaced with video player (images weren't working)
+5. **Video player** - Uses gradient + Play icon (same pattern as Good Things Utah)
 
 ### Pages Status:
-1. `/ribbon-cutting` - Video player works, gallery may need video placeholders
-2. `/certificate-of-origin` - Shipping image section present
-3. `/directory` - All images display correctly (reference for working pattern)
+| Page | Status |
+|------|--------|
+| `/ribbon-cutting` | Video player works, gallery has Image components |
+| `/certificate-of-origin` | Shipping image section present |
+| `/directory` | All images display correctly (REFERENCE) |
+| `/good-things-utah` | Video player pattern (REFERENCE) |
 
 ---
 
 ## Key Files
-- `app/ribbon-cutting/page.tsx` - Video player + gallery with StaggerChildren
-- `app/certificate-of-origin/page.tsx` - Image component for shipping visual
+- `components/Navigation.tsx` - Join Now button linked to /join
+- `components/Footer.tsx` - Murray City link removed
+- `app/globals.css` - Mobile optimizations added
+- `app/ribbon-cutting/page.tsx` - Video player + gallery
 - `app/directory/page.tsx` - REFERENCE: Working image pattern
 - `app/good-things-utah/page.tsx` - REFERENCE: Video player pattern
-- `public/images/` - All images stored here
 
 ---
 
 ## Git Info
 - **Branch:** main
 - **Remote:** origin -> https://github.com/BrettLechtenbrerg/MACC-Website.git
-- **Latest commit:** 9fef598 "Fix: restore Image import for gallery"
+- **Latest commit:** 0838f50 "Fix navigation, remove Murray City link, add mobile optimizations"
 
 ---
 
@@ -128,21 +139,22 @@ git add -A && git commit -m "Your message" && git push
 - **Project:** macc-website-2
 - **Team:** bretts-projects-3e254e58
 - **Domain:** macc-website-2.vercel.app
-- **Status:** Connected to GitHub, auto-deploys on push
+- **Deploy Command:** `vercel --prod --yes`
 
 ---
 
 ## What I Need You To Do
-[Describe your task here - e.g., "Fix the image display issue on the ribbon-cutting page"]
+[Describe your task here]
 
 ---
 
 ## Additional Context
-- The site design is dark theme with purple/orange gradient accents
-- Uses glass-card styling (glassmorphism)
+- Dark theme with purple/orange gradient accents
+- Glass-card styling (glassmorphism)
 - Aurora background effect on homepage
-- Mobile responsive
+- Mobile responsive with 44px touch targets
 - Chamber serves Murray, Utah area businesses
+- Video player ready for ribbon cutting video content
 
 ---
 
