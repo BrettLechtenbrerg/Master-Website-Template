@@ -3,9 +3,12 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { MapPin, Clock, Calendar, Users, ArrowRight, Filter } from 'lucide-react';
+import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import FadeIn from '@/components/animations/FadeIn';
+import StaggerChildren, { StaggerItem } from '@/components/animations/StaggerChildren';
 
 const events = [
   {
@@ -18,6 +21,7 @@ const events = [
     description: 'Connect with fellow business owners over lunch. Guest speaker TBA. Lunch included with registration.',
     attendees: 45,
     price: 'Members: $25 | Non-Members: $35',
+    image: '/images/events/networking.jpg',
   },
   {
     id: 2,
@@ -29,6 +33,7 @@ const events = [
     description: "Join us to celebrate the grand opening of Murray's newest tech incubator.",
     attendees: 30,
     price: 'Free',
+    image: '/images/ribbon-cuttings/ribbon-1.jpg',
   },
   {
     id: 3,
@@ -40,6 +45,7 @@ const events = [
     description: 'Casual networking with complimentary appetizers and drinks. Bring your business cards!',
     attendees: 60,
     price: 'Members: Free | Non-Members: $15',
+    image: '/images/events/mixer.jpg',
   },
   {
     id: 4,
@@ -51,6 +57,7 @@ const events = [
     description: 'Learn the latest digital marketing strategies for local businesses. Hands-on session included.',
     attendees: 25,
     price: 'Members: $45 | Non-Members: $65',
+    image: '/images/events/workshop.jpg',
   },
   {
     id: 5,
@@ -62,6 +69,7 @@ const events = [
     description: 'Our biggest fundraiser of the year! Includes 18 holes, cart, lunch, and prizes.',
     attendees: 120,
     price: '$150 per player',
+    image: '/images/events/golf.jpg',
   },
   {
     id: 6,
@@ -73,6 +81,7 @@ const events = [
     description: 'Annual address featuring updates on chamber initiatives and community partnerships.',
     attendees: 150,
     price: 'Members: $30 | Non-Members: $45',
+    image: '/images/events/gala.jpg',
   },
 ];
 
@@ -139,64 +148,74 @@ export default function ChamberEventsPage() {
       {/* Events List */}
       <section className="relative py-8 pb-24 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="space-y-8">
-            {filteredEvents.map((event, index) => {
+          <StaggerChildren staggerDelay={0.1} className="space-y-8">
+            {filteredEvents.map((event) => {
               const { day, month, full } = formatDate(event.date);
               return (
-                <motion.div
-                  key={event.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="event-card p-6 sm:p-8"
-                >
-                  <div className="flex flex-col lg:flex-row gap-6">
-                    {/* Date Box */}
-                    <div className="event-date shrink-0 self-start">
-                      <span className="day">{day}</span>
-                      <span className="month">{month}</span>
+                <StaggerItem key={event.id}>
+                  <motion.div
+                    whileHover={{ y: -3 }}
+                    className="glass-card overflow-hidden group cursor-pointer"
+                  >
+                    <div className="flex flex-col lg:flex-row">
+                      {/* Event Image */}
+                      <div className="relative w-full lg:w-72 h-48 lg:h-auto shrink-0 overflow-hidden">
+                        <Image
+                          src={event.image}
+                          alt={event.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          unoptimized
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-slate-900/80 to-transparent" />
+                        {/* Date Box */}
+                        <div className="absolute bottom-4 left-4 lg:top-4 lg:bottom-auto event-date">
+                          <span className="day">{day}</span>
+                          <span className="month">{month}</span>
+                        </div>
+                      </div>
+
+                      {/* Event Details */}
+                      <div className="flex-1 p-6 sm:p-8">
+                        <div className="flex flex-wrap items-center gap-3 mb-3">
+                          <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full border ${categoryColors[event.category]}`}>
+                            {event.category}
+                          </span>
+                          <span className="text-white/40 text-sm">{full}</span>
+                        </div>
+
+                        <h3 className="text-2xl font-semibold text-white group-hover:text-purple-300 transition-colors">{event.title}</h3>
+                        <p className="mt-3 text-white/60">{event.description}</p>
+
+                        <div className="mt-4 flex flex-wrap gap-6 text-sm text-white/60">
+                          <div className="flex items-center gap-2">
+                            <Clock className="w-4 h-4 text-purple-400" />
+                            {event.time}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 text-orange-400" />
+                            {event.location}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Users className="w-4 h-4 text-purple-400" />
+                            {event.attendees} attending
+                          </div>
+                        </div>
+
+                        <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                          <span className="text-white/80 font-medium">{event.price}</span>
+                          <button className="btn-primary">
+                            Register Now
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
-
-                    {/* Event Details */}
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-center gap-3 mb-3">
-                        <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full border ${categoryColors[event.category]}`}>
-                          {event.category}
-                        </span>
-                        <span className="text-white/40 text-sm">{full}</span>
-                      </div>
-
-                      <h3 className="text-2xl font-semibold text-white">{event.title}</h3>
-                      <p className="mt-3 text-white/60">{event.description}</p>
-
-                      <div className="mt-4 flex flex-wrap gap-6 text-sm text-white/60">
-                        <div className="flex items-center gap-2">
-                          <Clock className="w-4 h-4 text-purple-400" />
-                          {event.time}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <MapPin className="w-4 h-4 text-orange-400" />
-                          {event.location}
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Users className="w-4 h-4 text-purple-400" />
-                          {event.attendees} attending
-                        </div>
-                      </div>
-
-                      <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-                        <span className="text-white/80 font-medium">{event.price}</span>
-                        <button className="btn-primary">
-                          Register Now
-                          <ArrowRight className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerChildren>
 
           {/* Calendar Embed CTA */}
           <motion.div

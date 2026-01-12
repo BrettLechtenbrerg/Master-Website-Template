@@ -17,7 +17,7 @@ export default function StaggerChildren({
   once = true,
 }: StaggerChildrenProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin: '-50px' });
+  const isInView = useInView(ref, { once, amount: 0.1 });
 
   return (
     <motion.div
@@ -25,7 +25,9 @@ export default function StaggerChildren({
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
       variants={{
+        hidden: { opacity: 1 },
         visible: {
+          opacity: 1,
           transition: {
             staggerChildren: staggerDelay,
           },
