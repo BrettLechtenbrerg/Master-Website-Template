@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { FileText, Globe, Truck, CheckCircle, ArrowRight, Info } from 'lucide-react';
+import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 
@@ -121,8 +122,15 @@ export default function CertificateOfOriginPage() {
 
             <div className="relative">
               {/* Shipping Visual */}
-              <div className="h-64 rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-purple-600 to-orange-600 flex items-center justify-center">
-                <Truck className="w-24 h-24 text-white/60" />
+              <div className="relative h-64 rounded-2xl overflow-hidden mb-6">
+                <Image
+                  src="/images/certificates/shipping.jpg"
+                  alt="International Shipping"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
               </div>
 
               <div className="space-y-4">
