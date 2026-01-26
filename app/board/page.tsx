@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Linkedin, Mail } from 'lucide-react';
+import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
@@ -14,6 +15,7 @@ const boardMembers = [
     bio: 'Brett leads the Chamber board and chairs the Education Committee, driving initiatives to support Murray businesses.',
     linkedin: '#',
     email: 'info@themurraychamber.com',
+    image: '/images/board/brett-lechtenberg.png',
   },
   {
     name: 'Kristen Latimer',
@@ -125,10 +127,21 @@ export default function BoardPage() {
                 transition={{ delay: index * 0.05 }}
                 className="glass-card p-6 text-center group"
               >
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-600 to-orange-500 mx-auto mb-4 flex items-center justify-center shadow-lg">
-                  <span className="text-3xl font-bold text-white">
-                    {member.name.split(' ').map(n => n[0]).join('')}
-                  </span>
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-600 to-orange-500 mx-auto mb-4 flex items-center justify-center shadow-lg overflow-hidden">
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      width={96}
+                      height={96}
+                      className="w-full h-full object-cover"
+                      unoptimized
+                    />
+                  ) : (
+                    <span className="text-3xl font-bold text-white">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  )}
                 </div>
                 <h3 className="text-lg font-semibold text-white">{member.name}</h3>
                 <p className="text-purple-400 text-sm font-medium">{member.title}</p>
