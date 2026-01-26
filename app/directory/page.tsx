@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Search, MapPin, Phone, Globe, Filter, Grid, List, Mail, Star } from 'lucide-react';
+import { Search, MapPin, Phone, Globe, Filter, Grid, List, Mail, Star, Building2 } from 'lucide-react';
 import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
@@ -278,9 +278,9 @@ export default function DirectoryPage() {
                 whileHover={{ y: -3 }}
                 className={`glass-card overflow-hidden group ${viewMode === 'list' ? 'flex' : ''}`}
               >
-                {/* Business Image - Only show if business has image */}
-                {business.image && (
-                  <div className={`relative ${viewMode === 'list' ? 'w-32 sm:w-48 shrink-0' : 'h-40'} overflow-hidden bg-gradient-to-br from-purple-600/20 to-orange-500/20`}>
+                {/* Business Image - Always show image area */}
+                <div className={`relative ${viewMode === 'list' ? 'w-32 sm:w-48 shrink-0' : 'h-40'} overflow-hidden bg-gradient-to-br from-purple-600/20 to-orange-500/20`}>
+                  {business.image ? (
                     <Image
                       src={business.image}
                       alt={business.name}
@@ -288,25 +288,25 @@ export default function DirectoryPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                       unoptimized
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
-                    {/* Tier Badge on Image */}
-                    {business.tier !== 'member' && (
-                      <div className={`absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-medium ${tierInfo[business.tier].bgColor} ${tierInfo[business.tier].textColor} flex items-center gap-1`}>
-                        <Star className="w-3 h-3" />
-                        {tierInfo[business.tier].label}
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <Building2 className="w-12 h-12 text-white/20 mx-auto mb-2" />
+                        <span className="text-white/30 text-xs font-medium">Photo Coming Soon</span>
                       </div>
-                    )}
-                  </div>
-                )}
-
-                <div className={`p-5 flex-1 ${!business.image && viewMode === 'grid' ? 'min-h-[200px]' : ''}`}>
-                  {/* Tier Badge - Show if no image */}
-                  {!business.image && business.tier !== 'member' && (
-                    <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${tierInfo[business.tier].bgColor} ${tierInfo[business.tier].textColor} mb-3`}>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                  {/* Tier Badge on Image */}
+                  {business.tier !== 'member' && (
+                    <div className={`absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-medium ${tierInfo[business.tier].bgColor} ${tierInfo[business.tier].textColor} flex items-center gap-1`}>
                       <Star className="w-3 h-3" />
                       {tierInfo[business.tier].label}
                     </div>
                   )}
+                </div>
+
+                <div className="p-5 flex-1">
 
                   {/* Category Badge */}
                   <span className="inline-block px-3 py-1 text-xs font-medium text-purple-300 bg-purple-500/20 rounded-full mb-2">
