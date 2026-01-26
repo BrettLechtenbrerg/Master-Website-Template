@@ -16,6 +16,21 @@ export const GHL_CONFIG = {
   // Your GHL Location ID (found in Settings → Business Profile)
   locationId: process.env.NEXT_PUBLIC_GHL_LOCATION_ID || 'YOUR_LOCATION_ID',
 
+  // GHL Community / Client Portal URLs
+  // Replace with your actual GHL community URL once set up
+  community: {
+    // Main community login URL - members will be redirected here
+    // Format: https://app.gohighlevel.com/v2/communities/YOUR_COMMUNITY_ID
+    // Or custom domain: https://members.themurraychamber.com
+    loginUrl: process.env.NEXT_PUBLIC_GHL_COMMUNITY_URL || 'https://app.gohighlevel.com/v2/communities/YOUR_COMMUNITY_ID',
+
+    // Client portal URL (alternative to community)
+    clientPortalUrl: process.env.NEXT_PUBLIC_GHL_CLIENT_PORTAL_URL || 'https://app.gohighlevel.com/v2/portal/YOUR_PORTAL_ID',
+
+    // Set to true once your GHL community is configured and ready
+    isConfigured: process.env.NEXT_PUBLIC_GHL_COMMUNITY_CONFIGURED === 'true' || false,
+  },
+
   // Webhook URLs for different forms
   webhooks: {
     // General contact form
