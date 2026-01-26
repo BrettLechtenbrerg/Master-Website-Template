@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ChevronDown,
   Menu,
@@ -100,18 +101,21 @@ export default function Navigation() {
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center group">
               <motion.div
-                className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-orange-500 flex items-center justify-center shadow-lg"
-                whileHover={{ scale: 1.05, rotate: -5 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 400 }}
+                className="relative h-12 w-auto"
               >
-                <span className="text-white font-bold text-xl">M</span>
+                <Image
+                  src="/images/macc-logo.png"
+                  alt="Murray Area Chamber of Commerce"
+                  width={180}
+                  height={48}
+                  className="h-12 w-auto object-contain"
+                  priority
+                />
               </motion.div>
-              <div className="hidden sm:block">
-                <div className="text-white font-bold text-lg leading-tight">Murray Area</div>
-                <div className="text-white/60 text-sm">Chamber of Commerce</div>
-              </div>
             </Link>
 
             {/* Desktop Navigation */}

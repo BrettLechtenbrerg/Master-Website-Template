@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Facebook,
   Youtube,
@@ -65,17 +66,19 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-10">
           {/* Brand Column */}
           <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-3 group">
+            <Link href="/" className="inline-block group">
               <motion.div
-                className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-orange-500 flex items-center justify-center shadow-lg"
-                whileHover={{ scale: 1.05, rotate: -5 }}
+                whileHover={{ scale: 1.02 }}
+                className="relative"
               >
-                <span className="text-white font-bold text-xl">M</span>
+                <Image
+                  src="/images/macc-logo.png"
+                  alt="Murray Area Chamber of Commerce"
+                  width={200}
+                  height={54}
+                  className="h-14 w-auto object-contain"
+                />
               </motion.div>
-              <div>
-                <div className="text-white font-bold text-lg leading-tight">Murray Area</div>
-                <div className="text-white/60 text-sm">Chamber of Commerce</div>
-              </div>
             </Link>
 
             <p className="mt-6 text-white/50 text-sm leading-relaxed max-w-xs">
