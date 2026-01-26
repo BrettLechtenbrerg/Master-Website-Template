@@ -186,13 +186,13 @@ export default function ResourcesPage() {
           >
             {chamberServices.map((service, index) => {
               const CardContent = (
-                <div className="glass-card p-6 group cursor-pointer h-full hover:border-purple-500/50 transition-all">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                    <service.icon className="w-6 h-6 text-white" />
+                <div className="glass-card p-6 group cursor-pointer h-full hover:border-orange-500/50 transition-all">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-4 flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
+                    <service.icon className="w-5 h-5 text-orange-400" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-white group-hover:text-orange-300 transition-colors flex items-center gap-2">
                     {service.title}
-                    {service.external && <ExternalLink className="w-4 h-4 text-white/40" />}
+                    {service.external && <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-orange-400 transition-colors" />}
                   </h3>
                   <p className="mt-2 text-white/60 text-sm">{service.description}</p>
                 </div>
