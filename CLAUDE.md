@@ -1,130 +1,166 @@
-# Total Success AI Website
+# Murray Area Chamber of Commerce Website
 
 ## Project Overview
-Company website for **Total Success AI** - an AI consulting, implementation, and training company founded by Brett Lechtenberg and Manny Torres.
+Official website for the **Murray Area Chamber of Commerce** - serving Murray, Utah businesses since 1948.
 
-- **Live Site**: Deployed on Vercel
-- **Vercel Project**: `bretts-projects-3e254e58/tsai-site`
-- **GitHub Repo**: `BrettLechtenbrerg/TSAI-Site`
+- **Live Site**: https://macc-website-2.vercel.app
+- **Vercel Project**: `bretts-projects-3e254e58/macc-website-2`
+- **GitHub Repo**: `BrettLechtenbrerg/MACC-Website`
 
 ## Tech Stack
 - **Framework**: Next.js 16 with React 19
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS 3.4.18 (NOT v4 - had spacing issues)
 - **Animations**: Framer Motion
-- **Icons**: React Icons
+- **Icons**: Lucide React
 - **Deployment**: Vercel (via CLI)
 
 ## Brand Colors
 ```
-Navy Blue:    #0A1F44  (primary)
-Navy Light:   #1E3A8A  (accent/interactive)
-Silver:       #C0C0C0  (metallic accents)
-Silver Light: #E8E8E8  (backgrounds)
-Black:        #000000  (text)
-White:        #FFFFFF  (backgrounds)
+Purple (Primary):  #4B2E83
+Purple Light:      #7A59B5
+Orange (Accent):   #F27A21
+Orange Light:      #F9A45A
+Charcoal (BG):     #1C1C1C
 ```
 
 ## Project Structure
 ```
-TSAI-Site/
+MACC-Website/
 ├── app/
-│   ├── page.tsx            # Home page
-│   ├── about/page.tsx      # Team profiles (Brett & Manny)
-│   ├── services/page.tsx   # Service offerings
-│   ├── portfolio/page.tsx  # Projects & recommendations
-│   ├── contact/page.tsx    # Booking calendars & contact form
-│   ├── terms/page.tsx      # Terms and Conditions
-│   ├── privacy/page.tsx    # Privacy Policy
-│   ├── layout.tsx          # Root layout
-│   └── globals.css         # Global styles
+│   ├── page.tsx              # Homepage
+│   ├── layout.tsx            # Root layout (metadata, fonts, icons)
+│   ├── globals.css           # Global styles + glassmorphic design
+│   ├── icon.png              # Favicon (MACC logo)
+│   ├── apple-icon.png        # Apple touch icon
+│   ├── about/                # About the Chamber
+│   ├── board/                # Board of Directors
+│   ├── ambassadors/          # Ambassador program
+│   ├── mycc/                 # Murray Youth Community Council
+│   ├── contact/              # Contact form
+│   ├── join/                 # Membership signup
+│   ├── members/              # Member directory
+│   ├── directory/            # Business directory
+│   ├── deals/                # Member-to-member deals
+│   ├── resources/            # Small business resources (govt links)
+│   ├── ribbon-cutting/       # Ribbon cutting requests
+│   ├── certificate-of-origin/ # Certificate services
+│   ├── good-things-utah/     # GTU partnership
+│   ├── legalshield/          # LegalShield partner page
+│   ├── events/
+│   │   ├── chamber/          # Chamber events
+│   │   └── community/        # Community calendar
+│   ├── news/
+│   │   ├── chamber/          # Chamber news
+│   │   └── community/        # Community news
+│   ├── login/                # Member login
+│   ├── privacy/              # Privacy policy
+│   └── terms/                # Terms of service
 ├── components/
-│   ├── Navigation.tsx      # Responsive nav with hamburger menu
-│   ├── Footer.tsx          # Site footer
-│   ├── Testimonials.tsx    # Testimonials carousel
-│   └── FAQ.tsx             # FAQ component
+│   ├── Navigation.tsx        # Main nav with dropdowns
+│   ├── Hero.tsx              # Homepage hero
+│   ├── Features.tsx          # Service cards
+│   ├── Events.tsx            # Events section
+│   ├── Testimonials.tsx      # Member testimonials
+│   ├── ContactForm.tsx       # Contact form (GHL integration)
+│   ├── Footer.tsx            # Site footer
+│   ├── PageHeader.tsx        # Page headers
+│   └── animations/           # FadeIn, ScaleIn, StaggerChildren
+├── lib/
+│   ├── ghl.ts                # Go High Level utilities
+│   └── ghl-config.ts         # GHL webhook configuration
 ├── public/
-│   └── images/             # Static images
-│       ├── projects/       # Portfolio images
-│       └── recommendations/ # Recommendation letters
+│   └── images/               # Static images
+│       ├── macc-logo.png     # Official MACC logo
+│       ├── hero/             # Hero backgrounds
+│       ├── features/         # Feature card images
+│       ├── events/           # Event images
+│       ├── testimonials/     # Member photos
+│       └── team/             # Staff/board photos
 └── [config files]
 ```
 
 ## Deployment Workflow
 
-**IMPORTANT**: Do NOT rely on Vercel's GitHub auto-deploy - it has been unreliable. Use the Vercel CLI instead.
+**IMPORTANT**: Always use Vercel CLI - do NOT rely on GitHub auto-deploy.
 
-### Standard Deploy Process:
 ```bash
-# 1. Make code changes
+# Navigate to project
+cd "/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website"
 
-# 2. Commit and push to GitHub (for version control)
-git add .
-git commit -m "Description of changes"
-git push origin main
+# Build and test locally
+npm run build
 
-# 3. Deploy directly via Vercel CLI
-vercel --prod
+# Commit and push to GitHub
+git add -A && git commit -m "Description" && git push origin main
+
+# Deploy to Vercel production
+vercel --prod --yes
+
+# Update alias if needed
+vercel alias [deployment-url] macc-website-2.vercel.app
 ```
 
-### Preview Deployments:
-```bash
-# Create a preview URL before going to production
-vercel
-```
-
-### Useful Vercel Commands:
-```bash
-vercel --prod          # Deploy to production
-vercel                 # Create preview deployment
-vercel ls              # List deployments
-vercel logs            # View deployment logs
-vercel env pull        # Pull environment variables
-```
-
-## Key Files to Know
+## Key Files
 
 | File | Purpose |
 |------|---------|
-| `app/contact/page.tsx` | Booking links → speaktobrett.com |
-| `app/about/page.tsx` | Brett & Manny bios |
-| `components/Testimonials.tsx` | Client testimonials |
-| `components/Footer.tsx` | Contact info & social links |
-| `components/Navigation.tsx` | Nav menu items |
-| `tailwind.config.ts` | Brand colors & theme |
-| `app/layout.tsx` | Meta tags & SEO |
+| `app/layout.tsx` | Metadata, fonts, favicon, root layout |
+| `app/resources/page.tsx` | Business resources (govt links + LegalShield) |
+| `app/about/page.tsx` | Chamber history, mission, timeline |
+| `components/Navigation.tsx` | Nav menu + MACC logo |
+| `components/Hero.tsx` | Homepage stats (75+ years, 500+ members) |
+| `components/Footer.tsx` | Contact info, "since 1948" tagline |
+| `lib/ghl-config.ts` | GHL webhook URLs (need to be configured) |
+| `tailwind.config.ts` | MACC brand colors |
 
-## Development Commands
-```bash
-npm install      # Install dependencies
-npm run dev      # Start dev server (localhost:3000)
-npm run build    # Build for production
-npm run lint     # Run linter
-```
+## Chamber Facts
+- **Founded**: 1948
+- **Years of Service**: 75+
+- **Member Businesses**: 500+
+- **Annual Events**: 100+
+- **Address**: 141 E. 5600 S., Suite 300, Murray, UT 84107
+- **Phone**: 801-263-2632
 
-## Recent Work (Dec 14, 2025)
-- **TSAI logo** added to Navigation header and Footer (all pages)
-- **Manny's photo** updated with proper framing (white background, object-contain)
-- **All booking links** now go to `www.speaktobrett.com`
-- **Next.js security vulnerability** fixed (updated packages)
-- Documentation reorganization (CHANGELOG, CONTRIBUTING, moved docs to /docs)
+## Recent Work (January 2026)
 
-### Previous Work
-- Mobile optimization for iPhone 15 Pro
-- Hamburger menu fixes
-- Terms & Conditions / Privacy Policy pages
-- Additional Services section on portfolio
-- Recommendation letters section
+### Session: macc-website-4
+- Updated resources page with content from old Murray Chamber website
+- Added Murray City, Salt Lake County, State of Utah, Federal resource links
+- Added MACC logo as favicon for all pages
+- Updated LegalShield link to external shieldbenefits.com URL
+- Standardized hover effects on Chamber Services cards
+- Updated founding year from 1985 to 1948 throughout site
+- Changed "40+ years" to "75+ years" across all pages
+- Updated mission statement with official Chamber language
+- Revised timeline milestones on About page
 
-## Content Guidelines
-- Keep copy professional but approachable
-- Focus on AI consulting, implementation, and training
-- Highlight Brett and Manny's expertise
-- Emphasize practical business value
+## Go High Level Integration
+
+GHL webhooks are configured in `lib/ghl-config.ts` but need actual webhook URLs:
+
+| Form | Status |
+|------|--------|
+| Contact Form | Ready (needs webhook URL) |
+| Membership Application | Ready (needs webhook URL) |
+| Ribbon Cutting Request | Ready (needs webhook URL) |
+| Newsletter Signup | Ready (needs webhook URL) |
+| Event Registration | Ready (needs webhook URL) |
+| Certificate of Origin | Ready (needs webhook URL) |
+
+## Design System
+
+**CSS Classes** (in globals.css):
+- `.glass` / `.glass-strong` - Frosted glass backgrounds
+- `.glass-card` - Hoverable glass cards with borders
+- `.btn-glow` - Orange glowing CTA button
+- `.btn-secondary` - Secondary outline button
+- `.nav-glass` - Navigation background when scrolled
+- `.dropdown-menu` / `.dropdown-item` - Nav dropdowns
+- `.aurora-bg` - Animated background gradient
 
 ## Notes
-- Images go in `public/images/` directory
-- **Booking URL**: All "Book a Call" buttons link to `www.speaktobrett.com`
-- **Logo**: `public/images/TSAI-logo-final.jpg` (in nav header & footer)
-- Mobile-first responsive design
-- Framer Motion for smooth animations
+- **Tailwind v3** - Do NOT upgrade to v4 (had CSS variable spacing issues)
+- **Vercel CLI** - Always deploy via CLI, not GitHub auto-deploy
+- **Mobile-first** - Responsive design with hamburger menu on mobile
+- **Framer Motion** - Smooth animations throughout

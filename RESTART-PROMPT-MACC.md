@@ -1,31 +1,27 @@
-# MACC Website - Ultimate Restart Prompt
-**Generated:** December 30, 2025
+# MACC Website - Restart Prompt
+**Last Updated:** January 26, 2026
 
 ---
 
-## 🎯 PROJECT OVERVIEW
+## PROJECT OVERVIEW
 
-I'm working on the **Murray Area Chamber of Commerce (MACC) website** - a Next.js site with a glassmorphic purple/orange design. The goal is to connect it to **Go High Level (GHL)** for contacts, calendar, emails, and automations.
+I'm working on the **Murray Area Chamber of Commerce (MACC) website** - a Next.js site with a glassmorphic purple/orange design. Founded in 1948, serving Murray, Utah businesses for 75+ years.
 
 ---
 
-## 📁 PROJECT LOCATION
+## PROJECT LOCATION
 
-**Active Project (USE THIS ONE):**
 ```
-/Users/brettlechtenberg/Documents/agent-girl/macc-website-2
+/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website
 ```
 
+**GitHub:** https://github.com/BrettLechtenbrerg/MACC-Website
 **Live URL:** https://macc-website-2.vercel.app
-
-**Old Project (DEPRECATED - had Tailwind v4 spacing issues):**
-```
-/Users/brettlechtenberg/Documents/agent-girl/macc-website/murray-chamber-redesign
-```
+**Vercel Project:** bretts-projects-3e254e58/macc-website-2
 
 ---
 
-## 🛠️ TECH STACK
+## TECH STACK
 
 | Technology | Version | Notes |
 |------------|---------|-------|
@@ -37,131 +33,127 @@ I'm working on the **Murray Area Chamber of Commerce (MACC) website** - a Next.j
 
 ---
 
-## ✅ COMPLETED WORK
+## COMPLETED WORK (January 2026)
 
-1. **Fresh Build with Tailwind v3** - Rebuilt entire site from TSAI foundation
-2. **All Pages Ported** - 20+ pages including:
-   - Homepage, About, Contact
-   - Events (Chamber & Community)
-   - Members, Directory
-   - Join, Deals, Resources
-   - Ribbon Cutting, Certificate of Origin
-   - Board, Ambassadors, MYCC
-   - News (Chamber & Community)
-   - Login, LegalShield, Good Things Utah
+### Session: macc-website-4
+- [x] Resources page updated with content from old Murray Chamber website
+- [x] Murray City, Salt Lake County, State, Federal resource links added
+- [x] MACC logo added as favicon for all pages
+- [x] LegalShield links to https://shieldbenefits.com/murraychamber/overview
+- [x] Chamber Services cards have orange hover effects (matching govt resources)
+- [x] Founded year updated from 1985 to 1948 throughout site
+- [x] "40+ years" changed to "75+ years" across all pages
+- [x] Mission statement updated with official Chamber language
+- [x] Timeline milestones on About page revised with accurate history
+- [x] Footer tagline updated to "since 1948"
 
-3. **Navigation Working** - Dropdowns, mobile menu, glassmorphic styling
-4. **Spacing Fixed** - Cards and sections properly spaced (was broken in v4)
-5. **Design System** - Complete glassmorphic CSS in globals.css
-
----
-
-## 🔜 NEXT STEPS: GO HIGH LEVEL INTEGRATION
-
-**Goal:** Connect all forms to GHL using direct webhooks (NO Zapier/Make/n8n)
-
-### Forms to Connect:
-| Form | GHL Integration | Status |
-|------|-----------------|--------|
-| Contact Form | Webhook → Contact + Automation | ⏳ Pending |
-| Join Chamber | Webhook → Pipeline + "New Member" tag | ⏳ Pending |
-| Event Registration | GHL Calendar Embed | ⏳ Pending |
-| Newsletter Signup | Webhook → Email List | ⏳ Pending |
-| Ribbon Cutting Request | Webhook → Review Workflow | ⏳ Pending |
-| Certificate of Origin | Webhook → Form Submission | ⏳ Pending |
-| Member Login | Link to GHL Membership Portal | ⏳ Pending |
-
-### Integration Approach:
-```typescript
-// Direct webhook POST (no middleware)
-const handleSubmit = async (data) => {
-  await fetch('https://services.leadconnectorhq.com/hooks/WEBHOOK_ID', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  });
-};
-```
+### Previous Sessions
+- Fresh build with Tailwind v3 (rebuilt from TSAI foundation)
+- 20+ pages ported (Homepage, About, Contact, Events, Members, etc.)
+- Navigation working with dropdowns and mobile menu
+- Complete glassmorphic design system in globals.css
+- GHL integration utilities created (awaiting webhook URLs)
 
 ---
 
-## 📂 KEY FILES
+## KEY INFORMATION
+
+### Chamber Facts
+- **Founded:** 1948
+- **Years of Service:** 75+
+- **Member Businesses:** 500+
+- **Annual Events:** 100+
+- **Address:** 141 E. 5600 S., Suite 300, Murray, UT 84107
+- **Phone:** 801-263-2632
+
+### Brand Colors
+- **Purple (Primary):** #4B2E83
+- **Orange (Accent):** #F27A21
+
+---
+
+## PENDING: GO HIGH LEVEL INTEGRATION
+
+GHL utilities are ready in `lib/ghl.ts` and `lib/ghl-config.ts`. Need actual webhook URLs:
+
+| Form | Status |
+|------|--------|
+| Contact Form | Ready (needs webhook URL) |
+| Membership Application | Ready (needs webhook URL) |
+| Ribbon Cutting Request | Ready (needs webhook URL) |
+| Newsletter Signup | Ready (needs webhook URL) |
+| Event Registration | Ready (needs webhook URL) |
+| Certificate of Origin | Ready (needs webhook URL) |
+
+---
+
+## KEY FILES
 
 ```
-macc-website-2/
+MACC-Website/
 ├── app/
-│   ├── globals.css          # All glassmorphic styles + nav styles
-│   ├── layout.tsx           # Root layout with Navigation + aurora bg
+│   ├── layout.tsx           # Root layout, metadata, favicon
 │   ├── page.tsx             # Homepage
-│   ├── contact/page.tsx     # Contact form (needs GHL webhook)
-│   ├── join/page.tsx        # Membership form (needs GHL webhook)
-│   ├── events/
-│   │   ├── chamber/page.tsx # Chamber events
-│   │   └── community/page.tsx
+│   ├── about/page.tsx       # Chamber history, mission (1948)
+│   ├── resources/page.tsx   # Business resources + govt links
+│   ├── contact/page.tsx     # Contact form (GHL ready)
+│   ├── join/page.tsx        # Membership form (GHL ready)
+│   ├── icon.png             # Favicon (MACC logo)
 │   └── [20+ other pages]
 ├── components/
-│   ├── Navigation.tsx       # Main nav with dropdowns
-│   ├── ContactForm.tsx      # Contact form component
-│   ├── Hero.tsx
-│   ├── Features.tsx
-│   ├── Events.tsx
-│   ├── Footer.tsx
-│   └── PageHeader.tsx
-├── tailwind.config.ts       # MACC colors (purple/orange)
-└── package.json
+│   ├── Navigation.tsx       # Main nav + MACC logo
+│   ├── Hero.tsx             # Homepage stats (75+ years)
+│   ├── Footer.tsx           # "since 1948" tagline
+│   └── ContactForm.tsx      # Contact form component
+├── lib/
+│   ├── ghl.ts               # GHL submission utilities
+│   └── ghl-config.ts        # Webhook URL configuration
+└── tailwind.config.ts       # MACC brand colors
 ```
 
 ---
 
-## 🚀 DEPLOYMENT
+## DEPLOYMENT
 
-**Always use Vercel CLI (no dev servers):**
 ```bash
-cd /Users/brettlechtenberg/Documents/agent-girl/macc-website-2
+# Navigate to project
+cd "/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website"
+
+# Build
+npm run build
+
+# Commit and push
+git add -A && git commit -m "Description" && git push origin main
+
+# Deploy to production
 vercel --prod --yes
+
+# Update alias if needed
+vercel alias [deployment-url] macc-website-2.vercel.app
 ```
 
 ---
 
-## 🎨 DESIGN SYSTEM
+## IMPORTANT NOTES
 
-**Colors:**
-- Purple Deep: #490096
-- Purple Light: #7c3aed
-- Orange Primary: #ff7a00
-- Orange Light: #ffb347
-
-**Key CSS Classes:**
-- `.glass` / `.glass-strong` - Frosted glass backgrounds
-- `.glass-card` - Hoverable glass cards
-- `.btn-primary` - Purple gradient button
-- `.btn-glow` - Orange glowing button
-- `.event-card` - Event listing cards
-- `.nav-glass` - Navigation background when scrolled
-- `.dropdown-menu` / `.dropdown-item` - Nav dropdowns
-
----
-
-## ⚠️ IMPORTANT NOTES
-
-1. **Use Tailwind v3** - v4 had CSS variable spacing issues that didn't render
-2. **Vercel CLI Only** - Don't use `npm run dev`, deploy directly
-3. **No Middleware Tools** - User wants direct GHL webhooks, no Zapier/Make/n8n
+1. **Use Tailwind v3** - v4 had CSS variable spacing issues
+2. **Vercel CLI Only** - Don't rely on GitHub auto-deploy
+3. **Project Location** - `/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website`
 4. **Keep Design** - Purple/orange glassmorphic theme is final
 
 ---
 
-## 💬 SAMPLE CONTINUATION PROMPTS
+## SAMPLE PROMPTS TO CONTINUE
 
 **To add GHL webhooks:**
 > "Connect the contact form to GHL. Here's my webhook URL: [URL]"
 
-**To add new features:**
-> "Add a member deals page that shows discounts from chamber members"
+**To update content:**
+> "Update the events page with the January 2026 Chamber calendar"
 
 **To fix issues:**
-> "The events page isn't showing the correct dates, can you check it?"
+> "The join page form isn't submitting correctly"
 
 ---
 
-**Ready to continue! Just paste this prompt and provide your GHL webhook URLs to start the integration.** 🚀
+**Ready to continue!** 🚀
