@@ -1,246 +1,237 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Shield, Lock, Eye, Database, UserCheck, Mail } from 'lucide-react';
+import PageHeader from '@/components/PageHeader';
+import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-export default function Privacy() {
+export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-navy via-navy-light to-navy py-20 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Privacy <span className="text-silver">Policy</span>
-            </h1>
-            <p className="text-xl text-silver-light max-w-3xl mx-auto">
-              Last Updated: January 1, 2026
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <>
+      <PageHeader
+        badge="Legal"
+        title="Privacy Policy"
+        description="Your privacy is important to us. This policy explains how we collect, use, and protect your information."
+        breadcrumbs={[
+          { label: 'Privacy Policy' },
+        ]}
+      />
 
-      {/* Content Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-16 overflow-hidden">
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+          {/* Last Updated */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="prose prose-lg max-w-none"
+            className="glass-card p-6 mb-8 flex items-center gap-4"
           >
-            <div className="space-y-8 text-gray-700">
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">Introduction</h2>
-                <p>
-                  At Total Success AI, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
-                </p>
-                <p className="mt-4">
-                  By using our website and services, you agree to the collection and use of information in accordance with this policy.
-                </p>
-              </div>
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center">
+              <Shield className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="text-white font-semibold">Effective Date: January 1, 2026</p>
+              <p className="text-white/60 text-sm">Murray Area Chamber of Commerce</p>
+            </div>
+          </motion.div>
 
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">1. Information We Collect</h2>
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="glass-card p-8 md:p-12 space-y-8"
+          >
+            {/* Introduction */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <Lock className="w-6 h-6 text-purple-400" />
+                Introduction
+              </h2>
+              <p className="text-white/70 leading-relaxed">
+                The Murray Area Chamber of Commerce (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website at themurraychamber.com and use our services. By using our website, you consent to the practices described in this policy.
+              </p>
+            </div>
 
-                <h3 className="text-2xl font-semibold text-navy-light mt-6 mb-3">Personal Information</h3>
-                <p>We may collect personal information that you voluntarily provide to us, including but not limited to:</p>
-                <ul className="list-disc pl-6 mt-2">
-                  <li>Name and contact information (email address, phone number, mailing address)</li>
-                  <li>Company name and business information</li>
-                  <li>Professional title and role</li>
-                  <li>Payment and billing information</li>
-                  <li>Communication preferences</li>
-                  <li>Any other information you choose to provide</li>
-                </ul>
+            {/* Information We Collect */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <Database className="w-6 h-6 text-purple-400" />
+                1. Information We Collect
+              </h2>
 
-                <h3 className="text-2xl font-semibold text-navy-light mt-6 mb-3">Automatically Collected Information</h3>
-                <p>When you visit our website, we may automatically collect certain information, including:</p>
-                <ul className="list-disc pl-6 mt-2">
-                  <li>IP address and device information</li>
-                  <li>Browser type and version</li>
-                  <li>Operating system</li>
-                  <li>Pages visited and time spent on pages</li>
-                  <li>Referring website addresses</li>
-                  <li>Clickstream data</li>
-                </ul>
-              </div>
+              <h3 className="text-lg font-semibold text-purple-300 mt-6 mb-3">Personal Information You Provide</h3>
+              <p className="text-white/70 mb-3">We may collect personal information that you voluntarily provide, including:</p>
+              <ul className="list-disc pl-6 text-white/70 space-y-2">
+                <li>Name and contact information (email, phone, mailing address)</li>
+                <li>Business name, address, and industry information</li>
+                <li>Membership application details</li>
+                <li>Event registration information</li>
+                <li>Payment and billing information</li>
+                <li>Communications and correspondence you send to us</li>
+              </ul>
 
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">2. How We Use Your Information</h2>
-                <p>We use the information we collect for various purposes, including:</p>
-                <ul className="list-disc pl-6 mt-2">
-                  <li>Providing, maintaining, and improving our services</li>
-                  <li>Processing transactions and sending related information</li>
-                  <li>Responding to your inquiries and providing customer support</li>
-                  <li>Sending you technical notices, updates, and administrative messages</li>
-                  <li>Communicating about products, services, offers, and events</li>
-                  <li>Monitoring and analyzing trends, usage, and activities</li>
-                  <li>Detecting, preventing, and addressing technical issues and security threats</li>
-                  <li>Complying with legal obligations</li>
-                </ul>
-              </div>
+              <h3 className="text-lg font-semibold text-purple-300 mt-6 mb-3">Automatically Collected Information</h3>
+              <p className="text-white/70 mb-3">When you visit our website, we may automatically collect:</p>
+              <ul className="list-disc pl-6 text-white/70 space-y-2">
+                <li>IP address and device information</li>
+                <li>Browser type and version</li>
+                <li>Pages visited and time spent on pages</li>
+                <li>Referring website addresses</li>
+                <li>Geographic location (city/region level)</li>
+              </ul>
+            </div>
 
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">3. Information Sharing and Disclosure</h2>
-                <p>We may share your information in the following circumstances:</p>
+            {/* How We Use Information */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <Eye className="w-6 h-6 text-purple-400" />
+                2. How We Use Your Information
+              </h2>
+              <p className="text-white/70 mb-3">We use the information we collect to:</p>
+              <ul className="list-disc pl-6 text-white/70 space-y-2">
+                <li>Process membership applications and renewals</li>
+                <li>Register you for Chamber events and programs</li>
+                <li>Send newsletters, updates, and Chamber communications</li>
+                <li>Publish your business in our member directory (with your consent)</li>
+                <li>Process payments and maintain financial records</li>
+                <li>Respond to inquiries and provide customer support</li>
+                <li>Improve our website and services</li>
+                <li>Comply with legal obligations</li>
+              </ul>
+            </div>
 
-                <h3 className="text-2xl font-semibold text-navy-light mt-6 mb-3">Service Providers</h3>
-                <p>
-                  We may share your information with third-party service providers who perform services on our behalf, such as payment processing, data analysis, email delivery, hosting services, and customer service.
-                </p>
+            {/* Information Sharing */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <UserCheck className="w-6 h-6 text-purple-400" />
+                3. Information Sharing and Disclosure
+              </h2>
+              <p className="text-white/70 mb-4">We may share your information in the following circumstances:</p>
 
-                <h3 className="text-2xl font-semibold text-navy-light mt-6 mb-3">Business Transfers</h3>
-                <p>
-                  If we are involved in a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.
-                </p>
+              <h3 className="text-lg font-semibold text-purple-300 mt-4 mb-2">Member Directory</h3>
+              <p className="text-white/70 mb-4">
+                With your consent, we publish member business information in our online and printed directories to help connect businesses and consumers in our community.
+              </p>
 
-                <h3 className="text-2xl font-semibold text-navy-light mt-6 mb-3">Legal Requirements</h3>
-                <p>
-                  We may disclose your information if required to do so by law or in response to valid requests by public authorities.
-                </p>
+              <h3 className="text-lg font-semibold text-purple-300 mt-4 mb-2">Service Providers</h3>
+              <p className="text-white/70 mb-4">
+                We may share information with third-party service providers who assist us with payment processing, email communications, event management, and website hosting.
+              </p>
 
-                <h3 className="text-2xl font-semibold text-navy-light mt-6 mb-3">With Your Consent</h3>
-                <p>
-                  We may share your information for any other purpose with your consent.
-                </p>
-              </div>
+              <h3 className="text-lg font-semibold text-purple-300 mt-4 mb-2">Legal Requirements</h3>
+              <p className="text-white/70">
+                We may disclose information when required by law, court order, or to protect the rights, property, or safety of the Chamber or others.
+              </p>
+            </div>
 
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">4. Data Security</h2>
-                <p>
-                  We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
-                </p>
-                <p className="mt-4">
-                  Our security measures include:
-                </p>
-                <ul className="list-disc pl-6 mt-2">
-                  <li>Encryption of sensitive data</li>
-                  <li>Regular security assessments</li>
-                  <li>Access controls and authentication</li>
-                  <li>Secure data storage practices</li>
-                  <li>Employee training on data protection</li>
-                </ul>
-              </div>
+            {/* Cookies */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">4. Cookies and Tracking Technologies</h2>
+              <p className="text-white/70 mb-4">
+                Our website uses cookies and similar technologies to enhance your browsing experience. Cookies are small text files stored on your device that help us:
+              </p>
+              <ul className="list-disc pl-6 text-white/70 space-y-2">
+                <li>Remember your preferences and settings</li>
+                <li>Understand how you use our website</li>
+                <li>Improve website performance and functionality</li>
+                <li>Analyze website traffic and usage patterns</li>
+              </ul>
+              <p className="text-white/70 mt-4">
+                You can control cookies through your browser settings. Disabling cookies may affect certain website features.
+              </p>
+            </div>
 
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">5. Data Retention</h2>
-                <p>
-                  We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. When we no longer need your information, we will securely delete or anonymize it.
-                </p>
-              </div>
+            {/* Data Security */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">5. Data Security</h2>
+              <p className="text-white/70">
+                We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include encryption, secure servers, and access controls. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.
+              </p>
+            </div>
 
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">6. Your Rights and Choices</h2>
-                <p>
-                  Depending on your location, you may have certain rights regarding your personal information:
-                </p>
-                <ul className="list-disc pl-6 mt-2">
-                  <li><strong>Access:</strong> Request access to your personal information</li>
-                  <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information</li>
-                  <li><strong>Deletion:</strong> Request deletion of your personal information</li>
-                  <li><strong>Restriction:</strong> Request restriction of processing of your information</li>
-                  <li><strong>Portability:</strong> Request transfer of your information to another party</li>
-                  <li><strong>Objection:</strong> Object to our processing of your information</li>
-                  <li><strong>Withdraw Consent:</strong> Withdraw consent where processing is based on consent</li>
-                </ul>
-                <p className="mt-4">
-                  To exercise these rights, please contact us using the information provided at the end of this policy.
-                </p>
-              </div>
+            {/* Data Retention */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">6. Data Retention</h2>
+              <p className="text-white/70">
+                We retain your personal information for as long as necessary to fulfill the purposes outlined in this policy, maintain your membership, comply with legal obligations, and resolve disputes. When information is no longer needed, we securely delete or anonymize it.
+              </p>
+            </div>
 
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">7. Cookies and Tracking Technologies</h2>
-                <p>
-                  We use cookies and similar tracking technologies to collect and track information about your use of our website. Cookies are small data files stored on your device.
-                </p>
+            {/* Your Rights */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">7. Your Rights and Choices</h2>
+              <p className="text-white/70 mb-3">You have the right to:</p>
+              <ul className="list-disc pl-6 text-white/70 space-y-2">
+                <li><strong className="text-white">Access:</strong> Request a copy of the personal information we hold about you</li>
+                <li><strong className="text-white">Correction:</strong> Request correction of inaccurate or incomplete information</li>
+                <li><strong className="text-white">Deletion:</strong> Request deletion of your personal information (subject to legal retention requirements)</li>
+                <li><strong className="text-white">Opt-Out:</strong> Unsubscribe from marketing communications at any time</li>
+                <li><strong className="text-white">Directory Removal:</strong> Request removal of your business from our public directory</li>
+              </ul>
+              <p className="text-white/70 mt-4">
+                To exercise these rights, please contact us using the information below.
+              </p>
+            </div>
 
-                <h3 className="text-2xl font-semibold text-navy-light mt-6 mb-3">Types of Cookies We Use:</h3>
-                <ul className="list-disc pl-6 mt-2">
-                  <li><strong>Essential Cookies:</strong> Necessary for the website to function</li>
-                  <li><strong>Analytics Cookies:</strong> Help us understand how visitors use our website</li>
-                  <li><strong>Preference Cookies:</strong> Remember your preferences and settings</li>
-                  <li><strong>Marketing Cookies:</strong> Track your browsing to show relevant advertisements</li>
-                </ul>
+            {/* Third-Party Links */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">8. Third-Party Links</h2>
+              <p className="text-white/70">
+                Our website may contain links to third-party websites, including member business websites and partner organizations. We are not responsible for the privacy practices of these external sites. We encourage you to review the privacy policies of any websites you visit.
+              </p>
+            </div>
 
-                <p className="mt-4">
-                  You can control cookies through your browser settings. However, disabling cookies may affect your ability to use certain features of our website.
-                </p>
-              </div>
+            {/* Children's Privacy */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">9. Children&apos;s Privacy</h2>
+              <p className="text-white/70">
+                Our services are intended for businesses and adults. We do not knowingly collect personal information from children under 13. If you believe we have collected information from a child, please contact us immediately.
+              </p>
+            </div>
 
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">8. Third-Party Links</h2>
-                <p>
-                  Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of these third-party sites. We encourage you to read the privacy policies of any linked websites you visit.
-                </p>
-              </div>
+            {/* Changes to Policy */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4">10. Changes to This Policy</h2>
+              <p className="text-white/70">
+                We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date. We encourage you to review this policy periodically. Continued use of our website after changes constitutes acceptance of the updated policy.
+              </p>
+            </div>
 
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">9. Children's Privacy</h2>
-                <p>
-                  Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you become aware that a child has provided us with personal information, please contact us, and we will take steps to delete such information.
-                </p>
-              </div>
-
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">10. International Data Transfers</h2>
-                <p>
-                  Your information may be transferred to and processed in countries other than your country of residence. These countries may have different data protection laws. By using our services, you consent to the transfer of your information to these countries.
-                </p>
-              </div>
-
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">11. Changes to This Privacy Policy</h2>
-                <p>
-                  We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date. You are advised to review this Privacy Policy periodically for any changes.
-                </p>
-              </div>
-
-              <div>
-                <h2 className="text-3xl font-bold text-navy mb-4">12. Contact Us</h2>
-                <p>
-                  If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
-                </p>
-                <div className="mt-4 p-6 bg-silver-light rounded-lg">
-                  <p className="font-semibold text-navy">Total Success AI</p>
-                  <p className="mt-2">Website: <a href="https://brettlechtenberg.com" className="text-navy-light hover:text-navy">brettlechtenberg.com</a></p>
-                  <p>Website: <a href="https://mannytorresai.com" className="text-navy-light hover:text-navy">mannytorresai.com</a></p>
-                  <p className="mt-2">
-                    <Link href="/contact" className="text-navy-light hover:text-navy font-semibold">
-                      Contact Form →
-                    </Link>
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 p-6 bg-navy text-white rounded-lg">
-                <p className="text-sm">
-                  <strong>Your Privacy Matters:</strong> We are committed to protecting your privacy and handling your data responsibly. If you have any questions or concerns, please don't hesitate to reach out to us.
-                </p>
+            {/* Contact */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <Mail className="w-6 h-6 text-purple-400" />
+                11. Contact Us
+              </h2>
+              <p className="text-white/70 mb-4">
+                If you have questions about this Privacy Policy or wish to exercise your privacy rights, please contact us:
+              </p>
+              <div className="glass p-6 rounded-xl">
+                <p className="text-white font-semibold">Murray Area Chamber of Commerce</p>
+                <p className="text-white/70 mt-2">141 E 5600 S #300</p>
+                <p className="text-white/70">Murray, UT 84107</p>
+                <p className="text-white/70 mt-2">Phone: (801) 263-2632</p>
+                <p className="text-white/70">Email: info@themurraychamber.com</p>
               </div>
             </div>
           </motion.div>
 
-          {/* Back to Home */}
+          {/* Back Link */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-12 text-center"
+            transition={{ delay: 0.2 }}
+            className="mt-8 text-center"
           >
             <Link href="/">
-              <button className="bg-navy text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-navy-light transition-all duration-300">
-                Back to Home
-              </button>
+              <button className="btn-secondary">Back to Home</button>
             </Link>
           </motion.div>
         </div>
       </section>
-    </div>
+
+      <Footer />
+    </>
   );
 }

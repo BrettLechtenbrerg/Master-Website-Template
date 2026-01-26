@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Total Success AI website are documented here.
+All notable changes to the Murray Area Chamber of Commerce website are documented here.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
@@ -11,72 +11,102 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [1.4.0] - 2025-12-14
+## [2.5.0] - 2026-01-26
 ### Added
-- TSAI logo in Navigation header and Footer (site-wide)
-- Logo file: `public/images/TSAI-logo-final.jpg`
+- **Privacy Policy page** (`/privacy`) - Complete rewrite for Chamber with 11 sections
+- **Terms of Service page** (`/terms`) - Complete rewrite for Chamber with 14 sections
+- Both legal pages dated January 1, 2026
 
 ### Changed
-- All booking/appointment links now go to `www.speaktobrett.com`
-- Manny's photo updated with proper framing (white background, object-contain)
-- Documentation reorganization (CLAUDE.md, CONTRIBUTING.md, CHANGELOG.md)
-- Moved work logs to `/docs` folder
-
-### Security
-- Updated Next.js to fix CVE-2025-66478 vulnerability
-
----
-
-## [1.3.0] - 2024-12-XX
-### Security
-- Updated React Flight/Next.js to address RCE vulnerability
+- Contact page info cards now clickable (Visit Us, Call Us, Email Us)
+- Email Us card opens default email program (mailto:)
+- Visit Us card opens Google Maps
+- Call Us card initiates phone call (tel:)
+- Added hover effects and ExternalLink icons to clickable cards
+- Updated Google Maps embed to show correct Independence Square address
 
 ### Fixed
-- Mobile hamburger menu reliability issues
-- iOS touch event inconsistencies
-
-### Improved
-- Full mobile optimization for iPhone 15 Pro
-- Touch targets meet iOS 44x44px standard
-- Typography and readability on mobile
-- Navigation responsiveness
-
-See: [docs/MOBILE-OPTIMIZATION.md](docs/MOBILE-OPTIMIZATION.md), [docs/MENU-FIX-REPORT.md](docs/MENU-FIX-REPORT.md)
+- Map location now shows 141 E 5600 S #300, Murray, UT 84107
 
 ---
 
-## [1.2.0] - 2024-XX-XX
+## [2.4.0] - 2026-01-25
 ### Added
-- Terms and Conditions page (`/terms`)
-- Privacy Policy page (`/privacy`)
-- Additional Services section on portfolio page
+- Go High Level (GHL) integration for contact form
+- Contact form submissions now go to Chamber's GHL account
+- GHL configuration file (`lib/ghl-config.ts`)
+- Demo mode for form when webhook not configured
 
-### Fixed
-- activeTab reference in modal component
+### Changed
+- Contact page refactored with GHL webhook integration
 
 ---
 
-## [1.1.0] - 2024-XX-XX
+## [2.3.0] - 2026-01-24
 ### Added
-- Recommendation letters section on portfolio page
-- 3-box layout for recommendation letters
-- Recommendation letters always visible (moved below videos)
+- Board of Directors page with actual member information
+- Brett Lechtenberg headshot image
+- Staff section with Kathy White (President & CEO) and Page (Executive Assistant)
+
+### Changed
+- Board page now shows real board members with roles and committees
 
 ---
 
-## [1.0.0] - 2024-XX-XX
+## [2.2.0] - 2026-01-23
 ### Added
-- Initial website launch
-- Home page with hero, services overview, testimonials
-- About page with Brett & Manny profiles and bio modals
-- Services page with detailed offerings
-- Portfolio page with projects gallery
-- Contact page with Calendly booking integration
-- Responsive navigation with mobile hamburger menu
-- Footer with contact info and social links
-- Framer Motion animations throughout
-- Tailwind CSS styling with brand colors
-- TypeScript for type safety
+- Login page for member portal access
+- GHL Community integration setup
+- "Coming Soon" state for unconfigured portal
+
+### Changed
+- Login page shows portal features preview
+
+---
+
+## [2.1.0] - 2026-01-22
+### Added
+- Membership join page with actual tier pricing
+- New business complimentary membership section (FREE first year)
+- Premium membership tiers (Champion, Pioneer, etc.)
+
+### Changed
+- Join page now reflects actual Chamber membership structure
+
+---
+
+## [2.0.0] - 2026-01-20
+### Changed
+- **Complete rebrand from Total Success AI to Murray Area Chamber of Commerce**
+- All pages updated with Chamber branding
+- Purple (#4B2E83) and orange (#F27A21) color scheme
+- Glassmorphic card design
+- Dark theme throughout
+
+### Added
+- Business directory with tier system (Sponsors, Ambassadors, Members)
+- Chamber events page
+- Community events page
+- Chamber news page
+- Community news page
+- Resources page with business tools
+- LegalShield partner page
+- Member deals page
+- Ribbon cutting request page
+- Certificate of origin page
+- Good Things Utah page
+- Murray Community Calendar (mycc) page
+- Ambassadors page
+- About page
+
+---
+
+## [1.4.0] - 2025-12-14
+### Added
+- Initial website framework (from Total Success AI template)
+- Navigation with Join Now button
+- Footer with Chamber contact info
+- Mobile optimizations
 
 ---
 

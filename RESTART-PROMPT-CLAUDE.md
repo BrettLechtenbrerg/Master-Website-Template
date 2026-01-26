@@ -12,16 +12,16 @@ Copy and paste everything below this line to get Claude back up to speed:
 
 ### Local Project Location
 ```
-/Users/brettlechtenberg/Documents/agent-girl/macc-website-2/
+/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website/
 ```
 
-**IMPORTANT:** Always work in the `macc-website-2` folder, NOT `macc-website-3` or any other folder.
+**IMPORTANT:** Always work in the path above.
 
 ---
 
 ## Tech Stack
 - **Framework:** Next.js 16.0.10 with App Router
-- **Styling:** Tailwind CSS
+- **Styling:** Tailwind CSS 3.4.18
 - **Language:** TypeScript
 - **Deployment:** Vercel CLI (`vercel --prod --yes`)
 - **Forms:** Go High Level (GHL) integration
@@ -31,35 +31,33 @@ Copy and paste everything below this line to get Claude back up to speed:
 
 ## Project Structure
 ```
-macc-website-2/
-├── app/                    # Next.js App Router pages (26 pages total)
+MACC-Website/
+├── app/                    # Next.js App Router pages (28 pages total)
 │   ├── page.tsx           # Homepage
 │   ├── about/             # About page
-│   ├── ribbon-cutting/    # Ribbon cutting request page (VIDEO PLAYER)
-│   ├── certificate-of-origin/  # Certificate service page
-│   ├── directory/         # Business directory (IMAGES WORK HERE)
-│   ├── good-things-utah/  # Good Things Utah (VIDEO PLAYER REFERENCE)
-│   ├── events/            # Events pages
-│   ├── news/              # News pages
+│   ├── board/             # Board of Directors & Staff
+│   ├── contact/           # Contact form (GHL integration)
+│   ├── directory/         # Business directory
+│   ├── events/            # Chamber & Community events
 │   ├── join/              # Membership signup
+│   ├── login/             # Member portal access
+│   ├── privacy/           # Privacy Policy (Jan 1, 2026)
+│   ├── terms/             # Terms of Service (Jan 1, 2026)
 │   └── ...
 ├── components/            # Reusable React components
-│   ├── Navigation.tsx     # Main nav with Join Now button linked to /join
-│   ├── PageHeader.tsx
-│   ├── Footer.tsx         # Murray City link REMOVED
-│   ├── animations/        # StaggerChildren, FadeIn, etc.
-│   └── ...
+│   ├── Navigation.tsx     # Main nav with Join Now button
+│   ├── PageHeader.tsx     # Page headers with breadcrumbs
+│   ├── Footer.tsx         # Links to /privacy and /terms
+│   └── animations/        # StaggerChildren, FadeIn, etc.
 ├── lib/                   # Utility functions
-│   └── ghl.ts            # Go High Level form submissions
+│   ├── ghl-config.ts      # Go High Level configuration
+│   └── utils.ts           # Helper functions
 ├── public/
-│   └── images/           # All website images
-│       ├── ribbon-cuttings/
-│       ├── certificates/
-│       ├── businesses/   # Directory images (WORKING)
-│       ├── events/
-│       └── news/
-├── app/globals.css       # Mobile-optimized CSS
-└── next.config.js        # Next.js configuration
+│   └── images/            # All website images
+│       ├── board/         # Board member photos
+│       ├── directory/     # Business logos
+│       └── ...
+└── docs/                  # Documentation
 ```
 
 ---
@@ -67,7 +65,7 @@ macc-website-2/
 ## Common Commands
 ```bash
 # Navigate to project
-cd /Users/brettlechtenberg/Documents/agent-girl/macc-website-2
+cd "/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website"
 
 # Install dependencies
 npm install
@@ -78,8 +76,11 @@ npm run dev
 # Build for production
 npm run build
 
-# Deploy to Vercel (USE THIS - GitHub auto-deploy may not work)
+# Deploy to Vercel
 vercel --prod --yes
+
+# Set alias after deployment
+vercel alias [deployment-url] macc-website-2.vercel.app
 
 # Check git status
 git status
@@ -90,48 +91,51 @@ git add -A && git commit -m "Your message" && git push
 
 ---
 
-## Current Status (as of January 12, 2026)
+## Current Status (as of January 26, 2026)
 
 ### What's Working:
 - Full website deployed and live at https://macc-website-2.vercel.app/
-- All 26 pages rendering correctly
-- "Join Now" button links to /join page (desktop + mobile)
-- Video player on ribbon-cutting page (ready for video content)
-- Directory page images working perfectly
+- All 28 pages rendering correctly
+- Contact form with GHL webhook integration
+- Clickable contact info cards (Email, Phone, Maps)
+- Member directory with tier system
+- Board of Directors page with real member info
+- Privacy Policy and Terms of Service pages
 - Mobile optimizations in place
-- GHL form integration set up
 
-### Recent Session Fixes:
-1. **Join Now button** - Now properly links to `/join` (was just a button before)
-2. **Murray City link** - Removed from footer
-3. **Mobile optimization** - Added responsive CSS for touch targets, buttons, forms
-4. **Ribbon-cutting page** - Hero replaced with video player (images weren't working)
-5. **Video player** - Uses gradient + Play icon (same pattern as Good Things Utah)
+### Recent Changes (v2.5.0):
+1. **Privacy Policy** - Complete rewrite for Chamber (11 sections)
+2. **Terms of Service** - Complete rewrite for Chamber (14 sections)
+3. **Contact page** - Info cards now clickable with hover effects
+4. **Map embed** - Updated to show correct Independence Square address
+5. **Email/Phone links** - Now open mailto: and tel: respectively
 
 ### Pages Status:
 | Page | Status |
 |------|--------|
-| `/ribbon-cutting` | Video player works, gallery has Image components |
-| `/certificate-of-origin` | Shipping image section present |
-| `/directory` | All images display correctly (REFERENCE) |
-| `/good-things-utah` | Video player pattern (REFERENCE) |
+| `/privacy` | Complete - Chamber-branded, Jan 1 2026 date |
+| `/terms` | Complete - Chamber-branded, Jan 1 2026 date |
+| `/contact` | GHL integration, clickable info cards |
+| `/directory` | All images display correctly |
+| `/board` | Real board members with photos |
+| `/join` | Actual membership tiers |
+| `/login` | GHL Community ready (Coming Soon state) |
 
 ---
 
 ## Key Files
 - `components/Navigation.tsx` - Join Now button linked to /join
-- `components/Footer.tsx` - Murray City link removed
-- `app/globals.css` - Mobile optimizations added
-- `app/ribbon-cutting/page.tsx` - Video player + gallery
-- `app/directory/page.tsx` - REFERENCE: Working image pattern
-- `app/good-things-utah/page.tsx` - REFERENCE: Video player pattern
+- `components/Footer.tsx` - Links to /privacy and /terms
+- `app/contact/page.tsx` - GHL form integration, clickable cards
+- `app/privacy/page.tsx` - Privacy Policy (Jan 1, 2026)
+- `app/terms/page.tsx` - Terms of Service (Jan 1, 2026)
+- `lib/ghl-config.ts` - GHL webhook configuration
 
 ---
 
 ## Git Info
 - **Branch:** main
 - **Remote:** origin -> https://github.com/BrettLechtenbrerg/MACC-Website.git
-- **Latest commit:** 0838f50 "Fix navigation, remove Murray City link, add mobile optimizations"
 
 ---
 
@@ -140,6 +144,25 @@ git add -A && git commit -m "Your message" && git push
 - **Team:** bretts-projects-3e254e58
 - **Domain:** macc-website-2.vercel.app
 - **Deploy Command:** `vercel --prod --yes`
+- **Alias Command:** `vercel alias [url] macc-website-2.vercel.app`
+
+---
+
+## Brand Guidelines
+- **Purple (Primary):** #4B2E83 / purple-600
+- **Orange (Accent):** #F27A21 / orange-500
+- **Background:** Dark with glassmorphism effects
+- **Cards:** glass-card, glass-strong classes
+- **Icons:** Lucide React
+- **Animations:** Framer Motion
+
+---
+
+## GHL Configuration
+Contact form submissions go to Go High Level CRM:
+- Webhook URL configured in `lib/ghl-config.ts`
+- Demo mode when webhook not configured
+- Tags: `website-contact`, `inquiry-{type}`
 
 ---
 
@@ -148,13 +171,11 @@ git add -A && git commit -m "Your message" && git push
 
 ---
 
-## Additional Context
-- Dark theme with purple/orange gradient accents
-- Glass-card styling (glassmorphism)
-- Aurora background effect on homepage
-- Mobile responsive with 44px touch targets
-- Chamber serves Murray, Utah area businesses
-- Video player ready for ribbon cutting video content
+## Chamber Contact Info
+- **Address:** 141 E 5600 S #300, Murray, UT 84107 (Independence Square)
+- **Phone:** (801) 263-2632
+- **Email:** info@themurraychamber.com
+- **Website:** themurraychamber.com
 
 ---
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check, ArrowRight, Building2, Users, Calendar, Trophy, Megaphone, BadgePercent, Briefcase, Heart, Home, Star } from 'lucide-react';
+import { Check, ArrowRight, Building2, Users, Calendar, Trophy, Megaphone, BadgePercent, Briefcase, Heart, Home, Star, Sparkles, Gift } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
@@ -196,6 +196,73 @@ export default function JoinPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* New Business Complimentary Membership */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative glass-strong rounded-3xl p-8 md:p-12 overflow-hidden"
+          >
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-green-500/20 to-emerald-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8">
+              {/* Icon and Badge */}
+              <div className="text-center lg:text-left shrink-0">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 text-green-300 text-sm font-medium mb-4">
+                  <Sparkles className="w-4 h-4" />
+                  New Business Special
+                </div>
+                <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-2xl mx-auto lg:mx-0">
+                  <Gift className="w-12 h-12 text-white" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 text-center lg:text-left">
+                <h2 className="text-2xl md:text-3xl font-bold text-white">
+                  1 Year Complimentary Membership
+                </h2>
+                <p className="mt-3 text-white/70 max-w-2xl">
+                  <span className="text-green-400 font-semibold">Brand new to Murray?</span> We want to welcome you!
+                  New businesses in Murray receive a complimentary first year of Chamber membership.
+                  After your free year, your membership will automatically continue at the rate matching your business size.
+                </p>
+                <div className="mt-4 flex flex-wrap gap-4 justify-center lg:justify-start text-sm">
+                  <div className="flex items-center gap-2 text-white/60">
+                    <Check className="w-4 h-4 text-green-400" />
+                    <span>Full member benefits</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-white/60">
+                    <Check className="w-4 h-4 text-green-400" />
+                    <span>No commitment first year</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-white/60">
+                    <Check className="w-4 h-4 text-green-400" />
+                    <span>Auto-renews at your tier</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Price and CTA */}
+              <div className="text-center shrink-0">
+                <div className="mb-2">
+                  <span className="text-5xl font-bold text-green-400">FREE</span>
+                </div>
+                <p className="text-white/50 text-sm mb-4">First year for new businesses</p>
+                <Link href="/contact">
+                  <button className="btn-glow bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500">
+                    Apply Now
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
