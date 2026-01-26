@@ -188,20 +188,16 @@ export default function ResourcesPage() {
             {chamberServices.map((service, index) => {
               const CardContent = (
                 <div className="glass-card p-6 group cursor-pointer h-full hover:border-orange-500/50 transition-all">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
-                      <service.icon className="w-5 h-5 text-orange-400" />
-                    </div>
-                    <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-orange-500/20 transition-colors">
-                      {service.external ? (
-                        <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-orange-400 transition-colors" />
-                      ) : (
-                        <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all" />
-                      )}
-                    </div>
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-4 flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
+                    <service.icon className="w-5 h-5 text-orange-400" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white group-hover:text-orange-300 transition-colors">
+                  <h3 className="text-lg font-semibold text-white group-hover:text-orange-300 transition-colors flex items-center gap-2">
                     {service.title}
+                    {service.external ? (
+                      <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-orange-400 transition-colors" />
+                    ) : (
+                      <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all" />
+                    )}
                   </h3>
                   <p className="mt-2 text-white/60 text-sm">{service.description}</p>
                 </div>
