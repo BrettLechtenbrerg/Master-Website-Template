@@ -7,12 +7,12 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 const milestones = [
-  { year: '1985', title: 'Chamber Founded', description: 'The Murray Area Chamber of Commerce was established to support local businesses.' },
-  { year: '1995', title: 'First Community Event', description: 'Launched the first annual Murray Business Showcase.' },
-  { year: '2005', title: '500 Member Milestone', description: 'Reached 500 member businesses, marking significant growth.' },
-  { year: '2015', title: 'New Chamber Building', description: 'Moved to our current location on 5600 South.' },
-  { year: '2020', title: 'Digital Transformation', description: 'Launched virtual events and online member resources.' },
-  { year: '2025', title: '40 Years Strong', description: 'Celebrating 40 years of supporting Murray businesses.' },
+  { year: '1948', title: 'Chamber Founded', description: 'The Murray Area Chamber of Commerce was established to facilitate meaningful connections among business owners and serve as a resource for our community.' },
+  { year: '1970s', title: 'Community Growth', description: 'Expanded services to support Murray\'s growing business community during a period of rapid development.' },
+  { year: '1998', title: '50 Year Anniversary', description: 'Celebrated half a century of serving Murray businesses and strengthening the local economy.' },
+  { year: '2010s', title: '500+ Members', description: 'Reached over 500 member businesses, reflecting the Chamber\'s vital role in the community.' },
+  { year: '2020', title: 'Digital Transformation', description: 'Launched virtual events and online member resources to adapt to changing times.' },
+  { year: '2023', title: '75 Years Strong', description: 'Celebrating 75 years of empowering local businesses and fostering economic growth in Murray.' },
 ];
 
 const values = [
@@ -24,7 +24,7 @@ const values = [
 
 const stats = [
   { value: '500+', label: 'Member Businesses' },
-  { value: '40+', label: 'Years of Service' },
+  { value: '75+', label: 'Years of Service' },
   { value: '100+', label: 'Annual Events' },
   { value: '$2M+', label: 'Member Savings' },
 ];
@@ -35,7 +35,7 @@ export default function AboutPage() {
       <PageHeader
         badge="About"
         title="About the Chamber"
-        description="For over 40 years, the Murray Area Chamber of Commerce has been the voice of business in Murray, Utah. Learn about our mission, history, and commitment to our community."
+        description="Founded in 1948, the Murray Area Chamber of Commerce has been the voice of business in Murray, Utah for over 75 years. Learn about our mission, history, and commitment to our community."
         breadcrumbs={[
           { label: 'About', href: '/about' },
           { label: 'About the Chamber' },
@@ -57,10 +57,10 @@ export default function AboutPage() {
                 Empowering Murray Businesses to Thrive
               </h2>
               <p className="text-white/70 mb-6">
-                The Murray Area Chamber of Commerce exists to promote economic prosperity and quality of life in Murray through business advocacy, networking, education, and community partnerships.
+                Our mission is to foster economic growth and prosperity in our community by empowering local businesses, advocating for their interests, and facilitating meaningful connections among business owners, government agencies, and other members.
               </p>
               <p className="text-white/70 mb-8">
-                We believe that when businesses succeed, our entire community benefits. That&apos;s why we work tirelessly to create an environment where entrepreneurs and established companies alike can grow, innovate, and contribute to the fabric of our city.
+                We strive to create a vibrant and inclusive business ecosystem that promotes innovation, collaboration, and sustainability while supporting the long-term success of our members and contributing to the overall well-being of our community.
               </p>
               <Link href="/join">
                 <button className="btn-glow">
@@ -137,7 +137,7 @@ export default function AboutPage() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold text-white">Our History</h2>
-            <p className="mt-4 text-white/60">40+ years of serving Murray businesses.</p>
+            <p className="mt-4 text-white/60">Serving Murray businesses since 1948.</p>
           </motion.div>
 
           <div className="relative">

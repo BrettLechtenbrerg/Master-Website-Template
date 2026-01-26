@@ -82,7 +82,7 @@ export default function Footer() {
             </Link>
 
             <p className="mt-6 text-white/50 text-sm leading-relaxed max-w-xs">
-              Your hub for innovation and growth. Strengthening Murray&apos;s business community since 1985.
+              Your hub for innovation and growth. Strengthening Murray&apos;s business community since 1948.
             </p>
 
             {/* Contact Info */}

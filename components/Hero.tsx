@@ -109,7 +109,7 @@ export default function Hero() {
           <div className="mt-24 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               { number: '500+', label: 'Member Businesses' },
-              { number: '40+', label: 'Years Serving Murray' },
+              { number: '75+', label: 'Years Serving Murray' },
               { number: '100+', label: 'Annual Events' },
               { number: '$2M+', label: 'Economic Impact' },
             ].map((stat, index) => (
