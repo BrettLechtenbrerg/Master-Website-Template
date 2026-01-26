@@ -8,24 +8,45 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        montserrat: ['var(--font-montserrat)', 'sans-serif'],
+        'open-sans': ['var(--font-open-sans)', 'sans-serif'],
+        sans: ['var(--font-open-sans)', 'sans-serif'],
+        heading: ['var(--font-montserrat)', 'sans-serif'],
+      },
       colors: {
-        // MACC Purple/Orange Glassmorphic Palette
+        // MACC Official Brand Colors
+        macc: {
+          purple: '#4B2E83',
+          'purple-light': '#7A59B5',
+          orange: '#F27A21',
+          'orange-light': '#F9A45A',
+          charcoal: '#1C1C1C',
+          black: '#000000',
+          white: '#FFFFFF',
+        },
+        // Legacy mappings for compatibility
         purple: {
-          deep: '#490096',
-          DEFAULT: '#7c3aed',
-          light: '#a855f7',
-          glow: '#c084fc',
+          deep: '#4B2E83',
+          DEFAULT: '#7A59B5',
+          light: '#9B7BC7',
+          glow: '#B89DD4',
+          400: '#9B7BC7',
+          500: '#7A59B5',
+          600: '#4B2E83',
         },
         orange: {
-          DEFAULT: '#ff7a00',
-          light: '#ffb347',
-          glow: '#ffd89b',
+          DEFAULT: '#F27A21',
+          light: '#F9A45A',
+          glow: '#FCBE8A',
+          400: '#F9A45A',
+          500: '#F27A21',
         },
         // Background colors
         slate: {
-          900: '#0f172a',
-          800: '#1e293b',
-          700: '#334155',
+          900: '#1C1C1C',
+          800: '#2A2A2A',
+          700: '#3A3A3A',
         },
       },
       animation: {
