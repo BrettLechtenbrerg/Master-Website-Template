@@ -11,6 +11,23 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [2.6.0] - 2026-01-26
+### Added
+- **Ribbon Cutting page** - Full restore with YouTube video, benefits section, gallery, and request form
+- **Good Things Utah page** - Full restore with YouTube video, how it works section, and recent segments
+- **Certificate of Origin page** - Full restore with image, benefits, pricing, and request form
+
+### Changed
+- Ribbon Cutting video: Added YouTube embed (ID: F_VdvVmJcWw)
+- Good Things Utah video: Added YouTube embed (ID: Dq7agUEBr6I)
+- Certificate of Origin: Added certificate-hero.jpg image
+- YouTube thumbnails now use `hqdefault.jpg` for better reliability
+
+### Fixed
+- YouTube video thumbnails now display properly (changed from maxresdefault to hqdefault)
+
+---
+
 ## [2.5.0] - 2026-01-26
 ### Added
 - **Privacy Policy page** (`/privacy`) - Complete rewrite for Chamber with 11 sections
