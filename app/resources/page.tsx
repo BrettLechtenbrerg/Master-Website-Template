@@ -3,87 +3,155 @@
 import { motion } from 'framer-motion';
 import {
   FileText,
-  Download,
   ExternalLink,
-  BookOpen,
+  Building2,
+  MapPin,
+  Landmark,
+  Globe,
   Scale,
-  DollarSign,
-  Users,
   Briefcase,
-  TrendingUp,
-  Shield
+  Utensils,
+  Users,
+  DollarSign,
+  Wine,
+  ClipboardList,
+  Building,
+  BadgeCheck
 } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
+// Resource categories matching the old Murray Chamber website
 const resourceCategories = [
   {
-    title: 'Starting a Business',
-    icon: Briefcase,
+    title: 'Murray City Resources',
+    icon: Building2,
+    color: 'from-purple-600 to-purple-700',
     resources: [
-      { title: 'Business Startup Checklist', type: 'PDF', href: '#' },
-      { title: 'Murray Business License Guide', type: 'PDF', href: '#' },
-      { title: 'LLC vs Corporation: Which is Right?', type: 'Article', href: '#' },
-      { title: 'Finding Your Business Location', type: 'Guide', href: '#' },
+      {
+        title: 'Business Licensing',
+        description: 'Every business in Murray must have one. Apply for or renew licenses through this portal.',
+        href: 'https://www.murray.utah.gov/361/Business-Licensing',
+        icon: BadgeCheck,
+      },
+      {
+        title: 'Community & Economic Development',
+        description: 'Access zoning information, permits, and planning assistance for new or expanding locations.',
+        href: 'https://www.murray.utah.gov/158/Community-Economic-Development',
+        icon: Building,
+      },
+      {
+        title: 'Departments Directory',
+        description: 'Contact Building, Planning, Public Works, or Finance departments for inspections and city services.',
+        href: 'https://www.murray.utah.gov/8/Departments',
+        icon: ClipboardList,
+      },
     ],
   },
   {
-    title: 'Funding & Finance',
-    icon: DollarSign,
+    title: 'Salt Lake County Resources',
+    icon: MapPin,
+    color: 'from-orange-500 to-orange-600',
     resources: [
-      { title: 'SBA Loan Programs Overview', type: 'Guide', href: '#' },
-      { title: 'Small Business Grant Directory', type: 'Database', href: '#' },
-      { title: 'Cash Flow Management Tips', type: 'Article', href: '#' },
-      { title: 'Tax Deductions for Small Business', type: 'PDF', href: '#' },
+      {
+        title: 'County Business Resources',
+        description: 'Comprehensive county support including registration, permitting, workplace resources, and tax programs.',
+        href: 'https://www.saltlakecounty.gov/business-resources/',
+        icon: Briefcase,
+      },
+      {
+        title: 'Food & Facility Permits',
+        description: 'Required for restaurants, food trucks, bakeries, and catering businesses. Includes health inspection scheduling.',
+        href: 'https://www.saltlakecounty.gov/health/food-protection/permits/',
+        icon: Utensils,
+      },
+      {
+        title: 'Economic Development',
+        description: 'Workforce support, funding connections, and regional partnership assistance.',
+        href: 'https://www.saltlakecounty.gov/regional-development/economic-development/',
+        icon: DollarSign,
+      },
     ],
   },
   {
-    title: 'Legal & Compliance',
-    icon: Scale,
+    title: 'State of Utah Resources',
+    icon: Landmark,
+    color: 'from-purple-600 to-purple-700',
     resources: [
-      { title: 'Utah Employment Laws', type: 'Guide', href: '#' },
-      { title: 'Business Insurance Requirements', type: 'Article', href: '#' },
-      { title: 'Contract Templates', type: 'Templates', href: '#' },
-      { title: 'OSHA Compliance Checklist', type: 'PDF', href: '#' },
+      {
+        title: 'Business Grants & Incentives',
+        description: "Governor's Office of Economic Opportunity provides grants, incentives, and growth programs.",
+        href: 'https://business.utah.gov/',
+        icon: DollarSign,
+      },
+      {
+        title: 'Business Registration',
+        description: 'Division of Corporations & Commercial Code handles business name, LLC, and corporation registration.',
+        href: 'https://corporations.utah.gov/',
+        icon: FileText,
+      },
+      {
+        title: 'Tax Registration',
+        description: 'Utah State Tax Commission TAP Registration for sales tax, employer tax, and business tax accounts.',
+        href: 'https://tax.utah.gov/utah-taxes/registration',
+        icon: ClipboardList,
+      },
+      {
+        title: 'Employer Resources',
+        description: 'Department of Workforce Services offers new hire reporting, employee recruitment, and job programs.',
+        href: 'https://jobs.utah.gov/employer/index.html',
+        icon: Users,
+      },
+      {
+        title: 'Liquor Permits',
+        description: 'Department of Alcoholic Beverage Services handles liquor and event alcohol permit applications.',
+        href: 'https://abs.utah.gov/',
+        icon: Wine,
+      },
     ],
   },
   {
-    title: 'Marketing & Growth',
-    icon: TrendingUp,
+    title: 'Federal Resources',
+    icon: Globe,
+    color: 'from-orange-500 to-orange-600',
     resources: [
-      { title: 'Digital Marketing 101', type: 'Course', href: '#' },
-      { title: 'Social Media Strategy Guide', type: 'Guide', href: '#' },
-      { title: 'Local SEO Best Practices', type: 'Article', href: '#' },
-      { title: 'Customer Retention Strategies', type: 'PDF', href: '#' },
-    ],
-  },
-  {
-    title: 'HR & Hiring',
-    icon: Users,
-    resources: [
-      { title: 'Hiring Your First Employee', type: 'Guide', href: '#' },
-      { title: 'Employee Handbook Template', type: 'Template', href: '#' },
-      { title: 'Workplace Safety Guidelines', type: 'PDF', href: '#' },
-      { title: 'Remote Work Policies', type: 'Article', href: '#' },
-    ],
-  },
-  {
-    title: 'Cybersecurity',
-    icon: Shield,
-    resources: [
-      { title: 'Small Business Security Checklist', type: 'PDF', href: '#' },
-      { title: 'Password Management Guide', type: 'Guide', href: '#' },
-      { title: 'Data Protection Basics', type: 'Article', href: '#' },
-      { title: 'Phishing Prevention Tips', type: 'Infographic', href: '#' },
+      {
+        title: 'Small Business Administration (SBA)',
+        description: 'Provides help with SBA services including funding programs, counseling, federal contracting certifications, and disaster recovery.',
+        href: 'https://www.sba.gov/district/utah',
+        icon: Briefcase,
+      },
     ],
   },
 ];
 
-const quickLinks = [
-  { title: 'LegalShield', description: 'Affordable legal protection for your business', href: '/legalshield', icon: Scale },
-  { title: 'Certificate of Origin', description: 'Export documentation services', href: '/certificate-of-origin', icon: FileText },
-  { title: 'Good Things Utah', description: 'Media exposure opportunities', href: '/good-things-utah', icon: ExternalLink },
+// Chamber-specific quick links
+const chamberServices = [
+  {
+    title: 'LegalShield',
+    description: 'Affordable legal protection for your business',
+    href: '/legalshield',
+    icon: Scale,
+  },
+  {
+    title: 'Certificate of Origin',
+    description: 'Export documentation services for international trade',
+    href: '/certificate-of-origin',
+    icon: FileText,
+  },
+  {
+    title: 'Good Things Utah',
+    description: 'Media exposure opportunities for your business',
+    href: '/good-things-utah',
+    icon: ExternalLink,
+  },
+  {
+    title: 'Ribbon Cutting Request',
+    description: 'Celebrate your grand opening or milestone with the Chamber',
+    href: '/ribbon-cutting',
+    icon: BadgeCheck,
+  },
 ];
 
 export default function ResourcesPage() {
@@ -92,36 +160,45 @@ export default function ResourcesPage() {
       <PageHeader
         badge="Business Resources"
         title="Small Business Resources"
-        description="Access free tools, guides, and resources designed to help Murray businesses start, grow, and thrive in today's market."
-        breadcrumbs={[
-          { label: 'Business Resources' },
-        ]}
+        description="Access essential tools, guides, and government resources designed to help Murray businesses start, grow, and thrive."
+        breadcrumbs={[{ label: 'Business Resources' }]}
       />
 
-      {/* Quick Links */}
+      {/* Chamber Services Quick Links */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="grid md:grid-cols-3 gap-8"
+            className="text-center mb-12"
           >
-            {quickLinks.map((link, index) => (
+            <h2 className="text-3xl font-bold text-white">Chamber Services</h2>
+            <p className="mt-4 text-white/60 max-w-2xl mx-auto">
+              Exclusive resources and services available through the Murray Area Chamber of Commerce.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {chamberServices.map((service, index) => (
               <motion.div
-                key={link.title}
+                key={service.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Link href={link.href}>
-                  <div className="glass-card p-6 group cursor-pointer h-full">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center mb-4 shadow-lg">
-                      <link.icon className="w-6 h-6 text-white" />
+                <Link href={service.href}>
+                  <div className="glass-card p-6 group cursor-pointer h-full hover:border-purple-500/50 transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                      <service.icon className="w-6 h-6 text-white" />
                     </div>
                     <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">
-                      {link.title}
+                      {service.title}
                     </h3>
-                    <p className="mt-2 text-white/60 text-sm">{link.description}</p>
+                    <p className="mt-2 text-white/60 text-sm">{service.description}</p>
                   </div>
                 </Link>
               </motion.div>
@@ -130,7 +207,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Resource Categories */}
+      {/* Government Resources by Level */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -138,74 +215,101 @@ export default function ResourcesPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white">Resource Library</h2>
+            <h2 className="text-3xl font-bold text-white">Government Resources</h2>
             <p className="mt-4 text-white/60 max-w-2xl mx-auto">
-              Browse our collection of guides, templates, and educational materials.
+              Essential links to city, county, state, and federal resources for business licensing, permits, and support programs.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {resourceCategories.map((category, index) => (
+          <div className="space-y-12">
+            {resourceCategories.map((category, categoryIndex) => (
               <motion.div
                 key={category.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="glass-card p-6"
+                transition={{ delay: categoryIndex * 0.15 }}
               >
+                {/* Category Header */}
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg">
-                    <category.icon className="w-6 h-6 text-white" />
+                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center shadow-lg`}>
+                    <category.icon className="w-7 h-7 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white">{category.title}</h3>
+                  <h3 className="text-2xl font-bold text-white">{category.title}</h3>
                 </div>
 
-                <ul className="space-y-3">
-                  {category.resources.map((resource) => (
-                    <li key={resource.title}>
-                      <a
-                        href={resource.href}
-                        className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors group"
-                      >
-                        <div className="flex items-center gap-3">
-                          <BookOpen className="w-4 h-4 text-purple-400" />
-                          <span className="text-white/80 group-hover:text-white transition-colors text-sm">
-                            {resource.title}
-                          </span>
+                {/* Resources Grid */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {category.resources.map((resource, index) => (
+                    <motion.a
+                      key={resource.title}
+                      href={resource.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: categoryIndex * 0.15 + index * 0.05 }}
+                      className="glass-card p-6 group cursor-pointer hover:border-orange-500/50 transition-all"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
+                          <resource.icon className="w-5 h-5 text-orange-400" />
                         </div>
-                        <span className="text-xs text-white/40 bg-white/5 px-2 py-1 rounded">
-                          {resource.type}
-                        </span>
-                      </a>
-                    </li>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-lg font-semibold text-white group-hover:text-orange-300 transition-colors">
+                              {resource.title}
+                            </h4>
+                            <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-orange-400 transition-colors flex-shrink-0" />
+                          </div>
+                          <p className="mt-2 text-white/60 text-sm leading-relaxed">
+                            {resource.description}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.a>
                   ))}
-                </ul>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Contact Info */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="glass-strong rounded-3xl p-8 md:p-12 lg:p-16 text-center"
+            className="glass-strong rounded-3xl p-8 md:p-12 lg:p-16"
           >
-            <Download className="w-16 h-16 text-purple-400 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-white">Need More Resources?</h2>
-            <p className="mt-4 text-white/60 max-w-2xl mx-auto">
-              Chamber members get exclusive access to premium resources, one-on-one consultations, and personalized business support.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/join">
-                <button className="btn-glow">Become a Member</button>
-              </Link>
-              <Link href="/contact">
-                <button className="btn-secondary">Contact Us</button>
-              </Link>
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h2 className="text-3xl font-bold text-white">Need Help Finding Resources?</h2>
+                <p className="mt-4 text-white/60">
+                  The Murray Area Chamber of Commerce is here to help connect you with the right resources for your business needs. Reach out to us for personalized assistance.
+                </p>
+                <div className="mt-6 space-y-3">
+                  <div className="flex items-center gap-3 text-white/80">
+                    <Building2 className="w-5 h-5 text-purple-400" />
+                    <span>141 E. 5600 S., Suite 300, Murray, UT 84107</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-white/80">
+                    <ExternalLink className="w-5 h-5 text-purple-400" />
+                    <a href="tel:801-263-2632" className="hover:text-purple-300 transition-colors">
+                      801-263-2632
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end">
+                <Link href="/join">
+                  <button className="btn-glow w-full sm:w-auto">Become a Member</button>
+                </Link>
+                <Link href="/contact">
+                  <button className="btn-secondary w-full sm:w-auto">Contact Us</button>
+                </Link>
+              </div>
             </div>
           </motion.div>
         </div>
