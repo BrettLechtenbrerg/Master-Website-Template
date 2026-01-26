@@ -1,75 +1,71 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Linkedin, Mail, Building2 } from 'lucide-react';
+import { Linkedin, Mail } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 const boardMembers = [
   {
-    name: 'Jennifer Martinez',
-    title: 'Board Chair',
-    company: 'Martinez Financial Group',
-    bio: 'Jennifer has served on the Chamber board for 8 years, leading initiatives to strengthen small business resources.',
+    name: 'Brett Lechtenberg',
+    title: 'Chair of the Board',
+    subtitle: 'Education Chair',
+    bio: 'Brett leads the Chamber board and chairs the Education Committee, driving initiatives to support Murray businesses.',
     linkedin: '#',
-    email: 'jennifer@example.com',
+    email: 'info@themurraychamber.com',
   },
   {
-    name: 'Michael Chen',
-    title: 'Vice Chair',
-    company: 'Murray Tech Solutions',
-    bio: 'Michael brings 15 years of technology industry experience and a passion for innovation in Murray.',
+    name: 'Kristen Latimer',
+    title: 'Vice Chair of the Board',
+    subtitle: 'Marketing Chair',
+    bio: 'Kristen serves as Vice Chair and leads marketing initiatives to promote Chamber members and programs.',
     linkedin: '#',
-    email: 'michael@example.com',
+    email: 'info@themurraychamber.com',
   },
   {
-    name: 'Sarah Thompson',
+    name: 'Amber Miller',
     title: 'Treasurer',
-    company: 'Thompson Accounting',
-    bio: 'Sarah oversees chamber finances and brings expertise in helping small businesses manage growth.',
+    bio: 'Amber oversees Chamber finances, ensuring responsible stewardship of member resources.',
     linkedin: '#',
-    email: 'sarah@example.com',
+    email: 'info@themurraychamber.com',
   },
   {
-    name: 'David Williams',
+    name: 'Elvon Farrell',
+    title: 'Chair of Bylaws',
+    subtitle: 'Parliamentarian',
+    bio: 'Elvon leads the Bylaws Committee and serves as Parliamentarian for board proceedings.',
+    linkedin: '#',
+    email: 'info@themurraychamber.com',
+  },
+  {
+    name: 'Lenny Leslie',
+    title: 'Advisor to the Board',
+    bio: 'Lenny provides strategic guidance and institutional knowledge as Advisor to the Board.',
+    linkedin: '#',
+    email: 'info@themurraychamber.com',
+  },
+  {
+    name: 'Dorie Olds',
     title: 'Secretary',
-    company: 'Williams Real Estate',
-    bio: 'David has been active in Murray real estate for 20 years and champions business-friendly development.',
+    subtitle: 'Women in Business; Ribbon Cutting Committee',
+    bio: 'Dorie serves as Secretary and leads both the Women in Business and Ribbon Cutting Committees.',
     linkedin: '#',
-    email: 'david@example.com',
+    email: 'info@themurraychamber.com',
   },
   {
-    name: 'Lisa Rodriguez',
+    name: 'John Doe',
     title: 'Board Member',
-    company: 'Bloom Floral Design',
-    bio: 'Lisa represents Murray\'s vibrant retail community and advocates for small business visibility.',
+    bio: 'Board member position.',
     linkedin: '#',
-    email: 'lisa@example.com',
+    email: 'info@themurraychamber.com',
   },
   {
-    name: 'James Anderson',
+    name: 'John Doe',
     title: 'Board Member',
-    company: 'Peak Fitness Murray',
-    bio: 'James leads wellness initiatives and promotes healthy workplace cultures across Murray businesses.',
+    bio: 'Board member position.',
     linkedin: '#',
-    email: 'james@example.com',
-  },
-  {
-    name: 'Emily Park',
-    title: 'Board Member',
-    company: 'Park Legal Services',
-    bio: 'Emily provides legal expertise and helps businesses navigate regulatory challenges.',
-    linkedin: '#',
-    email: 'emily@example.com',
-  },
-  {
-    name: 'Robert Garcia',
-    title: 'Board Member',
-    company: 'Garcia Construction',
-    bio: 'Robert represents the construction industry and supports workforce development initiatives.',
-    linkedin: '#',
-    email: 'robert@example.com',
+    email: 'info@themurraychamber.com',
   },
 ];
 
@@ -135,10 +131,9 @@ export default function BoardPage() {
                 </div>
                 <h3 className="text-lg font-semibold text-white">{member.name}</h3>
                 <p className="text-purple-400 text-sm font-medium">{member.title}</p>
-                <div className="flex items-center justify-center gap-1 mt-2 text-white/50 text-xs">
-                  <Building2 className="w-3 h-3" />
-                  {member.company}
-                </div>
+                {member.subtitle && (
+                  <p className="text-orange-400/80 text-xs font-medium mt-1">{member.subtitle}</p>
+                )}
                 <p className="mt-4 text-white/60 text-sm line-clamp-3">{member.bio}</p>
                 <div className="mt-4 flex justify-center gap-3">
                   <a
