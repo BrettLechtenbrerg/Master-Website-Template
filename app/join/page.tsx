@@ -1,77 +1,147 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check, ArrowRight, Building2, Users, Calendar, Trophy, Megaphone, BadgePercent } from 'lucide-react';
+import { Check, ArrowRight, Building2, Users, Calendar, Trophy, Megaphone, BadgePercent, Briefcase, Heart, Home, Star } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-const membershipTiers = [
+// Standard membership tiers based on business size
+const standardMemberships = [
   {
-    name: 'Bronze',
-    price: 275,
+    name: 'Nonprofit / Individual / Home-Based',
+    price: 250,
     period: 'year',
-    description: 'Perfect for small businesses and startups',
-    color: 'from-amber-700 to-amber-800',
+    description: 'For nonprofits, individuals, and home-based businesses',
+    icon: Home,
+    color: 'from-green-500 to-green-600',
     features: [
       'Business listing in member directory',
       'Monthly newsletter subscription',
       'Member pricing on events',
       'Networking event access',
       'Digital membership certificate',
+      'Member-to-member discounts',
     ],
-    popular: false,
   },
   {
-    name: 'Silver',
-    price: 475,
+    name: '10 or Fewer Employees',
+    price: 350,
     period: 'year',
-    description: 'Great for growing businesses',
-    color: 'from-gray-400 to-gray-500',
+    description: 'For small businesses with up to 10 employees',
+    icon: Briefcase,
+    color: 'from-purple-500 to-purple-600',
+    popular: true,
     features: [
-      'All Bronze benefits',
+      'Business listing in member directory',
+      'Monthly newsletter subscription',
+      'Member pricing on events',
+      'Networking event access',
+      'Digital membership certificate',
+      'Ribbon cutting ceremony',
+      'Member-to-member discounts',
+    ],
+  },
+  {
+    name: '11-20 Employees',
+    price: 500,
+    period: 'year',
+    description: 'For growing businesses with 11-20 employees',
+    icon: Users,
+    color: 'from-orange-500 to-orange-600',
+    features: [
+      'All small business benefits',
       'Enhanced directory listing',
       'Social media features (2x/year)',
       'Ribbon cutting ceremony',
       'Committee participation',
-      'Member-to-member discounts',
+      'Event sponsorship opportunities',
     ],
-    popular: false,
   },
   {
-    name: 'Gold',
-    price: 750,
+    name: '21-50 Employees',
+    price: 850,
     period: 'year',
-    description: 'Maximum visibility and engagement',
-    color: 'from-yellow-400 to-yellow-500',
+    description: 'For established businesses with 21-50 employees',
+    icon: Building2,
+    color: 'from-blue-500 to-blue-600',
     features: [
-      'All Silver benefits',
+      'All mid-size business benefits',
       'Premium directory placement',
       'Monthly social media features',
       'Newsletter spotlight (1x/year)',
-      'Event sponsorship opportunities',
+      'Priority event sponsorship',
       'Ambassador program eligibility',
-      'Exclusive networking events',
     ],
-    popular: true,
+  },
+];
+
+// Premium partnership tiers for higher investment
+const premiumPartnerships = [
+  {
+    name: 'Murray Advocate',
+    price: 1000,
+    period: 'year',
+    description: 'Support local business growth',
+    color: 'from-amber-500 to-amber-600',
+    icon: Heart,
+    features: [
+      'All standard membership benefits',
+      'Recognition at Chamber events',
+      'Logo on Chamber website',
+      'Social media recognition',
+      'Quarterly newsletter feature',
+    ],
   },
   {
-    name: 'Platinum',
-    price: 1500,
+    name: 'Murray Champion',
+    price: 2500,
     period: 'year',
-    description: 'Premier partnership status',
-    color: 'from-purple-400 to-purple-500',
+    description: 'Champion Murray business community',
+    color: 'from-purple-500 to-purple-600',
+    popular: true,
+    icon: Trophy,
     features: [
-      'All Gold benefits',
-      'Top directory placement',
-      'Weekly social media features',
-      'Quarterly newsletter features',
-      'Premier event sponsorship',
+      'All Advocate benefits',
+      'Premium logo placement',
+      'Monthly social media features',
+      'Event speaking opportunities',
       'Board meeting invitations',
-      'Custom partnership opportunities',
       'VIP event access',
     ],
-    popular: false,
+  },
+  {
+    name: 'Murray Premier Partner',
+    price: 5000,
+    period: 'year',
+    description: 'Premier community partnership',
+    color: 'from-orange-500 to-orange-600',
+    icon: Star,
+    features: [
+      'All Champion benefits',
+      'Top-tier logo placement',
+      'Weekly social media features',
+      'Exclusive networking events',
+      'Custom partnership opportunities',
+      'Premier event sponsorship',
+    ],
+  },
+  {
+    name: 'Murray Legacy Sponsor',
+    price: 7500,
+    period: 'year',
+    description: 'Leave a lasting legacy in Murray',
+    color: 'from-yellow-400 to-yellow-500',
+    icon: Building2,
+    features: [
+      'All Premier Partner benefits',
+      'Founding sponsor recognition',
+      'Naming opportunities',
+      'Executive roundtable access',
+      'Custom marketing partnership',
+      'Annual impact report feature',
+      'Direct Chamber leadership access',
+    ],
   },
 ];
 
@@ -129,7 +199,7 @@ export default function JoinPage() {
         </div>
       </section>
 
-      {/* Pricing Tiers */}
+      {/* Standard Membership Tiers */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -137,12 +207,15 @@ export default function JoinPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
+            <span className="inline-block px-4 py-2 text-sm font-medium text-purple-300 bg-purple-500/20 rounded-full mb-4">
+              Annual Memberships
+            </span>
             <h2 className="text-3xl font-bold text-white">Choose Your Membership Level</h2>
-            <p className="mt-4 text-white/60">Select the tier that best fits your business needs.</p>
+            <p className="mt-4 text-white/60">Select the tier that best fits your business size.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {membershipTiers.map((tier, index) => (
+            {standardMemberships.map((tier, index) => (
               <motion.div
                 key={tier.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -156,30 +229,98 @@ export default function JoinPage() {
                   </div>
                 )}
 
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${tier.color} mx-auto mb-4 flex items-center justify-center shadow-lg`}>
-                  <span className="text-white font-bold text-lg">{tier.name.charAt(0)}</span>
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${tier.color} mx-auto mb-4 flex items-center justify-center shadow-lg`}>
+                  <tier.icon className="w-7 h-7 text-white" />
                 </div>
 
-                <h3 className="text-xl font-bold text-white text-center">{tier.name}</h3>
-                <p className="mt-2 text-white/60 text-sm text-center">{tier.description}</p>
+                <h3 className="text-lg font-bold text-white text-center leading-tight min-h-[56px] flex items-center justify-center">{tier.name}</h3>
+                <p className="mt-2 text-white/60 text-xs text-center">{tier.description}</p>
 
                 <div className="mt-4 text-center">
                   <span className="text-4xl font-bold text-white">${tier.price}</span>
                   <span className="text-white/60">/{tier.period}</span>
                 </div>
 
-                <ul className="mt-6 space-y-3">
+                <ul className="mt-6 space-y-2">
                   {tier.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
-                      <span className="text-white/70 text-sm">{feature}</span>
+                      <Check className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-xs">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <button className={`mt-6 w-full ${tier.popular ? 'btn-glow' : 'btn-secondary'}`}>
-                  Select {tier.name}
-                </button>
+                <Link href="/contact">
+                  <button className={`mt-6 w-full ${tier.popular ? 'btn-glow' : 'btn-secondary'} text-sm`}>
+                    Join Now
+                  </button>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Partnership Tiers */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block px-4 py-2 text-sm font-medium text-orange-300 bg-orange-500/20 rounded-full mb-4">
+              Premium Partnerships
+            </span>
+            <h2 className="text-3xl font-bold text-white">Invest in Murray&apos;s Future</h2>
+            <p className="mt-4 text-white/60 max-w-2xl mx-auto">
+              Make a greater impact in our community with premium partnership levels.
+              Perfect for businesses looking to maximize visibility and community involvement.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {premiumPartnerships.map((tier, index) => (
+              <motion.div
+                key={tier.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className={`relative glass-card p-6 ${tier.popular ? 'ring-2 ring-orange-500' : ''}`}
+              >
+                {tier.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-orange-500 text-white text-xs font-medium rounded-full">
+                    Best Value
+                  </div>
+                )}
+
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${tier.color} mx-auto mb-4 flex items-center justify-center shadow-lg`}>
+                  <tier.icon className="w-7 h-7 text-white" />
+                </div>
+
+                <h3 className="text-lg font-bold text-white text-center">{tier.name}</h3>
+                <p className="mt-2 text-white/60 text-xs text-center">{tier.description}</p>
+
+                <div className="mt-4 text-center">
+                  <span className="text-3xl font-bold text-white">${tier.price.toLocaleString()}</span>
+                  {tier.name === 'Murray Legacy Sponsor' && <span className="text-white/60 text-sm">+</span>}
+                  <span className="text-white/60">/{tier.period}</span>
+                </div>
+
+                <ul className="mt-6 space-y-2">
+                  {tier.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
+                      <span className="text-white/70 text-xs">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link href="/contact">
+                  <button className={`mt-6 w-full ${tier.popular ? 'btn-glow' : 'btn-secondary'} text-sm`}>
+                    Become a Partner
+                  </button>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -196,7 +337,8 @@ export default function JoinPage() {
           >
             <h2 className="text-3xl font-bold text-white">Ready to Join?</h2>
             <p className="mt-4 text-white/60 max-w-2xl mx-auto">
-              Have questions about membership? Contact us for a personalized consultation.
+              Have questions about membership? Contact us for a personalized consultation
+              and find the perfect membership level for your business.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link href="/contact">
@@ -205,9 +347,9 @@ export default function JoinPage() {
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </Link>
-              <Link href="/contact">
-                <button className="btn-secondary">Schedule a Call</button>
-              </Link>
+              <a href="tel:801-263-2632">
+                <button className="btn-secondary">Call (801) 263-2632</button>
+              </a>
             </div>
           </motion.div>
         </div>
