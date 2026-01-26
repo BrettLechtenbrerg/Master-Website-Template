@@ -91,35 +91,40 @@ git add -A && git commit -m "Your message" && git push
 
 ---
 
-## Current Status (as of January 26, 2026)
+## Current Status (v2.6.0 - January 26, 2026)
 
 ### What's Working:
 - Full website deployed and live at https://macc-website-2.vercel.app/
 - All 28 pages rendering correctly
 - Contact form with GHL webhook integration
 - Clickable contact info cards (Email, Phone, Maps)
+- **Ribbon Cutting page** - YouTube video, benefits, gallery, request form
+- **Good Things Utah page** - YouTube video, how it works, recent segments
+- **Certificate of Origin page** - Image, benefits, pricing, request form
 - Member directory with tier system
 - Board of Directors page with real member info
 - Privacy Policy and Terms of Service pages
 - Mobile optimizations in place
 
-### Recent Changes (v2.5.0):
-1. **Privacy Policy** - Complete rewrite for Chamber (11 sections)
-2. **Terms of Service** - Complete rewrite for Chamber (14 sections)
-3. **Contact page** - Info cards now clickable with hover effects
-4. **Map embed** - Updated to show correct Independence Square address
-5. **Email/Phone links** - Now open mailto: and tel: respectively
+### Recent Changes (v2.6.0):
+1. **Ribbon Cutting page** - Restored with YouTube video (F_VdvVmJcWw), gallery, request form
+2. **Good Things Utah page** - Restored with YouTube video (Dq7agUEBr6I), how it works, segments
+3. **Certificate of Origin page** - Restored with image, pricing ($25/$50), request form
+4. **YouTube thumbnails** - Fixed to use hqdefault.jpg for reliability
 
 ### Pages Status:
 | Page | Status |
 |------|--------|
-| `/privacy` | Complete - Chamber-branded, Jan 1 2026 date |
-| `/terms` | Complete - Chamber-branded, Jan 1 2026 date |
-| `/contact` | GHL integration, clickable info cards |
-| `/directory` | All images display correctly |
-| `/board` | Real board members with photos |
-| `/join` | Actual membership tiers |
-| `/login` | GHL Community ready (Coming Soon state) |
+| `/ribbon-cutting` | ✅ Full page with YouTube video & request form |
+| `/good-things-utah` | ✅ Full page with YouTube video & CTA |
+| `/certificate-of-origin` | ✅ Full page with image & request form |
+| `/privacy` | ✅ Chamber-branded, Jan 1 2026 date |
+| `/terms` | ✅ Chamber-branded, Jan 1 2026 date |
+| `/contact` | ✅ GHL integration, clickable info cards |
+| `/directory` | ✅ All images display correctly |
+| `/board` | ✅ Real board members with photos |
+| `/join` | ✅ Actual membership tiers |
+| `/login` | ⏳ GHL Community ready (Coming Soon state) |
 
 ---
 
