@@ -71,22 +71,23 @@ const boardMembers = [
 
 const staff = [
   {
-    name: 'Amanda Foster',
-    title: 'Executive Director',
-    bio: 'Amanda leads the chamber with 12 years of experience in economic development and community building.',
-    email: 'amanda@murraychamber.com',
+    name: 'Kathy White',
+    title: 'President & CEO',
+    subtitle: 'Ambassador Chair',
+    bio: 'Kathy leads the Murray Area Chamber of Commerce and chairs the Ambassador program, driving member engagement and community growth.',
+    email: 'info@themurraychamber.com',
   },
   {
-    name: 'Kevin Brooks',
-    title: 'Membership Director',
-    bio: 'Kevin manages member relations and works to ensure every member gets value from their membership.',
-    email: 'kevin@murraychamber.com',
+    name: 'Page',
+    title: 'Executive Assistant',
+    bio: 'Page provides essential administrative support to ensure smooth Chamber operations and member services.',
+    email: 'info@themurraychamber.com',
   },
   {
-    name: 'Rachel Kim',
-    title: 'Events Coordinator',
-    bio: 'Rachel plans and executes all chamber events, from networking luncheons to the annual golf tournament.',
-    email: 'rachel@murraychamber.com',
+    name: 'John Doe',
+    title: 'Staff Member',
+    bio: 'Staff position.',
+    email: 'info@themurraychamber.com',
   },
 ];
 
@@ -183,6 +184,9 @@ export default function BoardPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-white">{person.name}</h3>
                 <p className="text-purple-400 font-medium">{person.title}</p>
+                {person.subtitle && (
+                  <p className="text-orange-400/80 text-sm font-medium mt-1">{person.subtitle}</p>
+                )}
                 <p className="mt-4 text-white/60">{person.bio}</p>
                 <a
                   href={`mailto:${person.email}`}
