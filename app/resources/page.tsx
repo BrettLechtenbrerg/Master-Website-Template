@@ -131,8 +131,9 @@ const chamberServices = [
   {
     title: 'LegalShield',
     description: 'Affordable legal protection for your business',
-    href: '/legalshield',
+    href: 'https://shieldbenefits.com/murraychamber/overview',
     icon: Scale,
+    external: true,
   },
   {
     title: 'Certificate of Origin',
@@ -183,26 +184,39 @@ export default function ResourcesPage() {
             animate={{ opacity: 1, y: 0 }}
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {chamberServices.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Link href={service.href}>
-                  <div className="glass-card p-6 group cursor-pointer h-full hover:border-purple-500/50 transition-all">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                      <service.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="mt-2 text-white/60 text-sm">{service.description}</p>
+            {chamberServices.map((service, index) => {
+              const CardContent = (
+                <div className="glass-card p-6 group cursor-pointer h-full hover:border-purple-500/50 transition-all">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                    <service.icon className="w-6 h-6 text-white" />
                   </div>
-                </Link>
-              </motion.div>
-            ))}
+                  <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors flex items-center gap-2">
+                    {service.title}
+                    {service.external && <ExternalLink className="w-4 h-4 text-white/40" />}
+                  </h3>
+                  <p className="mt-2 text-white/60 text-sm">{service.description}</p>
+                </div>
+              );
+
+              return (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {service.external ? (
+                    <a href={service.href} target="_blank" rel="noopener noreferrer">
+                      {CardContent}
+                    </a>
+                  ) : (
+                    <Link href={service.href}>
+                      {CardContent}
+                    </Link>
+                  )}
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
