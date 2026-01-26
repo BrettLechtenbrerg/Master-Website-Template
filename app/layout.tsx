@@ -22,6 +22,14 @@ export const metadata: Metadata = {
   description: "Strengthening Murray's business economy by providing unparalleled resources, networking opportunities, and support for businesses of all sizes. Join 500+ member businesses today.",
   keywords: ["Murray Chamber", "Chamber of Commerce", "Utah Business", "Murray Utah", "Business Networking", "Small Business Resources"],
   authors: [{ name: "Murray Area Chamber of Commerce" }],
+  icons: {
+    icon: [
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', type: 'image/png' },
+    ],
+  },
   openGraph: {
     title: "Murray Area Chamber of Commerce",
     description: "Your hub for innovation and business growth in Murray, Utah",
