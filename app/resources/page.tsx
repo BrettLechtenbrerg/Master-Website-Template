@@ -193,11 +193,7 @@ export default function ResourcesPage() {
                   </div>
                   <h3 className="text-lg font-semibold text-white group-hover:text-orange-300 transition-colors flex items-center gap-2">
                     {service.title}
-                    {service.external ? (
-                      <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-orange-400 transition-colors" />
-                    ) : (
-                      <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all" />
-                    )}
+                    <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-orange-400 transition-colors" />
                   </h3>
                   <p className="mt-2 text-white/60 text-sm">{service.description}</p>
                 </div>
