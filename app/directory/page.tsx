@@ -24,12 +24,12 @@ interface Business {
 // Actual business data from Murray Chamber directory
 const businesses: Business[] = [
   // SPONSORS (Featured Members)
-  { id: 1, name: 'AAA Restoration & Carpet Cleaning', category: 'Cleaning Services', address: 'PO BOX 57488, Salt Lake City, UT 84157', phone: '(801) 263-9990', website: 'aaarestorationutah.com', image: '/images/directory/aaa-restoration.jpg', tier: 'sponsor' },
-  { id: 2, name: 'Indie Square', category: 'Coworking/Nonprofit Support', address: '141 5600 South #300, Murray, UT 84107', phone: '(801) 613-7150', website: 'indiesquare.org', image: '/images/directory/indie-square.jpg', tier: 'sponsor' },
-  { id: 3, name: 'Utah Power Credit Union', category: 'Financial Services', address: '957 East 6600 South, Salt Lake City, UT 84121', phone: '(801) 708-8908', website: 'utahpowercu.org', image: '/images/directory/utah-power-cu.jpg', tier: 'sponsor' },
-  { id: 4, name: 'Walston Advisory Firm', category: 'Financial Advisory', address: '650 E 4500 S, Ste 340, Murray, UT 84107', phone: '(801) 263-0400', website: 'walstonadvisoryfirm.com', image: '/images/directory/walston.jpg', tier: 'sponsor' },
-  { id: 5, name: 'Abbington at Murray', category: 'Senior Living', address: '5377 S States Street, Murray, UT 84107', phone: '(385) 289-3700', website: 'abbingtonmurray.com', image: '/images/directory/abbington.jpg', tier: 'sponsor' },
-  { id: 6, name: 'Intermountain Health', category: 'Healthcare', address: '5121 Cottonwood Street, Murray, UT 84107', phone: '(801) 507-7919', website: 'intermountainhealthcare.org', image: '/images/directory/intermountain.jpg', tier: 'sponsor' },
+  { id: 1, name: 'AAA Restoration & Carpet Cleaning', category: 'Cleaning Services', address: 'PO BOX 57488, Salt Lake City, UT 84157', phone: '(801) 263-9990', website: 'aaarestorationutah.com', image: '/images/macc-logo.png', tier: 'sponsor' },
+  { id: 2, name: 'Indie Square', category: 'Coworking/Nonprofit Support', address: '141 5600 South #300, Murray, UT 84107', phone: '(801) 613-7150', website: 'indiesquare.org', image: '/images/macc-logo.png', tier: 'sponsor' },
+  { id: 3, name: 'Utah Power Credit Union', category: 'Financial Services', address: '957 East 6600 South, Salt Lake City, UT 84121', phone: '(801) 708-8908', website: 'utahpowercu.org', image: '/images/macc-logo.png', tier: 'sponsor' },
+  { id: 4, name: 'Walston Advisory Firm', category: 'Financial Advisory', address: '650 E 4500 S, Ste 340, Murray, UT 84107', phone: '(801) 263-0400', website: 'walstonadvisoryfirm.com', image: '/images/macc-logo.png', tier: 'sponsor' },
+  { id: 5, name: 'Abbington at Murray', category: 'Senior Living', address: '5377 S States Street, Murray, UT 84107', phone: '(385) 289-3700', website: 'abbingtonmurray.com', image: '/images/macc-logo.png', tier: 'sponsor' },
+  { id: 6, name: 'Intermountain Health', category: 'Healthcare', address: '5121 Cottonwood Street, Murray, UT 84107', phone: '(801) 507-7919', website: 'intermountainhealthcare.org', image: '/images/macc-logo.png', tier: 'sponsor' },
   { id: 7, name: 'Murray City', category: 'Government', address: '10 East 4800 South, Murray, UT 84107', phone: '(801) 270-2429', website: 'murray.utah.gov', image: '/images/directory/murray-city.jpg', tier: 'sponsor' },
   { id: 8, name: 'Comcast', category: 'Telecommunications', address: '9602 S 300 W, Sandy, UT 84070', phone: '(801) 608-7356', website: 'utah.comcast.com', image: '/images/directory/comcast.jpg', tier: 'sponsor' },
   { id: 9, name: 'Van Boerum & Frank Associates', category: 'Professional Services', address: '181 E 5600 South, Suite 200, Murray, UT 84107', phone: '(801) 530-3148', website: 'vbfa.com', image: '/images/directory/vbfa.jpg', tier: 'sponsor' },
