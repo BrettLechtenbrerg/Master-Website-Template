@@ -22,7 +22,7 @@ import Footer from '@/components/Footer';
 const eventHighlights = [
   { icon: Handshake, title: 'Networking', description: 'Connect with local business owners and build valuable relationships' },
   { icon: GraduationCap, title: 'Education', description: 'Learn new skills and strategies from expert presenters each week' },
-  { icon: Utensils, title: 'Great Food', description: 'Enjoy a delicious lunch at The Break Restaurant' },
+  { icon: Utensils, title: 'Great Food', description: 'Enjoy a delicious lunch at The Break Sports Grill' },
   { icon: Users, title: 'Community', description: 'Be part of a supportive business community that helps each other grow' },
 ];
 
@@ -69,7 +69,7 @@ export default function WeeklyEventsPage() {
 
               <p className="text-lg text-white/70 mb-8">
                 The Referral Community is Murray&apos;s most active weekly networking group.
-                Each Thursday, business owners gather at The Break Restaurant for a powerful
+                Each Thursday, business owners gather at The Break Sports Grill for a powerful
                 combination of networking and education designed to help you grow your business
                 through meaningful connections and referrals.
               </p>
@@ -96,16 +96,22 @@ export default function WeeklyEventsPage() {
                   </div>
                 </div>
 
-                <div className="glass-card p-4 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-green-500/30 flex items-center justify-center">
+                <a
+                  href="https://maps.google.com/?q=The+Break+Sports+Grill+4760+S+900+E+Murray+UT+84117"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass-card p-4 flex items-center gap-4 hover:border-green-500/50 transition-all cursor-pointer group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-green-500/30 flex items-center justify-center group-hover:bg-green-500/50 transition-colors">
                     <MapPin className="w-6 h-6 text-green-400" />
                   </div>
                   <div>
                     <p className="text-white/60 text-sm">Location</p>
-                    <p className="text-white font-semibold">The Break Restaurant</p>
-                    <p className="text-white/60 text-sm">Murray, Utah</p>
+                    <p className="text-white font-semibold group-hover:text-green-300 transition-colors">The Break Sports Grill</p>
+                    <p className="text-white/60 text-sm">4760 S 900 E, Murray, UT 84117</p>
+                    <p className="text-white/50 text-xs">Ivy Place Shopping Village</p>
                   </div>
-                </div>
+                </a>
               </div>
 
               <Link href="/contact">
@@ -120,22 +126,19 @@ export default function WeeklyEventsPage() {
               </Link>
             </motion.div>
 
-            {/* Right - Event Image Placeholder */}
+            {/* Right - Event Image */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               className="relative"
             >
               <div className="glass-card p-4 aspect-[4/3] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 to-orange-900/30 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-24 h-24 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
-                      <Handshake className="w-12 h-12 text-white/40" />
-                    </div>
-                    <p className="text-white/40 text-lg font-medium">Referral Community</p>
-                    <p className="text-white/30 text-sm">Event Photo Coming Soon</p>
-                  </div>
-                </div>
+                <Image
+                  src="/images/events/networking-lunch.jpg"
+                  alt="Referral Community networking lunch at The Break Sports Grill"
+                  fill
+                  className="object-cover rounded-xl"
+                />
               </div>
               {/* Decorative badge */}
               <div className="absolute -top-4 -right-4 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 shadow-lg">
@@ -192,15 +195,12 @@ export default function WeeklyEventsPage() {
               animate={{ opacity: 1, x: 0 }}
               className="glass-card p-4 aspect-video relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 to-orange-900/30 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-20 h-20 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
-                    <Users className="w-10 h-10 text-white/40" />
-                  </div>
-                  <p className="text-white/40">Networking in Action</p>
-                  <p className="text-white/30 text-sm">Photo Coming Soon</p>
-                </div>
-              </div>
+              <Image
+                src="/images/events/networking.jpg"
+                alt="Business networking at the Referral Community"
+                fill
+                className="object-cover rounded-xl"
+              />
             </motion.div>
 
             <motion.div
@@ -233,6 +233,84 @@ export default function WeeklyEventsPage() {
         </div>
       </section>
 
+      {/* Location & Map */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Find Us at The Break Sports Grill
+            </h2>
+            <p className="text-white/60 max-w-2xl mx-auto">
+              Located in Ivy Place Shopping Village, The Break Sports Grill offers the perfect atmosphere
+              for networking over a delicious lunch.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Map */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="glass-card p-4 h-80"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.8!2d-111.8686!3d40.6589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87528a9e1d8b5555%3A0x1234567890abcdef!2s4760%20S%20900%20E%2C%20Murray%2C%20UT%2084117!5e0!3m2!1sen!2sus!4v1706000000000"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '0.75rem' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="The Break Sports Grill - Ivy Place Shopping Village"
+              />
+            </motion.div>
+
+            {/* Location Details */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="glass-card p-8"
+            >
+              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                <MapPin className="w-6 h-6 text-green-400" />
+                The Break Sports Grill
+              </h3>
+
+              <div className="space-y-4 mb-6">
+                <div>
+                  <p className="text-white/60 text-sm mb-1">Address</p>
+                  <p className="text-white font-medium">4760 S 900 E</p>
+                  <p className="text-white">Murray, UT 84117</p>
+                </div>
+                <div>
+                  <p className="text-white/60 text-sm mb-1">Located In</p>
+                  <p className="text-white font-medium">Ivy Place Shopping Village</p>
+                </div>
+                <div>
+                  <p className="text-white/60 text-sm mb-1">Meeting Time</p>
+                  <p className="text-white font-medium">Every Thursday</p>
+                  <p className="text-white">11:30 AM - 1:00 PM</p>
+                </div>
+              </div>
+
+              <a
+                href="https://maps.google.com/?q=The+Break+Sports+Grill+4760+S+900+E+Murray+UT+84117"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white font-medium transition-all w-full"
+              >
+                <MapPin className="w-5 h-5" />
+                Get Directions
+              </a>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="relative py-20 overflow-hidden">
         <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
@@ -246,7 +324,7 @@ export default function WeeklyEventsPage() {
               Ready to Grow Your Network?
             </h2>
             <p className="text-lg text-white/70 mb-8 max-w-2xl mx-auto">
-              Join us this Thursday at The Break Restaurant. First-time visitors are welcome!
+              Join us this Thursday at The Break Sports Grill. First-time visitors are welcome!
               Come see why the Referral Community is Murray&apos;s favorite networking group.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
