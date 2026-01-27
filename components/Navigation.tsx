@@ -14,7 +14,8 @@ import {
   Newspaper,
   Info,
   Mail,
-  LogIn
+  LogIn,
+  Heart
 } from 'lucide-react';
 
 // Navigation structure matching current site
@@ -59,6 +60,15 @@ const navigationItems = [
     items: [
       { label: 'Chamber News', href: '/news/chamber' },
       { label: 'Community News', href: '/news/community' },
+    ],
+  },
+  {
+    label: 'Community',
+    icon: Heart,
+    items: [
+      { label: 'Friday Connections', href: '/community/friday-connections' },
+      { label: 'Business Spotlight', href: '/community/business-spotlight' },
+      { label: 'Love Local', href: '/community/love-local' },
     ],
   },
   {
