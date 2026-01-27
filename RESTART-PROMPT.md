@@ -1,6 +1,6 @@
 # MACC Website - Restart Prompt
 **Last Updated:** January 27, 2026
-**Commit:** `aff8aa5ed2d68af5b36844db324fa6f42fdc2e90`
+**Commit:** `22d7cf6`
 **Live Site:** https://macc-website-2.vercel.app/
 
 ---
@@ -23,20 +23,21 @@ I'm continuing work on the Murray Area Chamber of Commerce (MACC) website.
 - Professional Development uses correct badge text
 - Youth Internship Program page is live
 - All trainer cards (Brett & Manny) are in place
+- NEW: Community dropdown added with 3 pages (Friday Connections, Business Spotlight, Love Local)
 
 **Key Files:**
+- `/components/Navigation.tsx` - Main nav with Community dropdown
 - `/components/Events.tsx` - Homepage events section (4 categories)
-- `/components/Features.tsx` - Homepage feature cards
-- `/app/events/chamber/page.tsx` - Chamber Events hub
-- `/app/events/professional-development/page.tsx` - Professional Dev page with trainer cards
-- `/app/youth-internship/page.tsx` - Youth Internship Program
+- `/app/community/friday-connections/page.tsx` - Weekly networking event
+- `/app/community/business-spotlight/page.tsx` - Featured business page
+- `/app/community/love-local/page.tsx` - Community celebration event
+- `/app/events/professional-development/page.tsx` - Professional Dev with trainer cards
 
 **Deploy Commands:**
 ```bash
 cd /Users/brettlechtenberg/Documents/agent-girl/macc-website-2
-npm run build
-vercel --prod --yes
-vercel alias [deployment-url] macc-website-2.vercel.app
+npm run build && vercel --prod --yes
+# Then: vercel alias [deployment-url] macc-website-2.vercel.app
 ```
 
 What would you like me to work on?
@@ -49,6 +50,7 @@ What would you like me to work on?
 ### About
 Murray Area Chamber of Commerce website - a modern, glassmorphic design featuring:
 - Event management (Weekly, Monthly, Annual, Professional Development)
+- Community pages (Friday Connections, Business Spotlight, Love Local)
 - Member directory with 500+ businesses
 - Youth Internship Program (Murray School District partnership)
 - Ribbon cutting requests
@@ -74,7 +76,7 @@ Murray Area Chamber of Commerce website - a modern, glassmorphic design featurin
 
 ## Site Structure
 
-### Pages (30 total)
+### Pages (33 total)
 ```
 /                           - Homepage
 /about                      - About the Chamber
@@ -96,6 +98,10 @@ Murray Area Chamber of Commerce website - a modern, glassmorphic design featurin
 /events/annual              - Annual signature events
 /events/professional-development - Training with Brett & Manny
 /events/community           - Community calendar
+
+/community/friday-connections  - Friday networking event (NEW)
+/community/business-spotlight  - Featured local business (NEW)
+/community/love-local          - Community celebration (NEW)
 
 /youth-internship           - Youth Internship Program
 /mycc                       - MYCC redirect/placeholder
@@ -120,13 +126,46 @@ Murray Area Chamber of Commerce website - a modern, glassmorphic design featurin
 ├── Features.tsx            - Homepage feature cards
 ├── Testimonials.tsx        - Member testimonials
 ├── ContactForm.tsx         - GHL-integrated contact form
-├── Navigation.tsx          - Main navigation
+├── Navigation.tsx          - Main navigation (with Community dropdown)
 ├── Footer.tsx              - Site footer
 ├── PageHeader.tsx          - Reusable page headers
 └── animations/
     ├── FadeIn.tsx
     └── StaggerChildren.tsx
 ```
+
+---
+
+## Navigation Structure
+
+```
+Business Resources → Directory, Resources, Ribbon Cutting, Certificate, Good Things Utah, LegalShield
+Events → Chamber Events, Weekly, Monthly, Annual, Community, Professional Development
+Membership → Directory, Join, Sponsors, Deals
+News → Chamber News, Community News
+Community → Friday Connections, Business Spotlight, Love Local (NEW)
+About Us → About, Board, Ambassadors, Youth Internship
+Contact (direct link)
+```
+
+---
+
+## Community Pages (NEW)
+
+### Friday Connections
+- **URL:** `/community/friday-connections`
+- **Purpose:** Weekly community networking event
+- **Placeholders:** Event photo, Google Maps, address, schedule, description
+
+### Business Spotlight
+- **URL:** `/community/business-spotlight`
+- **Purpose:** Feature a local Murray business
+- **Placeholders:** Storefront photo, owner photo, map, contact info, hours, bio
+
+### Love Local
+- **URL:** `/community/love-local`
+- **Purpose:** Community celebration event
+- **Placeholders:** Event photo, map, venue, date/time, vendor info
 
 ---
 
@@ -139,8 +178,12 @@ Murray Area Chamber of Commerce website - a modern, glassmorphic design featurin
 4. ✅ Rewrote homepage Events.tsx to show 4 event categories
 5. ✅ Fixed Member Directory link (/members → /directory)
 6. ✅ Changed Professional Development badge from "Master's Edge Training"
-7. ✅ Committed and pushed to GitHub
-8. ✅ Deployed to Vercel production
+7. ✅ Added Community dropdown to navigation
+8. ✅ Created Friday Connections page
+9. ✅ Created Business Spotlight page
+10. ✅ Created Love Local page
+11. ✅ Committed and pushed to GitHub
+12. ✅ Deployed to Vercel production
 
 ---
 
