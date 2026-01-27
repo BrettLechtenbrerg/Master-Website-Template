@@ -1,73 +1,93 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, Award, Calendar, BookOpen, ArrowRight, Heart, Target, Sparkles } from 'lucide-react';
+import Image from 'next/image';
+import {
+  Users,
+  Award,
+  Briefcase,
+  BookOpen,
+  ArrowRight,
+  Heart,
+  Target,
+  Sparkles,
+  GraduationCap,
+  Building2,
+  Handshake,
+  CheckCircle,
+  Clock,
+  Calendar,
+  Star
+} from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-const programHighlights = [
+const programBenefits = [
   {
-    icon: Users,
-    title: 'Leadership Development',
-    description: 'Students develop essential leadership skills through hands-on community projects and business interactions.',
+    icon: Briefcase,
+    title: 'Real Work Experience',
+    description: 'Students gain hands-on professional experience working alongside industry professionals in actual business settings.',
   },
   {
-    icon: BookOpen,
-    title: 'Business Education',
-    description: 'Learn about entrepreneurship, economics, and how local businesses contribute to community prosperity.',
+    icon: GraduationCap,
+    title: 'Academic Credit',
+    description: 'Earn school credit while learning valuable career skills through our partnership with Murray School District.',
   },
   {
-    icon: Heart,
-    title: 'Community Service',
-    description: 'Participate in meaningful service projects that make a real difference in Murray.',
+    icon: Handshake,
+    title: 'Mentorship',
+    description: 'Each intern is paired with a dedicated mentor who guides their professional development throughout the program.',
   },
   {
     icon: Target,
     title: 'Career Exploration',
-    description: 'Connect with local business leaders and explore potential career paths through mentorship.',
+    description: 'Explore different industries and career paths to help make informed decisions about future education and careers.',
   },
 ];
 
-const activities = [
-  { title: 'Monthly Leadership Meetings', description: 'Students meet monthly to plan projects and develop leadership skills.' },
-  { title: 'Community Service Projects', description: 'Organize and participate in service projects throughout Murray.' },
-  { title: 'Business Shadowing', description: 'Experience real-world business operations with local companies.' },
-  { title: 'Annual Youth Business Expo', description: 'Showcase student entrepreneurship projects to the community.' },
-  { title: 'City Council Presentations', description: 'Present youth perspectives on community issues to city leaders.' },
-  { title: 'Networking Events', description: 'Build professional connections with chamber members and business leaders.' },
+const howItWorks = [
+  { step: '1', title: 'Apply Through Your School', description: 'Work with your school counselor to submit an internship application.' },
+  { step: '2', title: 'Interview with Businesses', description: 'Get matched with participating Chamber member businesses for interviews.' },
+  { step: '3', title: 'Begin Your Internship', description: 'Start working alongside professionals in your area of interest.' },
+  { step: '4', title: 'Learn & Grow', description: 'Develop skills, build your resume, and earn academic credit.' },
+  { step: '5', title: 'Complete & Celebrate', description: 'Graduate the program with real experience and professional references.' },
 ];
 
-const testimonials = [
-  {
-    quote: "MYCC taught me leadership skills I use every day. The mentorship and real-world experience prepared me for college and beyond.",
-    name: "Alex Johnson",
-    role: "Former MYCC President, 2024",
-    school: "Murray High School"
-  },
-  {
-    quote: "Being part of MYCC showed me how businesses work together to strengthen our community. It inspired my career in business.",
-    name: "Maria Santos",
-    role: "MYCC Alumni, Class of 2023",
-    school: "Hillcrest High School"
-  },
+const businessBenefits = [
+  'Access motivated, pre-screened student talent',
+  'Develop future employees and community leaders',
+  'Give back to the Murray community',
+  'Fresh perspectives and enthusiasm in your workplace',
+  'Structured program with school district support',
+  'Tax benefits for participating businesses',
 ];
 
-export default function MYCCPage() {
+const industryAreas = [
+  { name: 'Healthcare', icon: Heart },
+  { name: 'Technology', icon: Target },
+  { name: 'Finance', icon: Building2 },
+  { name: 'Retail & Hospitality', icon: Users },
+  { name: 'Professional Services', icon: Briefcase },
+  { name: 'Trades & Manufacturing', icon: Award },
+];
+
+export default function YouthInternshipPage() {
   return (
     <>
       <PageHeader
-        badge="Youth Leadership"
-        title="Murray Youth Community Council"
-        description="Empowering the next generation of Murray business and community leaders through education, service, and mentorship."
+        badge="Youth Programs"
+        title="Youth Internship Program"
+        description="Preparing Murray's next generation for success through real-world work experience. A unique partnership between the Murray Area Chamber of Commerce and Murray School District."
         breadcrumbs={[
           { label: 'About', href: '/about' },
-          { label: 'Murray Youth Community Council' },
+          { label: 'Youth Internship Program' },
         ]}
       />
 
-      {/* About MYCC */}
+      {/* About the Program */}
       <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent pointer-events-none" />
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -75,90 +95,76 @@ export default function MYCCPage() {
               animate={{ opacity: 1, x: 0 }}
             >
               <span className="inline-block px-4 py-2 text-sm font-medium text-purple-300 bg-purple-500/20 rounded-full mb-4">
-                About MYCC
+                Chamber & School District Partnership
               </span>
               <h2 className="text-3xl font-bold text-white mb-6">
-                Building Tomorrow&apos;s Leaders Today
+                Investing in Murray&apos;s Future Workforce
               </h2>
               <p className="text-white/70 mb-6">
-                The Murray Youth Community Council (MYCC) is a partnership between the Murray Area Chamber of Commerce and local schools that provides high school students with hands-on experience in leadership, business, and community service.
+                The Murray Area Chamber of Commerce has partnered with Murray School District to create
+                a groundbreaking youth internship program that connects local high school students with
+                real-world work opportunities at Chamber member businesses.
               </p>
               <p className="text-white/70 mb-8">
-                Founded in 2010, MYCC has helped hundreds of students develop the skills and connections they need to succeed in their future careers while making a positive impact on our community.
+                This innovative program bridges the gap between classroom learning and career readiness,
+                giving students valuable experience while helping local businesses develop the next generation
+                of Murray&apos;s workforce.
               </p>
               <div className="flex flex-wrap gap-6 mb-8">
                 <div className="text-center">
                   <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-orange-400">
-                    15+
-                  </div>
-                  <div className="text-white/60 text-sm">Years Strong</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-orange-400">
-                    500+
-                  </div>
-                  <div className="text-white/60 text-sm">Alumni</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-orange-400">
                     50+
                   </div>
-                  <div className="text-white/60 text-sm">Annual Projects</div>
+                  <div className="text-white/60 text-sm">Partner Businesses</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-orange-400">
+                    200+
+                  </div>
+                  <div className="text-white/60 text-sm">Students Placed</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-orange-400">
+                    15+
+                  </div>
+                  <div className="text-white/60 text-sm">Industry Areas</div>
                 </div>
               </div>
               <Link href="/contact">
                 <button className="btn-glow">
-                  Apply to Join MYCC
+                  Learn More
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </Link>
             </motion.div>
 
+            {/* Image Placeholder */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="glass-card p-8"
+              className="relative"
             >
-              <Sparkles className="w-12 h-12 text-purple-400 mb-6" />
-              <h3 className="text-xl font-semibold text-white mb-6">Program Eligibility</h3>
-              <ul className="space-y-6">
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-green-400 text-xs">✓</span>
+              <div className="glass-card p-4 aspect-[4/3] relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-orange-500 opacity-30 rounded-xl" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <div className="w-28 h-28 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
+                      <GraduationCap className="w-14 h-14 text-white/40" />
+                    </div>
+                    <p className="text-white/50 text-xl font-bold">Youth Internship Program</p>
+                    <p className="text-white/30 text-sm mt-2">Photo Coming Soon</p>
                   </div>
-                  <span className="text-white/70">High school students (grades 9-12) in Murray or surrounding areas</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-green-400 text-xs">✓</span>
-                  </div>
-                  <span className="text-white/70">Minimum 2.5 GPA and good standing at school</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-green-400 text-xs">✓</span>
-                  </div>
-                  <span className="text-white/70">Commitment to attend monthly meetings and events</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-green-400 text-xs">✓</span>
-                  </div>
-                  <span className="text-white/70">Interest in leadership, business, or community service</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-green-400 text-xs">✓</span>
-                  </div>
-                  <span className="text-white/70">Parent/guardian permission</span>
-                </li>
-              </ul>
+                </div>
+              </div>
+              <div className="absolute -top-4 -right-4 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-orange-500 shadow-lg">
+                <span className="text-white font-bold text-sm">New Program</span>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Program Highlights */}
+      {/* Program Benefits for Students */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -166,18 +172,18 @@ export default function MYCCPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white">Program Highlights</h2>
-            <p className="mt-4 text-white/60">What MYCC members experience</p>
+            <h2 className="text-3xl font-bold text-white">Benefits for Students</h2>
+            <p className="mt-4 text-white/60">What interns gain from the program</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {programHighlights.map((item, index) => (
+            {programBenefits.map((item, index) => (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="glass-card p-6 text-center"
+                className="glass-card p-6 text-center hover:border-purple-500/50 transition-all"
               >
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-orange-500 mx-auto mb-4 flex items-center justify-center shadow-lg">
                   <item.icon className="w-7 h-7 text-white" />
@@ -190,7 +196,64 @@ export default function MYCCPage() {
         </div>
       </section>
 
-      {/* Activities */}
+      {/* How It Works */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent pointer-events-none" />
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Image Placeholder */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="relative"
+            >
+              <div className="glass-card p-4 aspect-video relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-purple-600 opacity-30 rounded-xl" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <div className="w-24 h-24 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
+                      <Briefcase className="w-12 h-12 text-white/40" />
+                    </div>
+                    <p className="text-white/50 text-lg font-bold">Students at Work</p>
+                    <p className="text-white/30 text-sm mt-2">Photo Coming Soon</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+            >
+              <h2 className="text-3xl font-bold text-white mb-6">How the Program Works</h2>
+              <p className="text-white/70 mb-8">
+                Our streamlined process makes it easy for students to find meaningful internship opportunities.
+              </p>
+              <div className="space-y-4">
+                {howItWorks.map((item, index) => (
+                  <motion.div
+                    key={item.step}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                    className="flex items-start gap-4"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-orange-500 flex items-center justify-center shrink-0">
+                      <span className="text-white font-bold">{item.step}</span>
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold">{item.title}</h4>
+                      <p className="text-white/60 text-sm">{item.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Areas */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -198,72 +261,152 @@ export default function MYCCPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white">MYCC Activities</h2>
-            <p className="mt-4 text-white/60">A year of learning, service, and growth</p>
+            <h2 className="text-3xl font-bold text-white">Explore Different Industries</h2>
+            <p className="mt-4 text-white/60">Internship opportunities available across many fields</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {activities.map((activity, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {industryAreas.map((industry, index) => (
               <motion.div
-                key={activity.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="glass-card p-6"
+                key={industry.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.05 }}
+                className="glass-card p-4 text-center hover:border-orange-500/50 transition-all"
               >
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center mb-4">
-                  <Calendar className="w-5 h-5 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600/50 to-orange-500/50 mx-auto mb-3 flex items-center justify-center">
+                  <industry.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-white">{activity.title}</h3>
-                <p className="mt-2 text-white/60 text-sm">{activity.description}</p>
+                <p className="text-white text-sm font-medium">{industry.name}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Benefits for Businesses */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold text-white">Student Voices</h2>
-            <p className="mt-4 text-white/60">Hear from MYCC alumni</p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+            >
+              <span className="inline-block px-4 py-2 text-sm font-medium text-orange-300 bg-orange-500/20 rounded-full mb-4">
+                For Chamber Members
+              </span>
+              <h2 className="text-3xl font-bold text-white mb-6">
+                Benefits for Participating Businesses
+              </h2>
+              <p className="text-white/70 mb-6">
+                Hosting an intern isn&apos;t just good for the community—it&apos;s good for your business.
+                Our program provides structured support to make hosting an intern easy and rewarding.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {businessBenefits.map((benefit, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + index * 0.05 }}
+                    className="flex items-start gap-3"
+                  >
+                    <CheckCircle className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                    <span className="text-white/80">{benefit}</span>
+                  </motion.li>
+                ))}
+              </ul>
+              <Link href="/contact">
+                <button className="btn-glow">
+                  Become a Host Business
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </Link>
+            </motion.div>
 
+            {/* Image Placeholder */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="relative"
+            >
+              <div className="glass-card p-4 aspect-[4/3] relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-600 to-purple-600 opacity-30 rounded-xl" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <div className="w-28 h-28 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
+                      <Building2 className="w-14 h-14 text-white/40" />
+                    </div>
+                    <p className="text-white/50 text-xl font-bold">Business Mentors</p>
+                    <p className="text-white/30 text-sm mt-2">Photo Coming Soon</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partnership Info */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="glass-card p-8"
-              >
-                <div className="text-4xl text-purple-400 mb-4">&quot;</div>
-                <p className="text-white/80 text-lg italic">{testimonial.quote}</p>
-                <div className="mt-6 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-orange-500 flex items-center justify-center">
-                    <span className="text-lg font-bold text-white">
-                      {testimonial.name.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">{testimonial.name}</p>
-                    <p className="text-white/60 text-sm">{testimonial.role}</p>
-                    <p className="text-white/40 text-xs">{testimonial.school}</p>
-                  </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass-card p-8 border border-purple-500/30"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-700 mb-6 flex items-center justify-center">
+                <GraduationCap className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">For Students & Parents</h3>
+              <p className="text-white/70 mb-6">
+                Interested in joining the program? Talk to your school counselor about internship
+                opportunities through the Chamber&apos;s Youth Internship Program. Applications are
+                accepted throughout the school year.
+              </p>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center gap-2 text-white/60">
+                  <Clock className="w-4 h-4 text-purple-400" />
+                  <span>Flexible hours that work with school schedules</span>
                 </div>
-              </motion.div>
-            ))}
+                <div className="flex items-center gap-2 text-white/60">
+                  <Calendar className="w-4 h-4 text-purple-400" />
+                  <span>Semester-long and summer placements available</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/60">
+                  <Star className="w-4 h-4 text-purple-400" />
+                  <span>Earn academic credit toward graduation</span>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="glass-card p-8 border border-orange-500/30"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 mb-6 flex items-center justify-center">
+                <Handshake className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Murray School District Partnership</h3>
+              <p className="text-white/70 mb-6">
+                This program is made possible through our strong partnership with Murray School District.
+                Together, we&apos;re preparing students for success by combining classroom education with
+                real-world experience.
+              </p>
+              <p className="text-white/60 text-sm">
+                The Murray Area Chamber of Commerce is proud to work alongside educators and administrators
+                to create meaningful opportunities for Murray&apos;s youth. Our shared commitment to workforce
+                development strengthens the entire community.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Apply CTA */}
+      {/* CTA */}
       <section className="relative py-16 overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -271,17 +414,21 @@ export default function MYCCPage() {
             animate={{ opacity: 1, y: 0 }}
             className="glass-strong rounded-3xl p-8 md:p-12 text-center"
           >
-            <Award className="w-16 h-16 text-orange-400 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-white">Start Your Leadership Journey</h2>
+            <Sparkles className="w-16 h-16 text-orange-400 mx-auto mb-6" />
+            <h2 className="text-3xl font-bold text-white">Invest in Murray&apos;s Future</h2>
             <p className="mt-4 text-white/60 max-w-2xl mx-auto">
-              Applications for the next MYCC class are now open. Join a community of young leaders making a difference in Murray.
+              Whether you&apos;re a student looking for experience, a parent exploring opportunities for your child,
+              or a business wanting to make a difference—we&apos;d love to hear from you.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link href="/contact">
-                <button className="btn-glow">Apply Now</button>
+                <button className="btn-glow">
+                  Get Involved
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </Link>
               <Link href="/contact">
-                <button className="btn-secondary">Contact MYCC Advisor</button>
+                <button className="btn-secondary">Contact Program Coordinator</button>
               </Link>
             </div>
           </motion.div>
