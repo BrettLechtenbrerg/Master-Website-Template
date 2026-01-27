@@ -170,8 +170,8 @@ export default function ContactPage() {
                 <motion.a
                   key={item.title}
                   href={item.href}
-                  target={item.href.startsWith('http') ? '_blank' : undefined}
-                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  target={item.href.startsWith('http') || item.href.startsWith('mailto:') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') || item.href.startsWith('mailto:') ? 'noopener noreferrer' : undefined}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
