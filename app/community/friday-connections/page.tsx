@@ -20,7 +20,7 @@ import PageHeader from '@/components/PageHeader';
 const eventDetails = {
   name: 'Friday Connections',
   tagline: 'Start Your Weekend with Meaningful Connections',
-  description: 'Friday Connections is a community networking event where local professionals, business owners, and community members come together to build relationships, share ideas, and strengthen the Murray business community. Join us every Friday for coffee, conversation, and connection!',
+  description: 'Friday Connections is a community networking event where local professionals, business owners, and community members come together to build relationships, share ideas, and strengthen the local business community. Join us every Friday for coffee, conversation, and connection!',
   schedule: 'Every Friday',
   time: '8:00 AM - 9:30 AM',
   address: {
