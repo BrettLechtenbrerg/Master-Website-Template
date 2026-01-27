@@ -134,7 +134,7 @@ export default function WeeklyEventsPage() {
             >
               <div className="glass-card p-4 aspect-[4/3] relative overflow-hidden">
                 <Image
-                  src="/images/events/gala.jpg"
+                  src="/images/events/networking-lunch-1.png"
                   alt="Referral Community networking lunch at The Break Sports Grill"
                   fill
                   className="object-cover rounded-xl"
@@ -196,7 +196,7 @@ export default function WeeklyEventsPage() {
               className="glass-card p-4 aspect-video relative overflow-hidden"
             >
               <Image
-                src="/images/events/networking.jpg"
+                src="/images/events/networking-lunch-2.png"
                 alt="Business networking at the Referral Community"
                 fill
                 className="object-cover rounded-xl"
