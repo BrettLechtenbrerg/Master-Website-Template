@@ -1,5 +1,6 @@
 # MACC Website - Ultimate Restart Prompt
-**Last Updated:** January 26, 2026 @ 5:30 PM MST
+**Last Updated:** January 27, 2026 @ 5:38 AM MST
+**Current Commit:** b48c8c9
 
 ---
 
@@ -21,6 +22,7 @@ git fetch origin && git status
 - Next.js site with glassmorphic purple/orange design
 - Founded in 1948, serving Murray, Utah businesses for 75+ years
 - 118 real member businesses in directory
+- **29 total pages**
 
 ---
 
@@ -58,20 +60,61 @@ Both local folders deploy to the SAME Vercel project and GitHub repo. Always run
 
 ---
 
-## CURRENT STATE (as of Jan 26, 2026)
+## CURRENT STATE (as of Jan 27, 2026)
 
-### Directory Page (`/directory`)
+### ✅ Directory Page (`/directory`)
 - **118 real Murray businesses** with tiers (sponsor/ambassador/member)
 - ALL business boxes show MACC logo (`/images/macc-logo.png`)
 - Search, filter by category, filter by tier all working
 - Grid and list view modes
 
-### Navigation
-- **Business Resources dropdown** → "Business Directory" → `/directory`
-- **Membership dropdown** → "Member Directory" → `/directory`
-- Both links go to the SAME good directory page
+### ✅ Navigation Dropdowns
 
-### Board Page (`/board`)
+**Business Resources:**
+- Business Directory → `/directory`
+- Small Business Resources → `/resources`
+- Ribbon Cutting Request → `/ribbon-cutting`
+- Certificate of Origin → `/certificate-of-origin`
+- Good Things Utah → `/good-things-utah`
+- LegalShield → `/legalshield`
+
+**Events:**
+- Chamber Events → `/events/chamber`
+- Weekly Events → `/events/weekly` ⭐ NEW
+- Monthly Events → `/events/monthly` ⭐ NEW
+- Annual Events → `/events/annual` ⭐ NEW
+- Community Calendar → `/events/community`
+- Professional Development → `/events/professional-development` ⭐ NEW
+
+**Membership:**
+- Member Directory → `/directory`
+- Join The Chamber → `/join`
+- Chamber Sponsors → `/sponsors` ⭐ NEW
+- Member to Member Deals → `/deals`
+
+**News:**
+- Chamber News → `/news/chamber`
+- Community News → `/news/community`
+
+**About Us:**
+- About Us → `/about`
+- Board → `/board`
+- Ambassadors → `/ambassadors`
+- Murray Youth Community Council → `/mycc`
+
+**Contact:** → `/contact`
+
+### ✅ New Pages Created This Session
+
+| Page | URL | Description |
+|------|-----|-------------|
+| Chamber Sponsors | `/sponsors` | 6 sponsor slots (Platinum/Gold/Silver tiers), prestigious design |
+| Professional Development | `/events/professional-development` | Bi-monthly training, TSAI & Master's Edge programs, Brett's bio |
+| Weekly Events | `/events/weekly` | Referral Community - Thursdays 11:30am-1pm at The Break |
+| Monthly Events | `/events/monthly` | Women in Business - 3rd Wednesday at Chamber office |
+| Annual Events | `/events/annual` | Taste of Murray, Golf Tournament, Magic Over Murray |
+
+### ✅ Board Page (`/board`)
 **Real Board Members:**
 - Brett Lechtenberg - Chair of the Board; Education Chair (has photo)
 - Kristen Latimer - Vice Chair; Marketing Chair
@@ -86,11 +129,14 @@ Both local folders deploy to the SAME Vercel project and GitHub repo. Always run
 - Page - Executive Assistant
 - 1 placeholder position
 
-### YouTube Videos
+### ✅ YouTube Videos
 - **Ribbon Cutting Page:** Video ID `F_VdvVmJcWw`
 - **Good Things Utah Page:** Video ID `Dq7agUEBr6I`
 
-### Forms (GHL Integration Ready)
+### ✅ Contact Page Fix
+- Email button now opens in new tab (target="_blank" for mailto: links)
+
+### ⏳ Forms (GHL Integration Ready)
 All forms are built but need webhook URLs:
 - Contact Form
 - Membership Application
@@ -110,19 +156,24 @@ macc-website-2/
 │   ├── page.tsx                  # Homepage
 │   ├── directory/page.tsx        # ⭐ Business Directory (118 businesses)
 │   ├── board/page.tsx            # Board of Directors + Staff
+│   ├── sponsors/page.tsx         # ⭐ Chamber Sponsors (NEW)
 │   ├── ambassadors/page.tsx      # Ambassador program
 │   ├── ribbon-cutting/page.tsx   # Ribbon Cutting + YouTube video
 │   ├── good-things-utah/page.tsx # Good Things Utah + YouTube video
 │   ├── certificate-of-origin/page.tsx
 │   ├── about/page.tsx            # Chamber history (founded 1948)
 │   ├── resources/page.tsx        # Business resources + govt links
-│   ├── contact/page.tsx          # Contact form
+│   ├── contact/page.tsx          # Contact form (email opens new tab)
 │   ├── join/page.tsx             # Membership form
 │   ├── deals/page.tsx            # Member to Member Deals
 │   ├── legalshield/page.tsx      # LegalShield partner page
 │   ├── events/
 │   │   ├── chamber/page.tsx
-│   │   └── community/page.tsx
+│   │   ├── community/page.tsx
+│   │   ├── professional-development/page.tsx  # ⭐ NEW
+│   │   ├── weekly/page.tsx       # ⭐ NEW - Referral Community
+│   │   ├── monthly/page.tsx      # ⭐ NEW - Women in Business
+│   │   └── annual/page.tsx       # ⭐ NEW - Signature Events
 │   ├── news/
 │   │   ├── chamber/page.tsx
 │   │   └── community/page.tsx
@@ -139,8 +190,10 @@ macc-website-2/
 │   └── ContactForm.tsx
 ├── public/images/
 │   ├── macc-logo.png             # Chamber logo (used everywhere)
+│   ├── TSAI-logo-final.jpg       # Total Success AI logo
+│   ├── brett.png                 # Brett's photo
 │   └── board/
-│       └── brett-lechtenberg.png # Brett's photo
+│       └── brett-lechtenberg.png # Brett's board photo
 ├── lib/
 │   ├── ghl.ts                    # GHL submission utilities
 │   └── ghl-config.ts             # Webhook URL configuration
@@ -156,13 +209,39 @@ macc-website-2/
 - **Years of Service:** 75+
 - **Member Businesses:** 500+ (118 in directory)
 - **Annual Events:** 100+
-- **Address:** 141 E. 5600 S., Suite 300, Murray, UT 84107
-- **Phone:** 801-263-2632
-- **Email:** info@themurraychamber.com
+- **Address:** 141 E 5600 S, Suite 300, Murray, UT 84107
+- **Phone:** (801) 263-2632
+- **Email:** info@murraychamber.com
 
 ### Brand Colors
 - **Purple (Primary):** #4B2E83
 - **Orange (Accent):** #F27A21
+
+---
+
+## EVENT DETAILS
+
+### Weekly: Referral Community
+- **When:** Every Thursday
+- **Time:** 11:30 AM - 1:00 PM
+- **Location:** The Break Restaurant, Murray, UT
+- **Focus:** Networking and education
+
+### Monthly: Women in Business
+- **When:** 3rd Wednesday of every month
+- **Location:** Murray Chamber Office (141 E 5600 S #300)
+- **Focus:** Empowering women entrepreneurs
+
+### Annual Signature Events
+1. **Taste of Murray Gala** - Culinary celebration with local restaurants
+2. **Annual Golf Tournament** - Chamber Classic, scramble format
+3. **Magic Over Murray** - Balloon festival with glow event
+
+### Professional Development
+- **Facilitator:** Brett Lechtenberg
+- **Programs:** Total Success AI, Master's Edge Training
+- **Topics:** AI, automation, business marketing
+- **Links:** BrettLechtenberg.com, TotalSuccessAI.com
 
 ---
 
@@ -222,11 +301,11 @@ git fetch origin && git reset --hard origin/main
 
 ## WHAT NOT TO DO
 
-- Don't use Tailwind v4
-- Don't delete or replace directory businesses
-- Don't deploy from the wrong folder without syncing
-- Don't push without building first
-- Don't modify the glassmorphic design (purple/orange theme is final)
+- ❌ Don't use Tailwind v4
+- ❌ Don't delete or replace directory businesses
+- ❌ Don't deploy from the wrong folder without syncing
+- ❌ Don't push without building first
+- ❌ Don't modify the glassmorphic design (purple/orange theme is final)
 
 ---
 
@@ -241,6 +320,12 @@ git fetch origin && git reset --hard origin/main
 **To update board members:**
 > "Update the board page - [Name] is no longer on the board, add [New Name] as [Title]"
 
+**To add event photos:**
+> "Add photos to the Weekly Events page. Here are the images: [paths]"
+
+**To update sponsors:**
+> "Add [Business Name] as a Platinum sponsor with this logo: [path]"
+
 **To fix issues:**
 > "The [page name] isn't working correctly. Here's what I see: [description]"
 
@@ -252,11 +337,11 @@ git fetch origin && git reset --hard origin/main
 ## RECENT GIT HISTORY
 
 ```
-ccef8d0 Update documentation with correct paths and session work
-3d4d6db Fix Member Directory link to use good directory page
-11404ef Add MACC logo to all business boxes in directory
-75b3df4 Update documentation for v2.6.0
-218fce5 v2.6.0: Restore Ribbon Cutting, Good Things Utah, Certificate of Origin pages
+b48c8c9 Add Weekly, Monthly, and Annual Events pages
+74d169a Add Professional Development page under Events
+4c0a943 Add prestigious Chamber Sponsors page
+b6ce53f Fix email button to open in new tab on contact page
+462ca3c Add ultimate restart prompt with comprehensive documentation
 ```
 
 ---
@@ -269,6 +354,12 @@ grep -c "id:" /Users/brettlechtenberg/Documents/agent-girl/macc-website-2/app/di
 # Should return 119 (118 businesses + 1 for interface)
 ```
 
+Count total pages:
+```bash
+find /Users/brettlechtenberg/Documents/agent-girl/macc-website-2/app -name "page.tsx" | wc -l
+# Should return 29
+```
+
 Check current deployment:
 ```bash
 vercel inspect macc-website-2.vercel.app
@@ -278,9 +369,30 @@ Check both folders are synced:
 ```bash
 cd /Users/brettlechtenberg/Documents/agent-girl/macc-website-2 && git log --oneline -1
 cd "/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website" && git log --oneline -1
-# Both should show same commit hash
+# Both should show same commit hash: b48c8c9
 ```
 
 ---
 
-**Ready to continue!**
+## PAGES WITH PLACEHOLDER IMAGES
+
+These pages have placeholder image spots ready for real photos:
+- `/sponsors` - 6 sponsor logo spots
+- `/events/professional-development` - 4 training session images
+- `/events/weekly` - 2 Referral Community photos
+- `/events/monthly` - 2 Women in Business photos
+- `/events/annual` - 3 annual event photos (Taste of Murray, Golf, Balloon Festival)
+
+---
+
+## EXTERNAL LINKS ON SITE
+
+- https://BrettLechtenberg.com (Professional Development page)
+- https://TotalSuccessAI.com (Professional Development page)
+- Google Maps embed (Contact page)
+
+---
+
+**Ready to continue!** 🚀
+
+Just paste this restart prompt to resume work on the MACC website.
