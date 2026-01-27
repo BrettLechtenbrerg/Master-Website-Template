@@ -37,7 +37,7 @@ const annualEvents = [
       'Awards ceremony honoring local businesses',
     ],
     season: 'Check calendar for date',
-    image: '/images/events/gala.jpg',
+    image: '/images/events/taste-of-murray.png',
   },
   {
     id: 2,
