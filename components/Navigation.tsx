@@ -68,7 +68,7 @@ const navigationItems = [
       { label: 'About Us', href: '/about' },
       { label: 'Board', href: '/board' },
       { label: 'Ambassadors', href: '/ambassadors' },
-      { label: 'Youth Internship Program', href: '/mycc' },
+      { label: 'Youth Internship Program', href: '/youth-internship' },
     ],
   },
   {

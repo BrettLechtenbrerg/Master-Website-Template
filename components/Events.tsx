@@ -1,78 +1,76 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { MapPin, Clock, ArrowRight, Calendar, Users } from 'lucide-react';
+import { ArrowRight, Calendar, Repeat, CalendarDays, Trophy, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import FadeIn from './animations/FadeIn';
 import StaggerChildren, { StaggerItem } from './animations/StaggerChildren';
 import NewsletterSignup from './NewsletterSignup';
 
-// Sample events - in production, these would come from GHL calendar API
-const upcomingEvents = [
+// Event categories matching the chamber events page
+const eventCategories = [
   {
-    id: 1,
-    title: 'Monthly Networking Luncheon',
-    date: new Date('2026-01-15'),
+    id: 'weekly',
+    title: 'Weekly Events',
+    subtitle: 'The Referral Community',
+    description: 'Join Murray\'s premier weekly networking group every Thursday at The Break Sports Grill. Connect with local business owners and grow your business through meaningful connections.',
+    icon: Repeat,
+    color: 'from-orange-500 to-orange-600',
+    borderColor: 'border-orange-500/30',
+    schedule: 'Every Thursday',
     time: '11:30 AM - 1:00 PM',
-    location: 'Murray City Hall',
-    category: 'Networking',
-    description: 'Connect with fellow business owners over lunch. Guest speaker TBA.',
-    image: '/images/events/networking-lunch.jpg',
-    attendees: 45,
+    image: '/images/events/networking-lunch-1.png',
+    href: '/events/weekly',
   },
   {
-    id: 2,
-    title: 'Ribbon Cutting: Tech Startup Hub',
-    date: new Date('2026-01-18'),
-    time: '4:00 PM - 5:30 PM',
-    location: '5600 S Fashion Blvd',
-    category: 'Ribbon Cutting',
-    description: 'Join us to celebrate the grand opening of Murray\'s newest tech incubator.',
-    image: '/images/events/ribbon-cutting.jpg',
-    attendees: 30,
-  },
-  {
-    id: 3,
-    title: 'Business After Hours Mixer',
-    date: new Date('2026-01-22'),
-    time: '5:30 PM - 7:30 PM',
-    location: 'The Hive Murray',
-    category: 'Networking',
-    description: 'Casual networking with complimentary appetizers and drinks.',
+    id: 'monthly',
+    title: 'Monthly Events',
+    subtitle: 'Women in Business',
+    description: 'Empowering women entrepreneurs with monthly networking, education, and support. Join fellow business women for inspiring discussions and valuable connections.',
+    icon: CalendarDays,
+    color: 'from-purple-500 to-pink-500',
+    borderColor: 'border-pink-500/30',
+    schedule: '3rd Wednesday',
+    time: 'Check Calendar',
     image: '/images/events/mixer.jpg',
-    attendees: 60,
+    href: '/events/monthly',
   },
   {
-    id: 4,
-    title: 'Small Business Workshop: Digital Marketing',
-    date: new Date('2026-01-25'),
-    time: '9:00 AM - 12:00 PM',
-    location: 'Chamber Conference Room',
-    category: 'Workshop',
-    description: 'Learn the latest digital marketing strategies for local businesses.',
+    id: 'annual',
+    title: 'Annual Events',
+    subtitle: 'Signature Celebrations',
+    description: 'Experience Murray\'s most anticipated business events including the Taste of Murray, Annual Golf Tournament, and the magical Magic Over Murray Balloon Festival.',
+    icon: Trophy,
+    color: 'from-purple-600 to-orange-500',
+    borderColor: 'border-purple-500/30',
+    schedule: 'Throughout the Year',
+    time: 'Various Times',
+    image: '/images/events/taste-of-murray.png',
+    href: '/events/annual',
+  },
+  {
+    id: 'professional-development',
+    title: 'Professional Development',
+    subtitle: 'Professional Development',
+    description: 'Elevate your business skills with bi-monthly training sessions led by Brett Lechtenberg and Manny Torres. Master AI, marketing automation, and business growth strategies.',
+    icon: GraduationCap,
+    color: 'from-purple-600 to-purple-800',
+    borderColor: 'border-purple-500/30',
+    schedule: 'Bi-Monthly',
+    time: 'Various Times',
     image: '/images/events/workshop.jpg',
-    attendees: 25,
+    href: '/events/professional-development',
   },
 ];
 
-const categoryColors: Record<string, string> = {
-  'Networking': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-  'Ribbon Cutting': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
-  'Workshop': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-  'Community': 'bg-green-500/20 text-green-300 border-green-500/30',
-};
-
 export default function Events() {
-  const formatDate = (date: Date) => ({
-    day: date.getDate(),
-    month: date.toLocaleString('default', { month: 'short' }),
-  });
-
   return (
     <section className="relative w-full py-16 sm:py-20 md:py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-900/95" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
@@ -80,13 +78,13 @@ export default function Events() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
             <div>
               <span className="text-orange-400 font-semibold uppercase tracking-wider text-sm">
-                Mark Your Calendar
+                Get Involved
               </span>
               <h2 className="mt-4 text-4xl sm:text-5xl font-bold text-white">
-                Upcoming Events
+                Chamber Events
               </h2>
               <p className="mt-4 text-lg text-white/60 max-w-xl">
-                Don&apos;t miss out on our networking events, workshops, and community celebrations.
+                Connect, learn, and grow with events designed to help your business thrive in Murray.
               </p>
             </div>
             <Link href="/events/chamber">
@@ -102,81 +100,66 @@ export default function Events() {
           </div>
         </FadeIn>
 
-        {/* Events Grid - Cards with Images */}
+        {/* Event Categories Grid */}
         <StaggerChildren staggerDelay={0.1} className="grid md:grid-cols-2 gap-8">
-          {upcomingEvents.map((event) => {
-            const { day, month } = formatDate(event.date);
-            return (
-              <StaggerItem key={event.id}>
+          {eventCategories.map((category) => (
+            <StaggerItem key={category.id}>
+              <Link href={category.href} className="block h-full">
                 <motion.div
                   whileHover={{ y: -5 }}
-                  className="glass-card overflow-hidden group cursor-pointer h-full"
+                  className={`glass-card overflow-hidden group cursor-pointer h-full border ${category.borderColor} hover:border-opacity-70 transition-all`}
                 >
                   {/* Image Header */}
                   <div className="relative h-48 overflow-hidden">
                     <Image
-                      src={event.image}
-                      alt={event.title}
+                      src={category.image}
+                      alt={category.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      unoptimized
                     />
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
 
-                    {/* Date Badge */}
-                    <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2 text-center">
-                      <span className="block text-2xl font-bold text-white">{day}</span>
-                      <span className="block text-xs uppercase text-white/70">{month}</span>
+                    {/* Icon Badge */}
+                    <div className={`absolute bottom-4 left-4 w-12 h-12 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center shadow-lg`}>
+                      <category.icon className="w-6 h-6 text-white" />
                     </div>
 
-                    {/* Category Badge */}
-                    <div className="absolute top-4 right-4">
-                      <span className={`px-3 py-1 text-xs font-medium rounded-full border ${categoryColors[event.category]}`}>
-                        {event.category}
-                      </span>
-                    </div>
-
-                    {/* Attendees */}
-                    <div className="absolute bottom-4 right-4 flex items-center gap-1.5 text-white/80 text-sm">
-                      <Users className="w-4 h-4" />
-                      <span>{event.attendees} attending</span>
+                    {/* Subtitle Badge */}
+                    <div className={`absolute top-4 right-4 px-3 py-1 rounded-full bg-gradient-to-r ${category.color} shadow-lg`}>
+                      <span className="text-white font-bold text-xs">{category.subtitle}</span>
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold text-white group-hover:text-purple-300 transition-colors">
-                      {event.title}
+                    <h3 className="text-xl font-semibold text-white group-hover:text-orange-300 transition-colors">
+                      {category.title}
                     </h3>
 
-                    <p className="mt-2 text-white/50 text-sm line-clamp-2">
-                      {event.description}
+                    <p className="mt-2 text-white/60 text-sm line-clamp-2">
+                      {category.description}
                     </p>
 
                     <div className="mt-4 flex flex-wrap gap-4 text-sm text-white/60">
                       <div className="flex items-center gap-1.5">
-                        <Clock className="w-4 h-4 text-purple-400" />
-                        {event.time}
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <MapPin className="w-4 h-4 text-orange-400" />
-                        {event.location}
+                        <Calendar className="w-4 h-4 text-purple-400" />
+                        {category.schedule}
                       </div>
                     </div>
 
                     <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-                      <span className="text-sm text-white/40">Free for members</span>
+                      <span className="text-sm text-white/40">Open to all members</span>
                       <div className="flex items-center gap-2 text-purple-400 group-hover:text-orange-400 transition-colors">
-                        <span className="text-sm font-medium">Register Now</span>
+                        <span className="text-sm font-medium">Learn More</span>
                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
                       </div>
                     </div>
                   </div>
                 </motion.div>
-              </StaggerItem>
-            );
-          })}
+              </Link>
+            </StaggerItem>
+          ))}
         </StaggerChildren>
 
         {/* Newsletter CTA with Background Image */}

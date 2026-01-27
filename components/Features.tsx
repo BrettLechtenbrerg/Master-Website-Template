@@ -20,7 +20,7 @@ const features = [
     icon: Building2,
     title: 'Member Directory',
     description: 'Connect with over 500 local businesses. Find partners, suppliers, and customers right in Murray.',
-    href: '/members',
+    href: '/directory',
     color: 'purple',
     image: '/images/features/directory.jpg',
   },
