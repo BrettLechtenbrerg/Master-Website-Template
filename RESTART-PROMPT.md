@@ -1,6 +1,6 @@
 # MACC Website - Restart Prompt
 **Last Updated:** January 27, 2026
-**Commit:** `22d7cf6`
+**Commit:** `00d383d`
 **Live Site:** https://macc-website-2.vercel.app/
 
 ---
