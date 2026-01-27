@@ -109,7 +109,7 @@ export default function ProfessionalDevelopmentPage() {
       <PageHeader
         badge="Professional Development"
         title="Elevate Your Business Skills"
-        description="Join our bi-monthly live training sessions and online programs led by Brett Lechtenberg. Master business marketing, AI, and automation to take your business to the next level."
+        description="Join our bi-monthly live training sessions and online programs led by Brett Lechtenberg and Manny Torres. Master business marketing, AI, and automation to take your business to the next level."
         breadcrumbs={[
           { label: 'Events', href: '/events/chamber' },
           { label: 'Professional Development' },
@@ -163,56 +163,104 @@ export default function ProfessionalDevelopmentPage() {
               </div>
             </motion.div>
 
-            {/* Right - Trainer Info Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="glass-card p-8 border border-purple-500/30"
-            >
-              <div className="text-center mb-6">
-                <div className="w-32 h-32 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-600 to-orange-500 p-1">
-                  <div className="w-full h-full rounded-xl bg-white/10 flex items-center justify-center overflow-hidden">
-                    <Image
-                      src="/images/brett.png"
-                      alt="Brett Lechtenberg"
-                      width={128}
-                      height={128}
-                      className="object-cover w-full h-full"
-                    />
+            {/* Right - Trainer Info Cards */}
+            <div className="space-y-6">
+              {/* Brett Lechtenberg */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="glass-card p-6 border border-purple-500/30"
+              >
+                <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+                  <div className="shrink-0">
+                    <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-purple-600 to-orange-500 p-1">
+                      <div className="w-full h-full rounded-xl bg-white/10 flex items-center justify-center overflow-hidden">
+                        <Image
+                          src="/images/brett.png"
+                          alt="Brett Lechtenberg"
+                          width={96}
+                          height={96}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center sm:text-left flex-1">
+                    <h3 className="text-xl font-bold text-white mb-1">Brett Lechtenberg</h3>
+                    <p className="text-orange-400 font-medium text-sm mb-1">Co-Founder & Training Facilitator</p>
+                    <p className="text-white/60 text-xs mb-3">Chair of the Board, Education Chair</p>
+                    <p className="text-white/70 text-sm mb-4">
+                      Brett brings years of experience in business development, AI implementation,
+                      and marketing automation. As co-founder of Total Success AI and the Master&apos;s Edge
+                      Training programs, he&apos;s helped countless businesses achieve breakthrough results.
+                    </p>
+                    <a
+                      href="https://brettlechtenberg.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors"
+                    >
+                      BrettLechtenberg.com
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Brett Lechtenberg</h3>
-                <p className="text-orange-400 font-medium mb-1">Training Facilitator</p>
-                <p className="text-white/60 text-sm">Chair of the Board, Education Chair</p>
-              </div>
+              </motion.div>
 
-              <p className="text-white/70 text-center mb-6">
-                Brett brings years of experience in business development, AI implementation,
-                and marketing automation. As founder of Total Success AI and the Master&apos;s Edge
-                Training programs, he&apos;s helped countless businesses achieve breakthrough results.
-              </p>
+              {/* Manny Torres */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 }}
+                className="glass-card p-6 border border-orange-500/30"
+              >
+                <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+                  <div className="shrink-0">
+                    <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-orange-500 to-purple-600 p-1">
+                      <div className="w-full h-full rounded-xl bg-white/10 flex items-center justify-center overflow-hidden">
+                        <Image
+                          src="/images/manny.png"
+                          alt="Manny Torres"
+                          width={96}
+                          height={96}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center sm:text-left flex-1">
+                    <h3 className="text-xl font-bold text-white mb-1">Manny Torres</h3>
+                    <p className="text-orange-400 font-medium text-sm mb-1">Co-Founder & AI Implementation Specialist</p>
+                    <p className="text-white/60 text-xs mb-3">Technical AI Expert</p>
+                    <p className="text-white/70 text-sm mb-4">
+                      Manny is a hands-on AI implementation specialist dedicated to creating solutions
+                      that put people first. His expertise in automation, AI workflows, and practical
+                      business applications helps teams collaborate better and drive real results.
+                    </p>
+                    <a
+                      href="https://totalsuccessai.com/about"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-orange-400 hover:text-orange-300 text-sm font-medium transition-colors"
+                    >
+                      TotalSuccessAI.com
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
 
-              <div className="flex flex-col gap-3">
-                <a
-                  href="https://brettlechtenberg.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-medium transition-all"
-                >
-                  Visit BrettLechtenberg.com
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-                <a
-                  href="https://totalsuccessai.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white font-medium transition-all"
-                >
-                  Visit TotalSuccessAI.com
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-            </motion.div>
+              {/* Shared CTA */}
+              <a
+                href="https://totalsuccessai.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-orange-500 hover:from-purple-500 hover:to-orange-400 text-white font-medium transition-all w-full"
+              >
+                Visit TotalSuccessAI.com
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
