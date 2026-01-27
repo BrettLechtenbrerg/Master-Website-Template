@@ -45,6 +45,7 @@ const navigationItems = [
     items: [
       { label: 'Member Directory', href: '/directory' },
       { label: 'Join The Chamber', href: '/join' },
+      { label: 'Chamber Sponsors', href: '/sponsors' },
       { label: 'Member to Member Deals', href: '/deals' },
     ],
   },
