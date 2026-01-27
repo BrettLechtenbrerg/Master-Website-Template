@@ -43,7 +43,7 @@ const navigationItems = [
     label: 'Membership',
     icon: Users,
     items: [
-      { label: 'Member Directory', href: '/members' },
+      { label: 'Member Directory', href: '/directory' },
       { label: 'Join The Chamber', href: '/join' },
       { label: 'Member to Member Deals', href: '/deals' },
     ],
