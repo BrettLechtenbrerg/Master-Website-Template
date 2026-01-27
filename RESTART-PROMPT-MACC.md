@@ -1,31 +1,48 @@
-# MACC Website - Restart Prompt
-**Last Updated:** January 26, 2026
+# MACC Website - Ultimate Restart Prompt
+**Last Updated:** January 26, 2026 @ 5:30 PM MST
+
+---
+
+## CRITICAL: READ THIS FIRST
+
+**DO NOT** make changes without understanding the current state. This project has 118 real businesses in the directory - DO NOT overwrite with sample data.
+
+**ALWAYS** sync with GitHub before making changes:
+```bash
+cd /Users/brettlechtenberg/Documents/agent-girl/macc-website-2
+git fetch origin && git status
+```
 
 ---
 
 ## PROJECT OVERVIEW
 
-I'm working on the **Murray Area Chamber of Commerce (MACC) website** - a Next.js site with a glassmorphic purple/orange design. Founded in 1948, serving Murray, Utah businesses for 75+ years.
+**Murray Area Chamber of Commerce (MACC) Website**
+- Next.js site with glassmorphic purple/orange design
+- Founded in 1948, serving Murray, Utah businesses for 75+ years
+- 118 real member businesses in directory
 
 ---
 
 ## PROJECT LOCATIONS
 
-**Primary (use this one):**
+### Primary Location (USE THIS ONE):
 ```
 /Users/brettlechtenberg/Documents/agent-girl/macc-website-2
 ```
 
-**Backup (also synced to same Vercel project):**
+### Backup Location (also synced):
 ```
 /Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website
 ```
 
-**GitHub:** https://github.com/BrettLechtenbrerg/MACC-Website
-**Live URL:** https://macc-website-2.vercel.app
-**Vercel Project:** bretts-projects-3e254e58/macc-website-2
+### Remote:
+- **GitHub:** https://github.com/BrettLechtenbrerg/MACC-Website
+- **Live URL:** https://macc-website-2.vercel.app
+- **Vercel Project:** bretts-projects-3e254e58/macc-website-2
 
-> ⚠️ Both folders deploy to the SAME Vercel project. Keep them in sync with `git pull`.
+### WARNING:
+Both local folders deploy to the SAME Vercel project and GitHub repo. Always run `git pull` before working to avoid conflicts.
 
 ---
 
@@ -34,73 +51,53 @@ I'm working on the **Murray Area Chamber of Commerce (MACC) website** - a Next.j
 | Technology | Version | Notes |
 |------------|---------|-------|
 | Next.js | 16.0.10 | App Router |
-| Tailwind CSS | 3.4.18 | **v3, NOT v4** (v4 had spacing issues) |
+| Tailwind CSS | 3.4.18 | **USE v3, NOT v4** (v4 had spacing issues) |
 | Framer Motion | Latest | Animations |
 | Lucide React | Latest | Icons |
-| Deployment | Vercel | CLI workflow only |
+| Deployment | Vercel | **CLI workflow only** |
 
 ---
 
-## COMPLETED WORK (January 2026)
+## CURRENT STATE (as of Jan 26, 2026)
 
-### Latest Session (Jan 26, 2026 - Evening)
-- [x] MACC logo added to ALL 118 business boxes in directory
-- [x] Fixed navigation: Both "Business Directory" and "Member Directory" now link to `/directory`
-- [x] Directory page shows 118 real Murray businesses with tiers (sponsor/ambassador/member)
-- [x] Board page has real board members (Brett, Kristen, Amber, Elvon, Lenny, Dorie)
-- [x] Staff page has Kathy White (CEO) and Page (Executive Assistant)
-- [x] Ribbon Cutting page has YouTube video (ID: F_VdvVmJcWw)
-- [x] Good Things Utah page has YouTube video (ID: Dq7agUEBr6I)
+### Directory Page (`/directory`)
+- **118 real Murray businesses** with tiers (sponsor/ambassador/member)
+- ALL business boxes show MACC logo (`/images/macc-logo.png`)
+- Search, filter by category, filter by tier all working
+- Grid and list view modes
 
-### Session: macc-website-4 (Earlier)
-- [x] Resources page updated with content from old Murray Chamber website
-- [x] Murray City, Salt Lake County, State, Federal resource links added
-- [x] MACC logo added as favicon for all pages
-- [x] LegalShield links to https://shieldbenefits.com/murraychamber/overview
-- [x] Chamber Services cards have orange hover effects (matching govt resources)
-- [x] Founded year updated from 1985 to 1948 throughout site
-- [x] "40+ years" changed to "75+ years" across all pages
-- [x] Mission statement updated with official Chamber language
-- [x] Timeline milestones on About page revised with accurate history
-- [x] Footer tagline updated to "since 1948"
+### Navigation
+- **Business Resources dropdown** → "Business Directory" → `/directory`
+- **Membership dropdown** → "Member Directory" → `/directory`
+- Both links go to the SAME good directory page
 
-### Previous Sessions
-- Fresh build with Tailwind v3 (rebuilt from TSAI foundation)
-- 20+ pages ported (Homepage, About, Contact, Events, Members, etc.)
-- Navigation working with dropdowns and mobile menu
-- Complete glassmorphic design system in globals.css
-- GHL integration utilities created (awaiting webhook URLs)
+### Board Page (`/board`)
+**Real Board Members:**
+- Brett Lechtenberg - Chair of the Board; Education Chair (has photo)
+- Kristen Latimer - Vice Chair; Marketing Chair
+- Amber Miller - Treasurer
+- Elvon Farrell - Chair of Bylaws; Parliamentarian
+- Lenny Leslie - Advisor to the Board
+- Dorie Olds - Secretary; Women in Business; Ribbon Cutting Committee
+- 2 placeholder "John Doe" positions
 
----
+**Staff:**
+- Kathy White - President & CEO; Ambassador Chair
+- Page - Executive Assistant
+- 1 placeholder position
 
-## KEY INFORMATION
+### YouTube Videos
+- **Ribbon Cutting Page:** Video ID `F_VdvVmJcWw`
+- **Good Things Utah Page:** Video ID `Dq7agUEBr6I`
 
-### Chamber Facts
-- **Founded:** 1948
-- **Years of Service:** 75+
-- **Member Businesses:** 500+
-- **Annual Events:** 100+
-- **Address:** 141 E. 5600 S., Suite 300, Murray, UT 84107
-- **Phone:** 801-263-2632
-
-### Brand Colors
-- **Purple (Primary):** #4B2E83
-- **Orange (Accent):** #F27A21
-
----
-
-## PENDING: GO HIGH LEVEL INTEGRATION
-
-GHL utilities are ready in `lib/ghl.ts` and `lib/ghl-config.ts`. Need actual webhook URLs:
-
-| Form | Status |
-|------|--------|
-| Contact Form | Ready (needs webhook URL) |
-| Membership Application | Ready (needs webhook URL) |
-| Ribbon Cutting Request | Ready (needs webhook URL) |
-| Newsletter Signup | Ready (needs webhook URL) |
-| Event Registration | Ready (needs webhook URL) |
-| Certificate of Origin | Ready (needs webhook URL) |
+### Forms (GHL Integration Ready)
+All forms are built but need webhook URLs:
+- Contact Form
+- Membership Application
+- Ribbon Cutting Request
+- Newsletter Signup
+- Event Registration
+- Certificate of Origin
 
 ---
 
@@ -109,77 +106,181 @@ GHL utilities are ready in `lib/ghl.ts` and `lib/ghl-config.ts`. Need actual web
 ```
 macc-website-2/
 ├── app/
-│   ├── layout.tsx              # Root layout, metadata, favicon
-│   ├── page.tsx                # Homepage
-│   ├── directory/page.tsx      # ⭐ Business Directory (118 businesses)
-│   ├── board/page.tsx          # Board of Directors + Staff
-│   ├── ribbon-cutting/page.tsx # Ribbon Cutting + YouTube video
+│   ├── layout.tsx                # Root layout, metadata, favicon
+│   ├── page.tsx                  # Homepage
+│   ├── directory/page.tsx        # ⭐ Business Directory (118 businesses)
+│   ├── board/page.tsx            # Board of Directors + Staff
+│   ├── ambassadors/page.tsx      # Ambassador program
+│   ├── ribbon-cutting/page.tsx   # Ribbon Cutting + YouTube video
 │   ├── good-things-utah/page.tsx # Good Things Utah + YouTube video
-│   ├── about/page.tsx          # Chamber history, mission (1948)
-│   ├── resources/page.tsx      # Business resources + govt links
-│   ├── contact/page.tsx        # Contact form (GHL ready)
-│   ├── join/page.tsx           # Membership form (GHL ready)
-│   ├── icon.png                # Favicon (MACC logo)
-│   └── [15+ other pages]
+│   ├── certificate-of-origin/page.tsx
+│   ├── about/page.tsx            # Chamber history (founded 1948)
+│   ├── resources/page.tsx        # Business resources + govt links
+│   ├── contact/page.tsx          # Contact form
+│   ├── join/page.tsx             # Membership form
+│   ├── deals/page.tsx            # Member to Member Deals
+│   ├── legalshield/page.tsx      # LegalShield partner page
+│   ├── events/
+│   │   ├── chamber/page.tsx
+│   │   └── community/page.tsx
+│   ├── news/
+│   │   ├── chamber/page.tsx
+│   │   └── community/page.tsx
+│   ├── mycc/page.tsx             # Murray Youth Community Council
+│   ├── login/page.tsx
+│   ├── privacy/page.tsx
+│   ├── terms/page.tsx
+│   └── icon.png                  # Favicon (MACC logo)
 ├── components/
-│   ├── Navigation.tsx          # Main nav + dropdowns
-│   ├── Hero.tsx                # Homepage stats (75+ years)
-│   ├── Footer.tsx              # "since 1948" tagline
-│   └── ContactForm.tsx         # Contact form component
+│   ├── Navigation.tsx            # Main nav with dropdowns
+│   ├── Footer.tsx                # "since 1948" tagline
+│   ├── Hero.tsx                  # Homepage hero
+│   ├── PageHeader.tsx            # Reusable page headers
+│   └── ContactForm.tsx
 ├── public/images/
-│   ├── macc-logo.png           # Chamber logo (used in directory)
-│   └── board/                  # Board member photos
+│   ├── macc-logo.png             # Chamber logo (used everywhere)
+│   └── board/
+│       └── brett-lechtenberg.png # Brett's photo
 ├── lib/
-│   ├── ghl.ts                  # GHL submission utilities
-│   └── ghl-config.ts           # Webhook URL configuration
-└── tailwind.config.ts          # MACC brand colors
+│   ├── ghl.ts                    # GHL submission utilities
+│   └── ghl-config.ts             # Webhook URL configuration
+├── app/globals.css               # Glassmorphic design system
+└── tailwind.config.ts            # MACC brand colors
 ```
 
 ---
 
-## DEPLOYMENT
+## CHAMBER FACTS
 
+- **Founded:** 1948
+- **Years of Service:** 75+
+- **Member Businesses:** 500+ (118 in directory)
+- **Annual Events:** 100+
+- **Address:** 141 E. 5600 S., Suite 300, Murray, UT 84107
+- **Phone:** 801-263-2632
+- **Email:** info@themurraychamber.com
+
+### Brand Colors
+- **Purple (Primary):** #4B2E83
+- **Orange (Accent):** #F27A21
+
+---
+
+## DEPLOYMENT WORKFLOW
+
+### Step 1: Navigate to project
 ```bash
-# Navigate to project (use this path)
 cd /Users/brettlechtenberg/Documents/agent-girl/macc-website-2
+```
 
-# Build
+### Step 2: Check status and sync
+```bash
+git fetch origin
+git status
+# If behind, run: git pull origin main
+```
+
+### Step 3: Make changes and build
+```bash
 npm run build
+```
 
-# Commit and push
-git add -A && git commit -m "Description" && git push origin main
+### Step 4: Commit and push to GitHub
+```bash
+git add -A
+git commit -m "Your commit message"
+git push origin main
+```
 
-# Deploy to production
+### Step 5: Deploy to Vercel
+```bash
 vercel --prod --yes
+```
 
-# Update alias if needed
+### Step 6: Set alias (if needed)
+```bash
 vercel alias [deployment-url] macc-website-2.vercel.app
 ```
 
----
-
-## IMPORTANT NOTES
-
-1. **Use Tailwind v3** - v4 had CSS variable spacing issues
-2. **Vercel CLI Only** - Don't rely on GitHub auto-deploy
-3. **Primary Project Location** - `/Users/brettlechtenberg/Documents/agent-girl/macc-website-2`
-4. **Keep Design** - Purple/orange glassmorphic theme is final
-5. **Directory Page** - Has 118 real businesses at `/directory` (both nav links point here)
-6. **YouTube Videos** - Ribbon Cutting: `F_VdvVmJcWw`, Good Things Utah: `Dq7agUEBr6I`
+### Step 7: Sync backup folder (optional but recommended)
+```bash
+cd "/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website"
+git fetch origin && git reset --hard origin/main
+```
 
 ---
 
-## SAMPLE PROMPTS TO CONTINUE
+## IMPORTANT WARNINGS
+
+1. **USE TAILWIND v3** - v4 had CSS variable spacing issues that broke the design
+2. **VERCEL CLI ONLY** - Don't rely on GitHub auto-deploy, use `vercel --prod --yes`
+3. **118 REAL BUSINESSES** - The directory has real data. Never overwrite with sample data.
+4. **TWO FOLDERS** - Both folders deploy to same project. Keep them synced.
+5. **ALWAYS GIT PULL FIRST** - Check `git status` before making changes
+
+---
+
+## WHAT NOT TO DO
+
+- Don't use Tailwind v4
+- Don't delete or replace directory businesses
+- Don't deploy from the wrong folder without syncing
+- Don't push without building first
+- Don't modify the glassmorphic design (purple/orange theme is final)
+
+---
+
+## SAMPLE PROMPTS FOR CONTINUING
 
 **To add GHL webhooks:**
 > "Connect the contact form to GHL. Here's my webhook URL: [URL]"
 
-**To update content:**
-> "Update the events page with the January 2026 Chamber calendar"
+**To update directory:**
+> "Add a new business to the directory: [Business Name], [Category], [Address], [Phone]"
+
+**To update board members:**
+> "Update the board page - [Name] is no longer on the board, add [New Name] as [Title]"
 
 **To fix issues:**
-> "The join page form isn't submitting correctly"
+> "The [page name] isn't working correctly. Here's what I see: [description]"
+
+**To add content:**
+> "Add a new event to the chamber events page for [date]: [event details]"
 
 ---
 
-**Ready to continue!** 🚀
+## RECENT GIT HISTORY
+
+```
+ccef8d0 Update documentation with correct paths and session work
+3d4d6db Fix Member Directory link to use good directory page
+11404ef Add MACC logo to all business boxes in directory
+75b3df4 Update documentation for v2.6.0
+218fce5 v2.6.0: Restore Ribbon Cutting, Good Things Utah, Certificate of Origin pages
+```
+
+---
+
+## QUICK VERIFICATION COMMANDS
+
+Check businesses in directory:
+```bash
+grep -c "id:" /Users/brettlechtenberg/Documents/agent-girl/macc-website-2/app/directory/page.tsx
+# Should return 119 (118 businesses + 1 for interface)
+```
+
+Check current deployment:
+```bash
+vercel inspect macc-website-2.vercel.app
+```
+
+Check both folders are synced:
+```bash
+cd /Users/brettlechtenberg/Documents/agent-girl/macc-website-2 && git log --oneline -1
+cd "/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website" && git log --oneline -1
+# Both should show same commit hash
+```
+
+---
+
+**Ready to continue!**
