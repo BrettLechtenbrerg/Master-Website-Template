@@ -37,7 +37,7 @@ const annualEvents = [
       'Awards ceremony honoring local businesses',
     ],
     season: 'Check calendar for date',
-    image: null,
+    image: '/images/events/gala.jpg',
   },
   {
     id: 2,
@@ -55,7 +55,7 @@ const annualEvents = [
       'Sponsorship opportunities available',
     ],
     season: 'Summer',
-    image: null,
+    image: '/images/events/golf.jpg',
   },
   {
     id: 3,
@@ -74,7 +74,7 @@ const annualEvents = [
       'Kids\' activities and games',
     ],
     season: 'Fall',
-    image: null,
+    image: '/images/events/balloon.jpg',
   },
 ];
 
@@ -180,19 +180,30 @@ export default function AnnualEventsPage() {
                 </Link>
               </div>
 
-              {/* Image Placeholder */}
+              {/* Event Image */}
               <div className={`relative ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <div className="glass-card p-4 aspect-[4/3] relative overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-30`} />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <div className="w-28 h-28 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
-                        <event.icon className="w-14 h-14 text-white/40" />
+                  {event.image ? (
+                    <Image
+                      src={event.image}
+                      alt={event.name}
+                      fill
+                      className="object-cover rounded-xl"
+                    />
+                  ) : (
+                    <>
+                      <div className={`absolute inset-0 bg-gradient-to-br ${event.color} opacity-30`} />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center p-8">
+                          <div className="w-28 h-28 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
+                            <event.icon className="w-14 h-14 text-white/40" />
+                          </div>
+                          <p className="text-white/50 text-xl font-bold">{event.name}</p>
+                          <p className="text-white/30 text-sm mt-2">Event Photo Coming Soon</p>
+                        </div>
                       </div>
-                      <p className="text-white/50 text-xl font-bold">{event.name}</p>
-                      <p className="text-white/30 text-sm mt-2">Event Photo Coming Soon</p>
-                    </div>
-                  </div>
+                    </>
+                  )}
                 </div>
                 {/* Decorative badge */}
                 <div className={`absolute -top-4 -right-4 px-4 py-2 rounded-full bg-gradient-to-r ${event.color} shadow-lg`}>
