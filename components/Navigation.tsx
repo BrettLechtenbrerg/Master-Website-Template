@@ -36,6 +36,9 @@ const navigationItems = [
     icon: Calendar,
     items: [
       { label: 'Chamber Events', href: '/events/chamber' },
+      { label: 'Weekly Events', href: '/events/weekly' },
+      { label: 'Monthly Events', href: '/events/monthly' },
+      { label: 'Annual Events', href: '/events/annual' },
       { label: 'Community Calendar', href: '/events/community' },
       { label: 'Professional Development', href: '/events/professional-development' },
     ],
