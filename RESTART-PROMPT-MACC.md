@@ -9,8 +9,14 @@ I'm working on the **Murray Area Chamber of Commerce (MACC) website** - a Next.j
 
 ---
 
-## PROJECT LOCATION
+## PROJECT LOCATIONS
 
+**Primary (use this one):**
+```
+/Users/brettlechtenberg/Documents/agent-girl/macc-website-2
+```
+
+**Backup (also synced to same Vercel project):**
 ```
 /Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website
 ```
@@ -18,6 +24,8 @@ I'm working on the **Murray Area Chamber of Commerce (MACC) website** - a Next.j
 **GitHub:** https://github.com/BrettLechtenbrerg/MACC-Website
 **Live URL:** https://macc-website-2.vercel.app
 **Vercel Project:** bretts-projects-3e254e58/macc-website-2
+
+> ⚠️ Both folders deploy to the SAME Vercel project. Keep them in sync with `git pull`.
 
 ---
 
@@ -35,7 +43,16 @@ I'm working on the **Murray Area Chamber of Commerce (MACC) website** - a Next.j
 
 ## COMPLETED WORK (January 2026)
 
-### Session: macc-website-4
+### Latest Session (Jan 26, 2026 - Evening)
+- [x] MACC logo added to ALL 118 business boxes in directory
+- [x] Fixed navigation: Both "Business Directory" and "Member Directory" now link to `/directory`
+- [x] Directory page shows 118 real Murray businesses with tiers (sponsor/ambassador/member)
+- [x] Board page has real board members (Brett, Kristen, Amber, Elvon, Lenny, Dorie)
+- [x] Staff page has Kathy White (CEO) and Page (Executive Assistant)
+- [x] Ribbon Cutting page has YouTube video (ID: F_VdvVmJcWw)
+- [x] Good Things Utah page has YouTube video (ID: Dq7agUEBr6I)
+
+### Session: macc-website-4 (Earlier)
 - [x] Resources page updated with content from old Murray Chamber website
 - [x] Murray City, Salt Lake County, State, Federal resource links added
 - [x] MACC logo added as favicon for all pages
@@ -90,25 +107,32 @@ GHL utilities are ready in `lib/ghl.ts` and `lib/ghl-config.ts`. Need actual web
 ## KEY FILES
 
 ```
-MACC-Website/
+macc-website-2/
 ├── app/
-│   ├── layout.tsx           # Root layout, metadata, favicon
-│   ├── page.tsx             # Homepage
-│   ├── about/page.tsx       # Chamber history, mission (1948)
-│   ├── resources/page.tsx   # Business resources + govt links
-│   ├── contact/page.tsx     # Contact form (GHL ready)
-│   ├── join/page.tsx        # Membership form (GHL ready)
-│   ├── icon.png             # Favicon (MACC logo)
-│   └── [20+ other pages]
+│   ├── layout.tsx              # Root layout, metadata, favicon
+│   ├── page.tsx                # Homepage
+│   ├── directory/page.tsx      # ⭐ Business Directory (118 businesses)
+│   ├── board/page.tsx          # Board of Directors + Staff
+│   ├── ribbon-cutting/page.tsx # Ribbon Cutting + YouTube video
+│   ├── good-things-utah/page.tsx # Good Things Utah + YouTube video
+│   ├── about/page.tsx          # Chamber history, mission (1948)
+│   ├── resources/page.tsx      # Business resources + govt links
+│   ├── contact/page.tsx        # Contact form (GHL ready)
+│   ├── join/page.tsx           # Membership form (GHL ready)
+│   ├── icon.png                # Favicon (MACC logo)
+│   └── [15+ other pages]
 ├── components/
-│   ├── Navigation.tsx       # Main nav + MACC logo
-│   ├── Hero.tsx             # Homepage stats (75+ years)
-│   ├── Footer.tsx           # "since 1948" tagline
-│   └── ContactForm.tsx      # Contact form component
+│   ├── Navigation.tsx          # Main nav + dropdowns
+│   ├── Hero.tsx                # Homepage stats (75+ years)
+│   ├── Footer.tsx              # "since 1948" tagline
+│   └── ContactForm.tsx         # Contact form component
+├── public/images/
+│   ├── macc-logo.png           # Chamber logo (used in directory)
+│   └── board/                  # Board member photos
 ├── lib/
-│   ├── ghl.ts               # GHL submission utilities
-│   └── ghl-config.ts        # Webhook URL configuration
-└── tailwind.config.ts       # MACC brand colors
+│   ├── ghl.ts                  # GHL submission utilities
+│   └── ghl-config.ts           # Webhook URL configuration
+└── tailwind.config.ts          # MACC brand colors
 ```
 
 ---
@@ -116,8 +140,8 @@ MACC-Website/
 ## DEPLOYMENT
 
 ```bash
-# Navigate to project
-cd "/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website"
+# Navigate to project (use this path)
+cd /Users/brettlechtenberg/Documents/agent-girl/macc-website-2
 
 # Build
 npm run build
@@ -138,8 +162,10 @@ vercel alias [deployment-url] macc-website-2.vercel.app
 
 1. **Use Tailwind v3** - v4 had CSS variable spacing issues
 2. **Vercel CLI Only** - Don't rely on GitHub auto-deploy
-3. **Project Location** - `/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website`
+3. **Primary Project Location** - `/Users/brettlechtenberg/Documents/agent-girl/macc-website-2`
 4. **Keep Design** - Purple/orange glassmorphic theme is final
+5. **Directory Page** - Has 118 real businesses at `/directory` (both nav links point here)
+6. **YouTube Videos** - Ribbon Cutting: `F_VdvVmJcWw`, Good Things Utah: `Dq7agUEBr6I`
 
 ---
 
