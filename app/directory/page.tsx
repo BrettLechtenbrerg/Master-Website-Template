@@ -278,24 +278,15 @@ export default function DirectoryPage() {
                 whileHover={{ y: -3 }}
                 className={`glass-card overflow-hidden group ${viewMode === 'list' ? 'flex' : ''}`}
               >
-                {/* Business Image - Always show image area */}
+                {/* Business Image - Always show MACC logo */}
                 <div className={`relative ${viewMode === 'list' ? 'w-32 sm:w-48 shrink-0' : 'h-40'} overflow-hidden bg-gradient-to-br from-purple-600/20 to-orange-500/20`}>
-                  {business.image ? (
-                    <Image
-                      src={business.image}
-                      alt={business.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      unoptimized
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <Building2 className="w-12 h-12 text-white/20 mx-auto mb-2" />
-                        <span className="text-white/30 text-xs font-medium">Photo Coming Soon</span>
-                      </div>
-                    </div>
-                  )}
+                  <Image
+                    src="/images/macc-logo.png"
+                    alt={business.name}
+                    fill
+                    className="object-contain p-4 transition-transform duration-500 group-hover:scale-110"
+                    unoptimized
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
                   {/* Tier Badge on Image */}
                   {business.tier !== 'member' && (
