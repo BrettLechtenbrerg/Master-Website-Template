@@ -37,6 +37,7 @@ const navigationItems = [
     items: [
       { label: 'Chamber Events', href: '/events/chamber' },
       { label: 'Community Calendar', href: '/events/community' },
+      { label: 'Professional Development', href: '/events/professional-development' },
     ],
   },
   {
