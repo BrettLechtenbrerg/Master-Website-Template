@@ -97,16 +97,22 @@ export default function MonthlyEventsPage() {
                   </div>
                 </div>
 
-                <div className="glass-card p-4 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-orange-500/30 flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-orange-400" />
+                <a
+                  href="https://maps.google.com/?q=Murray+Area+Chamber+of+Commerce+141+E+5600+S+Murray+UT+84107"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass-card p-4 flex items-center gap-4 hover:border-pink-500/50 transition-all cursor-pointer group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-pink-500/30 flex items-center justify-center group-hover:bg-pink-500/50 transition-colors">
+                    <MapPin className="w-6 h-6 text-pink-400" />
                   </div>
                   <div>
                     <p className="text-white/60 text-sm">Location</p>
-                    <p className="text-white font-semibold">Murray Chamber Office</p>
+                    <p className="text-white font-semibold group-hover:text-pink-300 transition-colors">Murray Chamber Office</p>
                     <p className="text-white/60 text-sm">141 E 5600 S #300, Murray, UT 84107</p>
+                    <p className="text-white/50 text-xs">Independence Square</p>
                   </div>
-                </div>
+                </a>
               </div>
 
               <Link href="/contact">
@@ -121,22 +127,19 @@ export default function MonthlyEventsPage() {
               </Link>
             </motion.div>
 
-            {/* Right - Event Image Placeholder */}
+            {/* Right - Event Image */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               className="relative"
             >
               <div className="glass-card p-4 aspect-[4/3] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 to-pink-900/30 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-24 h-24 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
-                      <Heart className="w-12 h-12 text-white/40" />
-                    </div>
-                    <p className="text-white/40 text-lg font-medium">Women in Business</p>
-                    <p className="text-white/30 text-sm">Event Photo Coming Soon</p>
-                  </div>
-                </div>
+                <Image
+                  src="/images/events/mixer.jpg"
+                  alt="Women in Business networking event at the Murray Chamber"
+                  fill
+                  className="object-cover rounded-xl"
+                />
               </div>
               {/* Decorative badge */}
               <div className="absolute -top-4 -right-4 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 shadow-lg">
@@ -193,15 +196,12 @@ export default function MonthlyEventsPage() {
               animate={{ opacity: 1, x: 0 }}
               className="glass-card p-4 aspect-video relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/50 to-pink-900/30 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-20 h-20 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
-                    <Award className="w-10 h-10 text-white/40" />
-                  </div>
-                  <p className="text-white/40">Inspiring Speakers</p>
-                  <p className="text-white/30 text-sm">Photo Coming Soon</p>
-                </div>
-              </div>
+              <Image
+                src="/images/events/workshop.jpg"
+                alt="Women in Business workshop and learning session"
+                fill
+                className="object-cover rounded-xl"
+              />
             </motion.div>
 
             <motion.div
@@ -229,6 +229,84 @@ export default function MonthlyEventsPage() {
                   </motion.li>
                 ))}
               </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Location & Map */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Find Us at the Murray Chamber Office
+            </h2>
+            <p className="text-white/60 max-w-2xl mx-auto">
+              Located in Independence Square, our office provides a welcoming space for
+              women entrepreneurs to connect, learn, and grow together.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Map */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="glass-card p-4 h-80"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3026.8834507074874!2d-111.88646788459567!3d40.64115797934068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87528aa8a4f5e84d%3A0x2f32f8e4e4e2f2f2!2s141%20E%205600%20S%20%23300%2C%20Murray%2C%20UT%2084107!5e0!3m2!1sen!2sus!4v1706000000000"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '0.75rem' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Murray Area Chamber of Commerce - Independence Square"
+              />
+            </motion.div>
+
+            {/* Location Details */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="glass-card p-8"
+            >
+              <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                <MapPin className="w-6 h-6 text-pink-400" />
+                Murray Chamber Office
+              </h3>
+
+              <div className="space-y-4 mb-6">
+                <div>
+                  <p className="text-white/60 text-sm mb-1">Address</p>
+                  <p className="text-white font-medium">141 E 5600 S #300</p>
+                  <p className="text-white">Murray, UT 84107</p>
+                </div>
+                <div>
+                  <p className="text-white/60 text-sm mb-1">Located In</p>
+                  <p className="text-white font-medium">Independence Square</p>
+                </div>
+                <div>
+                  <p className="text-white/60 text-sm mb-1">Meeting Time</p>
+                  <p className="text-white font-medium">3rd Wednesday of Every Month</p>
+                  <p className="text-white/60 text-sm">Check calendar for specific times</p>
+                </div>
+              </div>
+
+              <a
+                href="https://maps.google.com/?q=Murray+Area+Chamber+of+Commerce+141+E+5600+S+Murray+UT+84107"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-400 text-white font-medium transition-all w-full"
+              >
+                <MapPin className="w-5 h-5" />
+                Get Directions
+              </a>
             </motion.div>
           </div>
         </div>
