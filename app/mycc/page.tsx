@@ -145,16 +145,12 @@ export default function YouthInternshipPage() {
               className="relative"
             >
               <div className="glass-card p-4 aspect-[4/3] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-orange-500 opacity-30 rounded-xl" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-28 h-28 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
-                      <GraduationCap className="w-14 h-14 text-white/40" />
-                    </div>
-                    <p className="text-white/50 text-xl font-bold">Youth Internship Program</p>
-                    <p className="text-white/30 text-sm mt-2">Photo Coming Soon</p>
-                  </div>
-                </div>
+                <Image
+                  src="/images/youth-internship-1.jpg"
+                  alt="Students collaborating in a professional setting"
+                  fill
+                  className="object-cover rounded-xl"
+                />
               </div>
               <div className="absolute -top-4 -right-4 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-orange-500 shadow-lg">
                 <span className="text-white font-bold text-sm">New Program</span>
@@ -208,16 +204,12 @@ export default function YouthInternshipPage() {
               className="relative"
             >
               <div className="glass-card p-4 aspect-video relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-purple-600 opacity-30 rounded-xl" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-24 h-24 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
-                      <Briefcase className="w-12 h-12 text-white/40" />
-                    </div>
-                    <p className="text-white/50 text-lg font-bold">Students at Work</p>
-                    <p className="text-white/30 text-sm mt-2">Photo Coming Soon</p>
-                  </div>
-                </div>
+                <Image
+                  src="/images/youth-internship-2.jpg"
+                  alt="Young professionals working together in an office"
+                  fill
+                  className="object-cover rounded-xl"
+                />
               </div>
             </motion.div>
 
@@ -331,16 +323,12 @@ export default function YouthInternshipPage() {
               className="relative"
             >
               <div className="glass-card p-4 aspect-[4/3] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-600 to-purple-600 opacity-30 rounded-xl" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-28 h-28 rounded-2xl bg-white/10 mx-auto mb-4 flex items-center justify-center">
-                      <Building2 className="w-14 h-14 text-white/40" />
-                    </div>
-                    <p className="text-white/50 text-xl font-bold">Business Mentors</p>
-                    <p className="text-white/30 text-sm mt-2">Photo Coming Soon</p>
-                  </div>
-                </div>
+                <Image
+                  src="/images/youth-internship-3.jpg"
+                  alt="Business professionals mentoring young team members"
+                  fill
+                  className="object-cover rounded-xl"
+                />
               </div>
             </motion.div>
           </div>
