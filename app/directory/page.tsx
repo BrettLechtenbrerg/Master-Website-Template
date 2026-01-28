@@ -146,6 +146,7 @@ const businesses: Business[] = [
   { id: 116, name: 'Wingers Restaurant & Alehouse', category: 'Restaurant/Bar', address: '4790 S. State St., Murray, UT 84107', phone: '(801) 685-8889', website: 'wingerbros.com', image: '/images/directory/wingers.jpg', tier: 'member' },
   { id: 117, name: 'Youthlinc', category: 'Youth Services', address: '1166 E Brickyard Rd, Salt Lake City, UT 84106', phone: '(801) 467-4417', website: 'youthlinc.org', tier: 'member' },
   { id: 118, name: 'ZenBusiness', category: 'Business Services', address: '5511 Parkcrest Drive, Suite 103, Austin, TX 78731', phone: '(844) 493-6249', website: 'zenbusiness.com', image: '/images/directory/zenbusiness.jpg', tier: 'member' },
+  { id: 119, name: 'Chartway Credit Union', category: 'Banking', address: '5338 South College Drive, Murray, UT 84123', phone: '(801) 520-8561', website: 'chartway.com', image: '/images/macc-logo.png', tier: 'member' },
 ];
 
 // Get unique categories
@@ -245,11 +246,10 @@ export default function DirectoryPage() {
                   <button
                     key={tier}
                     onClick={() => setSelectedTier(tier)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                      selectedTier === tier
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedTier === tier
                         ? tier === 'all' ? 'bg-white/20 text-white' : `${tierInfo[tier as keyof typeof tierInfo]?.bgColor} ${tierInfo[tier as keyof typeof tierInfo]?.textColor}`
                         : 'bg-white/5 text-white/60 hover:bg-white/10'
-                    }`}
+                      }`}
                   >
                     {tier === 'all' ? 'All Members' : tierInfo[tier]?.label}
                     {tier !== 'all' && (
