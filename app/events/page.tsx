@@ -152,7 +152,7 @@ export default function EventsHubPage() {
     };
 
     return (
-        <div className="bg-slate-950 min-h-screen">
+        <div className="min-h-screen">
             <PageHeader
                 badge="Events"
                 title="Murray Chamber Events"
@@ -195,8 +195,8 @@ export default function EventsHubPage() {
                             {Object.entries(groupedEvents).map(([monthYear, events]) => (
                                 <div key={monthYear} className="space-y-8">
                                     <div className="relative flex items-center justify-center">
-                                        <div className="absolute inset-x-0 h-px bg-white/5" />
-                                        <span className="relative bg-slate-950 px-6 text-sm font-bold text-white/40 uppercase tracking-[0.3em]">
+                                        <div className="absolute inset-x-0 h-px bg-white/10" />
+                                        <span className="relative bg-[#1C1C1C] px-6 text-sm font-bold text-white/40 uppercase tracking-[0.3em]">
                                             {monthYear}
                                         </span>
                                     </div>
@@ -238,15 +238,15 @@ export default function EventsHubPage() {
 
                 <div className="mt-24 max-w-4xl mx-auto">
                     <section className="glass-card p-10 border border-white/10 relative overflow-hidden group rounded-3xl">
-                        <div className="absolute inset-0 bg-gradient-to-br from-teal-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-                            <div className="w-20 h-20 rounded-2xl bg-teal-500/10 flex items-center justify-center flex-shrink-0">
-                                <Users className="w-10 h-10 text-teal-400" />
+                            <div className="w-20 h-20 rounded-2xl bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                                <Users className="w-10 h-10 text-purple-400" />
                             </div>
                             <div className="flex-1 text-center md:text-left">
                                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-3">
                                     <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Chamber Membership</h2>
-                                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-teal-500/10 border border-teal-500/20 text-teal-400">
+                                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-purple-500/10 border border-purple-500/20 text-purple-400">
                                         GROW YOUR BUSINESS
                                     </span>
                                 </div>
@@ -256,7 +256,7 @@ export default function EventsHubPage() {
                             </div>
                             <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
                                 <Link href="/join" className="block w-full sm:w-auto">
-                                    <button className="w-full btn-primary bg-teal-500 hover:bg-teal-400 text-slate-900 px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all">
+                                    <button className="w-full btn-glow whitespace-nowrap">
                                         Join Now
                                         <ArrowRight className="w-5 h-5" />
                                     </button>

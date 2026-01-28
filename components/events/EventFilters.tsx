@@ -43,7 +43,7 @@ export default function EventFilters({
                     <select
                         value={viewMode}
                         onChange={(e) => setViewMode(e.target.value as 'list' | 'card')}
-                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500/50 appearance-none cursor-pointer"
+                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500/50 appearance-none cursor-pointer"
                     >
                         <option value="list">List view</option>
                         <option value="card">Card view</option>
@@ -59,7 +59,7 @@ export default function EventFilters({
                         type="date"
                         value={dateFilter}
                         onChange={(e) => setDateFilter(e.target.value)}
-                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500/50 [color-scheme:dark]"
+                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500/50 [color-scheme:dark]"
                     />
                 </div>
 
@@ -71,7 +71,7 @@ export default function EventFilters({
                     <select
                         value={activeFilter}
                         onChange={(e) => setActiveFilter(e.target.value)}
-                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500/50 appearance-none cursor-pointer"
+                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500/50 appearance-none cursor-pointer"
                     >
                         <option value="all">All Types</option>
                         <option value="chamber">Chamber Events</option>
@@ -87,7 +87,7 @@ export default function EventFilters({
                     <select
                         value={categoryFilter}
                         onChange={(e) => setCategoryFilter(e.target.value)}
-                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500/50 appearance-none cursor-pointer"
+                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500/50 appearance-none cursor-pointer"
                     >
                         <option value="all">All Categories</option>
                         <option value="Networking">Networking</option>
@@ -109,7 +109,7 @@ export default function EventFilters({
                             placeholder="Search events..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-black/40 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/10 focus:outline-none focus:border-teal-500/50 transition-colors"
+                            className="w-full bg-black/40 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/10 focus:outline-none focus:border-purple-500/50 transition-colors"
                         />
                     </div>
                 </div>
@@ -118,7 +118,7 @@ export default function EventFilters({
                 <div className="flex gap-2">
                     <button
                         onClick={onSearch}
-                        className="flex-1 bg-teal-500 hover:bg-teal-400 text-slate-900 font-black uppercase tracking-widest text-[11px] py-3 rounded-xl transition-all shadow-lg shadow-teal-500/20 active:scale-95 flex items-center justify-center gap-2"
+                        className="flex-1 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-500 hover:to-purple-600 text-white font-black uppercase tracking-widest text-[11px] py-3 rounded-xl transition-all shadow-lg shadow-purple-500/20 active:scale-95 flex items-center justify-center gap-2"
                     >
                         Search
                     </button>
@@ -129,6 +129,7 @@ export default function EventFilters({
                         Clear
                     </button>
                 </div>
+
             </div>
         </div>
     );
