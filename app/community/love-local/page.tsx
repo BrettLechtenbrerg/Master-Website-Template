@@ -16,7 +16,6 @@ import {
   Music,
   Utensils
 } from 'lucide-react';
-import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import PageHeader from '@/components/PageHeader';
 
@@ -85,7 +84,6 @@ const participationOptions = [
 export default function LoveLocalPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-950 via-purple-950/20 to-slate-950">
-      <Navigation />
 
       <PageHeader
         title="Love Local"

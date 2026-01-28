@@ -36,6 +36,7 @@ const navigationItems = [
     label: 'Events',
     icon: Calendar,
     items: [
+      { label: 'Events Calendar', href: '/events' },
       { label: 'Chamber Events', href: '/events/chamber' },
       { label: 'Weekly Events', href: '/events/weekly' },
       { label: 'Monthly Events', href: '/events/monthly' },
@@ -107,11 +108,10 @@ export default function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
             ? 'nav-glass py-3'
             : 'bg-transparent py-5'
-        }`}
+          }`}
       >
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between">
@@ -261,9 +261,8 @@ export default function Navigation() {
                             <span className="text-white">{item.label}</span>
                           </div>
                           <ChevronDown
-                            className={`w-4 h-4 text-white/60 transition-transform ${
-                              activeDropdown === item.label ? 'rotate-180' : ''
-                            }`}
+                            className={`w-4 h-4 text-white/60 transition-transform ${activeDropdown === item.label ? 'rotate-180' : ''
+                              }`}
                           />
                         </button>
                         <AnimatePresence>
