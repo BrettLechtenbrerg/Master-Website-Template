@@ -12,23 +12,22 @@ import {
   ArrowRight,
   ExternalLink
 } from 'lucide-react';
-import Footer from '@/components/Footer';
 import PageHeader from '@/components/PageHeader';
 
 // Placeholder event data - update with real information
 const eventDetails = {
   name: 'Friday Connections',
   tagline: 'Start Your Weekend with Meaningful Connections',
-  description: 'Friday Connections is a community networking event where local professionals, business owners, and community members come together to build relationships, share ideas, and strengthen the local business community. Join us every Friday for coffee, conversation, and connection!',
+  description: 'Friday Connections is our signature weekly community networking event. Local professionals, business owners, and community leaders gather to build relationships, share opportunities, and strengthen the Murray business ecosystem in a relaxed, morning setting.',
   schedule: 'Every Friday',
   time: '8:00 AM - 9:30 AM',
   address: {
-    venue: '[Venue Name - TBD]',
-    street: '[Street Address]',
+    venue: 'Murray Chamber Office',
+    street: '141 E 5600 S #300',
     city: 'Murray, UT 84107',
   },
   cost: 'Free for Chamber Members | $10 for Guests',
-  image: '/images/events/friday-connections.jpg', // Placeholder image path
+  image: '/images/events/friday-connections.jpg',
 };
 
 // Benefits of attending
@@ -52,7 +51,7 @@ const benefits = [
 
 export default function FridayConnectionsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-purple-950/20 to-slate-950">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-purple-950/20 to-slate-950 w-full">
 
       <PageHeader
         title="Friday Connections"
@@ -190,18 +189,18 @@ export default function FridayConnectionsPage() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-2xl overflow-hidden aspect-[4/3]"
+              className="glass-card p-4 rounded-2xl overflow-hidden aspect-[4/3]"
             >
-              <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <MapPin className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                  <p className="text-white/60 text-lg">Google Map Embed Placeholder</p>
-                  <p className="text-white/40 text-sm mt-2">Add iframe embed code here</p>
-                  <code className="block mt-4 text-xs text-purple-400/60 bg-black/30 p-3 rounded-lg">
-                    {`<iframe src="https://maps.google.com/..." />`}
-                  </code>
-                </div>
-              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3026.8834507074874!2d-111.88646788459567!3d40.64115797934068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87528aa8a4f5e84d%3A0x2f32f8e4e4e2f2f2!2s141%20E%205600%20S%20%23300%2C%20Murray%2C%20UT%2084107!5e0!3m2!1sen!2sus!4v1706000000000"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '0.75rem' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Murray Area Chamber of Commerce - Independence Square"
+              />
             </motion.div>
 
             {/* Address Details */}
@@ -335,7 +334,6 @@ export default function FridayConnectionsPage() {
         </div>
       </section>
 
-      <Footer />
-    </main>
+    </div>
   );
 }

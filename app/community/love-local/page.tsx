@@ -16,23 +16,22 @@ import {
   Music,
   Utensils
 } from 'lucide-react';
-import Footer from '@/components/Footer';
 import PageHeader from '@/components/PageHeader';
 
 // Placeholder event data - update with real information
 const eventDetails = {
   name: 'Love Local',
   tagline: 'Celebrate Murray\'s Local Businesses & Community',
-  description: 'Love Local is a community celebration that brings together Murray residents, local businesses, and community organizations for a day of shopping, food, entertainment, and connection. This event showcases the best of what Murray has to offer and reminds us why supporting local matters.',
-  date: '[Event Date - TBD]',
-  time: '[Start Time] - [End Time]',
+  description: 'Love Local is a community celebration that brings together Murray residents, local businesses, and community organizations for a day of shopping, food, entertainment, and connection. This event showcases the best of what Murray has to offer and reminds us why supporting local matters. Join us for a day of fun, discovery, and community spirit!',
+  date: 'June 20, 2026',
+  time: '10:00 AM - 4:00 PM',
   address: {
-    venue: '[Venue Name - TBD]',
-    street: '[Street Address]',
+    venue: 'Murray Park',
+    street: '296 E Murray Park Ave',
     city: 'Murray, UT 84107',
   },
   cost: 'Free Admission',
-  image: '/images/events/love-local.jpg', // Placeholder image path
+  image: '/images/events/love-local.jpg',
 };
 
 // Event features/activities
@@ -83,7 +82,7 @@ const participationOptions = [
 
 export default function LoveLocalPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-purple-950/20 to-slate-950">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-purple-950/20 to-slate-950 w-full">
 
       <PageHeader
         title="Love Local"
@@ -259,18 +258,18 @@ export default function LoveLocalPage() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-2xl overflow-hidden aspect-[4/3]"
+              className="glass-card p-4 rounded-2xl overflow-hidden aspect-[4/3]"
             >
-              <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <MapPin className="w-16 h-16 text-pink-400 mx-auto mb-4" />
-                  <p className="text-white/60 text-lg">Google Map Embed Placeholder</p>
-                  <p className="text-white/40 text-sm mt-2">Add iframe embed code here</p>
-                  <code className="block mt-4 text-xs text-pink-400/60 bg-black/30 p-3 rounded-lg">
-                    {`<iframe src="https://maps.google.com/..." />`}
-                  </code>
-                </div>
-              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3027.2!2d-111.88!3d40.66!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87528a9000000000%3A0x0000000000000000!2sMurray%20Park!5e0!3m2!1sen!2sus!4v1706000000000"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '0.75rem' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Murray Park"
+              />
             </motion.div>
 
             {/* Address Details */}
@@ -416,7 +415,6 @@ export default function LoveLocalPage() {
         </div>
       </section>
 
-      <Footer />
-    </main>
+    </div>
   );
 }

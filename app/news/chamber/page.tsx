@@ -127,7 +127,7 @@ export default function ChamberNewsPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
                     <div className="absolute top-4 left-4">
                       <span className={`px-3 py-1 text-xs font-medium rounded-full border ${categoryColors[news.category]}`}>
-                        {news.category}
+                        {String(news.category)}
                       </span>
                     </div>
                   </div>
@@ -184,7 +184,7 @@ export default function ChamberNewsPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
                     <div className="absolute top-3 left-3">
                       <span className={`px-2 py-1 text-xs font-medium rounded-full border ${categoryColors[news.category]}`}>
-                        {news.category}
+                        {String(news.category)}
                       </span>
                     </div>
                   </div>
@@ -216,7 +216,6 @@ export default function ChamberNewsPage() {
         </div>
       </section>
 
-      <Footer />
     </>
   );
 }

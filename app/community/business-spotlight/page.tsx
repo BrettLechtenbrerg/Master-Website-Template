@@ -16,51 +16,50 @@ import {
   ExternalLink,
   Calendar
 } from 'lucide-react';
-import Footer from '@/components/Footer';
 import PageHeader from '@/components/PageHeader';
 
 // Placeholder business data - update with real information
 const spotlightBusiness = {
-  name: '[Business Name - TBD]',
-  tagline: '[Business Tagline or Slogan]',
-  description: '[Business description goes here. Tell the story of this local Murray business - their history, what makes them special, their commitment to the community, and why they were selected for the Chamber spotlight.]',
-  category: '[Industry/Category]',
-  yearEstablished: '[Year]',
+  name: 'The Break Sports Grill',
+  tagline: 'Your Favorite Local Sports Bar & Grill',
+  description: 'The Break Sports Grill is more than just a place to watch the game; it\'s a cornerstone of the Murray business community. Known for its incredible food, welcoming atmosphere, and dedicated support of local networking, The Break has been the home of our weekly Referral Community for years. Their commitment to excellence and community involvement makes them a perfect feature for our Business Spotlight.',
+  category: 'Restaurant & Hospitality',
+  yearEstablished: '2012',
   owner: {
-    name: '[Owner/Manager Name]',
-    title: '[Title/Position]',
-    bio: '[Brief bio about the owner/manager - their background, vision for the business, and involvement in the Murray community.]',
-    image: '/images/spotlight/owner.jpg', // Placeholder
+    name: 'Manny Torres',
+    title: 'Managing Partner',
+    bio: 'Manny Torres is a passionate advocate for Murray businesses. As a Managing Partner at The Break and a Board Member of the Murray Chamber, he understands the vital role local businesses play in the community. His vision for The Break goes beyond great food - it\'s about creating a space where people can connect and grow together.',
+    image: '/images/manny-headshot.jpg',
   },
   contact: {
-    phone: '(801) XXX-XXXX',
-    email: 'info@business.com',
-    website: 'www.business.com',
+    phone: '(801) 281-9870',
+    email: 'info@thebreakgrill.com',
+    website: 'thebreakgrill.com',
   },
   address: {
-    street: '[Street Address]',
-    city: 'Murray, UT 84107',
+    street: '4760 S 900 E',
+    city: 'Murray, UT 84117',
   },
   hours: [
-    { day: 'Monday - Friday', time: '9:00 AM - 6:00 PM' },
-    { day: 'Saturday', time: '10:00 AM - 4:00 PM' },
-    { day: 'Sunday', time: 'Closed' },
+    { day: 'Monday - Thursday', time: '11:00 AM - 11:00 PM' },
+    { day: 'Friday - Saturday', time: '11:00 AM - 12:00 AM' },
+    { day: 'Sunday', time: '10:00 AM - 10:00 PM' },
   ],
   images: {
-    storefront: '/images/spotlight/storefront.jpg',
-    interior: '/images/spotlight/interior.jpg',
+    storefront: '/images/events/networking-lunch-1.png',
+    interior: '/images/events/networking-lunch-2.png',
   },
   highlights: [
-    'Chamber Member Since [Year]',
-    '[Years] Years Serving Murray',
-    '[Special Achievement or Award]',
-    'Community Partner',
+    'Home of the Referral Community',
+    'Chamber Board Member',
+    'Best Sports Bar in Murray',
+    'Community Champion',
   ],
 };
 
 export default function BusinessSpotlightPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-purple-950/20 to-slate-950">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-purple-950/20 to-slate-950 w-full">
 
       <PageHeader
         title="Business Spotlight"
@@ -294,18 +293,18 @@ export default function BusinessSpotlightPage() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="glass-card rounded-2xl overflow-hidden aspect-[4/3]"
+              className="glass-card p-4 rounded-2xl overflow-hidden aspect-[4/3]"
             >
-              <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <MapPin className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                  <p className="text-white/60 text-lg">Google Map Embed Placeholder</p>
-                  <p className="text-white/40 text-sm mt-2">Add iframe embed code here</p>
-                  <code className="block mt-4 text-xs text-purple-400/60 bg-black/30 p-3 rounded-lg">
-                    {`<iframe src="https://maps.google.com/..." />`}
-                  </code>
-                </div>
-              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.8!2d-111.8686!3d40.6589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87528a9e1d8b5555%3A0x1234567890abcdef!2s4760%20S%20900%20E%2C%20Murray%2C%20UT%2084117!5e0!3m2!1sen!2sus!4v1706000000000"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '0.75rem' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="The Break Sports Grill - Ivy Place Shopping Village"
+              />
             </motion.div>
 
             {/* Address Details */}
@@ -392,7 +391,6 @@ export default function BusinessSpotlightPage() {
         </div>
       </section>
 
-      <Footer />
-    </main>
+    </div>
   );
 }

@@ -17,7 +17,6 @@ import {
   Star
 } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
-import Footer from '@/components/Footer';
 
 const eventCategories = [
   {
@@ -316,7 +315,6 @@ export default function ChamberEventsPage() {
         </div>
       </section>
 
-      <Footer />
     </>
   );
 }

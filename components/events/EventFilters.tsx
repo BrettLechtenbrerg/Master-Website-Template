@@ -1,54 +1,136 @@
 'use client';
 
-import { Search, CheckCircle2 } from 'lucide-react';
-import { EventType } from './EventItem';
+import { Search, RotateCcw } from 'lucide-react';
 
 interface EventFiltersProps {
-    activeFilter: 'all' | EventType;
-    setActiveFilter: (filter: 'all' | EventType) => void;
+    viewMode: 'list' | 'card';
+    setViewMode: (mode: 'list' | 'card') => void;
+    activeFilter: string;
+    setActiveFilter: (filter: string) => void;
+    dateFilter: string;
+    setDateFilter: (date: string) => void;
+    categoryFilter: string;
+    setCategoryFilter: (category: string) => void;
     searchQuery: string;
     setSearchQuery: (query: string) => void;
+    onSearch: () => void;
+    onClear: () => void;
 }
 
 export default function EventFilters({
+    viewMode,
+    setViewMode,
     activeFilter,
     setActiveFilter,
+    dateFilter,
+    setDateFilter,
+    categoryFilter,
+    setCategoryFilter,
     searchQuery,
     setSearchQuery,
+    onSearch,
+    onClear,
 }: EventFiltersProps) {
     return (
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-            <div className="flex flex-wrap gap-2">
-                {(['all', 'chamber', 'community'] as const).map((filter) => (
-                    <button
-                        key={filter}
-                        onClick={() => setActiveFilter(filter)}
-                        className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all ${activeFilter === filter
-                                ? 'bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg shadow-purple-500/20'
-                                : 'bg-white/5 border border-white/10 text-white/50 hover:bg-white/10 hover:text-white'
-                            }`}
-                    >
-                        {filter === 'all' ? 'All Events' : `${filter} Events`}
-                    </button>
-                ))}
-            </div>
+        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-12 shadow-2xl backdrop-blur-xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 items-end">
 
-            <div className="flex items-center gap-4">
-                <div className="relative flex-1 md:w-64">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                {/* Select View */}
+                <div className="space-y-2">
+                    <label className="text-[11px] font-black text-white/40 uppercase tracking-widest block ml-1">
+                        Select View
+                    </label>
+                    <select
+                        value={viewMode}
+                        onChange={(e) => setViewMode(e.target.value as 'list' | 'card')}
+                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500/50 appearance-none cursor-pointer"
+                    >
+                        <option value="list">List view</option>
+                        <option value="card">Card view</option>
+                    </select>
+                </div>
+
+                {/* Filter by Date */}
+                <div className="space-y-2">
+                    <label className="text-[11px] font-black text-white/40 uppercase tracking-widest block ml-1">
+                        Filter by Date
+                    </label>
                     <input
-                        type="text"
-                        placeholder="Search events..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full bg-black/20 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-purple-500/50 transition-colors"
+                        type="date"
+                        value={dateFilter}
+                        onChange={(e) => setDateFilter(e.target.value)}
+                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500/50 [color-scheme:dark]"
                     />
                 </div>
-                <span className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold text-white/40 uppercase tracking-widest">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                    Future-only
-                </span>
+
+                {/* Filter by Type */}
+                <div className="space-y-2">
+                    <label className="text-[11px] font-black text-white/40 uppercase tracking-widest block ml-1">
+                        Filter by Type
+                    </label>
+                    <select
+                        value={activeFilter}
+                        onChange={(e) => setActiveFilter(e.target.value)}
+                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500/50 appearance-none cursor-pointer"
+                    >
+                        <option value="all">All Types</option>
+                        <option value="chamber">Chamber Events</option>
+                        <option value="community">Community Events</option>
+                    </select>
+                </div>
+
+                {/* Filter by Event Categories */}
+                <div className="space-y-2">
+                    <label className="text-[11px] font-black text-white/40 uppercase tracking-widest block ml-1">
+                        Filter by Event Categories
+                    </label>
+                    <select
+                        value={categoryFilter}
+                        onChange={(e) => setCategoryFilter(e.target.value)}
+                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal-500/50 appearance-none cursor-pointer"
+                    >
+                        <option value="all">All Categories</option>
+                        <option value="Networking">Networking</option>
+                        <option value="Education">Education</option>
+                        <option value="Ribbon Cutting">Ribbon Cutting</option>
+                        <option value="Community">Community</option>
+                    </select>
+                </div>
+
+                {/* Search by Keyword */}
+                <div className="space-y-2">
+                    <label className="text-[11px] font-black text-white/40 uppercase tracking-widest block ml-1">
+                        Search by Keyword
+                    </label>
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                        <input
+                            type="text"
+                            placeholder="Search events..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full bg-black/40 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-white/10 focus:outline-none focus:border-teal-500/50 transition-colors"
+                        />
+                    </div>
+                </div>
+
+                {/* Buttons */}
+                <div className="flex gap-2">
+                    <button
+                        onClick={onSearch}
+                        className="flex-1 bg-teal-500 hover:bg-teal-400 text-slate-900 font-black uppercase tracking-widest text-[11px] py-3 rounded-xl transition-all shadow-lg shadow-teal-500/20 active:scale-95 flex items-center justify-center gap-2"
+                    >
+                        Search
+                    </button>
+                    <button
+                        onClick={onClear}
+                        className="bg-white/5 border border-white/10 hover:bg-white/10 text-white/70 font-black uppercase tracking-widest text-[11px] px-6 py-3 rounded-xl transition-all active:scale-95"
+                    >
+                        Clear
+                    </button>
+                </div>
             </div>
         </div>
     );
 }
+

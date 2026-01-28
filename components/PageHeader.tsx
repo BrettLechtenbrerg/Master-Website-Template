@@ -31,34 +31,7 @@ export default function PageHeader({
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Breadcrumbs */}
-        {breadcrumbs && breadcrumbs.length > 0 && (
-          <motion.nav
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6"
-          >
-            <ol className="flex items-center gap-2 text-sm">
-              <li>
-                <Link href="/" className="text-white/60 hover:text-white transition-colors">
-                  Home
-                </Link>
-              </li>
-              {breadcrumbs.map((crumb, index) => (
-                <li key={crumb.label} className="flex items-center gap-2">
-                  <ChevronRight className="w-4 h-4 text-white/40" />
-                  {crumb.href && index < breadcrumbs.length - 1 ? (
-                    <Link href={crumb.href} className="text-white/60 hover:text-white transition-colors">
-                      {crumb.label}
-                    </Link>
-                  ) : (
-                    <span className="text-purple-400">{crumb.label}</span>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </motion.nav>
-        )}
+        {/* Breadcrumbs removed to resolve double site-nav issue */}
 
         {/* Badge */}
         {badge && (

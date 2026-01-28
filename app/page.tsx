@@ -3,7 +3,6 @@ import Features from '@/components/Features';
 import Events from '@/components/Events';
 import Testimonials from '@/components/Testimonials';
 import ContactForm from '@/components/ContactForm';
-import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -23,8 +22,6 @@ export default function Home() {
       {/* Contact Form with GHL Integration */}
       <ContactForm />
 
-      {/* Footer */}
-      <Footer />
     </>
   );
 }
