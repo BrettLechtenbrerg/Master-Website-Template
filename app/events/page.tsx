@@ -1,272 +1,295 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import PageHeader from '@/components/PageHeader';
-import EventItem, { EventType } from '@/components/events/EventItem';
-import EventFilters from '@/components/events/EventFilters';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
-import EventCalendarView from '@/components/events/EventCalendarView';
+import { LayoutList, LayoutGrid, MapPin, Clock, Search, CheckCircle2, Calendar } from 'lucide-react';
 
-interface EventData {
-    month: string;
-    day: string;
-    year?: string;
-    time: string;
-    title: string;
-    type: EventType;
-    category?: string;
-    location: string;
-    description?: string;
-    image?: string;
-    registerUrl?: string;
-    payUrl?: string;
-    detailsUrl?: string;
-}
+type EventType = 'chamber' | 'community';
 
-const ALL_EVENTS: EventData[] = [
-    {
-        month: 'Jan',
-        day: '29',
-        year: '2026',
-        time: '11:30 AM MST',
-        title: 'The Referral Community',
-        type: 'chamber',
-        category: 'Networking',
-        location: 'Murray, UT',
-        description: 'Referral Community is a relationship-driven networking group where Chamber members and guests connect, share referrals, and build trust...',
-        image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=800&auto=format&fit=crop',
-        registerUrl: '#ghl-register',
-    },
-    {
-        month: 'Feb',
-        day: '05',
-        year: '2026',
-        time: '11:30 AM MST',
-        title: 'The Referral Community',
-        type: 'chamber',
-        category: 'Networking',
-        location: 'Murray, UT',
-        description: 'Referral Community is a relationship-driven networking group where Chamber members and guests connect, share referrals, and build trust...',
-        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop',
-        registerUrl: '#ghl-register',
-    },
-    {
-        month: 'Feb',
-        day: '12',
-        year: '2026',
-        time: '11:30 AM MST',
-        title: 'The Referral Community',
-        type: 'chamber',
-        category: 'Networking',
-        location: '4760 s 900 e, Murray, UT 84117',
-        description: 'Referral Community is a relationship-driven networking group where Chamber members and guests connect, share referrals, and build trust...',
-        image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=800&auto=format&fit=crop',
-        registerUrl: '#ghl-register',
-    },
+const ALL_EVENTS = [
     {
         month: 'Feb',
         day: '20',
-        year: '2026',
-        time: '8:00 AM MST',
+        time: '8:00 AM',
         title: 'Coffee & Connections Networking',
-        type: 'chamber',
+        type: 'chamber' as EventType,
         category: 'Networking',
         location: 'Murray City Hall',
         description: 'Start your day with productive networking and fresh coffee. Meet fellow local professionals and build valuable community relationships.',
-        image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=800&auto=format&fit=crop',
-        registerUrl: '#ghl-register',
+        registerUrl: '#',
+        payUrl: '#',
+    },
+    {
+        month: 'Feb',
+        day: '22',
+        time: '5:00 PM',
+        title: 'Murray City Job Fair',
+        type: 'community' as EventType,
+        category: 'Community',
+        location: 'Murray Park Pavilion',
+        description: 'Join us for the annual job fair. Explore opportunities with over 15 local companies across multiple industries.',
+        detailsUrl: '#',
     },
     {
         month: 'Feb',
         day: '27',
-        year: '2026',
-        time: '12:00 PM MST',
-        title: 'AI Productivity Workshop',
-        type: 'chamber',
+        time: '12:00 PM',
+        title: 'Small Business Workshop: AI That Saves Time',
+        type: 'chamber' as EventType,
         category: 'Education',
         location: 'Online (Zoom)',
         description: 'Learn how to leverage AI tools like ChatGPT and Midjourney to save hours of work every week and streamline your business operations.',
-        image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop',
-        registerUrl: '#ghl-register',
-    },
-    {
-        month: 'Mar',
-        day: '05',
-        year: '2026',
-        time: '4:00 PM MST',
-        title: 'Ribbon Cutting – New Murray Tech',
-        type: 'chamber',
-        category: 'Ribbon Cutting',
-        location: '4500 S State St, Murray',
-        description: 'Join us for the official ribbon cutting of Murray Tech. Celebrate local growth and network with community leaders.',
-        image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop',
-        registerUrl: '#ghl-register',
+        registerUrl: '#',
+        payUrl: '#',
     },
 ];
 
-export default function EventsHubPage() {
-    const [viewMode, setViewMode] = useState<'list' | 'card' | 'calendar'>('list');
-    const [activeFilter, setActiveFilter] = useState<string>('all');
-    const [dateFilter, setDateFilter] = useState<string>('');
-    const [categoryFilter, setCategoryFilter] = useState<string>('all');
-    const [searchQuery, setSearchQuery] = useState<string>('');
+export default function EventsPage() {
+    const [viewMode, setViewMode] = useState<'list' | 'card'>('list');
+    const [activeFilter, setActiveFilter] = useState<'all' | EventType>('all');
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const monthFull: Record<string, string> = {
-        'Jan': 'January', 'Feb': 'February', 'Mar': 'March', 'Apr': 'April',
-        'May': 'May', 'Jun': 'June', 'Jul': 'July', 'Aug': 'August',
-        'Sep': 'September', 'Oct': 'October', 'Nov': 'November', 'Dec': 'December'
-    };
-
-    const filteredEvents = useMemo(() => {
-        return ALL_EVENTS.filter((event) => {
-            const matchesType = activeFilter === 'all' || event.type === activeFilter;
-            const matchesCategory = categoryFilter === 'all' || event.category === categoryFilter;
-            const matchesSearch =
-                event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                (event.category || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
-                event.location.toLowerCase().includes(searchQuery.toLowerCase());
-
-            const matchesDate = !dateFilter || (event.month.toLowerCase().includes(dateFilter) || event.year?.includes(dateFilter));
-
-            return matchesType && matchesCategory && matchesSearch && matchesDate;
-        });
-    }, [activeFilter, categoryFilter, searchQuery, dateFilter]);
-
-    const groupedEvents = useMemo(() => {
-        const groups: Record<string, EventData[]> = {};
-        filteredEvents.forEach(event => {
-            const key = `${monthFull[event.month] || event.month} ${event.year || '2026'}`;
-            if (!groups[key]) groups[key] = [];
-            groups[key].push(event);
-        });
-        return groups;
-    }, [filteredEvents]);
-
-    const handleClear = () => {
-        setActiveFilter('all');
-        setDateFilter('');
-        setCategoryFilter('all');
-        setSearchQuery('');
-    };
+    const filteredEvents = ALL_EVENTS.filter((event) => {
+        const matchesFilter = activeFilter === 'all' || event.type === activeFilter;
+        const matchesSearch =
+            event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (event.category || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+            event.location.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesFilter && matchesSearch;
+    });
 
     return (
         <div className="min-h-screen">
             <PageHeader
                 badge="Events"
                 title="Murray Chamber Events"
-                description="Chamber and community events in one place. Register for upcoming events and stay connected with the Murray business ecosystem."
+                description="Chamber and community events in one place. Filter what you want to see, register for upcoming Chamber events, and subscribe for updates."
                 breadcrumbs={[{ label: 'Events' }]}
             />
 
             <div className="relative py-12 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto w-full">
-
-                <EventFilters
-                    viewMode={viewMode === 'calendar' ? 'list' : viewMode as 'list' | 'card'}
-                    setViewMode={(mode) => setViewMode(mode)}
-                    activeFilter={activeFilter}
-                    setActiveFilter={setActiveFilter}
-                    dateFilter={dateFilter}
-                    setDateFilter={setDateFilter}
-                    categoryFilter={categoryFilter}
-                    setCategoryFilter={setCategoryFilter}
-                    searchQuery={searchQuery}
-                    setSearchQuery={setSearchQuery}
-                    onSearch={() => { }}
-                    onClear={handleClear}
-                />
-
-                <div className="mb-8 border-b border-white/10 pb-4">
-                    <h2 className="text-xl font-black text-white uppercase tracking-widest text-center md:text-left">
-                        DISPLAYING {filteredEvents.length} EVENTS:
-                    </h2>
+                {/* View Toggle */}
+                <div className="flex justify-center mb-12">
+                    <div className="inline-flex p-1 bg-white/5 border border-white/10 rounded-xl">
+                        <button
+                            onClick={() => setViewMode('list')}
+                            className={`flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${viewMode === 'list'
+                                ? 'bg-[#5D5FEF] text-white shadow-lg shadow-purple-500/20'
+                                : 'text-white/40 hover:text-white'
+                                }`}
+                        >
+                            <LayoutList className="w-4 h-4" />
+                            List View
+                        </button>
+                        <button
+                            onClick={() => setViewMode('card')}
+                            className={`flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-bold transition-all ${viewMode === 'card'
+                                ? 'bg-[#5D5FEF] text-white shadow-lg shadow-purple-500/20'
+                                : 'text-white/40 hover:text-white'
+                                }`}
+                        >
+                            <LayoutGrid className="w-4 h-4" />
+                            Card View
+                        </button>
+                    </div>
                 </div>
 
-                <AnimatePresence mode="wait">
-                    {viewMode === 'list' && (
-                        <motion.div
-                            key="list-view"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="space-y-16"
-                        >
-                            {Object.entries(groupedEvents).map(([monthYear, events]) => (
-                                <div key={monthYear} className="space-y-8">
-                                    <div className="relative flex items-center justify-center">
-                                        <div className="absolute inset-x-0 h-px bg-white/10" />
-                                        <span className="relative bg-[#1C1C1C] px-6 text-sm font-bold text-white/40 uppercase tracking-[0.3em]">
-                                            {monthYear}
-                                        </span>
-                                    </div>
-                                    <div className="space-y-4">
-                                        {events.map((event, idx) => (
-                                            <EventItem key={`${event.title}-${idx}`} {...event} viewMode="list" />
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </motion.div>
-                    )}
-
-                    {viewMode === 'card' && (
-                        <motion.div
-                            key="card-view"
-                            initial={{ opacity: 0, scale: 0.98 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.98 }}
-                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                        >
-                            {filteredEvents.map((event, idx) => (
-                                <EventItem key={`${event.title}-${idx}`} {...event} viewMode="card" />
-                            ))}
-                        </motion.div>
-                    )}
-
-                    {viewMode === 'calendar' && (
-                        <motion.div
-                            key="calendar-view"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        >
-                            <EventCalendarView />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-
-                <div className="mt-24 max-w-4xl mx-auto">
-                    <section className="glass-card p-10 border border-white/10 relative overflow-hidden group rounded-3xl">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-                            <div className="w-20 h-20 rounded-2xl bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                                <Users className="w-10 h-10 text-purple-400" />
+                {/* Main Content Area */}
+                <div className="max-w-6xl mx-auto">
+                    <div className="glass-card border border-white/10 p-8 sm:p-12 !bg-[#262035]/80">
+                        <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                            <div>
+                                <h2 className="text-2xl font-black text-white uppercase tracking-tighter mb-2">Upcoming Events</h2>
+                                <p className="text-sm text-white/50">Use filters to browse chamber and community opportunities.</p>
                             </div>
-                            <div className="flex-1 text-center md:text-left">
-                                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-3">
-                                    <h2 className="text-3xl font-black text-white uppercase tracking-tighter">Chamber Membership</h2>
-                                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-purple-500/10 border border-purple-500/20 text-purple-400">
-                                        GROW YOUR BUSINESS
-                                    </span>
-                                </div>
-                                <p className="text-white/60 leading-relaxed text-lg">
-                                    Join the Murray Area Chamber of Commerce to promote your business, gain visibility, and get plugged into local opportunities. Join us and strengthen our community together.
-                                </p>
-                            </div>
-                            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-                                <Link href="/join" className="block w-full sm:w-auto">
-                                    <button className="w-full btn-glow whitespace-nowrap">
-                                        Join Now
-                                        <ArrowRight className="w-5 h-5" />
-                                    </button>
-                                </Link>
-                                <button className="w-full bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-all">
-                                    View Benefits
-                                </button>
+                            <div className="text-right">
+                                <span className="text-xs font-bold text-purple-400/60 uppercase tracking-widest bg-purple-500/5 px-3 py-1 rounded-full border border-purple-500/10">
+                                    {filteredEvents.length} Events Found
+                                </span>
                             </div>
                         </div>
-                    </section>
+
+                        {/* Filters Row */}
+                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-12">
+                            <div className="flex flex-wrap gap-3">
+                                <button
+                                    onClick={() => setActiveFilter('all')}
+                                    className={`px-6 py-2 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${activeFilter === 'all' ? 'bg-[#3B82F6] text-white' : 'bg-white/5 text-white/40 border border-white/10 hover:bg-white/10'}`}
+                                >
+                                    All Events
+                                </button>
+                                <button
+                                    onClick={() => setActiveFilter('chamber')}
+                                    className={`px-6 py-2 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${activeFilter === 'chamber' ? 'bg-[#3B82F6] text-white' : 'bg-white/5 text-white/40 border border-white/10 hover:bg-white/10'}`}
+                                >
+                                    Chamber Events
+                                </button>
+                                <button
+                                    onClick={() => setActiveFilter('community')}
+                                    className={`px-6 py-2 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${activeFilter === 'community' ? 'bg-[#3B82F6] text-white' : 'bg-white/5 text-white/40 border border-white/10 hover:bg-white/10'}`}
+                                >
+                                    Community Events
+                                </button>
+                            </div>
+
+                            <div className="flex items-center gap-4">
+                                <div className="relative flex-1 lg:w-64">
+                                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                                    <input
+                                        type="text"
+                                        placeholder="Search events..."
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        className="w-full bg-black/40 border border-white/10 rounded-lg py-2 pl-10 pr-4 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-purple-500/50"
+                                    />
+                                </div>
+                                <div className="hidden sm:flex items-center gap-2 px-3 py-2 bg-white/5 border border-white/10 rounded-full">
+                                    <CheckCircle2 className="w-4 h-4 text-green-400" />
+                                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Live Now</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Events Content */}
+                        <AnimatePresence mode="wait">
+                            {viewMode === 'list' ? (
+                                <motion.div
+                                    key="list"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: 10 }}
+                                    className="space-y-6"
+                                >
+                                    {filteredEvents.map((event, idx) => (
+                                        <motion.div
+                                            key={`${event.title}-${idx}`}
+                                            className="bg-[#3D3352] rounded-2xl p-6 border border-white/5 flex flex-col md:flex-row items-center gap-6 group hover:bg-[#463B5E] transition-colors"
+                                        >
+                                            {/* Date Badge */}
+                                            <div className="w-24 h-24 bg-[#262035] rounded-xl flex flex-col items-center justify-center border border-white/5 flex-shrink-0">
+                                                <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest leading-none mb-1">{event.month}</span>
+                                                <span className="text-3xl font-black text-white leading-none mb-1">{event.day}</span>
+                                                <span className="text-[10px] font-bold text-white/30 leading-none">{event.time}</span>
+                                            </div>
+
+                                            {/* Content */}
+                                            <div className="flex-1 text-center md:text-left">
+                                                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-2">
+                                                    <h3 className="text-xl font-bold text-white">{event.title}</h3>
+                                                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest ${event.type === 'chamber' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'}`}>
+                                                        {event.type}
+                                                    </span>
+                                                    <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-white/5 text-white/40 border border-white/10">
+                                                        {event.category}
+                                                    </span>
+                                                </div>
+                                                <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-white/50">
+                                                    <div className="flex items-center gap-1.5">
+                                                        <MapPin className="w-4 h-4 text-[#F27A21]" />
+                                                        <span>{event.location}</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-1.5">
+                                                        <Clock className="w-4 h-4 text-white/30" />
+                                                        <span>{event.time}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Actions */}
+                                            <div className="flex gap-2">
+                                                {event.registerUrl && (
+                                                    <button className="px-5 py-2 bg-[#00D4FF] hover:bg-[#00B8E0] text-[#001D26] font-bold text-xs rounded-full transition-colors">
+                                                        Register
+                                                    </button>
+                                                )}
+                                                {event.payUrl && (
+                                                    <button className="px-5 py-2 bg-gradient-to-r from-orange-400 to-purple-400 text-white font-bold text-xs rounded-full transition-colors shadow-lg">
+                                                        Pay
+                                                    </button>
+                                                )}
+                                                {event.detailsUrl && (
+                                                    <button className="px-5 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-full transition-colors border border-white/10">
+                                                        Details
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </motion.div>
+                            ) : (
+                                <motion.div
+                                    key="card"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                >
+                                    {filteredEvents.map((event, idx) => (
+                                        <div key={`${event.title}-${idx}`} className="bg-[#3D3352] rounded-3xl p-6 border border-white/5 flex flex-col group hover:bg-[#463B5E] transition-all hover:scale-[1.02] duration-300 shadow-xl">
+                                            <div className="flex justify-between items-start mb-6">
+                                                <div className="w-14 h-14 bg-[#262035] rounded-2xl flex flex-col items-center justify-center border border-white/10 shadow-inner">
+                                                    <span className="text-[8px] font-black text-white/30 uppercase tracking-[0.2em] leading-none mb-1">{event.month}</span>
+                                                    <span className="text-xl font-black text-white leading-none">{event.day}</span>
+                                                </div>
+                                                <div className="flex flex-col items-end gap-2">
+                                                    <span className={`px-2 py-1 rounded-lg text-[8px] font-black uppercase tracking-widest ${event.type === 'chamber' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'}`}>
+                                                        {event.type}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex-1">
+                                                <h3 className="text-lg font-bold text-white mb-2 leading-tight group-hover:text-purple-300 transition-colors">
+                                                    {event.title}
+                                                </h3>
+                                                <p className="text-xs text-white/40 line-clamp-2 mb-4 leading-relaxed italic">
+                                                    {event.description || "Join us for this upcoming community event."}
+                                                </p>
+
+                                                <div className="space-y-2 mb-8">
+                                                    <div className="flex items-center gap-2 text-[11px] text-white/50">
+                                                        <MapPin className="w-3.5 h-3.5 text-[#F27A21]" />
+                                                        <span className="truncate">{event.location}</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 text-[11px] text-white/50">
+                                                        <Clock className="w-3.5 h-3.5 text-purple-400" />
+                                                        <span>{event.time}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex gap-2 pt-4 border-t border-white/5">
+                                                {event.registerUrl && (
+                                                    <button className="flex-1 py-2.5 bg-[#00D4FF] hover:bg-[#00B8E0] text-[#001D26] font-black text-[10px] uppercase tracking-wider rounded-xl transition-all active:scale-95">
+                                                        Register
+                                                    </button>
+                                                )}
+                                                {(event.payUrl || event.detailsUrl) && (
+                                                    <button className="flex-1 py-2.5 bg-white/5 hover:bg-white/10 text-white font-black text-[10px] uppercase tracking-wider rounded-xl transition-all border border-white/10 active:scale-95">
+                                                        {event.payUrl ? 'Pay' : 'Details'}
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        {filteredEvents.length === 0 && (
+                            <div className="text-center py-20 bg-black/20 rounded-3xl border border-dashed border-white/10 mt-12">
+                                <Search className="w-12 h-12 text-white/10 mx-auto mb-4" />
+                                <p className="text-white/40 font-medium tracking-wide uppercase text-sm">No events found matching your search.</p>
+                                <button
+                                    onClick={() => { setSearchQuery(''); setActiveFilter('all'); }}
+                                    className="mt-4 text-purple-400 text-xs font-bold hover:text-purple-300 underline underline-offset-4"
+                                >
+                                    Clear all filters
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
