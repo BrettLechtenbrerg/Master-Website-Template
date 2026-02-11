@@ -95,9 +95,9 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-orange-400" />
                 (801) 263-2632
               </a>
-              <a href="mailto:info@themurraychamber.com" className="flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors">
+              <a href="mailto:support@murrayareachamber.com" className="flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors">
                 <Mail className="w-4 h-4 text-purple-400" />
-                info@themurraychamber.com
+                support@murrayareachamber.com
               </a>
             </div>
 

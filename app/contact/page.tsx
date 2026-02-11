@@ -23,8 +23,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: 'Email Us',
-    lines: ['info@murraychamber.com'],
-    href: 'mailto:info@murraychamber.com',
+    lines: ['support@murrayareachamber.com'],
+    href: 'mailto:support@murrayareachamber.com',
   },
   {
     icon: Clock,

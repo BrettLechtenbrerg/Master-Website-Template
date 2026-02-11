@@ -234,7 +234,7 @@ export default function TermsOfServicePage() {
                 <p className="text-white/70 mt-2">141 E 5600 S #300</p>
                 <p className="text-white/70">Murray, UT 84107</p>
                 <p className="text-white/70 mt-2">Phone: (801) 263-2632</p>
-                <p className="text-white/70">Email: info@themurraychamber.com</p>
+                <p className="text-white/70">Email: support@murrayareachamber.com</p>
               </div>
             </div>
           </motion.div>

@@ -192,7 +192,7 @@ vercel alias [deployment-url] macc-website-2.vercel.app
 **Murray Area Chamber of Commerce**
 - Address: 141 E 5600 S #300, Murray, UT 84107
 - Phone: (801) 263-2632
-- Email: info@themurraychamber.com
+- Email: support@murrayareachamber.com
 - Website: [themurraychamber.com](https://themurraychamber.com)
 
 ---

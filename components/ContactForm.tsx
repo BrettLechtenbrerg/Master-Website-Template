@@ -113,8 +113,8 @@ export default function ContactForm() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-white">Email Us</h3>
-                <a href="mailto:info@themurraychamber.com" className="mt-2 block text-white/60 hover:text-white transition-colors">
-                  info@themurraychamber.com
+                <a href="mailto:support@murrayareachamber.com" className="mt-2 block text-white/60 hover:text-white transition-colors">
+                  support@murrayareachamber.com
                 </a>
               </div>
             </div>
