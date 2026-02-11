@@ -1,61 +1,68 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LayoutList, LayoutGrid, MapPin, Clock, Search, CheckCircle2, Calendar } from 'lucide-react';
+import { LayoutList, LayoutGrid, MapPin, Clock, Search, CheckCircle2, Calendar, Loader2 } from 'lucide-react';
 
 type EventType = 'chamber' | 'community';
 
-const ALL_EVENTS = [
-    {
-        month: 'Feb',
-        day: '20',
-        time: '8:00 AM',
-        title: 'Coffee & Connections Networking',
-        type: 'chamber' as EventType,
-        category: 'Networking',
-        location: 'Murray City Hall',
-        description: 'Start your day with productive networking and fresh coffee. Meet fellow local professionals and build valuable community relationships.',
-        registerUrl: '#',
-        payUrl: '#',
-    },
-    {
-        month: 'Feb',
-        day: '22',
-        time: '5:00 PM',
-        title: 'Murray City Job Fair',
-        type: 'community' as EventType,
-        category: 'Community',
-        location: 'Murray Park Pavilion',
-        description: 'Join us for the annual job fair. Explore opportunities with over 15 local companies across multiple industries.',
-        detailsUrl: '#',
-    },
-    {
-        month: 'Feb',
-        day: '27',
-        time: '12:00 PM',
-        title: 'Small Business Workshop: AI That Saves Time',
-        type: 'chamber' as EventType,
-        category: 'Education',
-        location: 'Online (Zoom)',
-        description: 'Learn how to leverage AI tools like ChatGPT and Midjourney to save hours of work every week and streamline your business operations.',
-        registerUrl: '#',
-        payUrl: '#',
-    },
-];
+interface ExtractedEvent {
+    id: string;
+    title: string;
+    description: string;
+    location: string;
+    month: string;
+    day: string;
+    year: string;
+    time: string;
+    start: string;
+    end: string;
+    link: string;
+    type: EventType;
+    category: string;
+    registerUrl?: string; // Added for compatibility with GHL
+    payUrl?: string;
+    detailsUrl?: string;
+}
 
 export default function EventsPage() {
+    const [events, setEvents] = useState<ExtractedEvent[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [viewMode, setViewMode] = useState<'list' | 'card'>('list');
     const [activeFilter, setActiveFilter] = useState<'all' | EventType>('all');
     const [searchQuery, setSearchQuery] = useState('');
 
-    const filteredEvents = ALL_EVENTS.filter((event) => {
+    useEffect(() => {
+        async function fetchEvents() {
+            try {
+                const res = await fetch('/api/calendar?maxResults=20');
+                const data = await res.json();
+                if (data.items) {
+                    // Map items to include GHL urls if they exist in description (optional enhancement)
+                    const enhancedItems = data.items.map((item: any) => ({
+                        ...item,
+                        // We use the calendar link as the details URL
+                        detailsUrl: item.link
+                    }));
+                    setEvents(enhancedItems);
+                }
+            } catch (error) {
+                console.error('Failed to fetch events:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        fetchEvents();
+    }, []);
+
+    const filteredEvents = events.filter((event) => {
         const matchesFilter = activeFilter === 'all' || event.type === activeFilter;
         const matchesSearch =
             event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
             (event.category || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
-            event.location.toLowerCase().includes(searchQuery.toLowerCase());
+            event.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            event.description.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesFilter && matchesSearch;
     });
 
@@ -153,7 +160,18 @@ export default function EventsPage() {
 
                         {/* Events Content */}
                         <AnimatePresence mode="wait">
-                            {viewMode === 'list' ? (
+                            {isLoading ? (
+                                <motion.div
+                                    key="loading"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="flex flex-col items-center justify-center py-20"
+                                >
+                                    <Loader2 className="w-8 h-8 text-purple-500 animate-spin mb-4" />
+                                    <p className="text-white/40 font-medium uppercase tracking-widest text-xs">Loading Events...</p>
+                                </motion.div>
+                            ) : viewMode === 'list' ? (
                                 <motion.div
                                     key="list"
                                     initial={{ opacity: 0, x: -10 }}
@@ -161,9 +179,9 @@ export default function EventsPage() {
                                     exit={{ opacity: 0, x: 10 }}
                                     className="space-y-6"
                                 >
-                                    {filteredEvents.map((event, idx) => (
+                                    {filteredEvents.map((event) => (
                                         <motion.div
-                                            key={`${event.title}-${idx}`}
+                                            key={event.id}
                                             className="bg-[#3D3352] rounded-2xl p-6 border border-white/5 flex flex-col md:flex-row items-center gap-6 group hover:bg-[#463B5E] transition-colors"
                                         >
                                             {/* Date Badge */}
@@ -187,7 +205,7 @@ export default function EventsPage() {
                                                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-white/50">
                                                     <div className="flex items-center gap-1.5">
                                                         <MapPin className="w-4 h-4 text-[#F27A21]" />
-                                                        <span>{event.location}</span>
+                                                        <span className="max-w-[200px] truncate md:max-w-none">{event.location}</span>
                                                     </div>
                                                     <div className="flex items-center gap-1.5">
                                                         <Clock className="w-4 h-4 text-white/30" />
@@ -198,19 +216,19 @@ export default function EventsPage() {
 
                                             {/* Actions */}
                                             <div className="flex gap-2">
+                                                {event.link && (
+                                                    <a
+                                                        href={event.link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="px-5 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-full transition-colors border border-white/10"
+                                                    >
+                                                        Details
+                                                    </a>
+                                                )}
                                                 {event.registerUrl && (
                                                     <button className="px-5 py-2 bg-[#00D4FF] hover:bg-[#00B8E0] text-[#001D26] font-bold text-xs rounded-full transition-colors">
                                                         Register
-                                                    </button>
-                                                )}
-                                                {event.payUrl && (
-                                                    <button className="px-5 py-2 bg-gradient-to-r from-orange-400 to-purple-400 text-white font-bold text-xs rounded-full transition-colors shadow-lg">
-                                                        Pay
-                                                    </button>
-                                                )}
-                                                {event.detailsUrl && (
-                                                    <button className="px-5 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-full transition-colors border border-white/10">
-                                                        Details
                                                     </button>
                                                 )}
                                             </div>
@@ -225,8 +243,8 @@ export default function EventsPage() {
                                     exit={{ opacity: 0, y: -10 }}
                                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                                 >
-                                    {filteredEvents.map((event, idx) => (
-                                        <div key={`${event.title}-${idx}`} className="bg-[#3D3352] rounded-3xl p-6 border border-white/5 flex flex-col group hover:bg-[#463B5E] transition-all hover:scale-[1.02] duration-300 shadow-xl">
+                                    {filteredEvents.map((event) => (
+                                        <div key={event.id} className="bg-[#3D3352] rounded-3xl p-6 border border-white/5 flex flex-col group hover:bg-[#463B5E] transition-all hover:scale-[1.02] duration-300 shadow-xl">
                                             <div className="flex justify-between items-start mb-6">
                                                 <div className="w-14 h-14 bg-[#262035] rounded-2xl flex flex-col items-center justify-center border border-white/10 shadow-inner">
                                                     <span className="text-[8px] font-black text-white/30 uppercase tracking-[0.2em] leading-none mb-1">{event.month}</span>
@@ -260,14 +278,19 @@ export default function EventsPage() {
                                             </div>
 
                                             <div className="flex gap-2 pt-4 border-t border-white/5">
+                                                {event.link && (
+                                                    <a
+                                                        href={event.link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="flex-1 py-2.5 bg-white/5 hover:bg-white/10 text-white text-center font-black text-[10px] uppercase tracking-wider rounded-xl transition-all border border-white/10 active:scale-95"
+                                                    >
+                                                        Details
+                                                    </a>
+                                                )}
                                                 {event.registerUrl && (
                                                     <button className="flex-1 py-2.5 bg-[#00D4FF] hover:bg-[#00B8E0] text-[#001D26] font-black text-[10px] uppercase tracking-wider rounded-xl transition-all active:scale-95">
                                                         Register
-                                                    </button>
-                                                )}
-                                                {(event.payUrl || event.detailsUrl) && (
-                                                    <button className="flex-1 py-2.5 bg-white/5 hover:bg-white/10 text-white font-black text-[10px] uppercase tracking-wider rounded-xl transition-all border border-white/10 active:scale-95">
-                                                        {event.payUrl ? 'Pay' : 'Details'}
                                                     </button>
                                                 )}
                                             </div>
@@ -277,7 +300,7 @@ export default function EventsPage() {
                             )}
                         </AnimatePresence>
 
-                        {filteredEvents.length === 0 && (
+                        {!isLoading && filteredEvents.length === 0 && (
                             <div className="text-center py-20 bg-black/20 rounded-3xl border border-dashed border-white/10 mt-12">
                                 <Search className="w-12 h-12 text-white/10 mx-auto mb-4" />
                                 <p className="text-white/40 font-medium tracking-wide uppercase text-sm">No events found matching your search.</p>

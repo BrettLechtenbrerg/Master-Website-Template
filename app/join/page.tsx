@@ -23,6 +23,7 @@ const standardMemberships = [
       'Digital membership certificate',
       'Member-to-member discounts',
     ],
+    paymentUrl: 'https://link.fastpaydirect.com/payment-link/698ca45e86a548d2ef0f7a3a',
   },
   {
     name: '10 or Fewer Employees',
@@ -41,6 +42,7 @@ const standardMemberships = [
       'Ribbon cutting ceremony',
       'Member-to-member discounts',
     ],
+    paymentUrl: 'https://link.fastpaydirect.com/payment-link/698ca5069577be41f8b37ab0',
   },
   {
     name: '11-20 Employees',
@@ -57,6 +59,7 @@ const standardMemberships = [
       'Committee participation',
       'Event sponsorship opportunities',
     ],
+    paymentUrl: 'https://link.fastpaydirect.com/payment-link/698ca4af9b27186a53d6eaf7',
   },
   {
     name: '21-50 Employees',
@@ -73,6 +76,7 @@ const standardMemberships = [
       'Priority event sponsorship',
       'Ambassador program eligibility',
     ],
+    paymentUrl: 'https://link.fastpaydirect.com/payment-link/698ca549888cc476363d0dd06',
   },
 ];
 
@@ -92,6 +96,7 @@ const premiumPartnerships = [
       'Social media recognition',
       'Quarterly newsletter feature',
     ],
+    paymentUrl: 'https://link.fastpaydirect.com/payment-link/698ca621658ec288bfef4220',
   },
   {
     name: 'Murray Champion',
@@ -109,6 +114,7 @@ const premiumPartnerships = [
       'Board meeting invitations',
       'VIP event access',
     ],
+    paymentUrl: 'https://link.fastpaydirect.com/payment-link/698ca6690691e4706081ab24',
   },
   {
     name: 'Murray Premier Partner',
@@ -125,6 +131,7 @@ const premiumPartnerships = [
       'Custom partnership opportunities',
       'Premier event sponsorship',
     ],
+    paymentUrl: 'https://link.fastpaydirect.com/payment-link/698ca68e8049648300e59b70',
   },
   {
     name: 'Murray Legacy Sponsor',
@@ -142,8 +149,11 @@ const premiumPartnerships = [
       'Annual impact report feature',
       'Direct Chamber leadership access',
     ],
+    paymentUrl: 'https://link.fastpaydirect.com/payment-link/698ca6c7c7c0a4dd028abb3e9e',
   },
 ];
+
+const applicationFormUrl = 'https://api.leadconnectorhq.com/widget/form/pz2YBIOQrwGBRq1YFOi0?notrack=true';
 
 const benefits = [
   { icon: Building2, title: 'Business Visibility', description: 'Get listed in our member directory and reach thousands of potential customers.' },
@@ -317,11 +327,16 @@ export default function JoinPage() {
                   ))}
                 </ul>
 
-                <Link href="/contact">
+                <a
+                  href={(tier as any).paymentUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
                   <button className={`mt-6 w-full ${tier.popular ? 'btn-glow' : 'btn-secondary'} text-sm`}>
                     Join Now
                   </button>
-                </Link>
+                </a>
               </motion.div>
             ))}
           </div>
@@ -383,11 +398,16 @@ export default function JoinPage() {
                   ))}
                 </ul>
 
-                <Link href="/contact">
+                <a
+                  href={(tier as any).paymentUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
                   <button className={`mt-6 w-full ${tier.popular ? 'btn-glow' : 'btn-secondary'} text-sm`}>
                     Become a Partner
                   </button>
-                </Link>
+                </a>
               </motion.div>
             ))}
           </div>
@@ -408,12 +428,12 @@ export default function JoinPage() {
               and find the perfect membership level for your business.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link href="/contact">
+              <a href={applicationFormUrl} target="_blank" rel="noopener noreferrer">
                 <button className="btn-glow">
                   Start Application
                   <ArrowRight className="w-5 h-5" />
                 </button>
-              </Link>
+              </a>
               <a href="tel:801-263-2632">
                 <button className="btn-secondary">Call (801) 263-2632</button>
               </a>
