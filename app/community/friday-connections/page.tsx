@@ -10,7 +10,8 @@ import {
   Users,
   Coffee,
   ArrowRight,
-  ExternalLink
+  ExternalLink,
+  Mail
 } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 
@@ -260,6 +261,23 @@ export default function FridayConnectionsPage() {
                 <ExternalLink className="w-4 h-4" />
                 Open in Google Maps
               </a>
+
+              <div className="glass-card p-8 rounded-2xl border border-purple-500/20">
+                <h3 className="text-xl font-bold text-white mb-4">Contact Information</h3>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-white/60 text-sm mb-1">Organizer</p>
+                    <p className="text-white font-medium">{eventDetails.contact}</p>
+                  </div>
+                  <a
+                    href="mailto:makaila@chamberwest.com"
+                    className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                  >
+                    <Mail className="w-4 h-4" />
+                    Send Email
+                  </a>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
