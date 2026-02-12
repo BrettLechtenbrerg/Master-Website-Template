@@ -1,14 +1,13 @@
 import { NextResponse } from 'next/server';
 
-// Forced refresh to sync environment variables: 2026-02-12 09:37 AM
-
+// Google Calendar API integration
 export async function GET(request: Request) {
     const apiKey = (process.env.GCAL_API_KEY || process.env.NEXT_PUBLIC_GCAL_API_KEY || "").trim();
     const calendarId = (process.env.GCAL_CALENDAR_ID || process.env.NEXT_PUBLIC_GCAL_CALENDAR_ID || "").trim();
 
     // Debug logging for Vercel (safe parts only)
     if (process.env.VERCEL) {
-        console.log(`[Calendar API V3] Using ID: ${calendarId.substring(0, 5)}... Key begins: ${apiKey.substring(0, 5)}...`);
+        console.log(`[Calendar API] Using ID: ${calendarId.substring(0, 5)}... Key begins: ${apiKey.substring(0, 5)}...`);
     }
 
     if (!apiKey || !calendarId) {
