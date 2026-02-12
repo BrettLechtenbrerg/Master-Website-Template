@@ -114,16 +114,6 @@ export default function WeeklyEventsPage() {
                 </a>
               </div>
 
-              <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-glow"
-                >
-                  Register to Attend
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
             </motion.div>
 
             {/* Right - Event Image */}
@@ -328,13 +318,13 @@ export default function WeeklyEventsPage() {
               Come see why the Referral Community is Murray&apos;s favorite networking group.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
+              <Link href="/contact" className="w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-glow"
+                  className="btn-glow w-full"
                 >
-                  Register Now
+                  Contact Us
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </Link>
