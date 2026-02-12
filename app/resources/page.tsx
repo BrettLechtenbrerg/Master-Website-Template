@@ -8,7 +8,6 @@ import {
   MapPin,
   Landmark,
   Globe,
-  Scale,
   Briefcase,
   Utensils,
   Users,
@@ -130,13 +129,6 @@ const resourceCategories = [
 // Chamber-specific quick links
 const chamberServices = [
   {
-    title: 'LegalShield',
-    description: 'Affordable legal protection for your business',
-    href: 'https://shieldbenefits.com/murraychamber/overview',
-    icon: Scale,
-    external: true,
-  },
-  {
     title: 'Certificate of Origin',
     description: 'Export documentation services for international trade',
     href: '/certificate-of-origin',
@@ -185,39 +177,27 @@ export default function ResourcesPage() {
             animate={{ opacity: 1, y: 0 }}
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {chamberServices.map((service, index) => {
-              const CardContent = (
-                <div className="glass-card p-6 group cursor-pointer h-full hover:border-orange-500/50 transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-4 flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
-                    <service.icon className="w-5 h-5 text-orange-400" />
+            {chamberServices.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link href={service.href}>
+                  <div className="glass-card p-6 group cursor-pointer h-full hover:border-orange-500/50 transition-all">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-4 flex-shrink-0 group-hover:bg-orange-500/20 transition-colors">
+                      <service.icon className="w-5 h-5 text-orange-400" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white group-hover:text-orange-300 transition-colors flex items-center gap-2">
+                      {service.title}
+                      <ArrowRight className="w-4 h-4 text-white/40 group-hover:text-orange-400 transition-colors" />
+                    </h3>
+                    <p className="mt-2 text-white/60 text-sm">{service.description}</p>
                   </div>
-                  <h3 className="text-lg font-semibold text-white group-hover:text-orange-300 transition-colors flex items-center gap-2">
-                    {service.title}
-                    <ExternalLink className="w-4 h-4 text-white/40 group-hover:text-orange-400 transition-colors" />
-                  </h3>
-                  <p className="mt-2 text-white/60 text-sm">{service.description}</p>
-                </div>
-              );
-
-              return (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  {service.external ? (
-                    <a href={service.href} target="_blank" rel="noopener noreferrer">
-                      {CardContent}
-                    </a>
-                  ) : (
-                    <Link href={service.href}>
-                      {CardContent}
-                    </Link>
-                  )}
-                </motion.div>
-              );
-            })}
+                </Link>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>

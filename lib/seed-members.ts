@@ -37,7 +37,6 @@ const businesses = [
     { name: 'Park City Toffee', category: 'Confectionery', address: '1920 Canyons Resort Drive, Park City, UT 84098', phone: '(435) 200-3493', website: 'parkcitytoffee.com', tier: 'ambassador' },
     { name: 'Murray Children\'s Pantry', category: 'Nonprofit/Food Bank', address: '170 East 5770 South, Murray, UT 84107', phone: '(385) 743-8808', website: 'murraychildrenspantry.org', tier: 'ambassador' },
     { name: 'Total Success Business Solutions', category: 'Business Coaching', address: '8663 Highland Dr., Sandy, UT 84093', phone: '(801) 718-3851', website: 'totalsuccessbusinesssolutions.com', tier: 'ambassador' },
-    { name: 'LegalShield', category: 'Legal Services', address: '97 E Wicker Ln, Bountiful, UT 84010', phone: '(801) 205-5132', website: 'MrGeorgeWilkinson.com', tier: 'ambassador' },
     { name: 'Murray Partners 4 Prevention', category: 'Community Prevention', address: '141 E 5600 S Suite 315, Murray, UT 84107', phone: '(801) 808-0830', website: 'murrayp4p.com', tier: 'ambassador' },
     { name: 'Dwight Christie Consulting', category: 'Financial Consulting', address: '141 East 5600 South, Suite 315, Murray, UT 84107', phone: '(801) 592-4878', website: 'dwightchristie.com', tier: 'ambassador' },
     { name: 'WaFd Bank', category: 'Banking', address: '405 S Main St STE 100, Salt Lake City, UT 84111', phone: '(801) 366-2244', website: 'wafdbank.com', tier: 'ambassador' },

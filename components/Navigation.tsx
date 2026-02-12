@@ -29,7 +29,6 @@ const navigationItems = [
       { label: 'Ribbon Cutting Request', href: '/ribbon-cutting' },
       { label: 'Certificate of Origin', href: '/certificate-of-origin' },
       { label: 'Good Things Utah', href: '/good-things-utah' },
-      { label: 'LegalShield', href: '/legalshield' },
     ],
   },
   {
@@ -109,8 +108,8 @@ export default function Navigation() {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-            ? 'nav-glass py-3'
-            : 'bg-transparent py-5'
+          ? 'nav-glass py-3'
+          : 'bg-transparent py-5'
           }`}
       >
         <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
