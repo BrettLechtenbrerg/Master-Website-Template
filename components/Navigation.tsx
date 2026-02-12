@@ -55,14 +55,6 @@ const navigationItems = [
     ],
   },
   {
-    label: 'News',
-    icon: Newspaper,
-    items: [
-      { label: 'Chamber News', href: '/news/chamber' },
-      { label: 'Community News', href: '/news/community' },
-    ],
-  },
-  {
     label: 'Community',
     icon: Heart,
     items: [
