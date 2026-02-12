@@ -235,7 +235,7 @@ export default function WeeklyEventsPage() {
               Find Us at The Murray Break Sports Grill
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto">
-              Located in Ivy Place Shopping Village, The Break Sports Grill offers the perfect atmosphere
+              Located in Ivy Place Shopping Village, The Murray Break Sports Grill offers the perfect atmosphere
               for networking over a delicious lunch.
             </p>
           </motion.div>
