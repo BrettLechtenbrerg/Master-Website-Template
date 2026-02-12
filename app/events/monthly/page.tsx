@@ -93,7 +93,7 @@ export default function MonthlyEventsPage() {
                   </div>
                   <div>
                     <p className="text-white/60 text-sm">Time</p>
-                    <p className="text-white font-semibold">Check Calendar for Details</p>
+                    <p className="text-white font-semibold">4 pm to 6 pm</p>
                   </div>
                 </div>
 
@@ -294,7 +294,7 @@ export default function MonthlyEventsPage() {
                 <div>
                   <p className="text-white/60 text-sm mb-1">Meeting Time</p>
                   <p className="text-white font-medium">3rd Wednesday of Every Month</p>
-                  <p className="text-white/60 text-sm">Check calendar for specific times</p>
+                  <p className="text-white font-medium">4 pm to 6 pm</p>
                 </div>
               </div>
 

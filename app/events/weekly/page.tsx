@@ -69,7 +69,7 @@ export default function WeeklyEventsPage() {
 
               <p className="text-lg text-white/70 mb-8">
                 The Referral Community is Murray&apos;s most active weekly networking group.
-                Each Thursday, business owners gather at The Break Sports Grill for a powerful
+                Each Thursday, business owners gather at The Murray Break Sports Grill for a powerful
                 combination of networking and education designed to help you grow your business
                 through meaningful connections and referrals.
               </p>
@@ -107,7 +107,7 @@ export default function WeeklyEventsPage() {
                   </div>
                   <div>
                     <p className="text-white/60 text-sm">Location</p>
-                    <p className="text-white font-semibold group-hover:text-green-300 transition-colors">The Break Sports Grill</p>
+                    <p className="text-white font-semibold group-hover:text-green-300 transition-colors">The Murray Break Sports Grill</p>
                     <p className="text-white/60 text-sm">4760 S 900 E, Murray, UT 84117</p>
                     <p className="text-white/50 text-xs">Ivy Place Shopping Village</p>
                   </div>
@@ -125,7 +125,7 @@ export default function WeeklyEventsPage() {
               <div className="glass-card p-4 aspect-[4/3] relative overflow-hidden">
                 <Image
                   src="/images/events/networking-lunch-1.png"
-                  alt="Referral Community networking lunch at The Break Sports Grill"
+                  alt="Referral Community networking lunch at The Murray Break Sports Grill"
                   fill
                   className="object-cover rounded-xl"
                 />
@@ -232,7 +232,7 @@ export default function WeeklyEventsPage() {
             className="text-center mb-12"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Find Us at The Break Sports Grill
+              Find Us at The Murray Break Sports Grill
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto">
               Located in Ivy Place Shopping Village, The Break Sports Grill offers the perfect atmosphere
@@ -255,7 +255,7 @@ export default function WeeklyEventsPage() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="The Break Sports Grill - Ivy Place Shopping Village"
+                title="The Murray Break Sports Grill - Ivy Place Shopping Village"
               />
             </motion.div>
 
@@ -267,7 +267,7 @@ export default function WeeklyEventsPage() {
             >
               <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
                 <MapPin className="w-6 h-6 text-green-400" />
-                The Break Sports Grill
+                The Murray Break Sports Grill
               </h3>
 
               <div className="space-y-4 mb-6">
@@ -314,7 +314,7 @@ export default function WeeklyEventsPage() {
               Ready to Grow Your Network?
             </h2>
             <p className="text-lg text-white/70 mb-8 max-w-2xl mx-auto">
-              Join us this Thursday at The Break Sports Grill. First-time visitors are welcome!
+              Join us this Thursday at The Murray Break Sports Grill. First-time visitors are welcome!
               Come see why the Referral Community is Murray&apos;s favorite networking group.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
