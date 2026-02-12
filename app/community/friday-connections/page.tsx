@@ -14,19 +14,20 @@ import {
 } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 
-// Placeholder event data - update with real information
 const eventDetails = {
   name: 'Friday Connections',
   tagline: 'Start Your Weekend with Meaningful Connections',
-  description: 'Friday Connections is our signature weekly community networking event. Local professionals, business owners, and community leaders gather to build relationships, share opportunities, and strengthen the Murray business ecosystem in a relaxed, morning setting.',
-  schedule: 'Every Friday',
-  time: '8:00 AM - 9:30 AM',
+  description: 'Friday Connections is a partner event between the Murray Area Chamber of Commerce and Chamber West. Joined together, this monthly gathering brings business professionals from across the valley to build relationships, share ideas, and strengthen the local business community.',
+  schedule: '3rd Friday Monthly',
+  time: '8:30 AM - 10:00 AM MST',
   address: {
-    venue: 'Murray Chamber Office',
-    street: '141 E 5600 S #300',
-    city: 'Murray, UT 84107',
+    venue: 'Utah Trucking Association',
+    street: '4181 West 2100 South',
+    city: 'West Valley City, UT 84120',
   },
-  cost: 'Free for Chamber Members | $10 for Guests',
+  cost: 'Members: $5.00 | Non-Members: $10.00',
+  website: 'https://business.chamberwest.com/events',
+  contact: 'Makaila Kelso',
   image: '/images/events/friday-connections.jpg',
 };
 
@@ -44,8 +45,8 @@ const benefits = [
   },
   {
     icon: Calendar,
-    title: 'Weekly Consistency',
-    description: 'Build lasting relationships through regular, recurring meetups every Friday.',
+    title: 'Monthly Consistency',
+    description: 'Build lasting relationships through regular, recurring meetups every 3rd Friday.',
   },
 ];
 
@@ -55,8 +56,8 @@ export default function FridayConnectionsPage() {
 
       <PageHeader
         title="Friday Connections"
-        description="Community networking event bringing Murray professionals together every Friday"
-        badge="Community Event"
+        description="A partner event between Murray Chamber and Chamber West on the 3rd Friday of every month"
+        badge="Partner Event"
       />
 
       {/* Event Overview Section */}
@@ -89,8 +90,8 @@ export default function FridayConnectionsPage() {
                     <Calendar className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="text-white font-semibold">Every Friday</p>
-                    <p className="text-white/60 text-sm">8:00 AM</p>
+                    <p className="text-white font-semibold">3rd Friday Monthly</p>
+                    <p className="text-white/60 text-sm">8:30 AM</p>
                   </div>
                 </div>
               </div>
@@ -133,23 +134,31 @@ export default function FridayConnectionsPage() {
                     <Users className="w-5 h-5 text-purple-400" />
                     <span className="text-white/60 text-sm">Admission</span>
                   </div>
-                  <p className="text-white font-semibold">Free for Members</p>
-                  <p className="text-white/70">$10 for Guests</p>
+                  <p className="text-white font-semibold">Members: $5.00</p>
+                  <p className="text-white/70">Non-Members: $10.00</p>
+                </div>
+              </div>
+
+              {/* Partner Section */}
+              <div className="glass-card p-5 rounded-xl border border-purple-500/30">
+                <p className="text-white/60 text-sm mb-2 font-medium uppercase tracking-wider">Partner Event</p>
+                <div className="flex items-center gap-4">
+                  <div className="text-white font-bold text-lg">Murray Chamber × Chamber West</div>
                 </div>
               </div>
 
               {/* CTA Button */}
               <div className="flex flex-wrap gap-4">
-                <Link href="/join">
+                <a href={eventDetails.website} target="_blank" rel="noopener noreferrer">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="btn-glow flex items-center gap-2"
                   >
-                    Join Chamber for Free Access
+                    Register at Chamber West
                     <ArrowRight className="w-4 h-4" />
                   </motion.button>
-                </Link>
+                </a>
                 <Link href="/contact">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
@@ -192,14 +201,14 @@ export default function FridayConnectionsPage() {
               className="glass-card p-4 rounded-2xl overflow-hidden aspect-[4/3]"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3026.8834507074874!2d-111.88646788459567!3d40.64115797934068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87528aa8a4f5e84d%3A0x2f32f8e4e4e2f2f2!2s141%20E%205600%20S%20%23300%2C%20Murray%2C%20UT%2084107!5e0!3m2!1sen!2sus!4v1706000000000"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.366472408906!2d-111.9904!3d40.725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8752f4c9fb60d62d%3A0xc6c4f877f98e6d2!2s4181%20W%202100%20S%2C%20West%20Valley%20City%2C%20UT%2084120!5e0!3m2!1sen!2sus!4v1706000000000"
                 width="100%"
                 height="100%"
                 style={{ border: 0, borderRadius: '0.75rem' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Murray Area Chamber of Commerce - Independence Square"
+                title="Utah Trucking Association - Friday Connections Venue"
               />
             </motion.div>
 
@@ -243,7 +252,7 @@ export default function FridayConnectionsPage() {
               </div>
 
               <a
-                href="https://maps.google.com"
+                href="https://maps.google.com/?q=Utah+Trucking+Association+4181+West+2100+South+West+Valley+City+UT+84120"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
@@ -307,19 +316,19 @@ export default function FridayConnectionsPage() {
               Ready to Connect?
             </h2>
             <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-              Join us this Friday and become part of Murray&apos;s thriving business community.
+              Join us on the 3rd Friday of every month and become part of a broader business community.
               New faces are always welcome!
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/join">
+              <a href={eventDetails.website} target="_blank" rel="noopener noreferrer">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="btn-glow"
                 >
-                  Become a Member
+                  Register Now
                 </motion.button>
-              </Link>
+              </a>
               <Link href="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
