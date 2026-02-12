@@ -41,7 +41,7 @@ export default function EventsPage() {
                 const data = await res.json();
 
                 if (!res.ok) {
-                    setError(data.hint || data.message || "Failed to load events");
+                    setError(data.message || data.hint || "Failed to load events");
                     return;
                 }
 
