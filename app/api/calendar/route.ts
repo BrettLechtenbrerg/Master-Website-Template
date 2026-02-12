@@ -41,7 +41,7 @@ export async function GET(request: Request) {
 
     try {
         const res = await fetch(url, {
-            next: { revalidate: 180 }, // 3-minute cache
+            next: { revalidate: 0 }, // Disable cache for debugging
         });
 
         const data = await res.json();
