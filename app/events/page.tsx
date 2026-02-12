@@ -29,6 +29,7 @@ interface ExtractedEvent {
 export default function EventsPage() {
     const [events, setEvents] = useState<ExtractedEvent[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [viewMode, setViewMode] = useState<'list' | 'card'>('list');
     const [activeFilter, setActiveFilter] = useState<'all' | EventType>('all');
     const [searchQuery, setSearchQuery] = useState('');
@@ -38,6 +39,12 @@ export default function EventsPage() {
             try {
                 const res = await fetch('/api/calendar?maxResults=20');
                 const data = await res.json();
+
+                if (!res.ok) {
+                    setError(data.hint || data.message || "Failed to load events");
+                    return;
+                }
+
                 if (data.items) {
                     // Map items to include GHL urls if they exist in description (optional enhancement)
                     const enhancedItems = data.items.map((item: any) => ({
@@ -46,9 +53,11 @@ export default function EventsPage() {
                         detailsUrl: item.link
                     }));
                     setEvents(enhancedItems);
+                    setError(null);
                 }
             } catch (error) {
                 console.error('Failed to fetch events:', error);
+                setError("Unable to connect to the events service. Please try again later.");
             } finally {
                 setIsLoading(false);
             }
@@ -170,6 +179,25 @@ export default function EventsPage() {
                                 >
                                     <Loader2 className="w-8 h-8 text-purple-500 animate-spin mb-4" />
                                     <p className="text-white/40 font-medium uppercase tracking-widest text-xs">Loading Events...</p>
+                                </motion.div>
+                            ) : error ? (
+                                <motion.div
+                                    key="error"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="flex flex-col items-center justify-center py-20 text-center px-6"
+                                >
+                                    <div className="w-16 h-16 rounded-full bg-red-500/10 flex items-center justify-center mb-6">
+                                        <Calendar className="w-8 h-8 text-red-400 opacity-50" />
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white mb-2">Calendar Access Error</h3>
+                                    <p className="text-white/60 max-w-md mb-6">{error}</p>
+                                    <button
+                                        onClick={() => window.location.reload()}
+                                        className="btn-secondary text-xs"
+                                    >
+                                        Try Again
+                                    </button>
                                 </motion.div>
                             ) : viewMode === 'list' ? (
                                 <motion.div
