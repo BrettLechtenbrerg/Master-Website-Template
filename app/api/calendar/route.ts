@@ -9,15 +9,15 @@ export async function GET(request: Request) {
         if (!apiKey) missing.push('GCAL_API_KEY');
         if (!calendarId) missing.push('GCAL_CALENDAR_ID');
 
-        const allKeys = Object.keys(process.env).filter(key => key.includes('GCAL'));
+        const gcalKeys = Object.keys(process.env).filter(key => key.includes('GCAL'));
+        const diagnosticMessage = `Missing: ${missing.join(', ')}. \nFound GCAL keys: ${gcalKeys.length ? gcalKeys.join(', ') : "None"}.`;
 
-        console.error(`Missing Google Calendar configuration: ${missing.join(', ')}. Found keys: ${allKeys.join(', ')}`);
+        console.error(`Missing Google Calendar configuration: ${diagnosticMessage}`);
         return NextResponse.json(
             {
                 error: "Configuration Missing",
-                message: `The following environment variables are missing in Vercel: ${missing.join(', ')}`,
-                foundKeys: allKeys,
-                hint: "Ensure these are added to Vercel Settings -> Environment Variables and then REDEPLOY. Current visible GCAL keys are: " + (allKeys.length ? allKeys.join(', ') : "None")
+                message: diagnosticMessage,
+                hint: "Go to Vercel Settings -> Environment Variables, ensure names match EXACTLY, and then REDEPLOY."
             },
             { status: 500 }
         );
