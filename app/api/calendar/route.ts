@@ -1,13 +1,21 @@
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
-    const apiKey = process.env.GCAL_API_KEY;
-    const calendarId = process.env.GCAL_CALENDAR_ID;
+    const apiKey = process.env.GCAL_API_KEY || process.env.NEXT_PUBLIC_GCAL_API_KEY;
+    const calendarId = process.env.GCAL_CALENDAR_ID || process.env.NEXT_PUBLIC_GCAL_CALENDAR_ID;
 
     if (!apiKey || !calendarId) {
-        console.error('Missing Google Calendar configuration: GCAL_API_KEY or GCAL_CALENDAR_ID');
+        const missing = [];
+        if (!apiKey) missing.push('GCAL_API_KEY');
+        if (!calendarId) missing.push('GCAL_CALENDAR_ID');
+
+        console.error(`Missing Google Calendar configuration: ${missing.join(', ')}`);
         return NextResponse.json(
-            { error: "Missing GCAL_API_KEY or GCAL_CALENDAR_ID" },
+            {
+                error: "Configuration Missing",
+                message: `The following environment variables are missing in Vercel: ${missing.join(', ')}`,
+                hint: "Ensure these are added to Vercel Settings -> Environment Variables and then REDEPLOY."
+            },
             { status: 500 }
         );
     }
