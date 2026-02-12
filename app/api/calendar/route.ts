@@ -8,7 +8,7 @@ export async function GET(request: Request) {
 
     // Debug logging for Vercel (safe parts only)
     if (process.env.VERCEL) {
-        console.log(`[Calendar API] Using ID: ${calendarId.substring(0, 5)}... Key begins: ${apiKey.substring(0, 5)}...`);
+        console.log(`[Calendar API V3] Using ID: ${calendarId.substring(0, 5)}... Key begins: ${apiKey.substring(0, 5)}...`);
     }
 
     if (!apiKey || !calendarId) {
