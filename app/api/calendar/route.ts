@@ -40,13 +40,14 @@ export async function GET(request: Request) {
         const data = await res.json();
 
         if (!res.ok) {
+            const errorMessage = data.error?.message || "Not Found";
+            const hint = "Ensure the calendar is set to 'Public' and the Calendar ID is correct.";
             console.error('Google Calendar API Error:', data);
             return NextResponse.json(
                 {
                     error: "Google Calendar API Returned Error",
-                    message: data.error?.message || "Not Found",
-                    status: res.status,
-                    hint: "Ensure the calendar is set to 'Public' and the Calendar ID is correct."
+                    message: `${errorMessage}. Hint: ${hint}`,
+                    status: res.status
                 },
                 { status: res.status === 404 ? 404 : 502 }
             );
