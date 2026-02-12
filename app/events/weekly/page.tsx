@@ -288,7 +288,7 @@ export default function WeeklyEventsPage() {
               </div>
 
               <a
-                href="https://maps.google.com/?q=The+Break+Sports+Grill+4760+S+900+E+Murray+UT+84117"
+                href="https://maps.google.com/?q=The+Murray+Break+Sports+Grill+4760+S+900+E+Murray+UT+84117"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white font-medium transition-all w-full"
