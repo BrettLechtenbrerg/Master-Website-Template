@@ -20,15 +20,15 @@ import PageHeader from '@/components/PageHeader';
 
 // Placeholder business data - update with real information
 const spotlightBusiness = {
-  name: 'The Break Sports Grill',
+  name: 'The Murray Break Sports Grill',
   tagline: 'Your Favorite Local Sports Bar & Grill',
-  description: 'The Break Sports Grill is more than just a place to watch the game; it\'s a cornerstone of the Murray business community. Known for its incredible food, welcoming atmosphere, and dedicated support of local networking, The Break has been the home of our weekly Referral Community for years. Their commitment to excellence and community involvement makes them a perfect feature for our Business Spotlight.',
+  description: 'The Murray Break Sports Grill is more than just a place to watch the game; it\'s a cornerstone of the Murray business community. Known for its incredible food, welcoming atmosphere, and dedicated support of local networking, The Murray Break has been the home of our weekly Referral Community for years. Their commitment to excellence and community involvement makes them a perfect feature for our Business Spotlight.',
   category: 'Restaurant & Hospitality',
   yearEstablished: '2012',
   owner: {
     name: 'Manny Torres',
     title: 'Managing Partner',
-    bio: 'Manny Torres is a passionate advocate for Murray businesses. As a Managing Partner at The Break and a Board Member of the Murray Chamber, he understands the vital role local businesses play in the community. His vision for The Break goes beyond great food - it\'s about creating a space where people can connect and grow together.',
+    bio: 'Manny Torres is a passionate advocate for Murray businesses. As a Managing Partner at The Murray Break and a Board Member of the Murray Chamber, he understands the vital role local businesses play in the community. His vision for The Murray Break goes beyond great food - it\'s about creating a space where people can connect and grow together.',
     image: '/images/manny-headshot.jpg',
   },
   contact: {
@@ -303,7 +303,7 @@ export default function BusinessSpotlightPage() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="The Break Sports Grill - Ivy Place Shopping Village"
+                title="The Murray Break Sports Grill - Ivy Place Shopping Village"
               />
             </motion.div>
 

@@ -97,7 +97,7 @@ export default function WeeklyEventsPage() {
                 </div>
 
                 <a
-                  href="https://maps.google.com/?q=The+Break+Sports+Grill+4760+S+900+E+Murray+UT+84117"
+                  href="https://maps.google.com/?q=The+Murray+Break+Sports+Grill+4760+S+900+E+Murray+UT+84117"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="glass-card p-4 flex items-center gap-4 hover:border-green-500/50 transition-all cursor-pointer group"
