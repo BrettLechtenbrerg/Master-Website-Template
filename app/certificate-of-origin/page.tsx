@@ -31,8 +31,8 @@ const benefits = [
 ];
 
 const pricingTiers = [
-  { type: 'Members', price: '$25', description: 'Per certificate' },
-  { type: 'Non-Members', price: '$50', description: 'Per certificate' },
+  { type: 'Members', price: 'Free', description: 'Unlimited pages' },
+  { type: 'Non-Members', price: '$25', description: 'Per page' },
   { type: 'Rush Processing', price: '+$15', description: 'Same-day service' },
 ];
 
@@ -278,9 +278,9 @@ export default function CertificateOfOriginPage() {
                       <input type="text" name="destination_country" required className="input-glass" placeholder="e.g., Canada, Mexico, Germany" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-white/80 mb-2">Number of Certificates</label>
+                      <label className="block text-sm font-medium text-white/80 mb-2">Number of Pages</label>
                       <select name="quantity" className="input-glass select-glass">
-                        {[1, 2, 3, 4, 5, 10].map(n => (
+                        {[1, 2, 3, 4, 5, 10, 20].map(n => (
                           <option key={n} value={n}>{n}</option>
                         ))}
                       </select>
@@ -290,7 +290,7 @@ export default function CertificateOfOriginPage() {
                   <div className="flex items-start gap-3">
                     <input type="checkbox" name="rush_processing" value="yes" className="mt-1 accent-purple-500" />
                     <label className="text-sm text-white/60">
-                      <span className="font-medium text-white">Rush Processing</span> - Same-day service (+$15 per certificate)
+                      <span className="font-medium text-white">Rush Processing</span> - Same-day service (+$15 per page)
                     </label>
                   </div>
 
