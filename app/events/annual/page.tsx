@@ -23,7 +23,7 @@ import Footer from '@/components/Footer';
 const annualEvents = [
   {
     id: 1,
-    name: 'The Taste of Murray',
+    name: 'Flavors of Murray',
     subtitle: 'Annual Gala',
     description: 'Murray\'s premier culinary celebration! Sample exquisite dishes from the finest local restaurants while enjoying live entertainment, silent auctions, and an unforgettable evening of community celebration. This black-tie optional gala brings together business leaders, community members, and food enthusiasts for a night of elegance and flavor.',
     icon: Wine,
@@ -157,11 +157,10 @@ export default function AnnualEventsPage() {
                   <ul className="space-y-2">
                     {event.highlights.map((highlight, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <Sparkles className={`w-4 h-4 shrink-0 mt-1 ${
-                          event.accentColor === 'purple' ? 'text-purple-400' :
-                          event.accentColor === 'green' ? 'text-green-400' :
-                          'text-orange-400'
-                        }`} />
+                        <Sparkles className={`w-4 h-4 shrink-0 mt-1 ${event.accentColor === 'purple' ? 'text-purple-400' :
+                            event.accentColor === 'green' ? 'text-green-400' :
+                              'text-orange-400'
+                          }`} />
                         <span className="text-white/80 text-sm">{highlight}</span>
                       </li>
                     ))}
@@ -289,7 +288,7 @@ export default function AnnualEventsPage() {
                       Weekly: Referral Community
                     </h3>
                     <p className="text-white/60">
-                      Every Thursday at The Break Restaurant. Networking and education from 11:30 AM - 1:00 PM.
+                      Every Thursday at The Murray Break Sports Grill. Networking and education from 11:30 AM - 1:00 PM.
                     </p>
                   </div>
                 </div>
