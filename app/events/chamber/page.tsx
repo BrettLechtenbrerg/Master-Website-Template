@@ -53,7 +53,7 @@ const eventCategories = [
     id: 'annual',
     title: 'Annual Events',
     subtitle: 'Signature Celebrations',
-    description: 'Experience Murray\'s most anticipated business events including the Taste of Murray, Annual Golf Tournament, and the magical Magic Over Murray Balloon Festival.',
+    description: 'Experience Murray\'s most anticipated business events including the Flavors of Murray, Annual Golf Tournament, and the magical Magic Over Murray Balloon Festival.',
     icon: Trophy,
     color: 'from-purple-600 to-orange-500',
     borderColor: 'border-purple-500/30',
