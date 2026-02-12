@@ -125,7 +125,7 @@ const businesses = [
     { name: 'Supernova Marketing LLC', category: 'Marketing', address: '578 W SAGE RIVER WAY, Murray, UT 84123', phone: '(760) 809-1965', website: 'supernovamrktg.com', tier: 'member' },
     { name: 'The Advocates', category: 'Legal Services', address: '737 E Winchester St, Salt Lake City, UT 84107', phone: '(801) 326-0809', website: 'utahadvocates.com', tier: 'member' },
     { name: 'The Alias Group', category: 'Professional Services', address: '211 Lake Dr, Suite J, Newark, DE 19702', phone: '(302) 563-6947', website: 'thealiasgroup.com', tier: 'member' },
-    { name: 'The Break Sports Grill', category: 'Restaurant/Bar', address: '4760 S 900 E, Murray, UT 84117', phone: '(801) 987-3354', website: 'Thebreakgrill.com', tier: 'member' },
+    { name: 'The Murray Break Sports Grill', category: 'Restaurant/Bar', address: '4760 S 900 E, Murray, UT 84117', phone: '(801) 987-3354', website: 'Thebreakgrill.com', tier: 'member' },
     { name: 'The Royce on 9th', category: 'Apartment Complex', address: '853 E 4680 S, Murray, UT 84117', phone: '(385) 415-3991', website: 'liveattheroyce.com', tier: 'member' },
     { name: 'Thumzup Media Corporation', category: 'Marketing/Technology', address: '11845 W. Olympic Blvd 1100W #13, Los Angeles, CA 90064', phone: '(310) 237-2887', website: 'thumzupmedia.com', tier: 'member' },
     { name: 'Tuff Shed', category: 'Storage Buildings', address: '5501 South 320 West, Salt Lake City, UT 84107', phone: '(385) 378-2056', website: 'tuffshed.com', tier: 'member' },

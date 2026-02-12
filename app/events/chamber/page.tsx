@@ -23,7 +23,7 @@ const eventCategories = [
     id: 'weekly',
     title: 'Weekly Events',
     subtitle: 'The Referral Community',
-    description: 'Join Murray\'s premier weekly networking group every Thursday at The Break Sports Grill. Connect with local business owners, share referrals, and grow your business through meaningful connections.',
+    description: 'Join Murray\'s premier weekly networking group every Thursday at The Murray Break Sports Grill. Connect with local business owners, share referrals, and grow your business through meaningful connections.',
     icon: Repeat,
     color: 'from-orange-500 to-orange-600',
     borderColor: 'border-orange-500/30',

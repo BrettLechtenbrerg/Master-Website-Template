@@ -22,7 +22,7 @@ import Footer from '@/components/Footer';
 const eventHighlights = [
   { icon: Handshake, title: 'Networking', description: 'Connect with local business owners and build valuable relationships' },
   { icon: GraduationCap, title: 'Education', description: 'Learn new skills and strategies from expert presenters each week' },
-  { icon: Utensils, title: 'Great Food', description: 'Enjoy a delicious lunch at The Break Sports Grill' },
+  { icon: Utensils, title: 'Great Food', description: 'Enjoy a delicious lunch at The Murray Break Sports Grill' },
   { icon: Users, title: 'Community', description: 'Be part of a supportive business community that helps each other grow' },
 ];
 
