@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Tv, Star, Calendar, ArrowRight, Play, Clock } from 'lucide-react';
+import { Tv, Star, Calendar, Play, Clock } from 'lucide-react';
 import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
@@ -217,33 +217,6 @@ export default function GoodThingsUtahPage() {
         </div>
       </section>
 
-      {/* Apply CTA */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="glass-strong rounded-3xl p-8 md:p-12 text-center"
-          >
-            <Tv className="w-16 h-16 text-orange-400 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-white">Ready for Your Close-Up?</h2>
-            <p className="mt-4 text-white/60 max-w-2xl mx-auto">
-              Gold and Platinum members receive priority placement. Contact us to learn how to get your business featured on Good Things Utah.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link href="/contact">
-                <button className="btn-glow">
-                  Apply for a Segment
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </Link>
-              <Link href="/join">
-                <button className="btn-secondary">Become a Member</button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       <Footer />
     </>
