@@ -21,9 +21,16 @@ import {
 // Navigation structure matching current site
 const navigationItems = [
   {
+    label: 'Member Directory',
+    href: '/directory',
+    icon: Building2,
+  },
+  {
     label: 'Business Resources',
     icon: Building2,
     items: [
+      { label: 'Join The Chamber', href: '/join' },
+      { label: 'Member to Member Deals', href: '/deals' },
       { label: 'Business Directory', href: '/directory' },
       { label: 'Small Business Resources', href: '/resources' },
       { label: 'Ribbon Cutting Request', href: '/ribbon-cutting' },
@@ -45,16 +52,6 @@ const navigationItems = [
     ],
   },
   {
-    label: 'Membership',
-    icon: Users,
-    items: [
-      { label: 'Member Directory', href: '/directory' },
-      { label: 'Join The Chamber', href: '/join' },
-      { label: 'Chamber Sponsors', href: '/sponsors' },
-      { label: 'Member to Member Deals', href: '/deals' },
-    ],
-  },
-  {
     label: 'Community',
     icon: Heart,
     items: [
@@ -70,6 +67,7 @@ const navigationItems = [
       { label: 'About Us', href: '/about' },
       { label: 'Board', href: '/board' },
       { label: 'Ambassadors', href: '/ambassadors' },
+      { label: 'Chamber Sponsors', href: '/sponsors' },
       { label: 'Youth Internship Program', href: '/youth-internship' },
     ],
   },
