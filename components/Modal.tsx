@@ -2,7 +2,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface ModalProps {
     isOpen: boolean;
@@ -19,6 +20,12 @@ export default function Modal({
     children,
     maxWidth = 'max-w-2xl',
 }: ModalProps) {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     // Prevent scrolling when modal is open
     useEffect(() => {
         if (isOpen) {
@@ -40,24 +47,27 @@ export default function Modal({
         return () => window.removeEventListener('keydown', handleEsc);
     }, [onClose]);
 
-    return (
+    if (!mounted) return null;
+
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
                     {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+                        className="absolute inset-0 bg-slate-950/90 backdrop-blur-md"
                     />
 
                     {/* Modal Content */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                        initial={{ opacity: 0, scale: 0.95, y: 30 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 30 }}
+                        transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
                         className={`relative w-full ${maxWidth} glass-strong rounded-3xl overflow-hidden shadow-2xl border border-white/10`}
                     >
                         {/* Header */}
@@ -74,12 +84,13 @@ export default function Modal({
                         </div>
 
                         {/* Body */}
-                        <div className="p-6 sm:p-8 max-h-[80vh] overflow-y-auto custom-scrollbar">
+                        <div className="p-6 sm:p-8 max-h-[85vh] overflow-y-auto custom-scrollbar">
                             {children}
                         </div>
                     </motion.div>
                 </div>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 }
