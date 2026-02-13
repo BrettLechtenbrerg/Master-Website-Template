@@ -55,10 +55,10 @@ export async function submitToGHL(
   };
 
   // Apply field mapping
-  Object.entries(data).forEach(([key, value]) => {
+  Array.from(data.entries()).forEach(([key, value]) => {
     if (value) {
       const ghlField = GHL_FIELD_MAPPING[key as keyof typeof GHL_FIELD_MAPPING] || key;
-      mappedData[ghlField] = value;
+      mappedData[ghlField] = value.toString();
     }
   });
 

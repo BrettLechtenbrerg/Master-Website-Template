@@ -15,10 +15,14 @@ import {
   Star,
   Award,
   MessageCircle,
-  TrendingUp
+  TrendingUp,
+  X
 } from 'lucide-react';
+import { useState } from 'react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
+import Modal from '@/components/Modal';
+import EventRegistrationForm from '@/components/EventRegistrationForm';
 
 const programHighlights = [
   { icon: Users, title: 'Empowering Community', description: 'Connect with fellow women business leaders in a supportive environment' },
@@ -37,6 +41,8 @@ const meetingTopics = [
 ];
 
 export default function MonthlyEventsPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <PageHeader
@@ -71,8 +77,6 @@ export default function MonthlyEventsPage() {
               <p className="text-lg text-white/70 mb-8">
                 The Women in Business program brings together Murray&apos;s most dynamic women
                 entrepreneurs, executives, and professionals for an inspiring monthly gathering.
-                Whether you&apos;re launching a startup or leading a team, you&apos;ll find support,
-                inspiration, and valuable connections here.
               </p>
 
               {/* Event Details Cards */}
@@ -115,16 +119,15 @@ export default function MonthlyEventsPage() {
                 </a>
               </div>
 
-              <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-glow"
-                >
-                  Register to Attend
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsModalOpen(true)}
+                className="btn-glow"
+              >
+                Register to Attend
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
             </motion.div>
 
             {/* Right - Event Image */}
@@ -329,16 +332,15 @@ export default function MonthlyEventsPage() {
               journey, Women in Business welcomes you. Come be inspired and inspire others.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-glow"
-                >
-                  Register Now
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsModalOpen(true)}
+                className="btn-glow"
+              >
+                Register Now
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
               <Link href="/events/chamber">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -352,6 +354,22 @@ export default function MonthlyEventsPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Registration Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Event Registration"
+      >
+        <EventRegistrationForm
+          eventName="Women in Business"
+          eventDate="3rd Wednesday Monthly @ 4:00 PM"
+          onSuccess={() => {
+            // Success State is handled inside the form,
+            // but we could auto-close here if desired
+          }}
+        />
+      </Modal>
 
       <Footer />
     </>

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Scissors, Calendar, Camera, Users, CheckCircle, Send, AlertCircle, Play, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
@@ -8,6 +8,8 @@ import Link from 'next/link';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import StaggerChildren, { StaggerItem } from '@/components/animations/StaggerChildren';
+import { submitRibbonCuttingForm } from '@/lib/ghl';
+import SuccessState from '@/components/SuccessState';
 
 // YouTube Video ID
 const YOUTUBE_VIDEO_ID = 'F_VdvVmJcWw';
@@ -64,25 +66,25 @@ export default function RibbonCuttingPage() {
 
     const formData = new FormData(e.currentTarget);
 
-    // Simulate form submission (replace with actual GHL integration when ready)
     try {
-      // For now, just simulate success after a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      console.log('Form submitted:', {
-        businessName: formData.get('business_name'),
-        contactPerson: formData.get('contact_person'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        businessAddress: formData.get('business_address'),
-        preferredDate: formData.get('preferred_date'),
-        preferredTime: formData.get('preferred_time'),
-        celebrationType: formData.get('celebration_type'),
-        additionalDetails: formData.get('additional_details'),
+      const result = await submitRibbonCuttingForm({
+        businessName: formData.get('business_name') as string,
+        contactPerson: formData.get('contact_person') as string,
+        email: formData.get('email') as string,
+        phone: formData.get('phone') as string,
+        businessAddress: formData.get('business_address') as string,
+        preferredDate: formData.get('preferred_date') as string,
+        preferredTime: formData.get('preferred_time') as string,
+        celebrationType: formData.get('celebration_type') as string,
+        additionalDetails: formData.get('additional_details') as string || undefined,
       });
 
-      setIsSubmitted(true);
-    } catch {
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        setError(result.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
       setError('Unable to submit form. Please try again later.');
     } finally {
       setIsLoading(false);
@@ -232,18 +234,12 @@ export default function RibbonCuttingPage() {
         <div className="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="glass-card p-8 md:p-12">
             {isSubmitted ? (
-              <div className="text-center py-12">
-                <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-10 h-10 text-green-400" />
-                </div>
-                <h3 className="text-2xl font-bold text-white">Request Submitted!</h3>
-                <p className="mt-4 text-white/60 max-w-md mx-auto">
-                  Thank you for your ribbon cutting request. Our team will contact you within 2 business days to confirm details.
-                </p>
-                <button onClick={() => setIsSubmitted(false)} className="mt-8 btn-secondary">
-                  Submit Another Request
-                </button>
-              </div>
+              <SuccessState
+                title="Request Submitted!"
+                message="Thank you for your ribbon cutting request. Our team will contact you within 2 business days to confirm details."
+                onButtonClick={() => setIsSubmitted(false)}
+                buttonText="Submit Another Request"
+              />
             ) : (
               <>
                 <div className="flex items-center gap-4 mb-8">
