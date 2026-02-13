@@ -171,7 +171,7 @@ export async function submitRibbonCuttingForm(data: {
   additionalDetails?: string;
 }): Promise<GHLResponse> {
   // Map to standard fields
-  const mappedData: FormData = {
+  const mappedData: GHLFormData = {
     firstName: data.contactPerson.split(' ')[0],
     lastName: data.contactPerson.split(' ').slice(1).join(' '),
     email: data.email,
