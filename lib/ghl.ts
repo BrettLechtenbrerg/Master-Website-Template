@@ -15,7 +15,7 @@ export interface GHLResponse {
 }
 
 // Generic form data interface
-export interface FormData {
+export interface GHLFormData {
   firstName?: string;
   lastName?: string;
   email: string;
@@ -35,7 +35,7 @@ export interface FormData {
  */
 export async function submitToGHL(
   webhookType: keyof typeof GHL_CONFIG.webhooks,
-  data: FormData,
+  data: GHLFormData | globalThis.FormData,
   tags?: string[]
 ): Promise<GHLResponse> {
   const webhookUrl = GHL_CONFIG.webhooks[webhookType];
@@ -55,12 +55,23 @@ export async function submitToGHL(
   };
 
   // Apply field mapping
-  Array.from(data.entries()).forEach(([key, value]) => {
-    if (value) {
-      const ghlField = GHL_FIELD_MAPPING[key as keyof typeof GHL_FIELD_MAPPING] || key;
-      mappedData[ghlField] = value.toString();
-    }
-  });
+  if (typeof (data as any).forEach === 'function') {
+    // Handle FormData class
+    (data as any).forEach((value: any, key: string) => {
+      if (value) {
+        const ghlField = GHL_FIELD_MAPPING[key as keyof typeof GHL_FIELD_MAPPING] || key;
+        mappedData[ghlField] = value.toString();
+      }
+    });
+  } else {
+    // Handle plain object
+    Object.entries(data).forEach(([key, value]) => {
+      if (value) {
+        const ghlField = GHL_FIELD_MAPPING[key as keyof typeof GHL_FIELD_MAPPING] || key;
+        mappedData[ghlField] = value.toString();
+      }
+    });
+  }
 
   // Add tags
   const allTags = [
