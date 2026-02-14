@@ -90,4 +90,15 @@ export const GHL_FIELD_MAPPING = {
   preferredTime: 'preferred_time',
   celebrationType: 'celebration_type',
   message: 'message',
+
+  // Membership Application Fields
+  city: 'city',
+  state: 'state',
+  postalCode: 'postal_code',
+  numEmployees: 'number_of_employees',
+  aboutBusiness: 'about_business',
+  logoUrl: 'business_logo_url',
+  howDidYouHear: 'how_did_you_hear',
+  smsConsentMarketing: 'sms_consent_marketing',
+  smsConsentNonMarketing: 'sms_consent_non_marketing',
 };

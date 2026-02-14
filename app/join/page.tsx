@@ -264,7 +264,7 @@ export default function JoinPage() {
                   <span className="text-5xl font-bold text-green-400">FREE</span>
                 </div>
                 <p className="text-white/50 text-sm mb-4">First year for new businesses</p>
-                <Link href="/contact">
+                <Link href="/membership-application">
                   <button className="btn-glow bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500">
                     Apply Now
                     <ArrowRight className="w-5 h-5" />
@@ -428,12 +428,12 @@ export default function JoinPage() {
               and find the perfect membership level for your business.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <a href={applicationFormUrl} target="_blank" rel="noopener noreferrer">
+              <Link href="/membership-application">
                 <button className="btn-glow">
                   Start Application
                   <ArrowRight className="w-5 h-5" />
                 </button>
-              </a>
+              </Link>
               <a href="tel:801-263-2632">
                 <button className="btn-secondary">Call (801) 263-2632</button>
               </a>

@@ -238,6 +238,35 @@ export async function submitCertificateForm(data: {
 }
 
 /**
+ * Submit Membership Application to GHL
+ */
+export async function submitMembershipApplication(data: {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  companyName: string;
+  address: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  numEmployees: string;
+  aboutBusiness: string;
+  logoUrl: string;
+  howDidYouHear: string;
+  smsConsentMarketing: boolean;
+  smsConsentNonMarketing: boolean;
+}): Promise<GHLResponse> {
+  const mappedData: GHLFormData = {
+    ...data,
+    smsConsentMarketing: data.smsConsentMarketing ? 'Yes' : 'No',
+    smsConsentNonMarketing: data.smsConsentNonMarketing ? 'Yes' : 'No',
+  };
+
+  return submitToGHL('membership', mappedData, ['Type: Full Application']);
+}
+
+/**
  * Get GHL calendar embed URL
  */
 export function getCalendarEmbedUrl(calendarType: keyof typeof GHL_CONFIG.calendars = 'main'): string {
