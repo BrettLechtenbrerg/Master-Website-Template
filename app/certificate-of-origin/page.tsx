@@ -6,6 +6,7 @@ import { FileText, Globe, Truck, CheckCircle, ArrowRight, Info, Send, AlertCircl
 import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
+import { submitCertificateForm } from '@/lib/ghl';
 import Link from 'next/link';
 
 // Certificate of Origin Image
@@ -49,24 +50,25 @@ export default function CertificateOfOriginPage() {
     const formData = new FormData(e.currentTarget);
 
     try {
-      // Simulate form submission (replace with actual GHL integration when ready)
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      console.log('Certificate request submitted:', {
-        companyName: formData.get('company_name'),
-        contactName: formData.get('contact_name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        productDescription: formData.get('product_description'),
-        destinationCountry: formData.get('destination_country'),
-        quantity: formData.get('quantity'),
-        rushProcessing: formData.get('rush_processing'),
-        additionalNotes: formData.get('additional_notes'),
+      const result = await submitCertificateForm({
+        companyName: formData.get('company_name') as string,
+        contactName: formData.get('contact_name') as string,
+        email: formData.get('email') as string,
+        phone: formData.get('phone') as string,
+        productDescription: formData.get('product_description') as string,
+        destinationCountry: formData.get('destination_country') as string,
+        quantity: formData.get('quantity') as string,
+        rushProcessing: formData.get('rush_processing') === 'yes',
+        additionalNotes: formData.get('additional_notes') as string,
       });
 
+      if (!result.success) {
+        throw new Error(result.message);
+      }
+
       setIsSubmitted(true);
-    } catch {
-      setError('Unable to submit request. Please try again later.');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to submit request. Please try again later.');
     } finally {
       setIsLoading(false);
     }

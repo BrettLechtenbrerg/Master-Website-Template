@@ -214,6 +214,35 @@ export async function submitEventRegistration(data: {
 }
 
 /**
+ * Submit Certificate of Origin request to GHL
+ */
+export async function submitCertificateForm(data: {
+  companyName: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  productDescription: string;
+  destinationCountry: string;
+  quantity: string;
+  rushProcessing: boolean;
+  additionalNotes?: string;
+}): Promise<GHLResponse> {
+  // Map contact name to firstName/lastName for GHL
+  const [firstName, ...lastNameParts] = data.contactName.split(' ');
+  const lastName = lastNameParts.join(' ');
+
+  const mappedData: GHLFormData = {
+    ...data,
+    firstName: firstName || data.contactName,
+    lastName: lastName || '',
+    rushProcessing: data.rushProcessing ? 'Yes' : 'No',
+    message: data.additionalNotes || '',
+  };
+
+  return submitToGHL('certificateOfOrigin', mappedData, ['Service: Certificate of Origin']);
+}
+
+/**
  * Get GHL calendar embed URL
  */
 export function getCalendarEmbedUrl(calendarType: keyof typeof GHL_CONFIG.calendars = 'main'): string {
