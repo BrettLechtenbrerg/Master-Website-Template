@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import { submitContactForm } from '@/lib/ghl';
 import { GHL_CONFIG } from '@/lib/ghl-config';
 
+// Force redeploy to refresh environment variables in Vercel
 const contactInfo = [
   {
     icon: MapPin,
