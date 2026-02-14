@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageHeader from '@/components/PageHeader';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LayoutList, LayoutGrid, MapPin, Clock, Search, CheckCircle2, Calendar, Loader2 } from 'lucide-react';
+import { LayoutList, LayoutGrid, MapPin, Clock, Search, CheckCircle2, Calendar, Loader2, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 
 type EventType = 'chamber' | 'community';
 
@@ -33,6 +33,11 @@ export default function EventsPage() {
     const [viewMode, setViewMode] = useState<'list' | 'card'>('list');
     const [activeFilter, setActiveFilter] = useState<'all' | EventType>('all');
     const [searchQuery, setSearchQuery] = useState('');
+    const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
+
+    const toggleExpand = (id: string) => {
+        setExpandedEventId(expandedEventId === id ? null : id);
+    };
 
     useEffect(() => {
         async function fetchEvents() {
@@ -208,59 +213,89 @@ export default function EventsPage() {
                                     className="space-y-6"
                                 >
                                     {filteredEvents.map((event) => (
-                                        <motion.div
-                                            key={event.id}
-                                            className="bg-[#3D3352] rounded-2xl p-6 border border-white/5 flex flex-col md:flex-row items-center gap-6 group hover:bg-[#463B5E] transition-colors"
-                                        >
-                                            {/* Date Badge */}
-                                            <div className="w-24 h-24 bg-[#262035] rounded-xl flex flex-col items-center justify-center border border-white/5 flex-shrink-0">
-                                                <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest leading-none mb-1">{event.month}</span>
-                                                <span className="text-3xl font-black text-white leading-none mb-1">{event.day}</span>
-                                                <span className="text-[10px] font-bold text-white/30 leading-none">{event.time}</span>
-                                            </div>
-
-                                            {/* Content */}
-                                            <div className="flex-1 text-center md:text-left">
-                                                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-2">
-                                                    <h3 className="text-xl font-bold text-white">{event.title}</h3>
-                                                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest ${event.type === 'chamber' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'}`}>
-                                                        {event.type}
-                                                    </span>
-                                                    <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-white/5 text-white/40 border border-white/10">
-                                                        {event.category}
-                                                    </span>
+                                        <React.Fragment key={event.id}>
+                                            <motion.div
+                                                className="bg-[#3D3352] rounded-2xl p-6 border border-white/5 flex flex-col md:flex-row items-center gap-6 group hover:bg-[#463B5E] transition-colors"
+                                            >
+                                                {/* Date Badge */}
+                                                <div className="w-24 h-24 bg-[#262035] rounded-xl flex flex-col items-center justify-center border border-white/5 flex-shrink-0">
+                                                    <span className="text-[10px] font-bold text-white/30 uppercase tracking-widest leading-none mb-1">{event.month}</span>
+                                                    <span className="text-3xl font-black text-white leading-none mb-1">{event.day}</span>
+                                                    <span className="text-[10px] font-bold text-white/30 leading-none">{event.time}</span>
                                                 </div>
-                                                <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-white/50">
-                                                    <div className="flex items-center gap-1.5">
-                                                        <MapPin className="w-4 h-4 text-[#F27A21]" />
-                                                        <span className="max-w-[200px] truncate md:max-w-none">{event.location}</span>
+
+                                                {/* Content */}
+                                                <div className="flex-1 text-center md:text-left">
+                                                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-2">
+                                                        <h3 className="text-xl font-bold text-white">{event.title}</h3>
+                                                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest ${event.type === 'chamber' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'}`}>
+                                                            {event.type}
+                                                        </span>
+                                                        <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest bg-white/5 text-white/40 border border-white/10">
+                                                            {event.category}
+                                                        </span>
                                                     </div>
-                                                    <div className="flex items-center gap-1.5">
-                                                        <Clock className="w-4 h-4 text-white/30" />
-                                                        <span>{event.time}</span>
+                                                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-white/50">
+                                                        <div className="flex items-center gap-1.5">
+                                                            <MapPin className="w-4 h-4 text-[#F27A21]" />
+                                                            <span className="max-w-[200px] truncate md:max-w-none">{event.location}</span>
+                                                        </div>
+                                                        <div className="flex items-center gap-1.5">
+                                                            <Clock className="w-4 h-4 text-white/30" />
+                                                            <span>{event.time}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            {/* Actions */}
-                                            <div className="flex gap-2">
-                                                {event.link && (
-                                                    <a
-                                                        href={event.link}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="px-5 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-full transition-colors border border-white/10"
+                                                {/* Actions */}
+                                                <div className="flex flex-col gap-2">
+                                                    <button
+                                                        onClick={() => toggleExpand(event.id)}
+                                                        className="px-5 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-full transition-colors border border-white/10 flex items-center gap-2"
                                                     >
-                                                        Details
-                                                    </a>
-                                                )}
-                                                {event.registerUrl && (
-                                                    <button className="px-5 py-2 bg-[#00D4FF] hover:bg-[#00B8E0] text-[#001D26] font-bold text-xs rounded-full transition-colors">
-                                                        Register
+                                                        {expandedEventId === event.id ? 'Close' : 'Details'}
+                                                        {expandedEventId === event.id ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                                                     </button>
+                                                    {event.registerUrl && (
+                                                        <button className="px-5 py-2 bg-[#00D4FF] hover:bg-[#00B8E0] text-[#001D26] font-bold text-xs rounded-full transition-colors">
+                                                            Register
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            </motion.div>
+
+                                            {/* Expanded Details - List View */}
+                                            <AnimatePresence>
+                                                {expandedEventId === event.id && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: 'auto', opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        className="overflow-hidden mb-6"
+                                                    >
+                                                        <div className="bg-[#262035]/50 border-x border-b border-white/5 rounded-b-2xl p-6 md:ml-32">
+                                                            <h4 className="text-white font-bold mb-3 uppercase tracking-widest text-[10px] opacity-40">About this Event</h4>
+                                                            <p className="text-white/70 text-sm leading-relaxed mb-6 whitespace-pre-wrap">
+                                                                {event.description || "Join us for this upcoming chamber or community event. We look forward to seeing you there!"}
+                                                            </p>
+                                                            <div className="flex gap-4">
+                                                                {event.link && (
+                                                                    <a
+                                                                        href={event.link}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="flex items-center gap-2 text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors"
+                                                                    >
+                                                                        <ExternalLink className="w-4 h-4" />
+                                                                        Add to Calendar
+                                                                    </a>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </motion.div>
                                                 )}
-                                            </div>
-                                        </motion.div>
+                                            </AnimatePresence>
+                                        </React.Fragment>
                                     ))}
                                 </motion.div>
                             ) : (
@@ -305,17 +340,43 @@ export default function EventsPage() {
                                                 </div>
                                             </div>
 
-                                            <div className="flex gap-2 pt-4 border-t border-white/5">
-                                                {event.link && (
-                                                    <a
-                                                        href={event.link}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="flex-1 py-2.5 bg-white/5 hover:bg-white/10 text-white text-center font-black text-[10px] uppercase tracking-wider rounded-xl transition-all border border-white/10 active:scale-95"
-                                                    >
-                                                        Details
-                                                    </a>
-                                                )}
+                                            <div className="flex flex-col gap-2 pt-4 border-t border-white/5">
+                                                <button
+                                                    onClick={() => toggleExpand(event.id)}
+                                                    className="flex-1 py-2.5 bg-white/5 hover:bg-white/10 text-white text-center font-black text-[10px] uppercase tracking-wider rounded-xl transition-all border border-white/10 active:scale-95 flex items-center justify-center gap-2"
+                                                >
+                                                    {expandedEventId === event.id ? 'Close' : 'Details'}
+                                                    {expandedEventId === event.id ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                                                </button>
+
+                                                <AnimatePresence>
+                                                    {expandedEventId === event.id && (
+                                                        <motion.div
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: 'auto', opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            className="overflow-hidden"
+                                                        >
+                                                            <div className="pt-4 pb-2">
+                                                                <p className="text-[11px] text-white/60 leading-relaxed mb-4 whitespace-pre-wrap italic">
+                                                                    {event.description || "Join us for this upcoming community event."}
+                                                                </p>
+                                                                {event.link && (
+                                                                    <a
+                                                                        href={event.link}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="inline-flex items-center gap-2 text-[10px] font-bold text-purple-400 hover:text-purple-300 transition-colors"
+                                                                    >
+                                                                        <ExternalLink className="w-3 h-3" />
+                                                                        Add to Calendar
+                                                                    </a>
+                                                                )}
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
+
                                                 {event.registerUrl && (
                                                     <button className="flex-1 py-2.5 bg-[#00D4FF] hover:bg-[#00B8E0] text-[#001D26] font-black text-[10px] uppercase tracking-wider rounded-xl transition-all active:scale-95">
                                                         Register

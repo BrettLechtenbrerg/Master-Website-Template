@@ -63,20 +63,24 @@ export async function GET(request: Request) {
             const start = event.start?.dateTime || event.start?.date;
             const end = event.end?.dateTime || event.end?.date;
 
-            // Parse dates for the frontend
+            // Parse dates for the frontend with forced Mountain Time
             const startDate = start ? new Date(start) : null;
+            const timeZone = 'America/Denver';
 
-            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const fMonth = startDate ? new Intl.DateTimeFormat('en-US', { month: 'short', timeZone }).format(startDate) : "TBD";
+            const fDay = startDate ? new Intl.DateTimeFormat('en-US', { day: 'numeric', timeZone }).format(startDate) : "--";
+            const fYear = startDate ? new Intl.DateTimeFormat('en-US', { year: 'numeric', timeZone }).format(startDate) : "2026";
+            const fTime = startDate ? new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone }).format(startDate) : "TBD";
 
             return {
                 id: event.id,
                 title: event.summary || "(No title)",
                 description: event.description || "",
                 location: event.location || "Murray Area Chamber of Commerce",
-                month: startDate ? monthNames[startDate.getMonth()] : "TBD",
-                day: startDate ? startDate.getDate().toString() : "--",
-                year: startDate ? startDate.getFullYear().toString() : "2026",
-                time: startDate ? startDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : "TBD",
+                month: fMonth,
+                day: fDay,
+                year: fYear,
+                time: fTime,
                 start: start || null,
                 end: end || null,
                 link: event.htmlLink || "",
