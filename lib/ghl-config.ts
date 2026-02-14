@@ -34,22 +34,22 @@ export const GHL_CONFIG = {
   // Webhook URLs for different forms
   webhooks: {
     // General contact form
-    contact: process.env.NEXT_PUBLIC_GHL_WEBHOOK_CONTACT || 'https://services.leadconnectorhq.com/hooks/YOUR_CONTACT_WEBHOOK_ID',
+    contact: process.env.NEXT_PUBLIC_GHL_WEBHOOK_CONTACT || '',
 
     // Membership application
-    membership: process.env.NEXT_PUBLIC_GHL_WEBHOOK_MEMBERSHIP || 'https://services.leadconnectorhq.com/hooks/YOUR_MEMBERSHIP_WEBHOOK_ID',
+    membership: process.env.NEXT_PUBLIC_GHL_WEBHOOK_MEMBERSHIP || '',
 
     // Ribbon cutting request
-    ribbonCutting: process.env.NEXT_PUBLIC_GHL_WEBHOOK_RIBBON || 'https://services.leadconnectorhq.com/hooks/YOUR_RIBBON_CUTTING_WEBHOOK_ID',
+    ribbonCutting: process.env.NEXT_PUBLIC_GHL_WEBHOOK_RIBBON || '',
 
     // Newsletter signup
-    newsletter: process.env.NEXT_PUBLIC_GHL_WEBHOOK_NEWSLETTER || 'https://services.leadconnectorhq.com/hooks/YOUR_NEWSLETTER_WEBHOOK_ID',
+    newsletter: process.env.NEXT_PUBLIC_GHL_WEBHOOK_NEWSLETTER || '',
 
     // Event registration
-    eventRegistration: process.env.NEXT_PUBLIC_GHL_WEBHOOK_EVENT || 'https://services.leadconnectorhq.com/hooks/YOUR_EVENT_WEBHOOK_ID',
+    eventRegistration: process.env.NEXT_PUBLIC_GHL_WEBHOOK_EVENT || '',
 
     // Certificate of Origin request
-    certificateOfOrigin: process.env.NEXT_PUBLIC_GHL_WEBHOOK_CERTIFICATE || 'https://services.leadconnectorhq.com/hooks/YOUR_CERTIFICATE_WEBHOOK_ID',
+    certificateOfOrigin: process.env.NEXT_PUBLIC_GHL_WEBHOOK_CERTIFICATE || '',
   },
 
   // GHL Calendar embed URLs (for event registration)
