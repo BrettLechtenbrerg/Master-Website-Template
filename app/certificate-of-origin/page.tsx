@@ -52,7 +52,8 @@ export default function CertificateOfOriginPage() {
     try {
       const result = await submitCertificateForm({
         companyName: formData.get('company_name') as string,
-        contactName: formData.get('contact_name') as string,
+        firstName: formData.get('first_name') as string,
+        lastName: formData.get('last_name') as string,
         email: formData.get('email') as string,
         phone: formData.get('phone') as string,
         productDescription: formData.get('product_description') as string,
@@ -249,13 +250,18 @@ export default function CertificateOfOriginPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-white/80 mb-2">Company Name *</label>
-                      <input type="text" name="company_name" required className="input-glass" placeholder="Your Company Name" />
+                      <label className="block text-sm font-medium text-white/80 mb-2">First Name *</label>
+                      <input type="text" name="first_name" required className="input-glass" placeholder="John" />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-white/80 mb-2">Contact Name *</label>
-                      <input type="text" name="contact_name" required className="input-glass" placeholder="Full Name" />
+                      <label className="block text-sm font-medium text-white/80 mb-2">Last Name *</label>
+                      <input type="text" name="last_name" required className="input-glass" placeholder="Doe" />
                     </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-white/80 mb-2">Company Name *</label>
+                    <input type="text" name="company_name" required className="input-glass" placeholder="Your Company Name" />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">

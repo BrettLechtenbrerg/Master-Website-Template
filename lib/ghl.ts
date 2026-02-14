@@ -218,7 +218,8 @@ export async function submitEventRegistration(data: {
  */
 export async function submitCertificateForm(data: {
   companyName: string;
-  contactName: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   productDescription: string;
@@ -227,14 +228,8 @@ export async function submitCertificateForm(data: {
   rushProcessing: boolean;
   additionalNotes?: string;
 }): Promise<GHLResponse> {
-  // Map contact name to firstName/lastName for GHL
-  const [firstName, ...lastNameParts] = data.contactName.split(' ');
-  const lastName = lastNameParts.join(' ');
-
   const mappedData: GHLFormData = {
     ...data,
-    firstName: firstName || data.contactName,
-    lastName: lastName || '',
     rushProcessing: data.rushProcessing ? 'Yes' : 'No',
     message: data.additionalNotes || '',
   };
