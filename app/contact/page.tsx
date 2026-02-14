@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, MessageSquare, Calendar, Users, CheckCircle, AlertCircle, ExternalLink } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
+import { submitContactForm } from '@/lib/ghl';
 import { GHL_CONFIG } from '@/lib/ghl-config';
 
 const contactInfo = [
@@ -64,61 +65,28 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Check if GHL webhook is configured
-  const isWebhookConfigured = GHL_CONFIG.webhooks.contact &&
-    !GHL_CONFIG.webhooks.contact.includes('YOUR_CONTACT_WEBHOOK_ID');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
 
-    // Prepare data for GHL - format fields as GHL expects
-    const ghlData = {
-      // Standard GHL contact fields
-      first_name: formData.firstName,
-      last_name: formData.lastName,
-      full_name: `${formData.firstName} ${formData.lastName}`,
-      email: formData.email,
-      phone: formData.phone || '',
-      company_name: formData.company || '',
-
-      // Custom fields for GHL
-      inquiry_type: formData.inquiryType,
-      message: formData.message,
-
-      // Tags for GHL automation
-      tags: [GHL_CONFIG.tags.contact, `inquiry-${formData.inquiryType}`],
-
-      // Source tracking
-      source: 'Website Contact Form',
-      website: 'themurraychamber.com',
-
-      // Timestamp
-      submitted_at: new Date().toISOString(),
-    };
-
     try {
-      if (isWebhookConfigured) {
-        // Send to GHL webhook
-        const response = await fetch(GHL_CONFIG.webhooks.contact, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(ghlData),
-        });
+      const result = await submitContactForm({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        companyName: formData.company || undefined,
+        interest: formData.inquiryType,
+        message: formData.message,
+      });
 
-        if (!response.ok) {
-          throw new Error('Failed to submit form');
-        }
+      if (result.success) {
+        setSubmitted(true);
       } else {
-        // If webhook not configured, simulate submission for demo
-        console.log('GHL Webhook not configured. Form data:', ghlData);
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        throw new Error(result.message || 'Failed to submit form');
       }
-
-      setSubmitted(true);
     } catch (err) {
       console.error('Form submission error:', err);
       setError('There was a problem submitting your message. Please try again or call us directly.');
@@ -347,12 +315,6 @@ export default function ContactPage() {
                       <Send className="w-5 h-5" />
                     </button>
 
-                    {/* GHL Integration Status - only visible when not configured */}
-                    {!isWebhookConfigured && (
-                      <p className="text-white/30 text-xs text-center mt-4">
-                        Demo mode - configure GHL webhook to enable submissions
-                      </p>
-                    )}
                   </form>
                 </>
               )}
