@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, MessageSquare, Calendar, Users, CheckCircle, AlertCircle, ExternalLink } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
@@ -65,26 +65,6 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  // Runtime GHL configuration check
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const ghlContact = GHL_CONFIG.webhooks.contact;
-      const ghlLocation = GHL_CONFIG.locationId;
-
-      console.log('--- GHL RUNTIME CHECK ---');
-      console.log('Webhook Contact found:', !!ghlContact);
-      if (ghlContact) {
-        console.log('Webhook Contact length:', ghlContact.length);
-        console.log('Webhook Contact starts with:', ghlContact.substring(0, 10) + '...');
-      }
-      console.log('Location ID found:', !!ghlLocation && !ghlLocation.includes('YOUR_'));
-      if (ghlLocation && !ghlLocation.includes('YOUR_')) {
-        console.log('Location ID ends with:', '...' + ghlLocation.substring(ghlLocation.length - 4));
-      }
-      console.log('-------------------------');
-    }
-  }, []);
 
 
   const handleSubmit = async (e: React.FormEvent) => {
