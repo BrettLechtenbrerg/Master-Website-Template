@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Users, Settings, Database, ArrowRight, Activity, ShieldCheck, LogOut } from 'lucide-react';
+import { Users, Settings, Database, ArrowRight, Activity, ShieldCheck, LogOut, FileCode } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import PageHeader from '@/components/PageHeader';
@@ -33,6 +33,14 @@ const adminModules = [
         href: '#',
         color: 'from-blue-600 to-blue-800',
         stats: 'Healthy'
+    },
+    {
+        title: 'Custom Scripts',
+        description: 'Inject header/footer scripts sitewide or on specific pages.',
+        icon: FileCode,
+        href: '/admin/scripts',
+        color: 'from-green-600 to-emerald-800',
+        stats: 'Manage Tags'
     }
 ];
 
