@@ -31,7 +31,7 @@ const footerLinks = {
     { label: 'Join the Chamber', href: '/join' },
     { label: 'Member Directory', href: '/members' },
     { label: 'Member Deals', href: '/deals' },
-    { label: 'Member Login', href: '/login' },
+    { label: 'Member Login', href: 'https://odkdbdax5gioq9qa9aa9.app.clientclub.net/communities/groups/murray-chamber-member-communit/home' },
   ],
   'About': [
     { label: 'About Us', href: '/about' },

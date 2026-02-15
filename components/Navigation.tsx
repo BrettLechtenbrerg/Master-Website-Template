@@ -178,7 +178,7 @@ export default function Navigation() {
             {/* CTA Button */}
             <div className="hidden lg:flex items-center gap-4">
               <Link
-                href="/login"
+                href="https://odkdbdax5gioq9qa9aa9.app.clientclub.net/communities/groups/murray-chamber-member-communit/home"
                 className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
               >
                 <LogIn className="w-4 h-4" />
@@ -283,7 +283,7 @@ export default function Navigation() {
 
               <div className="mt-8 pt-8 border-t border-white/10 space-y-4">
                 <Link
-                  href="/login"
+                  href="https://odkdbdax5gioq9qa9aa9.app.clientclub.net/communities/groups/murray-chamber-member-communit/home"
                   className="flex items-center justify-center gap-2 p-3 rounded-xl border border-white/20 text-white hover:bg-white/10 transition-colors"
                 >
                   <LogIn className="w-4 h-4" />
