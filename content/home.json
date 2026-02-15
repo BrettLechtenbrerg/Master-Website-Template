@@ -1,0 +1,33 @@
+{
+  "hero": {
+    "headline": "Murray Area Chamber of Commerce",
+    "subheadline": "Connecting Businesses, Building Community",
+    "ctaText": "Join the Chamber",
+    "ctaLink": "/membership"
+  },
+  "stats": {
+    "members": "300+",
+    "yearsServing": "75+",
+    "eventsPerYear": "50+"
+  },
+  "features": [
+    {
+      "title": "Networking Events",
+      "description": "Connect with local business leaders at our weekly and monthly events."
+    },
+    {
+      "title": "Business Resources",
+      "description": "Access tools, training, and support to help your business thrive."
+    },
+    {
+      "title": "Community Advocacy",
+      "description": "We advocate for policies that support local businesses and economic growth."
+    }
+  ],
+  "cta": {
+    "headline": "Ready to Grow Your Business?",
+    "description": "Join the Murray Area Chamber of Commerce and connect with a thriving business community.",
+    "buttonText": "Become a Member",
+    "buttonLink": "/membership"
+  }
+}
