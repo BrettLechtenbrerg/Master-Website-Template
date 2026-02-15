@@ -29,14 +29,19 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const maxResults = searchParams.get("maxResults") || "10";
     const timeMin = searchParams.get("timeMin") || new Date().toISOString();
+    const timeMax = searchParams.get("timeMax");
 
-    const url =
+    let url =
         `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events` +
         `?key=${encodeURIComponent(apiKey)}` +
         `&singleEvents=true` +
         `&orderBy=startTime` +
         `&timeMin=${encodeURIComponent(timeMin)}` +
         `&maxResults=${encodeURIComponent(maxResults)}`;
+
+    if (timeMax) {
+        url += `&timeMax=${encodeURIComponent(timeMax)}`;
+    }
 
     try {
         const res = await fetch(url, {

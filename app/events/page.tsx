@@ -33,6 +33,7 @@ export default function EventsPage() {
     const [viewMode, setViewMode] = useState<'list' | 'card'>('list');
     const [activeFilter, setActiveFilter] = useState<'all' | EventType>('all');
     const [searchQuery, setSearchQuery] = useState('');
+    const [showPast, setShowPast] = useState(false);
     const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
 
     const toggleExpand = (id: string) => {
@@ -41,8 +42,22 @@ export default function EventsPage() {
 
     useEffect(() => {
         async function fetchEvents() {
+            setIsLoading(true);
             try {
-                const res = await fetch('/api/calendar?maxResults=20');
+                const now = new Date();
+                let url = '/api/calendar?maxResults=50';
+
+                if (showPast) {
+                    // Set timeMin to 1 year ago and timeMax to now for past events
+                    const sixMonthsAgo = new Date();
+                    sixMonthsAgo.setMonth(now.getMonth() - 12);
+                    url += `&timeMin=${sixMonthsAgo.toISOString()}&timeMax=${now.toISOString()}`;
+                } else {
+                    // timeMin defaults to now in the API anyway, but let's be explicit
+                    url += `&timeMin=${now.toISOString()}`;
+                }
+
+                const res = await fetch(url);
                 const data = await res.json();
 
                 if (!res.ok) {
@@ -51,13 +66,21 @@ export default function EventsPage() {
                 }
 
                 if (data.items) {
-                    // Map items to include GHL urls if they exist in description (optional enhancement)
-                    const enhancedItems = data.items.map((item: any) => ({
+                    let sortedItems = data.items.map((item: any) => ({
                         ...item,
-                        // We use the calendar link as the details URL
                         detailsUrl: item.link
                     }));
-                    setEvents(enhancedItems);
+
+                    // Sort items: 
+                    // Past events -> descending (most recent first)
+                    // Upcoming events -> ascending (soonest first)
+                    sortedItems.sort((a: any, b: any) => {
+                        const dateA = new Date(a.start).getTime();
+                        const dateB = new Date(b.start).getTime();
+                        return showPast ? dateB - dateA : dateA - dateB;
+                    });
+
+                    setEvents(sortedItems);
                     setError(null);
                 }
             } catch (error) {
@@ -68,7 +91,7 @@ export default function EventsPage() {
             }
         }
         fetchEvents();
-    }, []);
+    }, [showPast]);
 
     const filteredEvents = events.filter((event) => {
         const matchesFilter = activeFilter === 'all' || event.type === activeFilter;
@@ -121,10 +144,23 @@ export default function EventsPage() {
                     <div className="glass-card border border-white/10 p-8 sm:p-12 !bg-[#262035]/80">
                         <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
                             <div>
-                                <h2 className="text-2xl font-black text-white uppercase tracking-tighter mb-2">Upcoming Events</h2>
-                                <p className="text-sm text-white/50">Use filters to browse chamber and community opportunities.</p>
+                                <h2 className="text-2xl font-black text-white uppercase tracking-tighter mb-2">
+                                    {showPast ? 'Past Events' : 'Upcoming Events'}
+                                </h2>
+                                <p className="text-sm text-white/50">
+                                    {showPast
+                                        ? 'View our previous chamber and community gatherings.'
+                                        : 'Use filters to browse chamber and community opportunities.'}
+                                </p>
                             </div>
-                            <div className="text-right">
+                            <div className="flex flex-col items-end gap-3">
+                                <button
+                                    onClick={() => setShowPast(!showPast)}
+                                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-xs font-bold text-white/60 hover:text-white hover:bg-white/10 transition-all flex items-center gap-2"
+                                >
+                                    <Calendar className="w-3.5 h-3.5" />
+                                    {showPast ? 'View Upcoming Events' : 'View Past Events'}
+                                </button>
                                 <span className="text-xs font-bold text-purple-400/60 uppercase tracking-widest bg-purple-500/5 px-3 py-1 rounded-full border border-purple-500/10">
                                     {filteredEvents.length} Events Found
                                 </span>
