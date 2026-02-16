@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -49,6 +50,13 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Hide footer on Power Hub pages
+  if (pathname?.startsWith('/power-hub')) {
+    return null;
+  }
+
   return (
     <footer className="footer-glass relative overflow-hidden w-full">
       {/* Top Wave */}
