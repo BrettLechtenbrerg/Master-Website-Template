@@ -1,40 +1,83 @@
-import { list } from '@vercel/blob';
 import { NextResponse } from 'next/server';
 
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_OWNER = process.env.GITHUB_OWNER || 'BoardChairIs1';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'web';
+const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
+
+interface GitHubFile {
+  name: string;
+  path: string;
+  sha: string;
+  size: number;
+  type: string;
+  download_url: string;
+}
+
 export async function GET(): Promise<NextResponse> {
+  if (!GITHUB_TOKEN) {
+    return NextResponse.json({
+      error: 'GitHub token not configured. Please add GITHUB_TOKEN to environment variables.',
+      media: []
+    });
+  }
+
   try {
-    // Check if token is configured
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
-      console.error('BLOB_READ_WRITE_TOKEN is not configured');
+    // List files in the uploads directory
+    const response = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/public/images/uploads?ref=${GITHUB_BRANCH}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json',
+        },
+        cache: 'no-store',
+      }
+    );
+
+    // If folder doesn't exist or is empty
+    if (response.status === 404) {
+      return NextResponse.json({ media: [] });
+    }
+
+    if (!response.ok) {
+      const error = await response.json();
       return NextResponse.json({
-        error: 'Blob storage not configured',
+        error: `GitHub API error: ${error.message}`,
         media: []
       });
     }
 
-    // List all blobs in the uploads folder
-    const { blobs } = await list({
-      prefix: 'uploads/',
-      token: process.env.BLOB_READ_WRITE_TOKEN,
-    });
+    const files: GitHubFile[] = await response.json();
+
+    // Filter only image files
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+    const imageFiles = files.filter(file =>
+      file.type === 'file' &&
+      imageExtensions.some(ext => file.name.toLowerCase().endsWith(ext))
+    );
 
     // Transform to our MediaFile format
-    const media = blobs.map((blob) => ({
-      id: blob.pathname,
-      name: blob.pathname.split('/').pop()?.replace(/^\d+-/, '') || blob.pathname,
-      url: blob.url,
-      size: formatFileSize(blob.size),
-      uploaded: formatDate(blob.uploadedAt),
-      uploadedAt: blob.uploadedAt,
-    }));
+    const media = imageFiles.map(file => {
+      // Extract timestamp from filename if present (format: timestamp-originalname.ext)
+      const timestampMatch = file.name.match(/^(\d+)-/);
+      const timestamp = timestampMatch ? parseInt(timestampMatch[1]) : Date.now();
 
-    // Sort by upload date (newest first)
-    media.sort((a, b) => {
-      return new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime();
+      return {
+        id: file.sha,
+        name: file.name.replace(/^\d+-/, ''), // Remove timestamp prefix for display
+        url: `/images/uploads/${file.name}`, // Public URL path
+        size: formatFileSize(file.size),
+        uploaded: formatDate(new Date(timestamp)),
+        timestamp: timestamp,
+      };
     });
 
-    // Remove uploadedAt from response
-    const cleanMedia = media.map(({ uploadedAt, ...rest }) => rest);
+    // Sort by timestamp (newest first)
+    media.sort((a, b) => b.timestamp - a.timestamp);
+
+    // Remove timestamp from response
+    const cleanMedia = media.map(({ timestamp, ...rest }) => rest);
 
     return NextResponse.json({ media: cleanMedia });
   } catch (error) {
@@ -54,12 +97,12 @@ function formatFileSize(bytes: number): string {
 
 function formatDate(date: Date): string {
   const now = new Date();
-  const diff = now.getTime() - new Date(date).getTime();
+  const diff = now.getTime() - date.getTime();
 
   if (diff < 60000) return 'Just now';
   if (diff < 3600000) return Math.floor(diff / 60000) + ' min ago';
   if (diff < 86400000) return Math.floor(diff / 3600000) + ' hours ago';
   if (diff < 604800000) return Math.floor(diff / 86400000) + ' days ago';
 
-  return new Date(date).toLocaleDateString();
+  return date.toLocaleDateString();
 }
