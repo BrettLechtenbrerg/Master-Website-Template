@@ -5,8 +5,8 @@ import Header from '@/components/power-hub/Header';
 import { Save, Globe, Palette, Bell, Shield, Key } from 'lucide-react';
 
 export default function SettingsPage() {
-  const [siteName, setSiteName] = useState('Partners 4 Prevention');
-  const [siteUrl, setSiteUrl] = useState('https://p4p-website.vercel.app');
+  const [siteName, setSiteName] = useState('Murray Area Chamber of Commerce');
+  const [siteUrl, setSiteUrl] = useState('https://chamber-web.vercel.app');
   const [saving, setSaving] = useState(false);
 
   const handleSave = async () => {
