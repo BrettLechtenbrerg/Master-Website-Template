@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "headline": "About the Murray Area Chamber of Commerce",
+    "subheadline": "Serving the Murray business community since 1950"
+  },
+  "mission": {
+    "title": "Our Mission",
+    "description": "The Murray Area Chamber of Commerce is dedicated to promoting economic growth, fostering business relationships, and enhancing the quality of life in our community."
+  },
+  "vision": {
+    "title": "Our Vision",
+    "description": "To be the leading voice for business in Murray, creating a thriving economic environment where businesses of all sizes can succeed."
+  },
+  "values": [
+    {
+      "title": "Community",
+      "description": "We believe in building strong connections between businesses and the community we serve."
+    },
+    {
+      "title": "Integrity",
+      "description": "We operate with transparency and honesty in all our dealings."
+    },
+    {
+      "title": "Innovation",
+      "description": "We embrace new ideas and approaches to help businesses grow."
+    },
+    {
+      "title": "Collaboration",
+      "description": "We work together with members, partners, and stakeholders to achieve common goals."
+    }
+  ],
+  "history": {
+    "title": "Our History",
+    "description": "Founded in 1950, the Murray Area Chamber of Commerce has been a cornerstone of the local business community for over 70 years. We've helped thousands of businesses grow and thrive in Murray."
+  }
+}

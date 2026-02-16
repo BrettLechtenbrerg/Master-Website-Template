@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "headline": "Board of Directors",
+    "subheadline": "Leadership guiding the Murray Area Chamber of Commerce"
+  },
+  "intro": {
+    "title": "Our Leadership",
+    "description": "The Murray Area Chamber of Commerce is led by a dedicated Board of Directors who volunteer their time and expertise to serve the business community."
+  },
+  "positions": [
+    {
+      "title": "Board Chair",
+      "description": "Leads the Board of Directors and sets strategic direction"
+    },
+    {
+      "title": "Vice Chair",
+      "description": "Supports the Chair and leads key initiatives"
+    },
+    {
+      "title": "Treasurer",
+      "description": "Oversees financial management and reporting"
+    },
+    {
+      "title": "Secretary",
+      "description": "Maintains records and communications"
+    }
+  ],
+  "cta": {
+    "headline": "Interested in Board Service?",
+    "description": "We're always looking for passionate business leaders to join our board",
+    "buttonText": "Learn More",
+    "buttonLink": "/contact"
+  }
+}

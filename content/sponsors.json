@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "headline": "Our Sponsors",
+    "subheadline": "Thank you to the businesses that support our mission"
+  },
+  "intro": {
+    "title": "Partner With Us",
+    "description": "Our sponsors make it possible for us to serve the Murray business community. Through their generous support, we're able to host events, provide resources, and advocate for local businesses."
+  },
+  "levels": [
+    {
+      "name": "Platinum Sponsors",
+      "description": "Our highest level of partnership"
+    },
+    {
+      "name": "Gold Sponsors",
+      "description": "Major supporters of the Chamber"
+    },
+    {
+      "name": "Silver Sponsors",
+      "description": "Valued partners in our mission"
+    },
+    {
+      "name": "Bronze Sponsors",
+      "description": "Supporting the local business community"
+    }
+  ],
+  "cta": {
+    "headline": "Become a Sponsor",
+    "description": "Increase your visibility and support the Murray business community",
+    "buttonText": "Learn More",
+    "buttonLink": "/contact"
+  }
+}

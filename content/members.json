@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "headline": "Our Members",
+    "subheadline": "Meet the businesses that make Murray thrive"
+  },
+  "intro": {
+    "title": "Murray's Business Community",
+    "description": "Our member businesses represent the best of Murray. From small startups to established enterprises, our members are committed to excellence and community involvement."
+  },
+  "categories": [
+    "All",
+    "Retail",
+    "Professional Services",
+    "Healthcare",
+    "Restaurant & Food",
+    "Technology",
+    "Construction",
+    "Finance",
+    "Education",
+    "Nonprofit"
+  ],
+  "cta": {
+    "headline": "Join Our Growing Community",
+    "description": "Become a member and connect with Murray's thriving business network",
+    "buttonText": "Become a Member",
+    "buttonLink": "/join"
+  }
+}

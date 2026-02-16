@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "headline": "Join the Chamber",
+    "subheadline": "Invest in your business and community"
+  },
+  "benefits": {
+    "title": "Membership Benefits",
+    "items": [
+      "Networking events and business mixers",
+      "Business directory listing",
+      "Marketing and promotional opportunities",
+      "Ribbon cutting ceremonies",
+      "Professional development workshops",
+      "Advocacy and representation",
+      "Member-to-member discounts",
+      "Community involvement opportunities"
+    ]
+  },
+  "levels": [
+    {
+      "name": "Basic",
+      "price": "$250",
+      "period": "per year",
+      "features": [
+        "Business directory listing",
+        "Networking events access",
+        "Monthly newsletter"
+      ]
+    },
+    {
+      "name": "Professional",
+      "price": "$500",
+      "period": "per year",
+      "features": [
+        "All Basic benefits",
+        "Enhanced directory listing",
+        "Social media promotion",
+        "1 ribbon cutting per year"
+      ]
+    },
+    {
+      "name": "Executive",
+      "price": "$1,000",
+      "period": "per year",
+      "features": [
+        "All Professional benefits",
+        "Premium directory placement",
+        "Event sponsorship opportunities",
+        "Unlimited ribbon cuttings"
+      ]
+    }
+  ],
+  "cta": {
+    "headline": "Ready to Join?",
+    "description": "Complete our membership application to get started.",
+    "buttonText": "Apply Now",
+    "buttonLink": "/membership-application"
+  }
+}

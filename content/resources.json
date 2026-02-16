@@ -1,0 +1,44 @@
+{
+  "hero": {
+    "headline": "Business Resources",
+    "subheadline": "Tools and information to help your business succeed"
+  },
+  "categories": [
+    {
+      "title": "Starting a Business",
+      "description": "Resources for entrepreneurs and new business owners",
+      "items": [
+        "Business licensing information",
+        "Utah business registration",
+        "SBA resources",
+        "Small business grants"
+      ]
+    },
+    {
+      "title": "Growing Your Business",
+      "description": "Tools to take your business to the next level",
+      "items": [
+        "Marketing resources",
+        "Networking opportunities",
+        "Professional development",
+        "Business mentorship"
+      ]
+    },
+    {
+      "title": "Community Resources",
+      "description": "Local resources and support",
+      "items": [
+        "Murray City services",
+        "Economic development",
+        "Local workforce programs",
+        "Community partnerships"
+      ]
+    }
+  ],
+  "cta": {
+    "headline": "Need Help?",
+    "description": "Contact us for personalized assistance with your business needs",
+    "buttonText": "Contact Us",
+    "buttonLink": "/contact"
+  }
+}

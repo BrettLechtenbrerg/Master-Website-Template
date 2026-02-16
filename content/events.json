@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "headline": "Chamber Events",
+    "subheadline": "Connect, Learn, and Grow with the Murray Business Community"
+  },
+  "categories": [
+    {
+      "name": "Weekly Events",
+      "description": "Regular networking opportunities every week",
+      "link": "/events/weekly"
+    },
+    {
+      "name": "Monthly Events",
+      "description": "Our signature monthly gatherings",
+      "link": "/events/monthly"
+    },
+    {
+      "name": "Annual Events",
+      "description": "Don't miss our biggest events of the year",
+      "link": "/events/annual"
+    },
+    {
+      "name": "Professional Development",
+      "description": "Workshops and training to grow your skills",
+      "link": "/events/professional-development"
+    }
+  ],
+  "cta": {
+    "headline": "Want to Host an Event?",
+    "description": "Partner with the Chamber to reach the Murray business community",
+    "buttonText": "Contact Us",
+    "buttonLink": "/contact"
+  }
+}

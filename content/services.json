@@ -1,0 +1,44 @@
+{
+  "hero": {
+    "headline": "Member Services",
+    "subheadline": "Resources and benefits to help your business succeed"
+  },
+  "services": [
+    {
+      "title": "Networking Events",
+      "description": "Regular opportunities to connect with fellow business owners and potential customers.",
+      "icon": "users"
+    },
+    {
+      "title": "Business Directory",
+      "description": "Get listed in our online directory and increase your visibility to the community.",
+      "icon": "book"
+    },
+    {
+      "title": "Marketing Support",
+      "description": "Promote your business through our newsletters, social media, and website.",
+      "icon": "megaphone"
+    },
+    {
+      "title": "Advocacy",
+      "description": "We represent business interests at local and state government levels.",
+      "icon": "shield"
+    },
+    {
+      "title": "Professional Development",
+      "description": "Access workshops, seminars, and training to grow your skills.",
+      "icon": "graduation"
+    },
+    {
+      "title": "Ribbon Cuttings",
+      "description": "Celebrate your grand opening or milestone with a Chamber ribbon cutting.",
+      "icon": "scissors"
+    }
+  ],
+  "cta": {
+    "headline": "Ready to Get Started?",
+    "description": "Join the Chamber today and access all these benefits and more.",
+    "buttonText": "Join Now",
+    "buttonLink": "/join"
+  }
+}

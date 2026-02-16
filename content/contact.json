@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "headline": "Contact Us",
+    "subheadline": "We'd love to hear from you"
+  },
+  "info": {
+    "address": "5250 S. Commerce Dr. Suite 180, Murray, UT 84107",
+    "phone": "(801) 263-2632",
+    "email": "info@themurraychamber.com",
+    "hours": "Monday - Friday: 9:00 AM - 5:00 PM"
+  },
+  "form": {
+    "title": "Send Us a Message",
+    "description": "Fill out the form below and we'll get back to you as soon as possible."
+  },
+  "socialMedia": {
+    "facebook": "https://www.facebook.com/MurrayAreaChamber",
+    "instagram": "https://www.instagram.com/murrayareachamber",
+    "linkedin": "https://www.linkedin.com/company/murray-area-chamber-of-commerce"
+  }
+}
