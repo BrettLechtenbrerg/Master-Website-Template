@@ -55,7 +55,26 @@ CREATE POLICY "Allow public access to members" ON public.members
   FOR ALL USING (true) WITH CHECK (true);
 
 -- ============================================
--- 3. STORAGE BUCKET FOR MEMBER LOGOS
+-- 3. PORTAL SETTINGS TABLE
+-- For storing credentials and other settings
+-- ============================================
+CREATE TABLE IF NOT EXISTS public.portal_settings (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  setting_key TEXT NOT NULL UNIQUE,
+  setting_value JSONB NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable RLS
+ALTER TABLE public.portal_settings ENABLE ROW LEVEL SECURITY;
+
+-- Allow public read/write
+CREATE POLICY "Allow public access to portal_settings" ON public.portal_settings
+  FOR ALL USING (true) WITH CHECK (true);
+
+-- ============================================
+-- 4. STORAGE BUCKET FOR MEMBER LOGOS
 -- ============================================
 -- Note: Run this separately in Storage section or use:
 INSERT INTO storage.buckets (id, name, public)

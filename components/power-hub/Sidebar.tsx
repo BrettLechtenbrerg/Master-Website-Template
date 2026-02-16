@@ -11,6 +11,7 @@ import {
   Users,
   Code,
   Calendar,
+  Settings,
   LogOut
 } from 'lucide-react';
 
@@ -22,6 +23,7 @@ const menuItems = [
   { name: 'Scripts', href: '/power-hub/dashboard/scripts', icon: Code },
   { name: 'Calendar', href: '/power-hub/dashboard/calendar', icon: Calendar },
   { name: 'AI Assist', href: '/power-hub/dashboard/ai', icon: Sparkles },
+  { name: 'Settings', href: '/power-hub/dashboard/settings', icon: Settings },
 ];
 
 export default function Sidebar() {

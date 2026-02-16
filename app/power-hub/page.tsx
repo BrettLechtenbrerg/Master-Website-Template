@@ -4,6 +4,11 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+
+// Default credentials (fallback if Supabase not configured)
+const DEFAULT_USERNAME = 'chamberadmin';
+const DEFAULT_PASSWORD = 'chamber2026';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -18,12 +23,39 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
 
-    if (username === 'chamberadmin' && password === 'chamber2026') {
-      localStorage.setItem('chamber_power_hub_auth', 'true');
-      router.push('/power-hub/dashboard');
-    } else {
-      setError('Invalid username or password');
-      setLoading(false);
+    try {
+      // Try to get credentials from Supabase
+      const { data: settings } = await supabase
+        .from('portal_settings')
+        .select('setting_value')
+        .eq('setting_key', 'credentials')
+        .single();
+
+      let validUsername = DEFAULT_USERNAME;
+      let validPassword = DEFAULT_PASSWORD;
+
+      if (settings?.setting_value) {
+        const creds = settings.setting_value;
+        validUsername = creds.username || DEFAULT_USERNAME;
+        validPassword = creds.password || DEFAULT_PASSWORD;
+      }
+
+      if (username === validUsername && password === validPassword) {
+        localStorage.setItem('chamber_power_hub_auth', 'true');
+        router.push('/power-hub/dashboard');
+      } else {
+        setError('Invalid username or password');
+        setLoading(false);
+      }
+    } catch {
+      // Fallback to hardcoded credentials if Supabase fails
+      if (username === DEFAULT_USERNAME && password === DEFAULT_PASSWORD) {
+        localStorage.setItem('chamber_power_hub_auth', 'true');
+        router.push('/power-hub/dashboard');
+      } else {
+        setError('Invalid username or password');
+        setLoading(false);
+      }
     }
   };
 
@@ -112,10 +144,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Demo credentials hint */}
-        <div className="mt-6 text-center text-white/80 text-sm">
-          <p>Demo: chamberadmin / chamber2026</p>
-        </div>
       </div>
     </div>
   );
