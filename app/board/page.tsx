@@ -6,100 +6,37 @@ import Image from 'next/image';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import boardContent from '@/content/board.json';
 
-const boardMembers = [
-  {
-    name: 'Brett Lechtenberg',
-    title: 'Chair of the Board',
-    subtitle: 'Education Chair',
-    bio: 'Brett leads the Chamber board and chairs the Education Committee, driving initiatives to support Murray businesses.',
-    linkedin: '#',
-    email: 'info@themurraychamber.com',
-    image: '/images/board/brett-lechtenberg.png',
-  },
-  {
-    name: 'Kristen Latimer',
-    title: 'Vice Chair of the Board',
-    subtitle: 'Marketing Chair',
-    bio: 'Kristen serves as Vice Chair and leads marketing initiatives to promote Chamber members and programs.',
-    linkedin: '#',
-    email: 'info@themurraychamber.com',
-  },
-  {
-    name: 'Amber Miller',
-    title: 'Treasurer',
-    bio: 'Amber oversees Chamber finances, ensuring responsible stewardship of member resources.',
-    linkedin: '#',
-    email: 'info@themurraychamber.com',
-  },
-  {
-    name: 'Elvon Farrell',
-    title: 'Chair of Bylaws',
-    subtitle: 'Parliamentarian',
-    bio: 'Elvon leads the Bylaws Committee and serves as Parliamentarian for board proceedings.',
-    linkedin: '#',
-    email: 'info@themurraychamber.com',
-  },
-  {
-    name: 'Lenny Leslie',
-    title: 'Advisor to the Board',
-    bio: 'Lenny provides strategic guidance and institutional knowledge as Advisor to the Board.',
-    linkedin: '#',
-    email: 'info@themurraychamber.com',
-  },
-  {
-    name: 'Dorie Olds',
-    title: 'Secretary',
-    subtitle: 'Women in Business; Ribbon Cutting Committee',
-    bio: 'Dorie serves as Secretary and leads both the Women in Business and Ribbon Cutting Committees.',
-    linkedin: '#',
-    email: 'info@themurraychamber.com',
-  },
-  {
-    name: 'John Doe',
-    title: 'Board Member',
-    bio: 'Board member position.',
-    linkedin: '#',
-    email: 'info@themurraychamber.com',
-  },
-  {
-    name: 'John Doe',
-    title: 'Board Member',
-    bio: 'Board member position.',
-    linkedin: '#',
-    email: 'info@themurraychamber.com',
-  },
-];
+interface BoardMember {
+  name: string;
+  title: string;
+  subtitle?: string;
+  bio: string;
+  linkedin?: string;
+  email: string;
+  image?: string;
+}
 
-const staff = [
-  {
-    name: 'Kathy White',
-    title: 'President & CEO',
-    subtitle: 'Ambassador Chair',
-    bio: 'Kathy leads the Murray Area Chamber of Commerce and chairs the Ambassador program, driving member engagement and community growth.',
-    email: 'info@themurraychamber.com',
-  },
-  {
-    name: 'Page',
-    title: 'Executive Assistant',
-    bio: 'Page provides essential administrative support to ensure smooth Chamber operations and member services.',
-    email: 'info@themurraychamber.com',
-  },
-  {
-    name: 'John Doe',
-    title: 'Staff Member',
-    bio: 'Staff position.',
-    email: 'info@themurraychamber.com',
-  },
-];
+interface StaffMember {
+  name: string;
+  title: string;
+  subtitle?: string;
+  bio: string;
+  email: string;
+  image?: string;
+}
 
 export default function BoardPage() {
+  const boardMembers: BoardMember[] = boardContent.boardMembers;
+  const staff: StaffMember[] = boardContent.staff;
+
   return (
     <>
       <PageHeader
         badge="Leadership"
-        title="Board of Directors"
-        description="Meet the dedicated business leaders who volunteer their time and expertise to guide the Murray Area Chamber of Commerce."
+        title={boardContent.hero.headline}
+        description={boardContent.hero.subheadline}
         breadcrumbs={[
           { label: 'About', href: '/about' },
           { label: 'Board of Directors' },
@@ -114,14 +51,14 @@ export default function BoardPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white">Board Members</h2>
-            <p className="mt-4 text-white/60">Our volunteer board provides strategic direction and governance.</p>
+            <h2 className="text-3xl font-bold text-white">{boardContent.boardSection.title}</h2>
+            <p className="mt-4 text-white/60">{boardContent.boardSection.description}</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {boardMembers.map((member, index) => (
               <motion.div
-                key={member.name}
+                key={`${member.name}-${index}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
@@ -150,12 +87,14 @@ export default function BoardPage() {
                 )}
                 <p className="mt-4 text-white/60 text-sm line-clamp-3">{member.bio}</p>
                 <div className="mt-4 flex justify-center gap-3">
-                  <a
-                    href={member.linkedin}
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
-                  >
-                    <Linkedin className="w-4 h-4 text-white/60" />
-                  </a>
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
+                    >
+                      <Linkedin className="w-4 h-4 text-white/60" />
+                    </a>
+                  )}
                   <a
                     href={`mailto:${member.email}`}
                     className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
@@ -177,23 +116,34 @@ export default function BoardPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white">Chamber Staff</h2>
-            <p className="mt-4 text-white/60">Our dedicated team works daily to serve our members.</p>
+            <h2 className="text-3xl font-bold text-white">{boardContent.staffSection.title}</h2>
+            <p className="mt-4 text-white/60">{boardContent.staffSection.description}</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {staff.map((person, index) => (
               <motion.div
-                key={person.name}
+                key={`${person.name}-${index}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-card p-8 text-center"
               >
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-600 to-orange-500 mx-auto mb-6 flex items-center justify-center shadow-lg">
-                  <span className="text-4xl font-bold text-white">
-                    {person.name.split(' ').map(n => n[0]).join('')}
-                  </span>
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-600 to-orange-500 mx-auto mb-6 flex items-center justify-center shadow-lg overflow-hidden">
+                  {person.image ? (
+                    <Image
+                      src={person.image}
+                      alt={person.name}
+                      width={128}
+                      height={128}
+                      className="w-full h-full object-cover"
+                      unoptimized
+                    />
+                  ) : (
+                    <span className="text-4xl font-bold text-white">
+                      {person.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  )}
                 </div>
                 <h3 className="text-xl font-semibold text-white">{person.name}</h3>
                 <p className="text-purple-400 font-medium">{person.title}</p>
@@ -222,16 +172,16 @@ export default function BoardPage() {
             animate={{ opacity: 1, y: 0 }}
             className="glass-strong rounded-3xl p-8 md:p-12 text-center"
           >
-            <h2 className="text-3xl font-bold text-white">Interested in Serving?</h2>
+            <h2 className="text-3xl font-bold text-white">{boardContent.cta.headline}</h2>
             <p className="mt-4 text-white/60 max-w-2xl mx-auto">
-              Board positions are filled through nominations. Contact us to learn about opportunities to serve on the board or join a committee.
+              {boardContent.cta.description}
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Link href="/contact">
-                <button className="btn-glow">Contact Us</button>
+              <Link href={boardContent.cta.buttonLink}>
+                <button className="btn-glow">{boardContent.cta.buttonText}</button>
               </Link>
-              <Link href="/ambassadors">
-                <button className="btn-secondary">View Ambassadors</button>
+              <Link href={boardContent.cta.secondaryButtonLink}>
+                <button className="btn-secondary">{boardContent.cta.secondaryButtonText}</button>
               </Link>
             </div>
           </motion.div>

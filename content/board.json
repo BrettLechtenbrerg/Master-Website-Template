@@ -3,32 +3,120 @@
     "headline": "Board of Directors",
     "subheadline": "Leadership guiding the Murray Area Chamber of Commerce"
   },
-  "intro": {
-    "title": "Our Leadership",
-    "description": "The Murray Area Chamber of Commerce is led by a dedicated Board of Directors who volunteer their time and expertise to serve the business community."
+  "boardSection": {
+    "title": "Board Members",
+    "description": "Our volunteer board provides strategic direction and governance."
   },
-  "positions": [
+  "boardMembers": [
     {
-      "title": "Board Chair",
-      "description": "Leads the Board of Directors and sets strategic direction"
+      "name": "Brett Lechtenberg",
+      "title": "Chair of the Board",
+      "subtitle": "Education Chair",
+      "bio": "Brett leads the Chamber board and chairs the Education Committee, driving initiatives to support Murray businesses.",
+      "linkedin": "#",
+      "email": "info@themurraychamber.com",
+      "image": "/images/board/brett-lechtenberg.png"
     },
     {
-      "title": "Vice Chair",
-      "description": "Supports the Chair and leads key initiatives"
+      "name": "Kristen Latimer",
+      "title": "Vice Chair of the Board",
+      "subtitle": "Marketing Chair",
+      "bio": "Kristen serves as Vice Chair and leads marketing initiatives to promote Chamber members and programs.",
+      "linkedin": "#",
+      "email": "info@themurraychamber.com",
+      "image": ""
     },
     {
+      "name": "Amber Miller",
       "title": "Treasurer",
-      "description": "Oversees financial management and reporting"
+      "subtitle": "",
+      "bio": "Amber oversees Chamber finances, ensuring responsible stewardship of member resources.",
+      "linkedin": "#",
+      "email": "info@themurraychamber.com",
+      "image": ""
     },
     {
+      "name": "Elvon Farrell",
+      "title": "Chair of Bylaws",
+      "subtitle": "Parliamentarian",
+      "bio": "Elvon leads the Bylaws Committee and serves as Parliamentarian for board proceedings.",
+      "linkedin": "#",
+      "email": "info@themurraychamber.com",
+      "image": ""
+    },
+    {
+      "name": "Lenny Leslie",
+      "title": "Advisor to the Board",
+      "subtitle": "",
+      "bio": "Lenny provides strategic guidance and institutional knowledge as Advisor to the Board.",
+      "linkedin": "#",
+      "email": "info@themurraychamber.com",
+      "image": ""
+    },
+    {
+      "name": "Dorie Olds",
       "title": "Secretary",
-      "description": "Maintains records and communications"
+      "subtitle": "Women in Business; Ribbon Cutting Committee",
+      "bio": "Dorie serves as Secretary and leads both the Women in Business and Ribbon Cutting Committees.",
+      "linkedin": "#",
+      "email": "info@themurraychamber.com",
+      "image": ""
+    },
+    {
+      "name": "John Doe",
+      "title": "Board Member",
+      "subtitle": "",
+      "bio": "Board member position.",
+      "linkedin": "#",
+      "email": "info@themurraychamber.com",
+      "image": ""
+    },
+    {
+      "name": "John Doe",
+      "title": "Board Member",
+      "subtitle": "",
+      "bio": "Board member position.",
+      "linkedin": "#",
+      "email": "info@themurraychamber.com",
+      "image": ""
+    }
+  ],
+  "staffSection": {
+    "title": "Chamber Staff",
+    "description": "Our dedicated team works daily to serve our members."
+  },
+  "staff": [
+    {
+      "name": "Kathy White",
+      "title": "President & CEO",
+      "subtitle": "Ambassador Chair",
+      "bio": "Kathy leads the Murray Area Chamber of Commerce and chairs the Ambassador program, driving member engagement and community growth.",
+      "email": "info@themurraychamber.com",
+      "image": ""
+    },
+    {
+      "name": "Page",
+      "title": "Executive Assistant",
+      "subtitle": "",
+      "bio": "Page provides essential administrative support to ensure smooth Chamber operations and member services.",
+      "email": "info@themurraychamber.com",
+      "image": ""
+    },
+    {
+      "name": "John Doe",
+      "title": "Staff Member",
+      "subtitle": "",
+      "bio": "Staff position.",
+      "email": "info@themurraychamber.com",
+      "image": ""
     }
   ],
   "cta": {
-    "headline": "Interested in Board Service?",
-    "description": "We're always looking for passionate business leaders to join our board",
-    "buttonText": "Learn More",
-    "buttonLink": "/contact"
+    "headline": "Interested in Serving?",
+    "description": "Board positions are filled through nominations. Contact us to learn about opportunities to serve on the board or join a committee.",
+    "buttonText": "Contact Us",
+    "buttonLink": "/contact",
+    "secondaryButtonText": "View Ambassadors",
+    "secondaryButtonLink": "/ambassadors"
   }
 }

@@ -6,115 +6,52 @@ import Link from 'next/link';
 import { Crown, Star, Award, Sparkles, Building2, ArrowRight, CheckCircle } from 'lucide-react';
 import PageHeader from '@/components/PageHeader';
 import Footer from '@/components/Footer';
+import sponsorsContent from '@/content/sponsors.json';
 
 // Sponsor tiers with prestigious styling
-const sponsorTiers = [
-  {
-    name: 'Platinum',
+const tierStyles = {
+  Platinum: {
     icon: Crown,
     color: 'from-slate-300 via-white to-slate-400',
     borderColor: 'border-slate-300/50',
     glowColor: 'shadow-slate-300/20',
-    description: 'Our most distinguished partners',
   },
-  {
-    name: 'Gold',
+  Gold: {
     icon: Star,
     color: 'from-yellow-400 via-amber-300 to-yellow-500',
     borderColor: 'border-yellow-400/50',
     glowColor: 'shadow-yellow-400/20',
-    description: 'Premier business leaders',
   },
-  {
-    name: 'Silver',
+  Silver: {
     icon: Award,
     color: 'from-gray-300 via-slate-200 to-gray-400',
     borderColor: 'border-gray-300/50',
     glowColor: 'shadow-gray-300/20',
-    description: 'Valued community supporters',
   },
-];
+};
 
-// Current sponsors - 6 placeholder spots ready for real sponsors
-const currentSponsors = [
-  {
-    id: 1,
-    name: 'Your Business Here',
-    tier: 'Platinum',
-    description: 'Become a Platinum Sponsor and gain premier visibility across all Chamber events and communications.',
-    logo: null, // Will use MACC logo as placeholder
-    website: null,
-    isPlaceholder: true,
-  },
-  {
-    id: 2,
-    name: 'Your Business Here',
-    tier: 'Platinum',
-    description: 'Join our exclusive circle of Platinum sponsors and showcase your commitment to Murray\'s business community.',
-    logo: null,
-    website: null,
-    isPlaceholder: true,
-  },
-  {
-    id: 3,
-    name: 'Your Business Here',
-    tier: 'Gold',
-    description: 'Gold sponsors receive prominent recognition at Chamber events and in our member communications.',
-    logo: null,
-    website: null,
-    isPlaceholder: true,
-  },
-  {
-    id: 4,
-    name: 'Your Business Here',
-    tier: 'Gold',
-    description: 'Elevate your brand with Gold sponsor status and connect with hundreds of local business leaders.',
-    logo: null,
-    website: null,
-    isPlaceholder: true,
-  },
-  {
-    id: 5,
-    name: 'Your Business Here',
-    tier: 'Silver',
-    description: 'Silver sponsors demonstrate their dedication to strengthening Murray\'s local economy.',
-    logo: null,
-    website: null,
-    isPlaceholder: true,
-  },
-  {
-    id: 6,
-    name: 'Your Business Here',
-    tier: 'Silver',
-    description: 'Support the Chamber as a Silver sponsor and be recognized throughout our community.',
-    logo: null,
-    website: null,
-    isPlaceholder: true,
-  },
-];
-
-const sponsorBenefits = [
-  'Premier logo placement on Chamber website',
-  'Recognition at all Chamber events',
-  'Featured in monthly newsletter',
-  'Social media spotlight campaigns',
-  'Exclusive networking opportunities',
-  'Priority booth placement at events',
-  'Speaking opportunities at luncheons',
-  'Direct access to 500+ member businesses',
-];
+interface Sponsor {
+  name: string;
+  tier: string;
+  description: string;
+  logo?: string;
+  website?: string;
+  isPlaceholder?: boolean;
+}
 
 export default function SponsorsPage() {
   const getTierStyle = (tierName: string) => {
-    return sponsorTiers.find(t => t.name === tierName) || sponsorTiers[2];
+    return tierStyles[tierName as keyof typeof tierStyles] || tierStyles.Silver;
   };
+
+  const sponsors: Sponsor[] = sponsorsContent.sponsors;
 
   return (
     <>
       <PageHeader
         badge="Sponsors"
-        title="Chamber Sponsors"
-        description="Meet the distinguished businesses that power the Murray Area Chamber of Commerce. Our sponsors are the cornerstone of our community's economic vitality."
+        title={sponsorsContent.hero.headline}
+        description={sponsorsContent.hero.subheadline}
         breadcrumbs={[
           { label: 'Membership', href: '/join' },
           { label: 'Chamber Sponsors' },
@@ -132,35 +69,37 @@ export default function SponsorsPage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-orange-500/20 border border-purple-500/30 mb-6">
               <Sparkles className="w-4 h-4 text-orange-400" />
-              <span className="text-sm font-medium text-white/80">An Elite Partnership</span>
+              <span className="text-sm font-medium text-white/80">{sponsorsContent.intro.badge}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Supporting Murray&apos;s Business Excellence
+              {sponsorsContent.intro.title}
             </h2>
             <p className="text-lg text-white/70">
-              For over 75 years, the Murray Area Chamber of Commerce has been the catalyst for business
-              growth and community prosperity. Our sponsors enjoy unparalleled visibility and the prestige
-              of being recognized as leaders who invest in our collective success.
+              {sponsorsContent.intro.description}
             </p>
           </motion.div>
 
           {/* Tier Legend */}
           <div className="grid md:grid-cols-3 gap-6 mb-16">
-            {sponsorTiers.map((tier, index) => (
-              <motion.div
-                key={tier.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className={`glass-card p-6 text-center border ${tier.borderColor} hover:shadow-lg ${tier.glowColor} transition-all duration-300`}
-              >
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${tier.color} mx-auto mb-4 flex items-center justify-center shadow-lg`}>
-                  <tier.icon className="w-8 h-8 text-purple-900" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">{tier.name} Sponsors</h3>
-                <p className="text-white/60 text-sm">{tier.description}</p>
-              </motion.div>
-            ))}
+            {sponsorsContent.tiers.map((tier, index) => {
+              const style = getTierStyle(tier.name);
+              const TierIcon = style.icon;
+              return (
+                <motion.div
+                  key={tier.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`glass-card p-6 text-center border ${style.borderColor} hover:shadow-lg ${style.glowColor} transition-all duration-300`}
+                >
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${style.color} mx-auto mb-4 flex items-center justify-center shadow-lg`}>
+                    <TierIcon className="w-8 h-8 text-purple-900" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{tier.name} Sponsors</h3>
+                  <p className="text-white/60 text-sm">{tier.description}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -183,12 +122,12 @@ export default function SponsorsPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentSponsors.map((sponsor, index) => {
+            {sponsors.map((sponsor, index) => {
               const tierStyle = getTierStyle(sponsor.tier);
 
               return (
                 <motion.div
-                  key={sponsor.id}
+                  key={`sponsor-${index}`}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -203,19 +142,20 @@ export default function SponsorsPage() {
 
                   {/* Logo Area */}
                   <div className="w-32 h-32 mx-auto mb-6 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center group-hover:border-orange-500/50 transition-colors overflow-hidden">
-                    {sponsor.isPlaceholder ? (
-                      <div className="text-center p-4">
-                        <Building2 className="w-12 h-12 text-white/40 mx-auto mb-2" />
-                        <span className="text-xs text-white/40">Your Logo Here</span>
-                      </div>
-                    ) : (
+                    {sponsor.logo && !sponsor.isPlaceholder ? (
                       <Image
-                        src={sponsor.logo || '/images/macc-logo.png'}
+                        src={sponsor.logo}
                         alt={sponsor.name}
                         width={120}
                         height={120}
                         className="object-contain p-2"
+                        unoptimized
                       />
+                    ) : (
+                      <div className="text-center p-4">
+                        <Building2 className="w-12 h-12 text-white/40 mx-auto mb-2" />
+                        <span className="text-xs text-white/40">Your Logo Here</span>
+                      </div>
                     )}
                   </div>
 
@@ -290,7 +230,7 @@ export default function SponsorsPage() {
                 Sponsor Benefits Include
               </h3>
               <ul className="space-y-4">
-                {sponsorBenefits.map((benefit, index) => (
+                {sponsorsContent.benefits.map((benefit, index) => (
                   <motion.li
                     key={benefit}
                     initial={{ opacity: 0, x: 20 }}
@@ -318,30 +258,29 @@ export default function SponsorsPage() {
           >
             <Crown className="w-16 h-16 text-orange-400 mx-auto mb-6" />
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Elevate Your Brand?
+              {sponsorsContent.cta.headline}
             </h2>
             <p className="text-lg text-white/70 mb-8 max-w-2xl mx-auto">
-              Join Murray&apos;s most influential businesses as a Chamber sponsor.
-              Limited sponsorship opportunities available.
+              {sponsorsContent.cta.description}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
+              <Link href={sponsorsContent.cta.buttonLink}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="btn-glow"
                 >
-                  Contact Us Today
+                  {sponsorsContent.cta.buttonText}
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </Link>
-              <Link href="/join">
+              <Link href={sponsorsContent.cta.secondaryButtonLink}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="btn-secondary"
                 >
-                  Learn About Membership
+                  {sponsorsContent.cta.secondaryButtonText}
                 </motion.button>
               </Link>
             </div>

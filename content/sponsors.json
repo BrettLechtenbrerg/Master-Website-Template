@@ -1,34 +1,93 @@
 {
   "hero": {
-    "headline": "Our Sponsors",
-    "subheadline": "Thank you to the businesses that support our mission"
+    "headline": "Chamber Sponsors",
+    "subheadline": "Meet the distinguished businesses that power the Murray Area Chamber of Commerce"
   },
   "intro": {
-    "title": "Partner With Us",
-    "description": "Our sponsors make it possible for us to serve the Murray business community. Through their generous support, we're able to host events, provide resources, and advocate for local businesses."
+    "badge": "An Elite Partnership",
+    "title": "Supporting Murray's Business Excellence",
+    "description": "For over 75 years, the Murray Area Chamber of Commerce has been the catalyst for business growth and community prosperity. Our sponsors enjoy unparalleled visibility and the prestige of being recognized as leaders who invest in our collective success."
   },
-  "levels": [
+  "tiers": [
     {
-      "name": "Platinum Sponsors",
-      "description": "Our highest level of partnership"
+      "name": "Platinum",
+      "description": "Our most distinguished partners"
     },
     {
-      "name": "Gold Sponsors",
-      "description": "Major supporters of the Chamber"
+      "name": "Gold",
+      "description": "Premier business leaders"
     },
     {
-      "name": "Silver Sponsors",
-      "description": "Valued partners in our mission"
-    },
-    {
-      "name": "Bronze Sponsors",
-      "description": "Supporting the local business community"
+      "name": "Silver",
+      "description": "Valued community supporters"
     }
   ],
+  "sponsors": [
+    {
+      "name": "Your Business Here",
+      "tier": "Platinum",
+      "description": "Become a Platinum Sponsor and gain premier visibility across all Chamber events and communications.",
+      "logo": "",
+      "website": "",
+      "isPlaceholder": true
+    },
+    {
+      "name": "Your Business Here",
+      "tier": "Platinum",
+      "description": "Join our exclusive circle of Platinum sponsors and showcase your commitment to Murray's business community.",
+      "logo": "",
+      "website": "",
+      "isPlaceholder": true
+    },
+    {
+      "name": "Your Business Here",
+      "tier": "Gold",
+      "description": "Gold sponsors receive prominent recognition at Chamber events and in our member communications.",
+      "logo": "",
+      "website": "",
+      "isPlaceholder": true
+    },
+    {
+      "name": "Your Business Here",
+      "tier": "Gold",
+      "description": "Elevate your brand with Gold sponsor status and connect with hundreds of local business leaders.",
+      "logo": "",
+      "website": "",
+      "isPlaceholder": true
+    },
+    {
+      "name": "Your Business Here",
+      "tier": "Silver",
+      "description": "Silver sponsors demonstrate their dedication to strengthening Murray's local economy.",
+      "logo": "",
+      "website": "",
+      "isPlaceholder": true
+    },
+    {
+      "name": "Your Business Here",
+      "tier": "Silver",
+      "description": "Support the Chamber as a Silver sponsor and be recognized throughout our community.",
+      "logo": "",
+      "website": "",
+      "isPlaceholder": true
+    }
+  ],
+  "benefits": [
+    "Premier logo placement on Chamber website",
+    "Recognition at all Chamber events",
+    "Featured in monthly newsletter",
+    "Social media spotlight campaigns",
+    "Exclusive networking opportunities",
+    "Priority booth placement at events",
+    "Speaking opportunities at luncheons",
+    "Direct access to 500+ member businesses"
+  ],
   "cta": {
-    "headline": "Become a Sponsor",
-    "description": "Increase your visibility and support the Murray business community",
-    "buttonText": "Learn More",
-    "buttonLink": "/contact"
+    "headline": "Ready to Elevate Your Brand?",
+    "description": "Join Murray's most influential businesses as a Chamber sponsor. Limited sponsorship opportunities available.",
+    "buttonText": "Contact Us Today",
+    "buttonLink": "/contact",
+    "secondaryButtonText": "Learn About Membership",
+    "secondaryButtonLink": "/join"
   }
 }
