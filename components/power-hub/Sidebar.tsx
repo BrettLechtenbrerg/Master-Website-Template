@@ -10,6 +10,7 @@ import {
   Sparkles,
   Users,
   Code,
+  Calendar,
   LogOut
 } from 'lucide-react';
 
@@ -19,6 +20,7 @@ const menuItems = [
   { name: 'Media', href: '/power-hub/dashboard/media', icon: ImageIcon },
   { name: 'Members', href: '/power-hub/dashboard/members', icon: Users },
   { name: 'Scripts', href: '/power-hub/dashboard/scripts', icon: Code },
+  { name: 'Calendar', href: '/power-hub/dashboard/calendar', icon: Calendar },
   { name: 'AI Assist', href: '/power-hub/dashboard/ai', icon: Sparkles },
 ];
 
