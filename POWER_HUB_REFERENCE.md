@@ -12,15 +12,23 @@
 | **Live Site** | https://web-seven-beta-31.vercel.app/ |
 | **Power Hub Login** | https://web-seven-beta-31.vercel.app/power-hub |
 | **GitHub Repo** | https://github.com/BoardChairIs1/web |
-| **Vercel Dashboard** | https://vercel.com (check your account) |
+| **Vercel Dashboard** | https://vercel.com/board-chairs-projects/web |
+| **Supabase Dashboard** | https://supabase.com/dashboard |
 
 ---
 
 ## Login Credentials
 
 **Power Hub Admin:**
-- Username: `p4padmin` (or set via `PORTAL_USERNAME`)
-- Password: `p4p2026` (or set via `PORTAL_PASSWORD`)
+- Username: `chamberadmin`
+- Password: `chamber2026`
+
+**Supabase Account:**
+- Email: `boardchair@themurraychamber.com`
+- Password: `Cheesefrogs24!`
+- Project Name: `Murray Chamber`
+- Database Password: `Cheesefrogs24!`
+- GitHub: `BoardChairIs1`
 
 ---
 
@@ -34,15 +42,26 @@ These must be set in **Vercel → Project Settings → Environment Variables**:
 |----------|-------------|--------|
 | `GITHUB_TOKEN` | GitHub Personal Access Token with `repo` scope | ✅ Set |
 
-### Optional (For Full Features)
+### Supabase Variables (Required for Members/Scripts)
+
+| Variable | Description | How to Get |
+|----------|-------------|------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | Supabase Dashboard → Settings → API → Project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key | Supabase Dashboard → Settings → API → anon public |
+
+**To get these values:**
+1. Log in to https://supabase.com with `boardchair@themurraychamber.com`
+2. Open the "Murray Chamber" project
+3. Go to **Settings** (gear icon) → **API**
+4. Copy "Project URL" → `NEXT_PUBLIC_SUPABASE_URL`
+5. Copy "anon public" key → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+6. Add both to Vercel: Project Settings → Environment Variables
+
+### Optional Variables
 
 | Variable | Description | Status |
 |----------|-------------|--------|
-| `PORTAL_USERNAME` | Custom admin username (default: p4padmin) | Optional |
-| `PORTAL_PASSWORD` | Custom admin password (default: p4p2026) | Optional |
 | `VERCEL_DEPLOY_HOOK` | Auto-rebuild after content changes | Optional |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | ⏳ Pending (Manny) |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous key | ⏳ Pending (Manny) |
 
 ### GitHub Token Note
 
@@ -131,7 +150,8 @@ All changes are committed and pushed. Nothing to lose!
 → Key is saved in browser localStorage
 
 ### Members/Scripts showing database error?
-→ Need `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from Manny
+→ Need `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in Vercel
+→ Get from Supabase Dashboard → Settings → API (see instructions above)
 
 ### Need to redeploy?
 1. Make any change and push to GitHub, OR
