@@ -7,6 +7,8 @@ import {
   FileJson,
   Image as ImageIcon,
   Sparkles,
+  Users,
+  Code,
   LogOut
 } from 'lucide-react';
 
@@ -14,6 +16,8 @@ const menuItems = [
   { name: 'Dashboard', href: '/power-hub/dashboard', icon: LayoutDashboard },
   { name: 'Content', href: '/power-hub/dashboard/content', icon: FileJson },
   { name: 'Media', href: '/power-hub/dashboard/media', icon: ImageIcon },
+  { name: 'Members', href: '/power-hub/dashboard/members', icon: Users },
+  { name: 'Scripts', href: '/power-hub/dashboard/scripts', icon: Code },
   { name: 'AI Assist', href: '/power-hub/dashboard/ai', icon: Sparkles },
 ];
 
