@@ -7,9 +7,8 @@ import { Calendar, ExternalLink, Copy, Check } from 'lucide-react';
 export default function CalendarPage() {
   const [copied, setCopied] = useState(false);
 
-  // Google Calendar embed URL - replace with your actual calendar ID
-  // Format: https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID
-  const calendarUrl = "https://calendar.google.com/calendar/embed?src=themurraychamber.com_calendar%40gmail.com&ctz=America%2FDenver";
+  // Murray Chamber Google Calendar
+  const calendarUrl = "https://calendar.google.com/calendar/embed?src=c_7520e087ff811008a73b29edf8bd3e08f648bff6acd8784a45796f2fc44f28c1%40group.calendar.google.com&ctz=America%2FDenver";
 
   const copyUrl = () => {
     navigator.clipboard.writeText(calendarUrl);
