@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const GITHUB_OWNER = process.env.GITHUB_OWNER || 'BoardChairIs1';
-const GITHUB_REPO = process.env.GITHUB_REPO || 'web';
-const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
+const GITHUB_OWNER = 'BoardChairIs1';
+const GITHUB_REPO = 'web';
+const GITHUB_BRANCH = 'main';
 
 export async function POST(request: Request): Promise<NextResponse> {
   if (!GITHUB_TOKEN) {
