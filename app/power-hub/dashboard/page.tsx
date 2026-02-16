@@ -70,7 +70,7 @@ export default function Dashboard() {
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-semibold text-gray-900">Partners 4 Prevention Website</h2>
+              <h2 className="text-lg font-semibold text-gray-900">Murray Chamber Website</h2>
               <p className="text-gray-500 mt-1">View your live website</p>
             </div>
             <a

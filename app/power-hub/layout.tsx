@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Power Hub | Partners 4 Prevention',
-  description: 'Content Management System for P4P',
+  title: 'Power Hub | Murray Chamber',
+  description: 'Content Management System for Murray Area Chamber of Commerce',
   robots: 'noindex, nofollow',
 };
 
@@ -12,10 +12,7 @@ export default function PowerHubLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className="fixed inset-0 bg-white overflow-auto"
-      style={{ zIndex: 9999 }}
-    >
+    <div className="fixed inset-0 bg-white overflow-auto" style={{ zIndex: 99999 }}>
       {children}
     </div>
   );
