@@ -83,9 +83,72 @@ If you need to regenerate:
 - ✅ **Media** - Upload and manage images (stored in GitHub)
 - ✅ **AI Assist** - Claude-powered content improvement (uses your API key, saved in browser)
 
-### Pending Supabase Setup
-- ⏳ **Members** - Member directory management (needs Supabase vars)
-- ⏳ **Scripts** - Custom scripts management (needs Supabase vars)
+### Requires Supabase Database Tables
+- ⏳ **Members** - Member directory management (needs `members` table)
+- ⏳ **Scripts** - Custom scripts management (needs `custom_scripts` table)
+
+---
+
+## Supabase Database Setup
+
+**Run this SQL in Supabase to create the required tables:**
+
+1. Log in to https://supabase.com with `boardchair@themurraychamber.com`
+2. Open "Murray Chamber" project
+3. Go to **SQL Editor** (left sidebar)
+4. Paste and run this SQL:
+
+```sql
+-- Enable UUID extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- CUSTOM SCRIPTS TABLE
+CREATE TABLE IF NOT EXISTS public.custom_scripts (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  name TEXT NOT NULL,
+  location TEXT NOT NULL CHECK (location IN ('header', 'footer')),
+  scope TEXT NOT NULL CHECK (scope IN ('sitewide', 'page')),
+  page_path TEXT,
+  content TEXT NOT NULL,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.custom_scripts ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public access to custom_scripts" ON public.custom_scripts
+  FOR ALL USING (true) WITH CHECK (true);
+
+-- MEMBERS TABLE
+CREATE TABLE IF NOT EXISTS public.members (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  name TEXT NOT NULL,
+  category TEXT NOT NULL,
+  address TEXT NOT NULL,
+  phone TEXT,
+  website TEXT,
+  image_url TEXT,
+  tier TEXT NOT NULL DEFAULT 'member' CHECK (tier IN ('sponsor', 'ambassador', 'member')),
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.members ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public access to members" ON public.members
+  FOR ALL USING (true) WITH CHECK (true);
+```
+
+5. Click **Run** (or Cmd+Enter)
+6. You should see "Success. No rows returned"
+
+### Storage Bucket (For Member Logos)
+
+1. Go to **Storage** in the left sidebar
+2. Click **New Bucket**
+3. Name: `member-logos`
+4. Check **Public bucket**
+5. Click **Create bucket**
 
 ---
 
@@ -149,9 +212,16 @@ All changes are committed and pushed. Nothing to lose!
 → Verify your Claude API key is entered in the AI Assist page
 → Key is saved in browser localStorage
 
-### Members/Scripts showing database error?
+### Members/Scripts showing "table not found" error?
+→ The database tables haven't been created yet
+→ Run the SQL in the "Supabase Database Setup" section above
+
+### Members/Scripts showing "could not find table" error?
+→ Same as above - run the SQL to create tables
+
+### Supabase connection error?
 → Need `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in Vercel
-→ Get from Supabase Dashboard → Settings → API (see instructions above)
+→ Get from Supabase Dashboard → Settings → API
 
 ### Need to redeploy?
 1. Make any change and push to GitHub, OR
