@@ -8,6 +8,7 @@ interface MediaFile {
   id: string;
   name: string;
   url: string;
+  previewUrl?: string;
   size: string;
   uploaded: string;
 }
@@ -84,6 +85,7 @@ export default function MediaPage() {
           id: 'new-' + Date.now().toString() + '-' + i,
           name: data.filename || file.name,
           url: data.url,
+          previewUrl: data.previewUrl,
           size: (file.size / 1024).toFixed(1) + ' KB',
           uploaded: 'Just now',
         };
@@ -274,7 +276,7 @@ export default function MediaPage() {
             {filteredMedia.map((file) => (
               <div key={file.id} className="bg-white rounded-xl border border-gray-200 p-3 group">
                 <div className="aspect-square relative rounded-lg overflow-hidden bg-gray-100 mb-3">
-                  <img src={file.url} alt={file.name} className="w-full h-full object-cover" />
+                  <img src={file.previewUrl || file.url} alt={file.name} className="w-full h-full object-cover" />
                 </div>
                 <p className="text-sm font-medium truncate mb-1">{file.name}</p>
                 <p className="text-xs text-gray-400 mb-3">{file.size} • {file.uploaded}</p>
@@ -329,7 +331,7 @@ export default function MediaPage() {
             {filteredMedia.map((file) => (
               <div key={file.id} className="flex items-center justify-between p-4 border-b border-gray-100 last:border-0 gap-4">
                 <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <img src={file.url} alt={file.name} className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
+                  <img src={file.previewUrl || file.url} alt={file.name} className="w-12 h-12 rounded-lg object-cover flex-shrink-0" />
                   <div className="min-w-0 flex-1">
                     <p className="font-medium truncate">{file.name}</p>
                     <p className="text-sm text-gray-500">{file.size} • {file.uploaded}</p>

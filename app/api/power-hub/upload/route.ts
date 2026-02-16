@@ -79,12 +79,15 @@ export async function POST(request: Request): Promise<NextResponse> {
       );
     }
 
-    // Return the public URL for the image
-    // The URL will be /images/uploads/filename (relative to public/)
+    // Return both URLs:
+    // - url: relative path for use in content (works after deploy)
+    // - previewUrl: raw GitHub URL for immediate preview
     const publicUrl = `/images/uploads/${filename}`;
+    const previewUrl = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/public/images/uploads/${filename}`;
 
     return NextResponse.json({
       url: publicUrl,
+      previewUrl: previewUrl,
       filename: filename,
       originalName: file.name,
       size: file.size,

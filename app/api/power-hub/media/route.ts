@@ -66,7 +66,8 @@ export async function GET(): Promise<NextResponse> {
       return {
         id: file.sha,
         name: file.name.replace(/^\d+-/, ''), // Remove timestamp prefix for display
-        url: `/images/uploads/${file.name}`, // Public URL path
+        url: `/images/uploads/${file.name}`, // Public URL path for content
+        previewUrl: `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/public/images/uploads/${file.name}`, // Raw GitHub URL for preview
         size: formatFileSize(file.size),
         uploaded: formatDate(new Date(timestamp)),
         timestamp: timestamp,
