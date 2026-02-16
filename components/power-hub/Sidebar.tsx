@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
@@ -35,8 +36,14 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="p-6 border-b border-white/10">
         <Link href="/power-hub/dashboard" className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center font-bold text-lg">
-            MC
+          <div className="w-10 h-10 rounded-lg overflow-hidden bg-white flex items-center justify-center">
+            <Image
+              src="/images/macc-logo.png"
+              alt="Murray Chamber"
+              width={40}
+              height={40}
+              className="w-full h-full object-contain p-1"
+            />
           </div>
           <div>
             <h1 className="font-bold text-lg">Power Hub</h1>
