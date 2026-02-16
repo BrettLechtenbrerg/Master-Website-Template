@@ -18,13 +18,18 @@
 
 import { NextResponse } from 'next/server';
 
-// GitHub API configuration
+// GitHub API configuration - hardcoded for reliability
 const GITHUB_API = 'https://api.github.com';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_OWNER = 'BoardChairIs1';
+const GITHUB_REPO = 'web';
+const GITHUB_BRANCH = 'main';
+
 const getConfig = () => ({
-  token: process.env.GITHUB_TOKEN,
-  owner: process.env.GITHUB_OWNER,
-  repo: process.env.GITHUB_REPO,
-  branch: process.env.GITHUB_BRANCH || 'main',
+  token: GITHUB_TOKEN,
+  owner: GITHUB_OWNER,
+  repo: GITHUB_REPO,
+  branch: GITHUB_BRANCH,
 });
 
 // Helper: Make authenticated GitHub API request
