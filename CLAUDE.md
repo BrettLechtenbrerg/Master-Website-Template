@@ -114,17 +114,30 @@ GCAL_CALENDAR_ID=               # Calendar ID
 VERCEL_DEPLOY_HOOK=             # Auto-redeploy trigger
 ```
 
-## Deployment
-```bash
-# Build and test
-npm run build
+## Deployment (CLI ONLY - Disable GitHub Auto-Deploy)
 
-# Deploy to Vercel
+**IMPORTANT**: After linking Vercel, disconnect GitHub auto-deploy:
+```bash
+vercel git disconnect --yes
+```
+
+**Deploy workflow (Vercel builds remotely - no local build needed):**
+```bash
+# Deploy to production
 vercel --prod --yes
 
-# Push to GitHub
-git add -A && git commit -m "Initial setup" && git push -u origin main
+# Git commit (do AFTER successful deploy)
+git add -A && git commit -m "Description" && git push origin main
 ```
+
+**Why CLI only:**
+- Avoids port conflicts from local builds
+- More reliable than GitHub auto-deploy
+- Vercel builds remotely (faster, no local issues)
+
+**Do NOT run locally unless debugging:**
+- `npm run dev` - Only if you need to test locally
+- `npm run build` - Not needed, Vercel builds remotely
 
 ## Reference Documents
 - `BUILD-GUIDE.txt` - Complete build checklist and pricing
