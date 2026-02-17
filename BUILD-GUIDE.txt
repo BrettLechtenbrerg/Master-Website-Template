@@ -4,10 +4,13 @@
 ================================================================================
 
 Created: February 16, 2026
-Based on: Murray Area Chamber of Commerce Website & Power Hub
-Reference Project: /Users/brettlechtenberg/Desktop/Claude Projects/Chamber-Website
+Last Updated: February 16, 2026
 
-This document provides everything needed to recreate this system for a new client.
+TEMPLATE REPO: https://github.com/BrettLechtenbrerg/Master-Website-Template
+LOCAL PATH:    /Users/brettlechtenberg/Desktop/Claude Projects/Master-Website-Template
+
+This document provides everything needed to build a new client website with
+the Power Hub CMS. Clone from YOUR template repo above - not from any client.
 
 ================================================================================
                               SYSTEM OVERVIEW
@@ -458,18 +461,38 @@ ONGOING:
 - Support/maintenance (optional retainer)
 
 ================================================================================
-                         REFERENCE PROJECT
+                         MASTER TEMPLATE REPOSITORY
 ================================================================================
 
-Murray Chamber Website:
-- GitHub: https://github.com/BoardChairIs1/web
-- Live: https://web-seven-beta-31.vercel.app/
-- Power Hub: https://web-seven-beta-31.vercel.app/power-hub
-- Login: chamberadmin / chamber2026
-- Supabase: boardchair@themurraychamber.com
+*** USE THIS REPO TO START NEW CLIENT BUILDS ***
 
-Local Path:
-/Users/brettlechtenberg/Desktop/Claude Projects/Chamber-Website
+GitHub:      https://github.com/BrettLechtenbrerg/Master-Website-Template
+Local Path:  /Users/brettlechtenberg/Desktop/Claude Projects/Master-Website-Template
+
+Clone Command:
+  git clone https://github.com/BrettLechtenbrerg/Master-Website-Template.git [client-name]-website
+
+After Cloning:
+  cd [client-name]-website
+  rm -rf .git
+  git init
+  git remote add origin [new-client-repo-url]
+  npm install
+  cp .env.example .env.local
+
+================================================================================
+                    ORIGINAL REFERENCE (Historical Only)
+================================================================================
+
+The template was originally built for Murray Area Chamber of Commerce.
+These references are for historical context only - you may lose access.
+
+Murray Chamber:
+- Original GitHub: BoardChairIs1/web (client-owned, may lose access)
+- Chamber Local Copy: /Users/brettlechtenberg/Desktop/Claude Projects/Chamber-Website
+
+Note: Your Master-Website-Template repo contains the complete, working codebase.
+Always clone from YOUR repo for new builds.
 
 ================================================================================
                               END OF DOCUMENT
