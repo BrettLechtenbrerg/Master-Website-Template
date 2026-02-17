@@ -396,16 +396,18 @@ BUILD:
 [ ] Update logo files
 [ ] Configure sidebar with needed features only
 [ ] Set up content JSON files for client's pages
-[ ] Test all features locally
+[ ] NO local testing needed - deploy directly to Vercel
 
-DEPLOYMENT:
-[ ] Push to GitHub
-[ ] Connect to Vercel
-[ ] Add environment variables to Vercel
+DEPLOYMENT (CLI ONLY - No GitHub Auto-Deploy):
+[ ] Create GitHub repo: gh repo create [name] --private
+[ ] Link Vercel: vercel link --yes --project [name]
+[ ] DISABLE auto-deploy: vercel git disconnect --yes
+[ ] Add environment variables to Vercel dashboard
+[ ] Deploy via CLI: vercel --prod --yes
 [ ] Run Supabase SQL migrations
 [ ] Create storage buckets if needed
 [ ] Set up custom domain
-[ ] Test production deployment
+[ ] Git commit AFTER successful deploy
 
 HANDOFF:
 [ ] Create client documentation (POWER_HUB_REFERENCE.md)
