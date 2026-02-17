@@ -1,166 +1,137 @@
-# Murray Area Chamber of Commerce Website
+# Master Website Template - Power Hub CMS
 
 ## Project Overview
-Official website for the **Murray Area Chamber of Commerce** - serving Murray, Utah businesses since 1948.
+Master template for building client websites with the **Power Hub CMS** system. Clone this repo to start a new client build.
 
-- **Live Site**: https://macc-website-2.vercel.app
-- **Vercel Project**: `bretts-projects-3e254e58/macc-website-2`
-- **GitHub Repo**: `BrettLechtenbrerg/MACC-Website`
+- **Template Repo**: https://github.com/BrettLechtenbrerg/Master-Website-Template
+- **Based On**: Murray Area Chamber of Commerce Website
 
 ## Tech Stack
-- **Framework**: Next.js 16 with React 19
+- **Framework**: Next.js 14+ with App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS 3.4.18 (NOT v4 - had spacing issues)
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
-- **Deployment**: Vercel (via CLI)
+- **Database**: Supabase (PostgreSQL + Storage)
+- **Deployment**: Vercel
 
-## Brand Colors
+## Quick Start for New Client
+
+### 1. Clone Template
+```bash
+git clone https://github.com/BrettLechtenbrerg/Master-Website-Template.git [client-name]-website
+cd [client-name]-website
+rm -rf .git
+git init
+git remote add origin [new-client-repo-url]
 ```
-Purple (Primary):  #4B2E83
-Purple Light:      #7A59B5
-Orange (Accent):   #F27A21
-Orange Light:      #F9A45A
-Charcoal (BG):     #1C1C1C
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Set Up Environment
+```bash
+cp .env.example .env.local
+# Edit .env.local with client's credentials
+```
+
+### 4. Set Up Supabase
+- Create new Supabase project
+- Run SQL from `supabase/migrations/001_initial_schema.sql`
+- Create `member-logos` storage bucket (if using Members feature)
+
+### 5. Customize Branding
+- Update colors in `tailwind.config.ts`
+- Replace logo in `public/images/`
+- Update company name throughout
+
+### 6. Configure Features
+Edit `components/power-hub/Sidebar.tsx` to include/exclude features:
+```typescript
+const menuItems = [
+  { name: 'Dashboard', href: '/power-hub/dashboard', icon: LayoutDashboard },
+  { name: 'Content', href: '/power-hub/dashboard/content', icon: FileJson },
+  { name: 'Media', href: '/power-hub/dashboard/media', icon: ImageIcon },
+  // Comment out features client doesn't need:
+  // { name: 'Members', href: '/power-hub/dashboard/members', icon: Users },
+  // { name: 'Scripts', href: '/power-hub/dashboard/scripts', icon: Code },
+  // { name: 'Calendar', href: '/power-hub/dashboard/calendar', icon: Calendar },
+  { name: 'AI Assist', href: '/power-hub/dashboard/ai', icon: Sparkles },
+  { name: 'Settings', href: '/power-hub/dashboard/settings', icon: Settings },
+];
 ```
 
 ## Project Structure
 ```
-MACC-Website/
+project-root/
 ├── app/
-│   ├── page.tsx              # Homepage
-│   ├── layout.tsx            # Root layout (metadata, fonts, icons)
-│   ├── globals.css           # Global styles + glassmorphic design
-│   ├── icon.png              # Favicon (MACC logo)
-│   ├── apple-icon.png        # Apple touch icon
-│   ├── about/                # About the Chamber
-│   ├── board/                # Board of Directors
-│   ├── ambassadors/          # Ambassador program
-│   ├── mycc/                 # Murray Youth Community Council
-│   ├── contact/              # Contact form
-│   ├── join/                 # Membership signup
-│   ├── members/              # Member directory
-│   ├── directory/            # Business directory
-│   ├── deals/                # Member-to-member deals
-│   ├── resources/            # Small business resources (govt links)
-│   ├── ribbon-cutting/       # Ribbon cutting requests
-│   ├── certificate-of-origin/ # Certificate services
-│   ├── good-things-utah/     # GTU partnership
-│   ├── legalshield/          # LegalShield partner page
-│   ├── events/
-│   │   ├── chamber/          # Chamber events
-│   │   └── community/        # Community calendar
-│   ├── news/
-│   │   ├── chamber/          # Chamber news
-│   │   └── community/        # Community news
-│   ├── login/                # Member login
-│   ├── privacy/              # Privacy policy
-│   └── terms/                # Terms of service
+│   ├── power-hub/           # Admin CMS portal
+│   │   ├── page.tsx         # Login page
+│   │   └── dashboard/       # All admin pages
+│   ├── api/                 # API routes
+│   └── (public pages)/      # Public website pages
 ├── components/
-│   ├── Navigation.tsx        # Main nav with dropdowns
-│   ├── Hero.tsx              # Homepage hero
-│   ├── Features.tsx          # Service cards
-│   ├── Events.tsx            # Events section
-│   ├── Testimonials.tsx      # Member testimonials
-│   ├── ContactForm.tsx       # Contact form (GHL integration)
-│   ├── Footer.tsx            # Site footer
-│   ├── PageHeader.tsx        # Page headers
-│   └── animations/           # FadeIn, ScaleIn, StaggerChildren
+│   ├── power-hub/           # Admin components (Sidebar, Header)
+│   └── (public components)/ # Navigation, Footer, etc.
+├── content/                 # JSON content files (editable via CMS)
 ├── lib/
-│   ├── ghl.ts                # Go High Level utilities
-│   └── ghl-config.ts         # GHL webhook configuration
-├── public/
-│   └── images/               # Static images
-│       ├── macc-logo.png     # Official MACC logo
-│       ├── hero/             # Hero backgrounds
-│       ├── features/         # Feature card images
-│       ├── events/           # Event images
-│       ├── testimonials/     # Member photos
-│       └── team/             # Staff/board photos
-└── [config files]
+│   └── supabase.ts          # Supabase client
+├── supabase/
+│   └── migrations/          # Database setup SQL
+└── public/images/           # Static assets
 ```
 
-## Deployment Workflow
+## Power Hub Features
 
-**IMPORTANT**: Always use Vercel CLI - do NOT rely on GitHub auto-deploy.
+### Core (Always Include)
+- **Dashboard**: Overview and quick stats
+- **Content Editor**: Edit JSON content files via GitHub
+- **Media Library**: Upload/manage images via GitHub
+- **Settings**: Change login credentials
+- **Login**: Secure admin access
 
+### Optional (Client Choice)
+- **AI Assist**: Claude-powered content improvement (needs API key)
+- **Members**: Member/client directory (needs Supabase)
+- **Scripts**: Tracking code manager (needs Supabase)
+- **Calendar**: Embedded Google Calendar
+
+## Environment Variables
+
+**Required:**
+```
+GITHUB_TOKEN=ghp_xxxx           # For content/media via GitHub
+NEXT_PUBLIC_SUPABASE_URL=       # Supabase project URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY=  # Supabase anon key
+```
+
+**Optional:**
+```
+GCAL_API_KEY=                   # Google Calendar API
+GCAL_CALENDAR_ID=               # Calendar ID
+VERCEL_DEPLOY_HOOK=             # Auto-redeploy trigger
+```
+
+## Deployment
 ```bash
-# Navigate to project
-cd "/Users/brettlechtenberg/Desktop/Claude Projects/MACC-Website"
-
-# Build and test locally
+# Build and test
 npm run build
 
-# Commit and push to GitHub
-git add -A && git commit -m "Description" && git push origin main
-
-# Deploy to Vercel production
+# Deploy to Vercel
 vercel --prod --yes
 
-# Update alias if needed
-vercel alias [deployment-url] macc-website-2.vercel.app
+# Push to GitHub
+git add -A && git commit -m "Initial setup" && git push -u origin main
 ```
 
-## Key Files
+## Reference Documents
+- `BUILD-GUIDE.txt` - Complete build checklist and pricing
+- `POWER_HUB_REFERENCE.md` - Client documentation template
+- `POWER_HUB_SETUP.md` - Detailed setup instructions
 
-| File | Purpose |
-|------|---------|
-| `app/layout.tsx` | Metadata, fonts, favicon, root layout |
-| `app/resources/page.tsx` | Business resources (govt links + LegalShield) |
-| `app/about/page.tsx` | Chamber history, mission, timeline |
-| `components/Navigation.tsx` | Nav menu + MACC logo |
-| `components/Hero.tsx` | Homepage stats (75+ years, 500+ members) |
-| `components/Footer.tsx` | Contact info, "since 1948" tagline |
-| `lib/ghl-config.ts` | GHL webhook URLs (need to be configured) |
-| `tailwind.config.ts` | MACC brand colors |
-
-## Chamber Facts
-- **Founded**: 1948
-- **Years of Service**: 75+
-- **Member Businesses**: 500+
-- **Annual Events**: 100+
-- **Address**: 141 E. 5600 S., Suite 300, Murray, UT 84107
-- **Phone**: 801-263-2632
-
-## Recent Work (January 2026)
-
-### Session: macc-website-4
-- Updated resources page with content from old Murray Chamber website
-- Added Murray City, Salt Lake County, State of Utah, Federal resource links
-- Added MACC logo as favicon for all pages
-- Updated LegalShield link to external shieldbenefits.com URL
-- Standardized hover effects on Chamber Services cards
-- Updated founding year from 1985 to 1948 throughout site
-- Changed "40+ years" to "75+ years" across all pages
-- Updated mission statement with official Chamber language
-- Revised timeline milestones on About page
-
-## Go High Level Integration
-
-GHL webhooks are configured in `lib/ghl-config.ts` but need actual webhook URLs:
-
-| Form | Status |
-|------|--------|
-| Contact Form | Ready (needs webhook URL) |
-| Membership Application | Ready (needs webhook URL) |
-| Ribbon Cutting Request | Ready (needs webhook URL) |
-| Newsletter Signup | Ready (needs webhook URL) |
-| Event Registration | Ready (needs webhook URL) |
-| Certificate of Origin | Ready (needs webhook URL) |
-
-## Design System
-
-**CSS Classes** (in globals.css):
-- `.glass` / `.glass-strong` - Frosted glass backgrounds
-- `.glass-card` - Hoverable glass cards with borders
-- `.btn-glow` - Orange glowing CTA button
-- `.btn-secondary` - Secondary outline button
-- `.nav-glass` - Navigation background when scrolled
-- `.dropdown-menu` / `.dropdown-item` - Nav dropdowns
-- `.aurora-bg` - Animated background gradient
-
-## Notes
-- **Tailwind v3** - Do NOT upgrade to v4 (had CSS variable spacing issues)
-- **Vercel CLI** - Always deploy via CLI, not GitHub auto-deploy
-- **Mobile-first** - Responsive design with hamburger menu on mobile
-- **Framer Motion** - Smooth animations throughout
+## Reference Project
+- **Murray Chamber**: /Users/brettlechtenberg/Desktop/Claude Projects/Chamber-Website
+- **Live Site**: https://web-seven-beta-31.vercel.app/
+- **Power Hub**: https://web-seven-beta-31.vercel.app/power-hub

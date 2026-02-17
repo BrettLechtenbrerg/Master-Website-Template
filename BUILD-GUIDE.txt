@@ -1,0 +1,476 @@
+================================================================================
+                    POWER HUB TEMPLATE - BUILD GUIDE
+                    Total Success AI Client Portal System
+================================================================================
+
+Created: February 16, 2026
+Based on: Murray Area Chamber of Commerce Website & Power Hub
+Reference Project: /Users/brettlechtenberg/Desktop/Claude Projects/Chamber-Website
+
+This document provides everything needed to recreate this system for a new client.
+
+================================================================================
+                              SYSTEM OVERVIEW
+================================================================================
+
+The Power Hub is a custom CMS (Content Management System) built for small to
+medium businesses. It provides an easy-to-use admin portal for managing website
+content without technical knowledge.
+
+Target Clients:
+- Chambers of Commerce
+- Small businesses
+- Nonprofits
+- Professional services firms
+- Any organization needing a managed website with admin access
+
+================================================================================
+                              TECH STACK
+================================================================================
+
+FRONTEND:
+- Framework: Next.js 14+ (App Router)
+- Styling: Tailwind CSS
+- Language: TypeScript
+- Icons: Lucide React
+- Animations: Framer Motion (optional)
+- Image Handling: Next.js Image component
+
+BACKEND:
+- API Routes: Next.js Route Handlers
+- Database: Supabase (PostgreSQL)
+- File Storage: Supabase Storage + GitHub (for content JSON)
+- Authentication: Custom (stored in Supabase or localStorage)
+
+DEPLOYMENT:
+- Hosting: Vercel
+- Repository: GitHub
+- CDN: Vercel Edge Network (automatic)
+
+INTEGRATIONS (Optional):
+- AI: Claude API (for AI Assist feature)
+- Calendar: Google Calendar API + Embed
+- Forms: Go High Level webhooks
+- Analytics: Custom scripts via Scripts manager
+
+================================================================================
+                         POWER HUB FEATURES
+================================================================================
+
+Each feature is modular and can be included or excluded based on client needs.
+Mark with [INCLUDE] or [EXCLUDE] when planning a new build.
+
+------------------------------------------------------------------------------
+CORE FEATURES (Always Include)
+------------------------------------------------------------------------------
+
+[ ] DASHBOARD
+    - Overview of site content
+    - Quick stats (content files, media count)
+    - Recent activity
+    - Quick action buttons
+    Files: app/power-hub/dashboard/page.tsx
+
+[ ] CONTENT EDITOR
+    - Edit JSON content files for each page
+    - Visual form-based editing (no code required)
+    - Auto-save to GitHub
+    - Live preview capability
+    Files: app/power-hub/dashboard/content/
+    Dependencies: GITHUB_TOKEN env variable
+
+[ ] MEDIA LIBRARY
+    - Upload images
+    - Browse uploaded media
+    - Copy URLs for use in content
+    - Delete unused media
+    Files: app/power-hub/dashboard/media/
+    Dependencies: GITHUB_TOKEN env variable
+
+[ ] LOGIN SYSTEM
+    - Secure login page
+    - Configurable username/password
+    - Session management (localStorage)
+    Files: app/power-hub/page.tsx
+
+[ ] SETTINGS
+    - Change login credentials
+    - Site configuration
+    Files: app/power-hub/dashboard/settings/
+    Dependencies: Supabase (portal_settings table)
+
+------------------------------------------------------------------------------
+OPTIONAL FEATURES (Client Choice)
+------------------------------------------------------------------------------
+
+[ ] AI ASSIST
+    - Claude-powered content improvement
+    - Rewrite, expand, summarize content
+    - Grammar and tone adjustments
+    Files: app/power-hub/dashboard/ai/
+    Dependencies: Client's Claude API key (entered in browser)
+    Remove if: Client doesn't want AI features
+
+[ ] MEMBERS DIRECTORY
+    - Manage member/client listings
+    - Tiers (Sponsor, Ambassador, Member)
+    - Logo uploads
+    - Active/hidden status
+    Files: app/power-hub/dashboard/members/
+    Dependencies: Supabase (members table, member-logos bucket)
+    Remove if: Not a membership organization
+
+[ ] SCRIPTS MANAGER
+    - Add tracking scripts (GTM, Meta Pixel, etc.)
+    - Header or footer placement
+    - Sitewide or page-specific
+    - Enable/disable without removing
+    Files: app/power-hub/dashboard/scripts/
+    Dependencies: Supabase (custom_scripts table)
+    Remove if: Client handles their own tracking
+
+[ ] CALENDAR
+    - Embedded Google Calendar
+    - View events in Power Hub
+    - Link to Google Calendar for editing
+    Files: app/power-hub/dashboard/calendar/
+    Dependencies: Google Calendar (public calendar)
+    Remove if: No events/calendar needed
+
+------------------------------------------------------------------------------
+WEBSITE FEATURES (Public-Facing)
+------------------------------------------------------------------------------
+
+[ ] HOME PAGE
+    - Hero section
+    - Featured content
+    - Call to action buttons
+
+[ ] ABOUT PAGE
+    - Organization info
+    - Mission/vision
+    - History
+
+[ ] SERVICES PAGE
+    - Service listings
+    - Descriptions and benefits
+
+[ ] EVENTS PAGE (requires Google Calendar API)
+    - Live event feed from Google Calendar
+    - Filter by type
+    - Past/upcoming toggle
+    Files: app/events/, app/api/calendar/
+    Dependencies: GCAL_API_KEY, GCAL_CALENDAR_ID
+
+[ ] MEMBERS/DIRECTORY PAGE
+    - Public member directory
+    - Filter by tier/category
+    - Links to member websites
+    Dependencies: Supabase (members table)
+
+[ ] CONTACT PAGE
+    - Contact form
+    - Map embed
+    - Contact info
+    Dependencies: Form webhook (GHL or other)
+
+[ ] RESOURCES PAGE
+    - Downloadable resources
+    - Links to external tools
+
+================================================================================
+                         FILE STRUCTURE
+================================================================================
+
+project-root/
+├── app/
+│   ├── api/
+│   │   ├── calendar/route.ts        # Google Calendar API
+│   │   └── power-hub/
+│   │       ├── ai/route.ts          # Claude AI integration
+│   │       ├── auth/route.ts        # Login authentication
+│   │       ├── content/route.ts     # Content JSON read/write
+│   │       ├── deploy/route.ts      # Vercel deploy trigger
+│   │       ├── media/route.ts       # List uploaded media
+│   │       └── upload/route.ts      # Upload new media
+│   │
+│   ├── power-hub/                   # ADMIN PORTAL
+│   │   ├── page.tsx                 # Login page
+│   │   └── dashboard/
+│   │       ├── page.tsx             # Dashboard
+│   │       ├── layout.tsx           # Sidebar layout
+│   │       ├── content/page.tsx     # Content editor
+│   │       ├── media/page.tsx       # Media library
+│   │       ├── ai/page.tsx          # AI Assist
+│   │       ├── members/page.tsx     # Members (optional)
+│   │       ├── scripts/page.tsx     # Scripts (optional)
+│   │       ├── calendar/page.tsx    # Calendar (optional)
+│   │       └── settings/page.tsx    # Settings
+│   │
+│   ├── (public pages)/              # PUBLIC WEBSITE
+│   │   ├── page.tsx                 # Home
+│   │   ├── about/page.tsx
+│   │   ├── services/page.tsx
+│   │   ├── events/page.tsx
+│   │   ├── members/page.tsx
+│   │   ├── contact/page.tsx
+│   │   └── resources/page.tsx
+│   │
+│   ├── layout.tsx                   # Root layout
+│   └── globals.css                  # Global styles
+│
+├── components/
+│   ├── power-hub/
+│   │   ├── Sidebar.tsx              # Admin sidebar nav
+│   │   └── Header.tsx               # Admin page headers
+│   ├── PageHeader.tsx               # Public page headers
+│   ├── Navigation.tsx               # Public nav
+│   └── Footer.tsx                   # Public footer
+│
+├── content/                         # JSON CONTENT FILES
+│   ├── home.json
+│   ├── about.json
+│   ├── services.json
+│   ├── events.json
+│   ├── members.json
+│   ├── contact.json
+│   ├── resources.json
+│   ├── board.json
+│   ├── sponsors.json
+│   └── join.json
+│
+├── lib/
+│   └── supabase.ts                  # Supabase client
+│
+├── public/
+│   └── images/
+│       ├── logo.png
+│       └── uploads/                 # Uploaded media
+│
+├── supabase/
+│   └── migrations/
+│       └── 001_initial_schema.sql   # Database setup
+│
+├── .env.example                     # Environment template
+├── .env.local                       # Local environment (gitignored)
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
+└── POWER_HUB_REFERENCE.md           # Client documentation
+
+================================================================================
+                         ENVIRONMENT VARIABLES
+================================================================================
+
+Required for all builds:
+-------------------------
+GITHUB_TOKEN=ghp_xxxxxxxxxxxx
+  - Personal access token with 'repo' scope
+  - Used for content editing and media uploads
+
+NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
+  - Supabase project URL
+  - Get from Supabase Dashboard > Settings > API
+
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJxxxx
+  - Supabase anonymous key
+  - Get from Supabase Dashboard > Settings > API
+
+Optional (based on features):
+-----------------------------
+GCAL_API_KEY=AIzaxxxx
+  - Google Calendar API key
+  - Required for: Events page (API-based)
+
+GCAL_CALENDAR_ID=xxxx@group.calendar.google.com
+  - Google Calendar ID
+  - Required for: Events page (API-based)
+
+VERCEL_DEPLOY_HOOK=https://api.vercel.com/v1/integrations/deploy/xxxx
+  - Auto-redeploy after content changes
+  - Optional but recommended
+
+================================================================================
+                         DATABASE SCHEMA (SUPABASE)
+================================================================================
+
+Run this SQL in Supabase SQL Editor to set up all tables:
+
+```sql
+-- Enable UUID extension
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- PORTAL SETTINGS (for credentials and config)
+CREATE TABLE IF NOT EXISTS public.portal_settings (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  setting_key TEXT NOT NULL UNIQUE,
+  setting_value JSONB NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.portal_settings ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public access to portal_settings" ON public.portal_settings
+  FOR ALL USING (true) WITH CHECK (true);
+
+-- CUSTOM SCRIPTS (optional - for Scripts manager)
+CREATE TABLE IF NOT EXISTS public.custom_scripts (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  name TEXT NOT NULL,
+  location TEXT NOT NULL CHECK (location IN ('header', 'footer')),
+  scope TEXT NOT NULL CHECK (scope IN ('sitewide', 'page')),
+  page_path TEXT,
+  content TEXT NOT NULL,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.custom_scripts ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public access to custom_scripts" ON public.custom_scripts
+  FOR ALL USING (true) WITH CHECK (true);
+
+-- MEMBERS (optional - for Members directory)
+CREATE TABLE IF NOT EXISTS public.members (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  name TEXT NOT NULL,
+  category TEXT NOT NULL,
+  address TEXT NOT NULL,
+  phone TEXT,
+  website TEXT,
+  image_url TEXT,
+  tier TEXT NOT NULL DEFAULT 'member' CHECK (tier IN ('sponsor', 'ambassador', 'member')),
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE public.members ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "Allow public access to members" ON public.members
+  FOR ALL USING (true) WITH CHECK (true);
+```
+
+Storage Bucket (for member logos):
+- Name: member-logos
+- Public: Yes
+
+================================================================================
+                         SIDEBAR CONFIGURATION
+================================================================================
+
+To add/remove features from the sidebar, edit:
+components/power-hub/Sidebar.tsx
+
+```typescript
+const menuItems = [
+  { name: 'Dashboard', href: '/power-hub/dashboard', icon: LayoutDashboard },
+  { name: 'Content', href: '/power-hub/dashboard/content', icon: FileJson },
+  { name: 'Media', href: '/power-hub/dashboard/media', icon: ImageIcon },
+  // Comment out or remove features client doesn't need:
+  // { name: 'Members', href: '/power-hub/dashboard/members', icon: Users },
+  // { name: 'Scripts', href: '/power-hub/dashboard/scripts', icon: Code },
+  // { name: 'Calendar', href: '/power-hub/dashboard/calendar', icon: Calendar },
+  { name: 'AI Assist', href: '/power-hub/dashboard/ai', icon: Sparkles },
+  { name: 'Settings', href: '/power-hub/dashboard/settings', icon: Settings },
+];
+```
+
+================================================================================
+                         SETUP CHECKLIST FOR NEW CLIENT
+================================================================================
+
+PRE-BUILD:
+[ ] Get client branding (logo, colors, fonts)
+[ ] Determine which features client needs
+[ ] Get client's domain name
+[ ] Create Supabase account/project for client
+[ ] Create Vercel account/project for client
+[ ] Create GitHub repo for client
+
+BUILD:
+[ ] Clone template or create from scratch
+[ ] Update branding (colors in tailwind.config.ts)
+[ ] Update logo files
+[ ] Configure sidebar with needed features only
+[ ] Set up content JSON files for client's pages
+[ ] Test all features locally
+
+DEPLOYMENT:
+[ ] Push to GitHub
+[ ] Connect to Vercel
+[ ] Add environment variables to Vercel
+[ ] Run Supabase SQL migrations
+[ ] Create storage buckets if needed
+[ ] Set up custom domain
+[ ] Test production deployment
+
+HANDOFF:
+[ ] Create client documentation (POWER_HUB_REFERENCE.md)
+[ ] Send login credentials
+[ ] Provide training if needed
+[ ] Document any custom features
+
+================================================================================
+                         CUSTOMIZATION POINTS
+================================================================================
+
+BRANDING:
+- Primary color: tailwind.config.ts and inline styles using [#HEXCODE]
+- Logo: public/images/logo.png (also update any hardcoded paths)
+- Font: Can be added via next/font in layout.tsx
+
+LOGIN PAGE:
+- Background gradient: app/power-hub/page.tsx
+- Logo and text in login card
+
+SIDEBAR:
+- Logo: components/power-hub/Sidebar.tsx
+- Menu items: Same file, menuItems array
+
+PUBLIC WEBSITE:
+- Navigation: components/Navigation.tsx
+- Footer: components/Footer.tsx
+- Page headers: components/PageHeader.tsx
+
+================================================================================
+                         PRICING CONSIDERATIONS
+================================================================================
+
+When pricing builds, consider:
+
+BASE BUILD (Core features):
+- Dashboard, Content, Media, Settings, Login
+- 5-7 public pages
+- Basic Supabase setup
+
+ADD-ONS:
+- AI Assist (+$X - requires client API key)
+- Members Directory (+$X - includes Supabase table)
+- Scripts Manager (+$X - includes Supabase table)
+- Calendar Integration (+$X - requires Google setup)
+- Events Page with API (+$X - requires Google Calendar API)
+- Custom integrations (+$X per integration)
+
+ONGOING:
+- Hosting (Vercel - usually free tier works)
+- Supabase (free tier usually sufficient)
+- Domain ($10-15/year)
+- Support/maintenance (optional retainer)
+
+================================================================================
+                         REFERENCE PROJECT
+================================================================================
+
+Murray Chamber Website:
+- GitHub: https://github.com/BoardChairIs1/web
+- Live: https://web-seven-beta-31.vercel.app/
+- Power Hub: https://web-seven-beta-31.vercel.app/power-hub
+- Login: chamberadmin / chamber2026
+- Supabase: boardchair@themurraychamber.com
+
+Local Path:
+/Users/brettlechtenberg/Desktop/Claude Projects/Chamber-Website
+
+================================================================================
+                              END OF DOCUMENT
+================================================================================
